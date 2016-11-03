@@ -13,4 +13,9 @@
     <string name="name_unknown">Magicien inconnu</string>
     <string name="logout_drawer">Déconnecter</string>
     <string name="open_map_button">Découvrer le monde!</string>
+    <string name="default_name">Magicien inconnu</string>
+    <string name="navigation_drawer_close">Fermer navigation</string>
+    <string name="navigation_drawer_open">Ouvrir navigation</string>
+    <string name="action_settings">Préférences</string>
+    <string name="title_activity_game">Accueil</string>
 </resources>

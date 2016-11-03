@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -88,7 +90,12 @@ public class CreateAccount extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-                        UserObject mUser = new UserObject("börje", "sven");
+                        ArrayList<MyMarker> tmpMarkerList = new ArrayList<>();
+                        MyMarker myMarker = new MyMarker(0,0,"hallon");
+                        tmpMarkerList.add(myMarker);
+                        Wand myWand = new Wand(10,10,10,10);
+                        String default_name = getResources().getString(R.string.default_name);
+                        UserObject mUser = new UserObject(default_name, email, 10, 0, 1,0, 0, myWand, tmpMarkerList);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);

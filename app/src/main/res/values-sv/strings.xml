@@ -13,4 +13,9 @@
     <string name="name_unknown">Okänd magiker</string>
     <string name="logout_drawer">Logga ut</string>
     <string name="open_map_button">Utforska världen!</string>
+    <string name="default_name">Okänd magiker</string>
+    <string name="navigation_drawer_close">Stäng navigering</string>
+    <string name="navigation_drawer_open">Öppna navigering</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="title_activity_game">Hem</string>
 </resources>

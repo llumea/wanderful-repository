@@ -39,6 +39,7 @@ public class GameActivity extends AppCompatActivity
     DatabaseReference myRef;
     String uid;
     Button updateButton;
+    NavigationView navigationView;
 
 
     @Override
@@ -47,6 +48,8 @@ public class GameActivity extends AppCompatActivity
         setContentView(R.layout.activity_game);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         textHome =(TextView)findViewById(R.id.textHome);
         updateButton = (Button)findViewById(R.id.openMap);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +74,14 @@ public class GameActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+
                UserObject object = dataSnapshot.getValue(UserObject.class);
                 textHome.setText(object.username+" "+object.email);
+                View hView =  navigationView.getHeaderView(0);
+                TextView nav_email = (TextView)hView.findViewById(R.id.drawer_email);
+                TextView nav_name = (TextView)hView.findViewById(R.id.drawer_name);
+                nav_email.setText(object.email);
+                nav_name.setText(object.username);
                Log.d("TAG", "Object is: " + object.username);
             }
 
@@ -103,7 +112,8 @@ public class GameActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
