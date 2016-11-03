@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wanderful World</string>
+    <string name="login_email">Adresse e-mail</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="login_button">Log in</string>
+    <string name="login_create_button">Créer un nouveau magicien</string>
+    <string name="login_or">- ou -</string>
+    <string name="create_button">Créer magicien</string>
+    <string name="auth_failed">Autentication échouée</string>
+    <string name="mail_format_error">Adresse e-mail est malformé</string>
+    <string name="password_error">Le mot de pass doit contenir au moins 6 charactères</string>
+    <string name="name_unknown">Magicien inconnu</string>
+    <string name="logout_drawer">Déconnecter</string>
+    <string name="open_map_button">Découvrer le monde!</string>
+</resources>

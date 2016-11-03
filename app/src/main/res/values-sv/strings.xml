@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wanderful World</string>
+    <string name="login_email">E-postadress</string>
+    <string name="login_password">Lösenord</string>
+    <string name="login_button">Logga in</string>
+    <string name="login_create_button">Skapa en ny magiker</string>
+    <string name="login_or">- eller -</string>
+    <string name="create_button">Skapa magiker</string>
+    <string name="auth_failed">Autentiseringen misslyckades</string>
+    <string name="mail_format_error">E-postadressen har fel format</string>
+    <string name="password_error">Lösenordet måste innehålla minst 6 tecken</string>
+    <string name="name_unknown">Okänd magiker</string>
+    <string name="logout_drawer">Logga ut</string>
+    <string name="open_map_button">Utforska världen!</string>
+</resources>
