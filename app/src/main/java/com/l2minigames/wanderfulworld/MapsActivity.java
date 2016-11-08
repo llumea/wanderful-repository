@@ -2,8 +2,10 @@ package com.l2minigames.wanderfulworld;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -11,6 +13,10 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -25,29 +31,37 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.Manifest;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener {
+import java.util.ArrayList;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     TextView mPositionLatitude;
     TextView mPositionLongitude;
+    ProgressBar mProgressBar;
     LocationRequest locationRequest;
+    ImageView mImageViewBackground;
     double myPositionLatitude;
     double myPositionLongitude;
     final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    ArrayList<MyMarker> mMarkers =new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000); //10 sek mellan requests
-        locationRequest.setFastestInterval(5000);
+        locationRequest.setInterval(5000); //10 sek mellan requests
+        locationRequest.setFastestInterval(2500);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if (mGoogleApiClient == null) {
@@ -79,20 +93,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-       /// mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                mImageViewBackground.setVisibility(ImageView.INVISIBLE);
+                mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+            }
+        });
 
-
-        ///mMap.setMaxZoomPreference(20);
-        // Add a marker in Sydney and move the camera
-        LatLng mPosition = new LatLng(myPositionLatitude, myPositionLongitude);
-        mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mPosition));
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                new CameraPosition.Builder()
-                        .target(mPosition)
-                        .tilt(45)
-                        .zoom(16)
-                        .build()));
 
         ///LatLng sydney = new LatLng(-34, 151);
        /// mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -173,8 +182,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
+       /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);
         mMap.clear();
+        createMarkers();
+        mMap.setOnMarkerClickListener(this);
         mMap.getUiSettings(). setZoomGesturesEnabled(false);
+       /// mMap.getUiSettings(). setScrollGesturesEnabled(false);
+
         myPositionLatitude = location.getLatitude();
         myPositionLongitude = location.getLongitude();
         mPositionLatitude.setText(String.valueOf(location.getLatitude()));
@@ -183,13 +197,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d("TAG", "MyLongitude in onLocationChanged: "+location.getLongitude());
         LatLng mPosition = new LatLng(myPositionLatitude, myPositionLongitude);
         mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mPosition));
+        if (mMarkers.size()>0) {
+            Log.d("TAG", "INNE I MARKERSUTSKRIFT");
+            for (int i=0;i<mMarkers.size();i++) {
+                LatLng tmpPosition = new LatLng(mMarkers.get(i).markerLatitude, mMarkers.get(i).markerLongitude);
+                mMap.addMarker(new MarkerOptions().position(tmpPosition).title(mMarkers.get(i).markerType));
+            }
+
+        }
+        LatLng cameraPosition = new LatLng(myPositionLatitude+0.0005, myPositionLongitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
-                        .target(mPosition)
-                        .tilt(45)
-                        .zoom(16)
+                        .target(cameraPosition)
+                        .tilt(90)
+                        .zoom(18)
                         .build()));
+
+       /// mImageViewBackground.setVisibility(ImageView.INVISIBLE);
     }
 
     @Override
@@ -206,5 +231,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        String name= marker.getTitle();
+
+
+        if (name.equalsIgnoreCase("MyMarker"))
+        {
+            Log.d("TAG", "MyMarker is so tapped!");
+
+        }
+        if (name.equalsIgnoreCase("Marker 1"))
+        {
+            Log.d("TAG", "Marker 1 is tapped!");
+        }
+        if (name.equalsIgnoreCase("Marker 2"))
+        {
+            Log.d("TAG", "Marker 2 is tapped!");
+        }
+
+        return true;
+    }
+    public void createMarkers(){
+
+        Log.d("TAG", "INNE I CREATE MARKERS");
+        mMarkers.clear();
+        MyMarker tmpMarker = new MyMarker(myPositionLatitude+0.0005, myPositionLongitude, "Marker 1");
+        mMarkers.add(tmpMarker);
+        MyMarker tmpMarker2 = new MyMarker(myPositionLatitude-0.0005, myPositionLongitude, "Marker 2");
+        mMarkers.add(tmpMarker2);
     }
 }
