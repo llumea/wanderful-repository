@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -33,6 +34,14 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import android.Manifest;
 
 import java.util.ArrayList;
@@ -42,6 +51,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     TextView mPositionLatitude;
     TextView mPositionLongitude;
     ProgressBar mProgressBar;
@@ -49,6 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageView mImageViewBackground;
     double myPositionLatitude;
     double myPositionLongitude;
+    String uid;
     final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     ArrayList<MyMarker> mMarkers =new ArrayList<>();
 
@@ -57,6 +71,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            uid = user.getUid();
+            Log.d("TAG","UserID: "+uid);
+
+        }
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(uid);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                UserObject object = dataSnapshot.getValue(UserObject.class);
+                if (object.timer==10){createMarkersFirstTime();}
+
+                /// textHome.setText(object.username+" "+object.email);
+
+
+                Log.d("TAG", "Object is: " + object.username);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
         mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
         mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
         locationRequest = new LocationRequest();
@@ -182,6 +226,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
+
+        myPositionLatitude = location.getLatitude();
+        myPositionLongitude = location.getLongitude();
+        myRef.child("latitude").setValue(myPositionLatitude);
+        myRef.child("longitude").setValue(myPositionLongitude);
+        LatLng cameraPosition = new LatLng(myPositionLatitude+0.0005, myPositionLongitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                new CameraPosition.Builder()
+                        .target(cameraPosition)
+                        .tilt(90)
+                        .zoom(18)
+                        .build()));
+      /*
        /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);
         mMap.clear();
         createMarkers();
@@ -215,6 +273,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .build()));
 
        /// mImageViewBackground.setVisibility(ImageView.INVISIBLE);
+       */
     }
 
     @Override
@@ -262,5 +321,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMarkers.add(tmpMarker);
         MyMarker tmpMarker2 = new MyMarker(myPositionLatitude-0.0005, myPositionLongitude, "Marker 2");
         mMarkers.add(tmpMarker2);
+    }
+    public void createMarkersFirstTime(){
+
+        Log.d("TAG", "INNE I CREATE MARKERS FOR FIRST TIME");
+        ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
+        MyMarker tmpMarker = new MyMarker(myPositionLatitude+0.0005, myPositionLongitude, "Marker 1");
+        tmpMarkerslist.add(tmpMarker);
+        MyMarker tmpMarker2 = new MyMarker(myPositionLatitude-0.0005, myPositionLongitude, "Marker 2");
+        tmpMarkerslist.add(tmpMarker2);
+
     }
 }
