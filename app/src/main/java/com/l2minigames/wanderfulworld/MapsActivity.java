@@ -44,7 +44,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.Manifest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
@@ -65,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String uid;
     final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     ArrayList<MyMarker> mMarkers =new ArrayList<>();
+    UserObject object;
 
 
     @Override
@@ -80,27 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(uid);
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
 
-                UserObject object = dataSnapshot.getValue(UserObject.class);
-                if (object.timer==10){createMarkersFirstTime();}
-
-                /// textHome.setText(object.username+" "+object.email);
-
-
-                Log.d("TAG", "Object is: " + object.username);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        });
         mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
         mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
         locationRequest = new LocationRequest();
@@ -137,6 +121,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                mMap.clear();
+                object = dataSnapshot.getValue(UserObject.class);
+                if (object.timer==10){createMarkersFirstTime();}
+
+                Calendar calendar = Calendar.getInstance();
+                Date date = calendar.getTime();
+                long checkMarkersTimestamp = date.getTime();
+                if (checkMarkersTimestamp>object.timer+60000) {
+                    updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
+                }
+                /// textHome.setText(object.username+" "+object.email);
+
+                mPositionLatitude.setText(""+object.latitude);
+                mPositionLongitude.setText(""+object.longitude);
+
+                LatLng mPosition = new LatLng(object.latitude, object.longitude);
+                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker"));
+
+
+                for (int i=0;i<object.markerList.size();i++){
+
+                    LatLng tmpPosition = new LatLng(object.markerList.get(i).markerLatitude, object.markerList.get(i).markerLongitude);
+                    mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType));
+                }
+                String tmpMarkerType = object.markerList.get(0).markerType;
+                Log.d("TAG", "ARRAY LIST markerType: "+object.markerList.size());
+
+
+                Log.d("TAG", "Object is: " + object.username);
+
+                ///Omvandla long till formaterat String-datum
+                ///SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy HH:mm:ss");
+                /// String formatedDate = sdf.format(tmpToDoNote.date);
+                /// date.setText(formatedDate);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
@@ -302,14 +334,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("TAG", "MyMarker is so tapped!");
 
         }
+        for (int i=0;i<object.markerList.size();i++){
+            if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
+                Log.d("TAG", "MyMarker is: "+name);
+                String tmpId = Integer.toString(i);
+                ///myRef.child("markerList").child(tmpId).removeValue();
+            }
+        }
+
+
         if (name.equalsIgnoreCase("Marker 1"))
         {
             Log.d("TAG", "Marker 1 is tapped!");
+
         }
         if (name.equalsIgnoreCase("Marker 2"))
         {
             Log.d("TAG", "Marker 2 is tapped!");
         }
+
 
         return true;
     }
@@ -324,12 +367,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void createMarkersFirstTime(){
 
+        ///Ändra här så att det finns rätt markers i början
         Log.d("TAG", "INNE I CREATE MARKERS FOR FIRST TIME");
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        long markersTimestamp = date.getTime();
+        myRef.child("timer").setValue(markersTimestamp);
+
         ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
         MyMarker tmpMarker = new MyMarker(myPositionLatitude+0.0005, myPositionLongitude, "Marker 1");
         tmpMarkerslist.add(tmpMarker);
         MyMarker tmpMarker2 = new MyMarker(myPositionLatitude-0.0005, myPositionLongitude, "Marker 2");
         tmpMarkerslist.add(tmpMarker2);
 
+
     }
+
+    public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
+        Log.d("TAG", "INNE I UPDATE MARKERS");
+
+        myRef.child("timer").setValue(timestamp);
+
+        ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
+        MyMarker tmpMarker = new MyMarker(myLatitude+0.0005, myLongitude, "Marker 2");
+        tmpMarkerslist.add(tmpMarker);
+        MyMarker tmpMarker2 = new MyMarker(myLatitude-0.0005, myLongitude, "Marker 3");
+        tmpMarkerslist.add(tmpMarker2);
+        MyMarker tmpMarker3 = new MyMarker(myLatitude-0.0015, myLongitude, "Marker 4");
+        tmpMarkerslist.add(tmpMarker3);
+        MyMarker tmpMarker4 = new MyMarker(myLatitude+0.0015, myLongitude, "Marker 1");
+        tmpMarkerslist.add(tmpMarker4);
+        myRef.child("markerList").setValue(tmpMarkerslist);
+
+    }
+
 }
