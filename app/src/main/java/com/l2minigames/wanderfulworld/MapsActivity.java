@@ -30,7 +30,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -43,6 +45,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.Manifest;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,12 +72,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     ArrayList<MyMarker> mMarkers =new ArrayList<>();
     UserObject object;
+    CircleOptions mCircle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        mCircle = new CircleOptions();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
@@ -89,8 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
         locationRequest = new LocationRequest();
         locationRequest.setInterval(5000); //10 sek mellan requests
-        locationRequest.setFastestInterval(2500);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        locationRequest.setFastestInterval(5000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -126,6 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+
                 mMap.clear();
                 object = dataSnapshot.getValue(UserObject.class);
                 if (object.timer==10){createMarkersFirstTime();}
@@ -142,19 +149,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mPositionLongitude.setText(""+object.longitude);
 
                 LatLng mPosition = new LatLng(object.latitude, object.longitude);
-                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker"));
+                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yellow)));
 
 
                 for (int i=0;i<object.markerList.size();i++){
-
+                    Log.d("TAG", "markerSize before LatLng: "+object.markerList.size());
                     LatLng tmpPosition = new LatLng(object.markerList.get(i).markerLatitude, object.markerList.get(i).markerLongitude);
-                    mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType));
+                    mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_blue)));
+
+                    Log.d("TAG", "markerSize: "+object.markerList.size());
                 }
-                String tmpMarkerType = object.markerList.get(0).markerType;
-                Log.d("TAG", "ARRAY LIST markerType: "+object.markerList.size());
 
 
-                Log.d("TAG", "Object is: " + object.username);
+
 
                 ///Omvandla long till formaterat String-datum
                 ///SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy HH:mm:ss");
@@ -173,8 +180,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
+                Toast.makeText(MapsActivity.this, "Map is loaded",
+                        Toast.LENGTH_SHORT).show();
                 mImageViewBackground.setVisibility(ImageView.INVISIBLE);
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+
             }
         });
 
@@ -271,13 +281,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .tilt(90)
                         .zoom(18)
                         .build()));
+        ///mMap.getUiSettings(). setZoomGesturesEnabled(false);
+        ///mMap.getUiSettings(). setScrollGesturesEnabled(false);
       /*
        /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);
         mMap.clear();
         createMarkers();
         mMap.setOnMarkerClickListener(this);
-        mMap.getUiSettings(). setZoomGesturesEnabled(false);
-       /// mMap.getUiSettings(). setScrollGesturesEnabled(false);
+
 
         myPositionLatitude = location.getLatitude();
         myPositionLongitude = location.getLongitude();
@@ -328,30 +339,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
         String name= marker.getTitle();
 
+        float[] distance = new float[2];
+        //users current location
+
+
+        mCircle.center(new LatLng(myPositionLatitude, myPositionLongitude));
+        mCircle.radius(60);
+
+
+
+
+
+        Location.distanceBetween(marker.getPosition().latitude,
+                marker.getPosition().longitude, mCircle.getCenter().latitude,
+                mCircle.getCenter().longitude, distance);
+
+        Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[0]);
+        Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[1]);
+        if (distance[0] > mCircle.getRadius()) {
+            Log.d("TAG", "DISTANCE IS BIGGER THAN RADIUS");
+            Toast.makeText(this, "You are not in range",
+                    Toast.LENGTH_SHORT).show();
+
+        }else if (distance[0] < mCircle.getRadius() && !name.equalsIgnoreCase("MyMarker")) {
+            Log.d("TAG", "DISTANCE IS SMALLER THAN RADIUS");
+            for (int i=0;i<object.markerList.size();i++){
+                if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
+                    Log.d("TAG", "This MyMarker is tapped: "+name);
+                    String tmpId = Integer.toString(i);
+                    myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
+                    myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
+                }
+
+            }
+            Toast.makeText(this, "You collected an item",
+                    Toast.LENGTH_SHORT).show();
+        }
 
         if (name.equalsIgnoreCase("MyMarker"))
         {
+            Log.d("TAG", "STROKE COLOR"+mCircle.getStrokeColor());
+            Log.d("TAG", "STROKE COLOR"+mCircle.getFillColor());
+            if (mCircle.getStrokeColor()==-16777216 && mCircle.getFillColor()==0x00000000){
+                mCircle.strokeColor(R.color.colorAccent);
+                mCircle.fillColor(R.color.colorPrimary);
+                mMap.addCircle(mCircle);
+            }
+
+
+
+
             Log.d("TAG", "MyMarker is so tapped!");
 
-        }
-        for (int i=0;i<object.markerList.size();i++){
-            if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
-                Log.d("TAG", "MyMarker is: "+name);
-                String tmpId = Integer.toString(i);
-                ///myRef.child("markerList").child(tmpId).removeValue();
-            }
-        }
-
-
-        if (name.equalsIgnoreCase("Marker 1"))
-        {
-            Log.d("TAG", "Marker 1 is tapped!");
 
         }
-        if (name.equalsIgnoreCase("Marker 2"))
-        {
-            Log.d("TAG", "Marker 2 is tapped!");
-        }
+
 
 
         return true;
@@ -385,7 +427,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
         Log.d("TAG", "INNE I UPDATE MARKERS");
-
+        Toast.makeText(this, "Items are updated!",
+                Toast.LENGTH_SHORT).show();
         myRef.child("timer").setValue(timestamp);
 
         ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
