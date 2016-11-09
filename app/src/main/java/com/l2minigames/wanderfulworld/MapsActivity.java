@@ -51,6 +51,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
@@ -73,6 +75,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<MyMarker> mMarkers =new ArrayList<>();
     UserObject object;
     CircleOptions mCircle;
+    Timer timer;
+    int timerTime;
+    Marker tmpMarker;
+
 
 
     @Override
@@ -337,6 +343,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
+
+
         String name= marker.getTitle();
 
         float[] distance = new float[2];
@@ -443,5 +452,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.child("markerList").setValue(tmpMarkerslist);
 
     }
+
+
+
+
 
 }
