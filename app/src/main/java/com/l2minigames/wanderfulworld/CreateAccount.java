@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class CreateAccount extends AppCompatActivity {
@@ -91,15 +93,23 @@ public class CreateAccount extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                         ArrayList<MyMarker> tmpMarkerList = new ArrayList<>();
+                        HashMap<String, CollectedItem> tmpCollectedItems = new HashMap<>();
                         MyMarker myMarker = new MyMarker(0,0,"hallon");
                         tmpMarkerList.add(myMarker);
                         Wand myWand = new Wand(10,10,10,10);
                         String default_name = getResources().getString(R.string.default_name);
-                        UserObject mUser = new UserObject(default_name, email, 10, 0, 1,0, 0, myWand, tmpMarkerList);
+                        ///CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        ///tmpCollectedItems.put("first items", tmpCollectedItem);
+                        UserObject mUser = new UserObject(default_name, email, 10, 0, 1,0, 0, myWand, tmpMarkerList, tmpCollectedItems);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);
                         myRef.setValue(mUser);
+                        DatabaseReference collectedRef = myRef.child("collectedItems");
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        HashMap<String, Object> collectedUpdates = new HashMap<>();
+                        collectedUpdates.put("new items", tmpCollectedItem2);
+                        collectedRef.push().setValue(collectedUpdates);
                         Intent intent = new Intent(CreateAccount.this, GameActivity.class);
                         startActivity(intent);
                         finish();

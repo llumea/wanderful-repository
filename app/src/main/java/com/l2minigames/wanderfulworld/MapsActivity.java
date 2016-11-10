@@ -51,6 +51,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    DatabaseReference collectedRef;
     TextView mPositionLatitude;
     TextView mPositionLongitude;
     ProgressBar mProgressBar;
@@ -96,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(uid);
-
+        collectedRef = myRef.child("collectedItems");
         mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
         mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
         locationRequest = new LocationRequest();
@@ -376,6 +378,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     Log.d("TAG", "This MyMarker is tapped: "+name);
                     String tmpId = Integer.toString(i);
+                    if (object.markerList.get(i).markerType.equals("hallon 1")){
+
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 1", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        HashMap<String, Object> collectedUpdates = new HashMap<>();
+                        collectedUpdates.put("new items", tmpCollectedItem2);
+                        collectedRef.push().setValue(collectedUpdates);
+                    }
+                    if (object.markerList.get(i).markerType.equals("hallon 2")){
+
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 2", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        HashMap<String, Object> collectedUpdates = new HashMap<>();
+                        collectedUpdates.put("new items", tmpCollectedItem2);
+                        collectedRef.push().setValue(collectedUpdates);
+                    }
+                    if (object.markerList.get(i).markerType.equals("hallon 3")){
+
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 3", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        HashMap<String, Object> collectedUpdates = new HashMap<>();
+                        collectedUpdates.put("new items", tmpCollectedItem2);
+                        collectedRef.push().setValue(collectedUpdates);
+                    }
+                    if (object.markerList.get(i).markerType.equals("hallon 4")){
+
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 4", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        HashMap<String, Object> collectedUpdates = new HashMap<>();
+                        collectedUpdates.put("new items", tmpCollectedItem2);
+                        collectedRef.push().setValue(collectedUpdates);
+                    }
                     myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
                     myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
                 }
@@ -441,13 +471,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.child("timer").setValue(timestamp);
 
         ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-        MyMarker tmpMarker = new MyMarker(myLatitude+0.0005, myLongitude, "Marker 2");
+        MyMarker tmpMarker = new MyMarker(myLatitude+0.0005, myLongitude, "hallon 2");
         tmpMarkerslist.add(tmpMarker);
-        MyMarker tmpMarker2 = new MyMarker(myLatitude-0.0005, myLongitude, "Marker 3");
+        MyMarker tmpMarker2 = new MyMarker(myLatitude-0.0005, myLongitude, "hallon 3");
         tmpMarkerslist.add(tmpMarker2);
-        MyMarker tmpMarker3 = new MyMarker(myLatitude-0.0015, myLongitude, "Marker 4");
+        MyMarker tmpMarker3 = new MyMarker(myLatitude-0.0015, myLongitude, "hallon 4");
         tmpMarkerslist.add(tmpMarker3);
-        MyMarker tmpMarker4 = new MyMarker(myLatitude+0.0015, myLongitude, "Marker 1");
+        MyMarker tmpMarker4 = new MyMarker(myLatitude+0.0015, myLongitude, "hallon 1");
         tmpMarkerslist.add(tmpMarker4);
         myRef.child("markerList").setValue(tmpMarkerslist);
 
