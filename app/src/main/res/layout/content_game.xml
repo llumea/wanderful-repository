@@ -12,6 +12,15 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.l2minigames.wanderfulworld.GameActivity"
     tools:showIn="@layout/app_bar_game">
+    <RelativeLayout
+
+        android:id="@+id/my_actionbar"
+        android:paddingLeft="4dp"
+        android:layout_gravity="fill_horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:layout_height="48dp">
 
     <TextView
         android:id="@+id/textHome"
@@ -21,8 +30,29 @@
     <Button
         android:id="@+id/openMap"
         android:text="@string/open_map_button"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/textHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:id="@+id/information_field"
+
+        android:layout_below="@id/my_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorPrimary"
+            android:id="@+id/recycler_view"
+            android:divider="@color/colorTextIcons"
+            android:dividerHeight="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

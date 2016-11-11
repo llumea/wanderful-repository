@@ -380,31 +380,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String tmpId = Integer.toString(i);
                     if (object.markerList.get(i).markerType.equals("hallon 1")){
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 1", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        HashMap<String, Object> collectedUpdates = new HashMap<>();
-                        collectedUpdates.put("new items", tmpCollectedItem2);
-                        collectedRef.push().setValue(collectedUpdates);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("strawberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 2")){
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 2", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        HashMap<String, Object> collectedUpdates = new HashMap<>();
-                        collectedUpdates.put("new items", tmpCollectedItem2);
-                        collectedRef.push().setValue(collectedUpdates);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("blueberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 3")){
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 3", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        HashMap<String, Object> collectedUpdates = new HashMap<>();
-                        collectedUpdates.put("new items", tmpCollectedItem2);
-                        collectedRef.push().setValue(collectedUpdates);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("woodberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 4")){
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon 4", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        HashMap<String, Object> collectedUpdates = new HashMap<>();
-                        collectedUpdates.put("new items", tmpCollectedItem2);
-                        collectedRef.push().setValue(collectedUpdates);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("nordic berry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
                     }
                     myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
                     myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);

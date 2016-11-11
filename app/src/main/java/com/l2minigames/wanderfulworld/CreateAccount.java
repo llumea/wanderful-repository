@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +37,7 @@ public class CreateAccount extends AppCompatActivity {
     private String email;
     private String password;
     public String uid;
+    private TextView itemName;
 
 
     @Override
@@ -46,6 +48,7 @@ public class CreateAccount extends AppCompatActivity {
         mEditEmail = (EditText) findViewById(R.id.editEmail);
         mEditPassword = (EditText) findViewById(R.id.editPassword);
         mButtonCreate = (Button) findViewById(R.id.buttonCreate);
+        itemName = (TextView) findViewById(R.id.itemName);
 
 
         mButtonCreate.setOnClickListener(new View.OnClickListener() {
@@ -98,18 +101,27 @@ public class CreateAccount extends AppCompatActivity {
                         tmpMarkerList.add(myMarker);
                         Wand myWand = new Wand(10,10,10,10);
                         String default_name = getResources().getString(R.string.default_name);
-                        ///CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        ///tmpCollectedItems.put("first items", tmpCollectedItem);
+
+                        ///CollectedItem tmpCollectedItem = new CollectedItem();
+                       /// CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        ///tmpCollectedItems.put("collectedItems", tmpCollectedItem);
                         UserObject mUser = new UserObject(default_name, email, 10, 0, 1,0, 0, myWand, tmpMarkerList, tmpCollectedItems);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);
                         myRef.setValue(mUser);
-                        DatabaseReference collectedRef = myRef.child("collectedItems");
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        HashMap<String, Object> collectedUpdates = new HashMap<>();
-                        collectedUpdates.put("new items", tmpCollectedItem2);
-                        collectedRef.push().setValue(collectedUpdates);
+
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+
+
+                        CollectedItem tmpCollectedItem3 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        myRef.child("collectedItems").push().setValue(tmpCollectedItem3);
+                        ///DatabaseReference collectedRef = myRef.child("collectedItems");
+                        ///CollectedItem tmpCollectedItem2 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10);
+                        ///myRef.child(collectedpush().
+                       /// collectedUpdates.put("new items", tmpCollectedItem2);
+                       /// collectedRef.push().setValue(collectedUpdates);
                         Intent intent = new Intent(CreateAccount.this, GameActivity.class);
                         startActivity(intent);
                         finish();

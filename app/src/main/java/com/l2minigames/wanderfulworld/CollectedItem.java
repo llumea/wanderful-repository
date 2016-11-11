@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class CollectedItem {
 
+
     public String itemName;
     public String itemType;
     public String elementType;
@@ -17,13 +18,16 @@ public class CollectedItem {
     public int level;
     public int cp;
     public int hp;
+    public String uid;
+
 
 
     public CollectedItem() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public CollectedItem(String itemName, String itemType, String elementType, String imageRef, long timestamp, int level, int cp, int hp) {
+    public CollectedItem(String itemName, String itemType, String elementType, String imageRef, long timestamp, int level, int cp, int hp, String uid) {
+
 
         this.itemName = itemName;
         this.itemType = itemType;
@@ -33,6 +37,7 @@ public class CollectedItem {
         this.level = level;
         this.cp = cp;
         this.hp = hp;
+        this.uid = uid;
 
     }
    /* public Map<String, Object> toMap() {
