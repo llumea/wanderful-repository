@@ -62,7 +62,7 @@ public class GameActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         textHome =(TextView)findViewById(R.id.textHome);
-        myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/VlO28d9A4lQLzUJ2mlUikCbnejt1/collectedItems");
+        ///myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/VlO28d9A4lQLzUJ2mlUikCbnejt1/collectedItems");
         updateButton = (Button)findViewById(R.id.openMap);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class GameActivity extends AppCompatActivity
             uid = user.getUid();
             Log.d("TAG","UserID: "+uid);
 
-
+            myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/"+uid+"/collectedItems");
 
         }
         database = FirebaseDatabase.getInstance();
@@ -213,7 +213,7 @@ public class GameActivity extends AppCompatActivity
               /// objectViewHolder.mText.setText(collectedItem.level);
                String key = this.getRef(i).getKey();
               Log.i("TAG", "Key: "+key);
-
+                ///myFirebaseRef.child("uid").setValue(key);
                 objectViewHolder.itemName.setText(collectedItem.itemName);
                 objectViewHolder.itemType.setText(collectedItem.itemType);
 
