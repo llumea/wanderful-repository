@@ -373,30 +373,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Toast.LENGTH_SHORT).show();
 
         }else if (distance[0] < mCircle.getRadius() && !name.equalsIgnoreCase("MyMarker")) {
+            Calendar calendar = Calendar.getInstance();
+            Date date = calendar.getTime();
+            long itemTimestamp = date.getTime();
+            Log.d("TAG", "Timestamp when pick up item: "+itemTimestamp);
             Log.d("TAG", "DISTANCE IS SMALLER THAN RADIUS");
             for (int i=0;i<object.markerList.size();i++){
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     Log.d("TAG", "This MyMarker is tapped: "+name);
                     String tmpId = Integer.toString(i);
                     if (object.markerList.get(i).markerType.equals("hallon 1")){
-
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("strawberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("strawberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 2")){
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("blueberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("blueberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 3")){
-
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("woodberry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("woodberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
                     if (object.markerList.get(i).markerType.equals("hallon 4")){
-
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("nordic berry", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("nordic berry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
                     myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
                     myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);

@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameActivity extends AppCompatActivity
@@ -47,7 +48,8 @@ public class GameActivity extends AppCompatActivity
     Button updateButton;
     NavigationView navigationView;
     FirebaseRecyclerAdapter<CollectedItem, ObjectViewHolder> adapter;
-    Firebase myFirebaseRef;
+    static Firebase myFirebaseRef;
+    static ArrayList<String> tmpKeys = new ArrayList<>();
 
 
     @Override
@@ -62,6 +64,7 @@ public class GameActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         textHome =(TextView)findViewById(R.id.textHome);
+
         ///myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/VlO28d9A4lQLzUJ2mlUikCbnejt1/collectedItems");
         updateButton = (Button)findViewById(R.id.openMap);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -207,15 +210,24 @@ public class GameActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
+        ///Töm arraylist här
+        tmpKeys.clear();
+
         adapter = new FirebaseRecyclerAdapter<CollectedItem, ObjectViewHolder>(CollectedItem.class, R.layout.list_items, ObjectViewHolder.class, myFirebaseRef) {
             @Override
             protected void populateViewHolder(ObjectViewHolder objectViewHolder, CollectedItem collectedItem, int i) {
               /// objectViewHolder.mText.setText(collectedItem.level);
                String key = this.getRef(i).getKey();
+               /// HashMap<String, CollectedItem> tmpHashMap = new HashMap<>();
+               /// tmpHashMap.put("uid",key);
+               /// myFirebaseRef.child(key).updateChildren(tmpHashMap);
+               /// myRef.child("level").setValue(2);
+               /// myFirebaseRef.child(key).child("uid").setValue(key);
               Log.i("TAG", "Key: "+key);
-                ///myFirebaseRef.child("uid").setValue(key);
+                tmpKeys.add(key);
                 objectViewHolder.itemName.setText(collectedItem.itemName);
                 objectViewHolder.itemType.setText(collectedItem.itemType);
+
 
             }
 
@@ -240,7 +252,10 @@ public class GameActivity extends AppCompatActivity
                     int position = getAdapterPosition();
                     Log.i ("TAG", "Item clicked; "+position);
                     String thisItemName = itemName.getText().toString();
-                    Log.i ("TAG", "Key clicked; "+thisItemName);
+                    String tmpKey = tmpKeys.get(position);
+                    Log.i ("TAG", "Key clicked; "+""+tmpKeys.get(position));
+                    myFirebaseRef.child(tmpKeys.get(position)).child("uid").setValue(tmpKey);
+
 
                 }
             });
