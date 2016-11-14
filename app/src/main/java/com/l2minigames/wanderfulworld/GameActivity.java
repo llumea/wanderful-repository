@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
@@ -49,7 +50,7 @@ public class GameActivity extends AppCompatActivity
     NavigationView navigationView;
     FirebaseRecyclerAdapter<CollectedItem, ObjectViewHolder> adapter;
     static Firebase myFirebaseRef;
-    static ArrayList<String> tmpKeys = new ArrayList<>();
+    static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
 
 
     @Override
@@ -100,6 +101,7 @@ public class GameActivity extends AppCompatActivity
                 nav_email.setText(object.email);
                 nav_name.setText(object.username);
                Log.d("TAG", "Object is: " + object.username);
+
             }
 
             @Override
@@ -211,20 +213,27 @@ public class GameActivity extends AppCompatActivity
         super.onStart();
 
         ///Töm arraylist här
-        tmpKeys.clear();
+        tmpCollectedItems.clear();
 
         adapter = new FirebaseRecyclerAdapter<CollectedItem, ObjectViewHolder>(CollectedItem.class, R.layout.list_items, ObjectViewHolder.class, myFirebaseRef) {
             @Override
             protected void populateViewHolder(ObjectViewHolder objectViewHolder, CollectedItem collectedItem, int i) {
-              /// objectViewHolder.mText.setText(collectedItem.level);
-               String key = this.getRef(i).getKey();
-               /// HashMap<String, CollectedItem> tmpHashMap = new HashMap<>();
-               /// tmpHashMap.put("uid",key);
-               /// myFirebaseRef.child(key).updateChildren(tmpHashMap);
-               /// myRef.child("level").setValue(2);
-               /// myFirebaseRef.child(key).child("uid").setValue(key);
-              Log.i("TAG", "Key: "+key);
-                tmpKeys.add(key);
+
+               ///String key = this.getRef(i).getKey();
+                ///Fill objects
+                CollectedItem tmpCollectedItem = new CollectedItem();
+                tmpCollectedItem.cp = collectedItem.cp;
+                tmpCollectedItem.elementType = collectedItem.elementType;
+                tmpCollectedItem.hp = collectedItem.hp;
+                tmpCollectedItem.imageRef = collectedItem.imageRef;
+                tmpCollectedItem.itemName = collectedItem.itemName;
+                tmpCollectedItem.itemType = collectedItem.itemType;
+                tmpCollectedItem.level = collectedItem.level;
+                tmpCollectedItem.timestamp = collectedItem.timestamp;
+                tmpCollectedItem.uid = collectedItem.uid;
+
+                tmpCollectedItems.add(tmpCollectedItem);
+
                 objectViewHolder.itemName.setText(collectedItem.itemName);
                 objectViewHolder.itemType.setText(collectedItem.itemType);
 
@@ -240,21 +249,34 @@ public class GameActivity extends AppCompatActivity
         TextView itemName;
         TextView itemType;
         TextView mDivider;
+        ImageButton removeButton;
 
         public ObjectViewHolder(View v) {
             super(v);
             itemName = (TextView) v.findViewById(R.id.itemName);
             itemType = (TextView) v.findViewById(R.id.itemType);
             mDivider = (TextView) v.findViewById(R.id.divider);
+            removeButton = (ImageButton) v.findViewById(R.id.removeButton);
+            removeButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    int position = getAdapterPosition();
+                    Log.i ("TAG", "Remove item clicked; "+position);
+                    Log.i ("TAG", "Remove key clicked; "+""+tmpCollectedItems.get(position).uid);
+                    myFirebaseRef.child(tmpCollectedItems.get(position).uid).removeValue();
+
+                    return false;
+                }
+            });
             itemName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Log.i ("TAG", "Item clicked; "+position);
                     String thisItemName = itemName.getText().toString();
-                    String tmpKey = tmpKeys.get(position);
-                    Log.i ("TAG", "Key clicked; "+""+tmpKeys.get(position));
-                    myFirebaseRef.child(tmpKeys.get(position)).child("uid").setValue(tmpKey);
+                    Log.i ("TAG", "Key clicked; "+""+tmpCollectedItems.get(position));
+
 
 
                 }

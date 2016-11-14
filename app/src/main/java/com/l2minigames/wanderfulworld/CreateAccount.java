@@ -40,6 +40,7 @@ public class CreateAccount extends AppCompatActivity {
     private TextView itemName;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,11 +112,14 @@ public class CreateAccount extends AppCompatActivity {
                         DatabaseReference myRef = database.getReference(uid);
                         myRef.setValue(mUser);
 
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
+                       /// CollectedItem tmpCollectedItem2 = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                        ///myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
 
-                        CollectedItem tmpCollectedItem3 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        myRef.child("collectedItems").push().setValue(tmpCollectedItem3);
+                        ///CollectedItem tmpCollectedItem3 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
+                       /// myRef.child("collectedItems").push().setValue(tmpCollectedItem3);
+
+
+
                         ///DatabaseReference collectedRef = myRef.child("collectedItems");
                         ///CollectedItem tmpCollectedItem2 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10);
                         ///myRef.child(collectedpush().
