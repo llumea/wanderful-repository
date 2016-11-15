@@ -13,14 +13,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -45,6 +49,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 
 import android.Manifest;
 import android.widget.Toast;
@@ -84,6 +89,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker tmpMarker;
     int onlyOneTime;
 
+    RecyclerView mRecyclerView;
+    FirebaseRecyclerAdapter<CollectedItem, MapsActivity.ObjectViewHolder> adapter;
+    static Firebase myFirebaseRef;
+    static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
+
 
 
     @Override
@@ -91,16 +101,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        Firebase.setAndroidContext(this);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mCircle = new CircleOptions();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
             uid = user.getUid();
+            myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/"+uid+"/collectedItems");
             Log.d("TAG","UserID: "+uid);
 
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(uid);
+
+
+
         collectedRef = myRef.child("collectedItems");
         mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
         mImageViewBackground = (ImageView)findViewById(R.id.image_view_background);
@@ -345,6 +363,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
+        tmpCollectedItems.clear();
+
+        adapter = new FirebaseRecyclerAdapter<CollectedItem, ObjectViewHolder>(CollectedItem.class, R.layout.list_items_map, ObjectViewHolder.class, myFirebaseRef) {
+            @Override
+            protected void populateViewHolder(ObjectViewHolder objectViewHolder, CollectedItem collectedItem, int i) {
+
+                ///String key = this.getRef(i).getKey();
+                ///Fill objects
+                CollectedItem tmpCollectedItem = new CollectedItem();
+                tmpCollectedItem.cp = collectedItem.cp;
+                tmpCollectedItem.elementType = collectedItem.elementType;
+                tmpCollectedItem.hp = collectedItem.hp;
+                tmpCollectedItem.imageRef = collectedItem.imageRef;
+                tmpCollectedItem.itemName = collectedItem.itemName;
+                tmpCollectedItem.itemType = collectedItem.itemType;
+                tmpCollectedItem.level = collectedItem.level;
+                tmpCollectedItem.timestamp = collectedItem.timestamp;
+                tmpCollectedItem.uid = collectedItem.uid;
+
+                tmpCollectedItems.add(tmpCollectedItem);
+
+                objectViewHolder.itemName.setText(collectedItem.itemName);
+                objectViewHolder.itemType.setText(collectedItem.itemType);
+
+
+            }
+
+
+        };
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -495,7 +543,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    public static class ObjectViewHolder extends RecyclerView.ViewHolder {
+        TextView itemName;
+        TextView itemType;
+        TextView mDivider;
+        ImageButton removeButton;
 
+        public ObjectViewHolder(View v) {
+            super(v);
+            itemName = (TextView) v.findViewById(R.id.itemName_map);
+            itemType = (TextView) v.findViewById(R.id.itemType_map);
+            mDivider = (TextView) v.findViewById(R.id.divider_map);
+            removeButton = (ImageButton) v.findViewById(R.id.removeButton_map);
+            removeButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    int position = getAdapterPosition();
+
+                    Log.i ("TAG", "Remove item clicked; "+position);
+                    Log.i ("TAG", "Remove key clicked; "+""+tmpCollectedItems.get(position).uid);
+                    myFirebaseRef.child(tmpCollectedItems.get(position).uid).removeValue();
+                    tmpCollectedItems.remove(position);
+                    Log.i ("TAG", "Storlek på tmpListan: "+tmpCollectedItems.size());
+
+
+                    return false;
+                }
+            });
+            itemName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Log.i ("TAG", "Item clicked; "+position);
+                    String thisItemName = itemName.getText().toString();
+
+                    Log.i ("TAG", "Key clicked; "+""+tmpCollectedItems.get(position).uid);
+
+
+
+                }
+            });
+        }
+    }
 
 
 }

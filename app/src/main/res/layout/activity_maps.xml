@@ -11,21 +11,15 @@
           tools:context="com.l2minigames.wanderfulworld.MapsActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:background="@drawable/divider"
-            android:layout_width="fill_parent"
-            android:alpha="0.1"
-            android:layout_height="8dp"/>
-
-        <Button
-            android:id="@+id/btn_refresh"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
-            android:background="@drawable/marker_purple" />
+        android:layout_height="200dp">
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorPrimary"
+            android:alpha="0.5"
+            android:id="@+id/recycler_view_map"
+            android:divider="@color/colorTextIcons"
+            android:dividerHeight="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 
     </RelativeLayout>
