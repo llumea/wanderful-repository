@@ -10,12 +10,26 @@
           map:cameraZoom="18"
           tools:context="com.l2minigames.wanderfulworld.MapsActivity">
     <RelativeLayout
+        android:id="@+id/relativeLayoutRecycle"
+        android:background="@color/colorPrimary"
+        android:alpha="0.8"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backpack"
+            android:src="@drawable/marker_yellow"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView
-            android:background="@color/colorPrimary"
-            android:alpha="0.5"
+
+            android:layout_below="@id/backpack"
             android:id="@+id/recycler_view_map"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:divider="@color/colorTextIcons"
             android:dividerHeight="4dp"
             android:layout_width="match_parent"
@@ -23,6 +37,11 @@
 
 
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/circleImageView"
+        android:layout_centerInParent="true"
+        android:layout_width="120dp"
+        android:layout_height="120dp"/>
     <ImageView
         android:id="@+id/image_view_background"
         android:background="@color/colorPrimaryDark"
@@ -55,7 +74,7 @@
         android:layout_height="wrap_content"
         />
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fabRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

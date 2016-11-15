@@ -1,14 +1,22 @@
 package com.l2minigames.wanderfulworld;
 
+import android.animation.IntEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -19,9 +27,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
@@ -39,6 +49,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -64,6 +76,8 @@ import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
+    AnimationDrawable circleAnimation;
+    ImageView circleImageView;
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
@@ -93,6 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FirebaseRecyclerAdapter<CollectedItem, MapsActivity.ObjectViewHolder> adapter;
     static Firebase myFirebaseRef;
     static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
+    RelativeLayout relativeLayoutRecycle;
 
 
 
@@ -106,6 +121,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mCircle = new CircleOptions();
+        circleImageView = (ImageView)findViewById(R.id.circleImageView);
+        circleImageView.setBackgroundResource(R.drawable.animation);
+        circleAnimation = (AnimationDrawable) circleImageView.getBackground();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabRecycler);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
+                    relativeLayoutRecycle.setVisibility(View.VISIBLE);
+                } else {relativeLayoutRecycle.setVisibility(View.INVISIBLE);}
+                /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                ///        .setAction("Action", null).show();
+            }
+        });
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, and profile photo Url
@@ -116,7 +145,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(uid);
-
+        relativeLayoutRecycle = (RelativeLayout)findViewById(R.id.relativeLayoutRecycle);
+        ///relativeLayoutRecycle.setEnabled(false);
+        relativeLayoutRecycle.setVisibility(View.INVISIBLE);
 
 
         collectedRef = myRef.child("collectedItems");
@@ -300,21 +331,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onLocationChanged(Location location) {
 
         if (onlyOneTime==1){onlyOneTime=0;} ///Nollställ uppdatering av markers
-
-
+        animateCircle();
+        mCircle.strokeColor(0x00000000);
+        mCircle.fillColor(0x00000000);
         myPositionLatitude = location.getLatitude();
         myPositionLongitude = location.getLongitude();
         myRef.child("latitude").setValue(myPositionLatitude);
         myRef.child("longitude").setValue(myPositionLongitude);
-        LatLng cameraPosition = new LatLng(myPositionLatitude+0.0005, myPositionLongitude);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+        ///Tidigare var myPositionLatitude+0.0005, men rotationen blev sned
+        LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+        CameraPosition currentCameraPosition = mMap.getCameraPosition();
+        ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
+                        .bearing(currentCameraPosition.bearing)
                         .target(cameraPosition)
                         .tilt(90)
                         .zoom(18)
                         .build()));
+
 
         mMap.getUiSettings(). setZoomGesturesEnabled(false);
         mMap.getUiSettings(). setScrollGesturesEnabled(false);
@@ -411,12 +446,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float[] distance = new float[2];
         //users current location
 
-
+        ///Lägger till en cirkel så att det går att kolla om markers finns inom radien
+        ///Cirkeln ska animeras när man trycker på "MyMarker"
         mCircle.center(new LatLng(myPositionLatitude, myPositionLongitude));
         mCircle.radius(60);
-
-
-
 
 
         Location.distanceBetween(marker.getPosition().latitude,
@@ -472,12 +505,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (name.equalsIgnoreCase("MyMarker"))
         {
+            ///animateCircle();
+
             Log.d("TAG", "STROKE COLOR"+mCircle.getStrokeColor());
             Log.d("TAG", "STROKE COLOR"+mCircle.getFillColor());
-            if (mCircle.getStrokeColor()==-16777216 && mCircle.getFillColor()==0x00000000){
-                mCircle.strokeColor(R.color.colorAccent);
-                mCircle.fillColor(R.color.colorPrimary);
+            if (mCircle.getStrokeColor()==0x00000000 && mCircle.getFillColor()==0x00000000){
+               mCircle.strokeColor(R.color.colorAccent);
+               mCircle.fillColor(R.color.colorPrimary);
                 mMap.addCircle(mCircle);
+                circleAnimation.stop();
+                circleAnimation.start();
+
+
+
+
             }
 
 
@@ -587,5 +628,78 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    public void animateCircle(){
 
+
+/*
+        GradientDrawable d = new GradientDrawable();
+        d.setShape(GradientDrawable.OVAL);
+        d.setSize(500,500);
+        d.setColor(0x555751FF);
+        d.setStroke(5, 0x555751FF);
+
+        Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth()
+                , d.getIntrinsicHeight()
+                , Bitmap.Config.ARGB_8888);
+
+        // Convert the drawable to bitmap
+        Canvas canvas = new Canvas(bitmap);
+        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        d.draw(canvas);
+
+        // Radius of the circle
+        final int mRadius = 100;
+
+        LatLng groundPosition = new LatLng(63.8107993, 20.3420892);
+        // Add the circle to the map
+        final GroundOverlay circle = mMap.addGroundOverlay(new GroundOverlayOptions()
+                .position(groundPosition, 200.0f).image(BitmapDescriptorFactory.fromBitmap(bitmap)));
+
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        valueAnimator.setIntValues(0, mRadius);
+       /// valueAnimator.setDuration(3000);
+        valueAnimator.setEvaluator(new IntEvaluator());
+        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float animatedFraction = valueAnimator.getAnimatedFraction();
+                circle.setDimensions(animatedFraction * mRadius * 2);
+            }
+        });
+        valueAnimator.setDuration(3000);
+        valueAnimator.start();
+
+
+
+        LatLng groundPosition = new LatLng(63.8107993, 20.3420892);
+        final CircleOptions tCircle = new CircleOptions()
+                .center(groundPosition)   //set center
+                .radius(100)   //set radius in meters
+                .strokeColor(0x555751FF)
+                .fillColor(0x555751FF)
+                .strokeWidth(5);
+
+        mMap.addCircle(tCircle);
+
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        valueAnimator.setIntValues(0, 100);
+        valueAnimator.setDuration(3000);
+        valueAnimator.setEvaluator(new IntEvaluator());
+        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float animatedFraction = valueAnimator.getAnimatedFraction();
+                tCircle.radius(100f);
+            }
+        });
+
+        valueAnimator.start();
+        */
+    }
 }

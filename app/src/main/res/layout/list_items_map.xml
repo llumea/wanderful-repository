@@ -30,7 +30,7 @@
         android:id="@+id/itemType_map"
         android:text="Testar RecyclerView"
         android:layout_below="@id/itemName_map"
-        android:layout_toRightOf="@id/item_icon"
+        android:layout_toRightOf="@id/item_icon_map"
         android:textColor="@color/colorTextIcons"
         android:textSize="22sp"
         android:layout_marginTop="4dp"
