@@ -3,6 +3,7 @@ package com.l2minigames.wanderfulworld;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -29,6 +30,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -80,6 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Timer timer;
     int timerTime;
     Marker tmpMarker;
+    int onlyOneTime;
 
 
 
@@ -148,8 +151,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
-                if (checkMarkersTimestamp>object.timer+60000) {
+                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0) {
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
+                    onlyOneTime=1;
                 }
                 /// textHome.setText(object.username+" "+object.email);
 
@@ -277,11 +281,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location) {
 
+        if (onlyOneTime==1){onlyOneTime=0;} ///Nollställ uppdatering av markers
+
+
         myPositionLatitude = location.getLatitude();
         myPositionLongitude = location.getLongitude();
         myRef.child("latitude").setValue(myPositionLatitude);
         myRef.child("longitude").setValue(myPositionLongitude);
         LatLng cameraPosition = new LatLng(myPositionLatitude+0.0005, myPositionLongitude);
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
@@ -289,8 +297,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .tilt(90)
                         .zoom(18)
                         .build()));
-        ///mMap.getUiSettings(). setZoomGesturesEnabled(false);
-        ///mMap.getUiSettings(). setScrollGesturesEnabled(false);
+
+        mMap.getUiSettings(). setZoomGesturesEnabled(false);
+        mMap.getUiSettings(). setScrollGesturesEnabled(false);
+
       /*
        /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);
         mMap.clear();
@@ -463,20 +473,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
         Log.d("TAG", "INNE I UPDATE MARKERS");
-        Toast.makeText(this, "Items are updated!",
-                Toast.LENGTH_SHORT).show();
-        myRef.child("timer").setValue(timestamp);
 
-        ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-        MyMarker tmpMarker = new MyMarker(myLatitude+0.0005, myLongitude, "hallon 2");
-        tmpMarkerslist.add(tmpMarker);
-        MyMarker tmpMarker2 = new MyMarker(myLatitude-0.0005, myLongitude, "hallon 3");
-        tmpMarkerslist.add(tmpMarker2);
-        MyMarker tmpMarker3 = new MyMarker(myLatitude-0.0015, myLongitude, "hallon 4");
-        tmpMarkerslist.add(tmpMarker3);
-        MyMarker tmpMarker4 = new MyMarker(myLatitude+0.0015, myLongitude, "hallon 1");
-        tmpMarkerslist.add(tmpMarker4);
-        myRef.child("markerList").setValue(tmpMarkerslist);
+
+
+            myRef.child("timer").setValue(timestamp);
+
+            ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
+            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0005, myLongitude, "hallon 2");
+            tmpMarkerslist.add(tmpMarker);
+            MyMarker tmpMarker2 = new MyMarker(myLatitude - 0.0005, myLongitude, "hallon 3");
+            tmpMarkerslist.add(tmpMarker2);
+            MyMarker tmpMarker3 = new MyMarker(myLatitude - 0.0015, myLongitude, "hallon 4");
+            tmpMarkerslist.add(tmpMarker3);
+            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0015, myLongitude, "hallon 1");
+            tmpMarkerslist.add(tmpMarker4);
+            myRef.child("markerList").setValue(tmpMarkerslist);
+            Toast.makeText(this, "Items are updated!",
+                    Toast.LENGTH_SHORT).show();
+
 
     }
 

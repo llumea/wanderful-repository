@@ -9,6 +9,26 @@
           android:layout_height="match_parent"
           map:cameraZoom="18"
           tools:context="com.l2minigames.wanderfulworld.MapsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:background="@drawable/divider"
+            android:layout_width="fill_parent"
+            android:alpha="0.1"
+            android:layout_height="8dp"/>
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/marker_purple" />
+
+
+    </RelativeLayout>
     <ImageView
         android:id="@+id/image_view_background"
         android:background="@color/colorPrimaryDark"
@@ -30,6 +50,7 @@
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_gravity="center"
@@ -50,8 +71,8 @@
         android:id="@+id/fab2"
         android:layout_width="46dp"
         android:layout_height="46dp"
-        android:layout_gravity="bottom|center"
-        android:layout_margin="@dimen/fab2_margin"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
         android:src="@android:drawable/ic_dialog_email"/>
 
 
