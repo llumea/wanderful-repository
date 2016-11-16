@@ -14,6 +14,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -109,13 +111,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
     RelativeLayout relativeLayoutRecycle;
 
+    private Runnable mAnimation;
+    Handler mHandler;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        mHandler = new Handler();
         Firebase.setAndroidContext(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
         mRecyclerView.setHasFixedSize(true);
@@ -440,6 +445,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
 
 
+        ///Startar bounceAnimationkod
+        final long start = SystemClock.uptimeMillis();
+        final long duration = 1500L;
+
+        // Cancels the previous animation
+        mHandler.removeCallbacks(mAnimation);
+
+        // Starts the bounce animation
+        BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
+        mHandler.post(mAnimation);
+       //Slut på bounceAnimationkod
 
         String name= marker.getTitle();
 
