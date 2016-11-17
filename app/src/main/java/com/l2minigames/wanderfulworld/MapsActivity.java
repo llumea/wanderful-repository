@@ -526,7 +526,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("TAG", "STROKE COLOR"+mCircle.getStrokeColor());
             Log.d("TAG", "STROKE COLOR"+mCircle.getFillColor());
             if (mCircle.getStrokeColor()==0x00000000 && mCircle.getFillColor()==0x00000000){
-               mCircle.strokeColor(R.color.colorAccent);
+               mCircle.strokeColor(R.color.colorTextIcons);
                mCircle.fillColor(R.color.colorPrimary);
                 mMap.addCircle(mCircle);
                 circleAnimation.stop();
