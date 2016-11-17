@@ -381,6 +381,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.getUiSettings(). setZoomGesturesEnabled(false);
         mMap.getUiSettings(). setScrollGesturesEnabled(false);
+        mMap.getUiSettings(). setCompassEnabled(false);
 
       /*
        /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);

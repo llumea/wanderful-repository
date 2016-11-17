@@ -12,7 +12,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayoutRecycle"
         android:background="@color/colorPrimary"
-        android:alpha="0.8"
+        android:clickable="true"
+        android:alpha="0.9"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,19 +42,70 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayoutPerson"
+        android:clickable="true"
         android:background="@color/colorPrimary"
-        android:alpha="0.8"
+        android:alpha="0.9"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/personImage"
             android:src="@drawable/marker_purple"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/personUserName"
+            android:text="UserName"
+            android:textColor="@color/colorTextIcons"
+            android:layout_marginTop="60dp"
+            android:textSize="24sp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/personLevel"
+            android:text="Level 1"
+            android:textSize="20sp"
+            android:textColor="@color/colorTextIcons"
+            android:layout_below="@id/personUserName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPerson2"
+            android:layout_below="@id/personLevel"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/personProgress"
+                android:background="@color/colorTextIcons"
+                android:layout_marginTop="10dp"
+                android:layout_width="50dp"
+                android:layout_height="10dp"/>
+            <ImageView
+                android:id="@+id/personProgressTotal"
+                android:background="@color/colorAccent"
+                android:alpha="0.5"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="100dp"
+                android:layout_height="10dp"/>
+            <TextView
+                android:id="@+id/personXP"
+                android:text="120/4000"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextIcons"
+                android:layout_below="@id/personProgress"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
 
     </RelativeLayout>
 
@@ -89,7 +141,7 @@
         android:layout_gravity="center"
         android:visibility="visible"
         android:text="text"
-        style="@android:style/Widget.ProgressBar.Large"
+        style="@android:style/Widget.ProgressBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
