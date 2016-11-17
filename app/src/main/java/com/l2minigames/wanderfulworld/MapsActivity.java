@@ -110,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     static Firebase myFirebaseRef;
     static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
     RelativeLayout relativeLayoutRecycle;
-
+    RelativeLayout relativeLayoutPerson;
     private Runnable mAnimation;
     Handler mHandler;
 
@@ -129,13 +129,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         circleImageView = (ImageView)findViewById(R.id.circleImageView);
         circleImageView.setBackgroundResource(R.drawable.animation);
         circleAnimation = (AnimationDrawable) circleImageView.getBackground();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabRecycler);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabRecycler);
+        final FloatingActionButton personFab = (FloatingActionButton) findViewById(R.id.fabPerson);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
-                } else {relativeLayoutRecycle.setVisibility(View.INVISIBLE);}
+                    personFab.setVisibility(View.INVISIBLE);
+                } else {
+                    relativeLayoutRecycle.setVisibility(View.INVISIBLE);
+                    personFab.setVisibility(View.VISIBLE);
+                }
+                /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                ///        .setAction("Action", null).show();
+            }
+        });
+
+        personFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (relativeLayoutPerson.getVisibility()==View.INVISIBLE) {
+                    relativeLayoutPerson.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.INVISIBLE);
+                } else {
+                    relativeLayoutPerson.setVisibility(View.INVISIBLE);
+                    fab.setVisibility(View.VISIBLE);
+                }
                 /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 ///        .setAction("Action", null).show();
             }
@@ -153,6 +173,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutRecycle = (RelativeLayout)findViewById(R.id.relativeLayoutRecycle);
         ///relativeLayoutRecycle.setEnabled(false);
         relativeLayoutRecycle.setVisibility(View.INVISIBLE);
+        relativeLayoutPerson = (RelativeLayout)findViewById(R.id.relativeLayoutPerson);
+        ///relativeLayoutPerson.setEnabled(false);
+        relativeLayoutPerson.setVisibility(View.INVISIBLE);
 
 
         collectedRef = myRef.child("collectedItems");
