@@ -763,31 +763,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void checkNewLevel(int level, int xp){
         if (xp >=1000 && level ==1){setNewLevel(1);}
-        if (xp >=2000 && level ==2){setNewLevel(2);}
-        if (xp >=3000 && level ==3){setNewLevel(3);}
-        if (xp >=5000 && level ==4){setNewLevel(4);}
-        if (xp >=7000 && level ==5){setNewLevel(5);}
-        if (xp >=10000 && level ==6){setNewLevel(6);}
-        if (xp >=15000 && level ==7){setNewLevel(7);}
-        if (xp >=20000 && level ==8){setNewLevel(8);}
-        if (xp >=25000 && level ==9){setNewLevel(9);}
-        if (xp >=30000 && level ==10){setNewLevel(10);}
-        if (xp >=35000 && level ==11){setNewLevel(11);}
-        if (xp >=40000 && level ==12){setNewLevel(12);}
-        if (xp >=45000 && level ==13){setNewLevel(13);}
-        if (xp >=50000 && level ==14){setNewLevel(14);}
-        if (xp >=60000 && level ==15){setNewLevel(15);}
-        if (xp >=70000 && level ==16){setNewLevel(16);}
-        if (xp >=80000 && level ==17){setNewLevel(17);}
-        if (xp >=90000 && level ==18){setNewLevel(18);}
-        if (xp >=100000 && level ==19){setNewLevel(19);}
+        else if (xp >=2000 && level ==2){setNewLevel(2);}
+        else if (xp >=3000 && level ==3){setNewLevel(3);}
+        else if (xp >=5000 && level ==4){setNewLevel(4);}
+        else if (xp >=7000 && level ==5){setNewLevel(5);}
+        else if (xp >=10000 && level ==6){setNewLevel(6);}
+        else if (xp >=15000 && level ==7){setNewLevel(7);}
+        else if (xp >=20000 && level ==8){setNewLevel(8);}
+        else if (xp >=25000 && level ==9){setNewLevel(9);}
+        else if (xp >=30000 && level ==10){setNewLevel(10);}
+        else if (xp >=35000 && level ==11){setNewLevel(11);}
+        else if (xp >=40000 && level ==12){setNewLevel(12);}
+        else if (xp >=45000 && level ==13){setNewLevel(13);}
+        else if (xp >=50000 && level ==14){setNewLevel(14);}
+        else if (xp >=60000 && level ==15){setNewLevel(15);}
+        else if (xp >=70000 && level ==16){setNewLevel(16);}
+        else if (xp >=80000 && level ==17){setNewLevel(17);}
+        else if (xp >=90000 && level ==18){setNewLevel(18);}
+        else if (xp >=100000 && level ==19){setNewLevel(19);}
     }
     public void setLevelBar(int level, int xp){
 
         ///personProgress = (ImageView)findViewById(R.id.personProgress);
         ///personXP = (TextView)findViewById(R.id.personXP);
-        xp = 1800;
-        level = 2;
+        xp = 26710;
+        level = 10;
         personLevel.setText("Level "+level);
         personTotalXP.setText(""+xp+" XP");
        ///Testa olika xp och levels här
@@ -799,35 +799,84 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (level==1){
             diff = xp-0;
             tmpLevelDifference=diff/1000;
-            tmpLevelDifference=tmpLevelDifference*100;
         }
         else if (level==2){
             diff = xp-1000;
             tmpLevelDifference=diff/1000;
-            tmpLevelDifference=tmpLevelDifference*100;
             }
         else if (level==3){
             diff = xp-2000;
             tmpLevelDifference=diff/1000;
-            tmpLevelDifference=tmpLevelDifference*100;
         }
-        else if (level==3){tmpLevelDifference=((xp-2000)/1000)*100;}
-        else if (level==4){tmpLevelDifference=((xp-3000)/2000)*100;}
-        else if (level==5){tmpLevelDifference=7000-xp;}
-        else if (level==6){tmpLevelDifference=10000-xp;}
-        else if (level==7){tmpLevelDifference=15000-xp;}
-        else if (level==8){tmpLevelDifference=20000-xp;}
-        else if (level==9){tmpLevelDifference=25000-xp;}
-        else if (level==10){tmpLevelDifference=30000-xp;}
-        else if (level==11){tmpLevelDifference=35000-xp;}
-        else if (level==12){tmpLevelDifference=40000-xp;}
-        else if (level==13){tmpLevelDifference=45000-xp;}
-        else if (level==14){tmpLevelDifference=50000-xp;}
-        else if (level==15){tmpLevelDifference=60000-xp;}
-        else if (level==16){tmpLevelDifference=70000-xp;}
-        else if (level==17){tmpLevelDifference=80000-xp;}
-        else if (level==18){tmpLevelDifference=90000-xp;}
-        else if (level==19){tmpLevelDifference=100000-xp;}
+        else if (level==4){
+            diff = xp-3000;
+            tmpLevelDifference=diff/2000;
+        }
+        else if (level==5){
+            diff = xp-5000;
+            tmpLevelDifference=diff/2000;
+        }
+        else if (level==6){
+            diff = xp-7000;
+            tmpLevelDifference=diff/3000;
+        }
+        else if (level==7){
+            diff = xp-10000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==8){
+            diff = xp-15000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==9){
+            diff = xp-20000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==10){
+            diff = xp-25000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==11){
+            diff = xp-30000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==12){
+            diff = xp-35000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==13){
+            diff = xp-40000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==14){
+            diff = xp-45000;
+            tmpLevelDifference=diff/5000;
+        }
+        else if (level==15){
+            diff = xp-50000;
+            tmpLevelDifference=diff/10000;
+        }
+        else if (level==16){
+            diff = xp-60000;
+            tmpLevelDifference=diff/10000;
+        }
+        else if (level==17){
+            diff = xp-70000;
+            tmpLevelDifference=diff/10000;
+        }
+        else if (level==18){
+            diff = xp-80000;
+            tmpLevelDifference=diff/10000;
+        }
+        else if (level==19){
+            diff = xp-90000;
+            tmpLevelDifference=diff/10000;
+        }
+
+        ///tmpXMMinusLevel är värdet minus xp som krävs för aktuell level
+        ///tmpLevelDifferens används för att beräkna xp i förhållande till antal xp som krävs för nästa level
+
+        tmpLevelDifference=tmpLevelDifference*100;
 
         RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) personProgressTotal.getLayoutParams();
         params2.width = 100*5;
@@ -845,25 +894,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             personXP.setText(""+xp+"/"+1000+" XP");
         }
         else if (level==2){
-            personXP.setText(""+(int)tmpLevelDifference*10+"/"+"1000"+" XP");
+            personXP.setText(""+(int)diff+"/"+"1000"+" XP");
         }
-        else if (level==3){personXP.setText(""+tmpLevelDifference+"/"+3000+" XP");}
-        else if (level==4){personXP.setText(""+tmpLevelDifference+"/"+5000+" XP");}
-        else if (level==5){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==6){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==7){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==8){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==9){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==10){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==11){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==12){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==13){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==14){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==15){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==16){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==17){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==18){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
-        else if (level==19){personXP.setText(""+tmpLevelDifference+"/"+2000+" XP");}
+        else if (level==3){
+            personXP.setText(""+(int)diff+"/"+"1000"+" XP");
+        }
+        else if (level==4){
+            personXP.setText(""+(int)diff+"/"+"2000"+" XP");
+        }
+        else if (level==5){
+            personXP.setText(""+(int)diff+"/"+"2000"+" XP");
+        }
+        else if (level==6){
+            personXP.setText(""+(int)diff+"/"+"3000"+" XP");
+        }
+        else if (level==7){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==8){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==9){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==10){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==11){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==12){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==13){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==14){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
+        else if (level==15){
+            personXP.setText(""+(int)diff+"/"+"10000"+" XP");
+        }
+        else if (level==16){
+            personXP.setText(""+(int)diff+"/"+"10000"+" XP");
+        }
+        else if (level==17){
+            personXP.setText(""+(int)diff+"/"+"10000"+" XP");
+        }
+        else if (level==18){
+            personXP.setText(""+(int)diff+"/"+"10000"+" XP");
+        }
+        else if (level==19){
+            personXP.setText(""+(int)diff+"/"+"5000"+" XP");
+        }
 
     }
     public void setNewLevel (int oldLevel){
