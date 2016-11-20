@@ -144,8 +144,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personProgressTotal = (ImageView)findViewById(R.id.personProgressTotal);
         personXP = (TextView)findViewById(R.id.personXP);
         personTotalXP = (TextView)findViewById(R.id.personTotalXP);
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabRecycler);
-        final FloatingActionButton personFab = (FloatingActionButton) findViewById(R.id.fabPerson);
+        final ImageButton fab = (ImageButton) findViewById(R.id.fabRecycler);
+        final ImageButton personFab = (ImageButton) findViewById(R.id.fabPerson);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -786,8 +786,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ///personProgress = (ImageView)findViewById(R.id.personProgress);
         ///personXP = (TextView)findViewById(R.id.personXP);
-        xp = 26710;
-        level = 10;
+        xp = 53710;
+        level = 15;
         personLevel.setText("Level "+level);
         personTotalXP.setText(""+xp+" XP");
        ///Testa olika xp och levels här
