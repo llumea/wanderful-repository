@@ -152,9 +152,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
                     personFab.setVisibility(View.INVISIBLE);
+                    fab.setBackgroundResource(R.drawable.close);
                 } else {
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                     personFab.setVisibility(View.VISIBLE);
+                    fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                 }
                 /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 ///        .setAction("Action", null).show();
@@ -167,9 +169,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (relativeLayoutPerson.getVisibility()==View.INVISIBLE) {
                     relativeLayoutPerson.setVisibility(View.VISIBLE);
                     fab.setVisibility(View.INVISIBLE);
+                    personFab.setBackgroundResource(R.drawable.close);
                 } else {
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
                     fab.setVisibility(View.VISIBLE);
+                    personFab.setBackgroundResource(R.drawable.girlfaceblue);
                 }
                 /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 ///        .setAction("Action", null).show();

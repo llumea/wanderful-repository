@@ -18,5 +18,9 @@
     <string name="navigation_drawer_open">Öppna navigering</string>
     <string name="action_settings">Inställningar</string>
     <string name="title_activity_game">Hem</string>
-    <string name="element_text">ELEMENTKRAFT</string>
+    <string name="element_text">ELEMENT:</string>
+    <string name="element_air">LUFTKRAFT:</string>
+    <string name="element_earth">JORDKRAFT:</string>
+    <string name="element_fire">ELDKRAFT:</string>
+    <string name="element_water">VATTENKRAFT:</string>
 </resources>

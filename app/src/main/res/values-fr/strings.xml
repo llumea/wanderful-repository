@@ -18,5 +18,9 @@
     <string name="navigation_drawer_open">Ouvrir navigation</string>
     <string name="action_settings">Préférences</string>
     <string name="title_activity_game">Accueil</string>
-    <string name="element_text">FORCE D\'ELEMENTS</string>
+    <string name="element_text">ELEMENTS</string>
+    <string name="element_air">FORCE D\'AIR :</string>
+    <string name="element_earth">FORCE DE TERRE :</string>
+    <string name="element_fire">FORCE DE FEU :</string>
+    <string name="element_water">FORCE D\'EAU :</string>
 </resources>

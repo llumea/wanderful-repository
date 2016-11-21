@@ -20,5 +20,9 @@
     <string name="open_map_button">Go Explore!</string>
     <string name="default_name">Unknown Wizard</string>
     <string name="title_activity_maps">Map</string>
-    <string name="element_text">ELEMENT POWERS</string>
+    <string name="element_text">ELEMENTS</string>
+    <string name="element_earth">EARTH POWER:</string>
+    <string name="element_fire">FIRE POWER:</string>
+    <string name="element_air">AIR POWER:</string>
+    <string name="element_water">WATER POWER:</string>
 </resources>
