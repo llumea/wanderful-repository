@@ -23,4 +23,12 @@
     <string name="element_earth">FORCE DE TERRE :</string>
     <string name="element_fire">FORCE DE FEU :</string>
     <string name="element_water">FORCE D\'EAU :</string>
+    <string name="you_picked_up">Vous avec ramassé ...</string>
+    <string name="item_added_in_backpack">Vous pouvez retrouver l\'objet dans votre sac à dos.</string>
+    <string name="a_flame">une Flame</string>
+    <string name="a_plant">une Plante</string>
+    <string name="a_waterdrop">une Goutte d\'Eau</string>
+    <string name="an_ancient_scrollifix">un Ancient Scrollifix</string>
+    <string name="trombulus">a Trombulus</string>
+    <string name="title_activity_maps">Carte</string>
 </resources>

@@ -23,6 +23,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,6 +80,7 @@ import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
+
     AnimationDrawable circleAnimation;
     ImageView circleImageView;
     private GoogleMap mMap;
@@ -105,6 +107,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int timerTime;
     Marker tmpMarker;
     int onlyOneTime;
+
+    FragmentManager fragmentManager;
 
     ImageView personImage;
     TextView personUserName;
@@ -570,6 +574,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             ///Här skapas objekten som tidigare bara var markers med en typ
 
+
+
             for (int i=0;i<object.markerList.size();i++){
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     Log.d("TAG", "This MyMarker is tapped: "+name);
@@ -578,6 +584,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+
                     }
                     else if (object.markerList.get(i).markerType.equals("fire")){
 
@@ -605,6 +612,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
             }
+
+            fragmentManager = getSupportFragmentManager();
+            PickupFragment pickupFragment = new PickupFragment();
+            pickupFragment.show(fragmentManager, "pickupFragment");
+            Bundle bundle = new Bundle();
+            bundle.putString("itemtype", name);
+            pickupFragment.setArguments(bundle);
+
             Toast.makeText(this, "You collected an item",
                     Toast.LENGTH_SHORT).show();
         }

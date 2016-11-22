@@ -23,4 +23,12 @@
     <string name="element_earth">JORDKRAFT:</string>
     <string name="element_fire">ELDKRAFT:</string>
     <string name="element_water">VATTENKRAFT:</string>
+    <string name="you_picked_up">Du plockade upp...</string>
+    <string name="item_added_in_backpack">Föremålet har lagts till i ryggsäcken.</string>
+    <string name="a_flame">en Eldflamma</string>
+    <string name="a_plant">en Planta</string>
+    <string name="a_waterdrop">en Vattendroppe</string>
+    <string name="an_ancient_scrollifix">en Uråldrig Scrollifix</string>
+    <string name="trombulus">en Trombulus</string>
+    <string name="title_activity_maps">Karta</string>
 </resources>
