@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -257,13 +258,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mPositionLongitude.setText(""+object.longitude);
 
                 LatLng mPosition = new LatLng(object.latitude, object.longitude);
-                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yellow)));
+                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.girl)));
 
 
                 for (int i=0;i<object.markerList.size();i++){
                     Log.d("TAG", "markerSize before LatLng: "+object.markerList.size());
                     LatLng tmpPosition = new LatLng(object.markerList.get(i).markerLatitude, object.markerList.get(i).markerLongitude);
-                    mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_blue)));
+
+
+
+                    Log.i("Object", "Object_markerlist_type: "+object.markerList.get(i).markerType);
+
+                    if (object.markerList.get(i).markerType.equals("earth")){
+                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire")){
+                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
+                    }
+
+                    else if (object.markerList.get(i).markerType.equals("air")){
+                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water")){
+                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll")){
+                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
+                    }
 
                     Log.d("TAG", "markerSize: "+object.markerList.size());
                 }
@@ -473,7 +494,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 objectViewHolder.itemName.setText(collectedItem.itemName);
                 objectViewHolder.itemType.setText(collectedItem.itemType);
-
+                if (collectedItem.itemType.equals("Earth")) {
+                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.earth_item);
+                }
+                else if (collectedItem.itemType.equals("Fire")) {
+                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.fire_item);
+                }
+                else if (collectedItem.itemType.equals("Air")) {
+                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.air_item);
+                }
+                else if (collectedItem.itemType.equals("Water")) {
+                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.water_item);
+                }
+                else if (collectedItem.itemType.equals("Scroll")) {
+                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.scroll_item);
+                }
 
             }
 
@@ -532,29 +567,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             long itemTimestamp = date.getTime();
             Log.d("TAG", "Timestamp when pick up item: "+itemTimestamp);
             Log.d("TAG", "DISTANCE IS SMALLER THAN RADIUS");
+
+            ///Här skapas objekten som tidigare bara var markers med en typ
+
             for (int i=0;i<object.markerList.size();i++){
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     Log.d("TAG", "This MyMarker is tapped: "+name);
                     String tmpId = Integer.toString(i);
-                    if (object.markerList.get(i).markerType.equals("hallon 1")){
+                    if (object.markerList.get(i).markerType.equals("earth")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("strawberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
-                    if (object.markerList.get(i).markerType.equals("hallon 2")){
+                    else if (object.markerList.get(i).markerType.equals("fire")){
 
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("blueberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
-                    if (object.markerList.get(i).markerType.equals("hallon 3")){
+                    else if (object.markerList.get(i).markerType.equals("air")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("woodberry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
-                    if (object.markerList.get(i).markerType.equals("hallon 4")){
+                    else if (object.markerList.get(i).markerType.equals("water")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("nordic berry", "berry","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll","scroll", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                     }
                     myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
@@ -626,19 +669,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
         Log.d("TAG", "INNE I UPDATE MARKERS");
 
-
+            ///Byter ut listan mer markers på servern
 
             myRef.child("timer").setValue(timestamp);
 
             ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0005, myLongitude, "hallon 2");
+            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0005, myLongitude, "earth");
             tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude - 0.0005, myLongitude, "hallon 3");
+            MyMarker tmpMarker2 = new MyMarker(myLatitude - 0.0005, myLongitude, "fire");
             tmpMarkerslist.add(tmpMarker2);
-            MyMarker tmpMarker3 = new MyMarker(myLatitude - 0.0015, myLongitude, "hallon 4");
+            MyMarker tmpMarker3 = new MyMarker(myLatitude - 0.0003, myLongitude, "air");
             tmpMarkerslist.add(tmpMarker3);
-            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0015, myLongitude, "hallon 1");
+            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0003, myLongitude, "water");
             tmpMarkerslist.add(tmpMarker4);
+            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0002, myLongitude, "scroll");
+        tmpMarkerslist.add(tmpMarker5);
             myRef.child("markerList").setValue(tmpMarkerslist);
             Toast.makeText(this, "Items are updated!",
                     Toast.LENGTH_SHORT).show();
@@ -648,6 +693,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public static class ObjectViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView itemIconMap;
         TextView itemName;
         TextView itemType;
         TextView mDivider;
@@ -655,6 +702,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         public ObjectViewHolder(View v) {
             super(v);
+            itemIconMap = (ImageView) v.findViewById(R.id.item_icon_map);
             itemName = (TextView) v.findViewById(R.id.itemName_map);
             itemType = (TextView) v.findViewById(R.id.itemType_map);
             mDivider = (TextView) v.findViewById(R.id.divider_map);
