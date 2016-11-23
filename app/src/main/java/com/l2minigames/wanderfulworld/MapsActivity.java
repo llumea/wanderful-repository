@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -28,6 +29,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -103,10 +105,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<MyMarker> mMarkers =new ArrayList<>();
     UserObject object;
     CircleOptions mCircle;
+    CircleOptions mCircleTotal;
+    CircleOptions mCircleTotalMax;
     Timer timer;
     int timerTime;
     Marker tmpMarker;
     int onlyOneTime;
+    ArrayList<Double> randomList = new ArrayList<>();
 
     FragmentManager fragmentManager;
 
@@ -139,6 +144,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mCircle = new CircleOptions();
+        mCircleTotal = new CircleOptions();
+        mCircleTotalMax = new CircleOptions();
         circleImageView = (ImageView)findViewById(R.id.circleImageView);
         circleImageView.setBackgroundResource(R.drawable.animation);
         circleAnimation = (AnimationDrawable) circleImageView.getBackground();
@@ -260,6 +267,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mPositionLatitude.setText(""+object.latitude);
                 mPositionLongitude.setText(""+object.longitude);
+                mCircleTotal.center(new LatLng(myPositionLatitude, myPositionLongitude));
+                mCircleTotal.radius(250);
+                mCircleTotal.strokeColor(Color.parseColor("#28b6e8"));
+                mCircleTotal.strokeWidth(50f);
+                mMap.addCircle(mCircleTotal);
+
+                mCircleTotalMax.center(new LatLng(myPositionLatitude, myPositionLongitude));
+                mCircleTotalMax.radius(500);
+                mCircleTotalMax.strokeColor(Color.parseColor("#28b6e8"));
+                mCircleTotalMax.strokeWidth(50f);
+                mMap.addCircle(mCircleTotalMax);
+
 
                 LatLng mPosition = new LatLng(object.latitude, object.longitude);
                 mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.girl)));
@@ -272,24 +291,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     Log.i("Object", "Object_markerlist_type: "+object.markerList.get(i).markerType);
-
+                    Marker tmpMarker = null;
                     if (object.markerList.get(i).markerType.equals("earth")){
-                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
+                        tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
                     }
                     else if (object.markerList.get(i).markerType.equals("fire")){
-                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
                     }
 
                     else if (object.markerList.get(i).markerType.equals("air")){
-                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+
                     }
                     else if (object.markerList.get(i).markerType.equals("water")){
-                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll")){
-                        mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
                     }
-
+                    else if (object.markerList.get(i).markerType.equals("wizardacademy")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.wizardacademy)));
+                    }
+                    if (tmpMarker!=null){tmpMarker.setAnchor(0.5f,1.0f);}
                     Log.d("TAG", "markerSize: "+object.markerList.size());
                 }
 
@@ -536,6 +559,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final long duration = 1500L;
 
         // Cancels the previous animation
+
         mHandler.removeCallbacks(mAnimation);
 
         // Starts the bounce animation
@@ -584,6 +608,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
 
                     }
                     else if (object.markerList.get(i).markerType.equals("fire")){
@@ -591,37 +616,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("air")){
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("water")){
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll")){
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll","scroll", "imageRef", itemTimestamp, 1, 10, 10, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
                     }
-                    myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
-                    myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
+
+
                 }
 
             }
+            for (int i=0;i<object.markerList.size();i++){
+                if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
+                    if (object.markerList.get(i).markerType.equals("wizardacademy")){
+                        Toast.makeText(this, "You need to collect 5 artefacts to enter Wizard Academy!",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-            fragmentManager = getSupportFragmentManager();
-            PickupFragment pickupFragment = new PickupFragment();
-            pickupFragment.show(fragmentManager, "pickupFragment");
-            Bundle bundle = new Bundle();
-            bundle.putString("itemtype", name);
-            pickupFragment.setArguments(bundle);
+                }
 
-            Toast.makeText(this, "You collected an item",
-                    Toast.LENGTH_SHORT).show();
+
+            }
+
+
         }
 
         if (name.equalsIgnoreCase("MyMarker"))
@@ -631,8 +663,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("TAG", "STROKE COLOR"+mCircle.getStrokeColor());
             Log.d("TAG", "STROKE COLOR"+mCircle.getFillColor());
             if (mCircle.getStrokeColor()==0x00000000 && mCircle.getFillColor()==0x00000000){
-               mCircle.strokeColor(R.color.colorTextIcons);
-               mCircle.fillColor(R.color.colorPrimary);
+               mCircle.strokeColor(Color.parseColor("#dedede"));
+                mCircle.strokeWidth(50f);
+               mCircle.fillColor(Color.parseColor("#28b6e8"));
                 mMap.addCircle(mCircle);
                 circleAnimation.stop();
                 circleAnimation.start();
@@ -688,17 +721,73 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             myRef.child("timer").setValue(timestamp);
 
+        ///Cirkel 1
+
+        int randomNumber = 0;
+        double randomPosition = 0.0000;
+
+        randomList.clear();
+        for (int i=0;i<40;i++){
+            ///Jag vill ha noll också
+            randomNumber = (int) (50 * Math.random());
+            randomPosition = (double)randomNumber/10000;
+            randomList.add(randomPosition);
+            Log.i("TAG", "RANDOMLISTAN"+randomPosition);
+        }
+
+
+
             ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0005, myLongitude, "earth");
+            MyMarker tmpMarker = new MyMarker(myLatitude + randomList.get(0), myLongitude+randomList.get(1), "earth");
             tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude - 0.0005, myLongitude, "fire");
+            MyMarker tmpMarker2 = new MyMarker(myLatitude + randomList.get(2), myLongitude+randomList.get(3), "fire");
             tmpMarkerslist.add(tmpMarker2);
-            MyMarker tmpMarker3 = new MyMarker(myLatitude - 0.0003, myLongitude, "air");
+            MyMarker tmpMarker3 = new MyMarker(myLatitude + randomList.get(4), myLongitude+randomList.get(5), "air");
             tmpMarkerslist.add(tmpMarker3);
-            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0003, myLongitude, "water");
+            MyMarker tmpMarker4 = new MyMarker(myLatitude + randomList.get(6), myLongitude+randomList.get(7), "water");
             tmpMarkerslist.add(tmpMarker4);
-            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0002, myLongitude, "scroll");
-        tmpMarkerslist.add(tmpMarker5);
+            MyMarker tmpMarker5 = new MyMarker(myLatitude + randomList.get(8), myLongitude+randomList.get(9), "scroll");
+            tmpMarkerslist.add(tmpMarker5);
+
+            MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth");
+            tmpMarkerslist.add(tmpMarker6);
+            MyMarker tmpMarker7 = new MyMarker(myLatitude - randomList.get(12), myLongitude+randomList.get(13), "fire");
+            tmpMarkerslist.add(tmpMarker7);
+            MyMarker tmpMarker8 = new MyMarker(myLatitude - randomList.get(14), myLongitude+randomList.get(15), "air");
+            tmpMarkerslist.add(tmpMarker8);
+            MyMarker tmpMarker9 = new MyMarker(myLatitude - randomList.get(16), myLongitude+randomList.get(17), "water");
+            tmpMarkerslist.add(tmpMarker9);
+            MyMarker tmpMarker10 = new MyMarker(myLatitude - randomList.get(18), myLongitude+randomList.get(19), "scroll");
+            tmpMarkerslist.add(tmpMarker10);
+
+            MyMarker tmpMarker11 = new MyMarker(myLatitude - randomList.get(20), myLongitude-randomList.get(21), "earth");
+            tmpMarkerslist.add(tmpMarker11);
+            MyMarker tmpMarker12 = new MyMarker(myLatitude - randomList.get(22), myLongitude-randomList.get(23), "fire");
+            tmpMarkerslist.add(tmpMarker12);
+            MyMarker tmpMarker13 = new MyMarker(myLatitude - randomList.get(24), myLongitude-randomList.get(25), "air");
+            tmpMarkerslist.add(tmpMarker13);
+            MyMarker tmpMarker14 = new MyMarker(myLatitude - randomList.get(26), myLongitude-randomList.get(27), "water");
+            tmpMarkerslist.add(tmpMarker14);
+            MyMarker tmpMarker15 = new MyMarker(myLatitude - randomList.get(28), myLongitude-randomList.get(29), "scroll");
+            tmpMarkerslist.add(tmpMarker15);
+
+            MyMarker tmpMarker16 = new MyMarker(myLatitude + randomList.get(30), myLongitude-randomList.get(31), "earth");
+            tmpMarkerslist.add(tmpMarker16);
+            MyMarker tmpMarker17 = new MyMarker(myLatitude + randomList.get(32), myLongitude-randomList.get(33), "fire");
+            tmpMarkerslist.add(tmpMarker17);
+            MyMarker tmpMarker18 = new MyMarker(myLatitude + randomList.get(34), myLongitude-randomList.get(35), "air");
+            tmpMarkerslist.add(tmpMarker18);
+            MyMarker tmpMarker19 = new MyMarker(myLatitude + randomList.get(36), myLongitude-randomList.get(37), "water");
+            tmpMarkerslist.add(tmpMarker19);
+            MyMarker tmpMarker20 = new MyMarker(myLatitude + randomList.get(38), myLongitude-randomList.get(39), "scroll");
+            tmpMarkerslist.add(tmpMarker20);
+
+        MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
+        tmpMarkerslist.add(tmpMarkerHouse);
+
+
+
+
             myRef.child("markerList").setValue(tmpMarkerslist);
             Toast.makeText(this, "Items are updated!",
                     Toast.LENGTH_SHORT).show();
@@ -1021,4 +1110,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///show message about new level
         ///setlevelbar i slutet
     }
+    public void showPickedUpItem (String name, String tmpId){
+        myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
+        myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
+
+        fragmentManager = getSupportFragmentManager();
+        PickupFragment pickupFragment = new PickupFragment();
+        pickupFragment.show(fragmentManager, "pickupFragment");
+        Bundle bundle = new Bundle();
+        bundle.putString("itemtype", name);
+        pickupFragment.setArguments(bundle);
+
+        Toast.makeText(this, "You collected an item",
+                Toast.LENGTH_SHORT).show();
+
+    }
+
 }
