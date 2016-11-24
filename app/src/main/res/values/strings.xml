@@ -27,10 +27,16 @@
     <string name="element_water">WATER POWER:</string>
 
     <string name="you_picked_up">You picked up...</string>
+    <string name="this_is">This is...</string>
     <string name="item_added_in_backpack">You can find the item in your backpack.</string>
     <string name="a_plant">a Plant</string>
     <string name="a_flame">a Flame</string>
     <string name="a_waterdrop">a Waterdrop</string>
     <string name="trombulus">a Trombulus</string>
     <string name="an_ancient_scrollifix">an Ancient Scrollifix</string>
+    <string name="earth">Earth</string>
+    <string name="fire">Fire</string>
+    <string name="air">Air</string>
+    <string name="water">Water</string>
+    <string name="scroll">Scroll</string>
 </resources>

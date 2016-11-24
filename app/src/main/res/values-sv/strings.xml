@@ -31,4 +31,10 @@
     <string name="an_ancient_scrollifix">en Uråldrig Scrollifix</string>
     <string name="trombulus">en Trombulus</string>
     <string name="title_activity_maps">Karta</string>
+    <string name="this_is">Det här är...</string>
+    <string name="earth">Jord</string>
+    <string name="air">Luft</string>
+    <string name="fire">Eld</string>
+    <string name="water">Vatten</string>
+    <string name="scroll">Skriftrulle</string>
 </resources>

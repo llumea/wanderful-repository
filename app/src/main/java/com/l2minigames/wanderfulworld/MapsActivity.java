@@ -143,12 +143,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton personFab;
     ImageButton closePickedButton;
 
+    private static MapsActivity mMapsActivity;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mMapsActivity = this;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
@@ -377,7 +380,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapLoaded() {
 
-
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 closeLoadingScreen.setVisibility(View.VISIBLE);
 
@@ -560,18 +562,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 objectViewHolder.itemType.setText(collectedItem.itemType);
                 if (collectedItem.itemType.equals("Earth")) {
                     objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.earth_item);
+                    objectViewHolder.itemName.setText(R.string.a_plant);
+                    objectViewHolder.itemType.setText(R.string.earth);
                 }
                 else if (collectedItem.itemType.equals("Fire")) {
                     objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.fire_item);
+                    objectViewHolder.itemName.setText(R.string.a_flame);
+                    objectViewHolder.itemType.setText(R.string.fire);
                 }
                 else if (collectedItem.itemType.equals("Air")) {
                     objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.air_item);
+                    objectViewHolder.itemName.setText(R.string.trombulus);
+                    objectViewHolder.itemType.setText(R.string.air);
                 }
                 else if (collectedItem.itemType.equals("Water")) {
                     objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.water_item);
+                    objectViewHolder.itemName.setText(R.string.a_waterdrop);
+                    objectViewHolder.itemType.setText(R.string.water);
                 }
                 else if (collectedItem.itemType.equals("Scroll")) {
                     objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemName.setText(R.string.an_ancient_scrollifix);
+                    objectViewHolder.itemType.setText(R.string.scroll);
                 }
 
             }
@@ -857,6 +869,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemType = (TextView) v.findViewById(R.id.itemType_map);
             mDivider = (TextView) v.findViewById(R.id.divider_map);
             removeButton = (ImageButton) v.findViewById(R.id.removeButton_map);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    String name = tmpCollectedItems.get(position).itemName;
+                    String type = tmpCollectedItems.get(position).itemType;
+                    mMapsActivity.getInstance().showItem(name,type);
+
+                    Log.i("TAG", "Item clicked JUST ON VIEW: "+position+" Name: " +name+" Type: "+type);
+                }
+            });
             removeButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -1162,6 +1186,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
         myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
 
+
+
         if (name.equals("earth")){
             itemType.setText(getResources().getString(R.string.a_plant));
             pickImage.setBackgroundResource(R.drawable.earth_item);
@@ -1189,21 +1215,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personFab.setVisibility(View.INVISIBLE);
 
 
+    }
+    public void showItem(String name, String type){
 
+        itemType = (TextView)findViewById(R.id.itemType);
+        if (type.equals("Earth")){
+            itemType.setText(getResources().getString(R.string.a_plant));
+            pickImage.setBackgroundResource(R.drawable.earth_item);
 
+        }
+        else if (type.equals("Fire")){
+            itemType.setText(getResources().getString(R.string.a_flame));
+            pickImage.setBackgroundResource(R.drawable.fire_item);
+        }
+        else if (type.equals("Air")){
+            itemType.setText(getResources().getString(R.string.trombulus));
+            pickImage.setBackgroundResource(R.drawable.air_item);
+        }
+        else if (type.equals("Water")){
+            itemType.setText(getResources().getString(R.string.a_waterdrop));
+            pickImage.setBackgroundResource(R.drawable.water_item);
+        }
+        else if (type.equals("Scroll")){
+          itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
 
-       /*
-        fragmentManager = getSupportFragmentManager();
-        PickupFragment pickupFragment = new PickupFragment();
-        pickupFragment.show(fragmentManager, "pickupFragment");
-        Bundle bundle = new Bundle();
-        bundle.putString("itemtype", name);
-        pickupFragment.setArguments(bundle);
-        */
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
 
-
-       /// Toast.makeText(this, "You collected an item",
-          ///      Toast.LENGTH_SHORT).show();
 
     }
     public void closeLoadingScreen(){
@@ -1212,6 +1253,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
         closeLoadingScreen.setVisibility(View.INVISIBLE);
+    }
+    public static MapsActivity getInstance() {
+        return mMapsActivity;
     }
 
 }

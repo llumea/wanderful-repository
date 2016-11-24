@@ -31,4 +31,10 @@
     <string name="an_ancient_scrollifix">un Ancient Scrollifix</string>
     <string name="trombulus">a Trombulus</string>
     <string name="title_activity_maps">Carte</string>
+    <string name="this_is">Voilà ...</string>
+    <string name="earth">Terre</string>
+    <string name="air">Air</string>
+    <string name="fire">Feu</string>
+    <string name="water">Eau</string>
+    <string name="scroll">Scroll</string>
 </resources>
