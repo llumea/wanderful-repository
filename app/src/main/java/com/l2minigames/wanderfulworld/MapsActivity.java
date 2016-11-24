@@ -123,14 +123,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView personXP;
     TextView personTotalXP;
 
+
+    ImageView pickImage;
+    TextView itemType;
+
+    ImageButton closeLoadingScreen;
+
     RecyclerView mRecyclerView;
     FirebaseRecyclerAdapter<CollectedItem, MapsActivity.ObjectViewHolder> adapter;
     static Firebase myFirebaseRef;
     static ArrayList<CollectedItem> tmpCollectedItems = new ArrayList<CollectedItem>();
     RelativeLayout relativeLayoutRecycle;
     RelativeLayout relativeLayoutPerson;
+    RelativeLayout relativeLayoutPicked;
     private Runnable mAnimation;
     Handler mHandler;
+
+    ImageButton fab;
+    ImageButton personFab;
+    ImageButton closePickedButton;
 
 
 
@@ -156,8 +167,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personProgressTotal = (ImageView)findViewById(R.id.personProgressTotal);
         personXP = (TextView)findViewById(R.id.personXP);
         personTotalXP = (TextView)findViewById(R.id.personTotalXP);
-        final ImageButton fab = (ImageButton) findViewById(R.id.fabRecycler);
-        final ImageButton personFab = (ImageButton) findViewById(R.id.fabPerson);
+        pickImage = (ImageView)findViewById(R.id.pickImage);
+        itemType = (TextView)findViewById(R.id.itemType);
+        fab = (ImageButton) findViewById(R.id.fabRecycler);
+        personFab = (ImageButton) findViewById(R.id.fabPerson);
+        closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
+        closePickedButton = (ImageButton) findViewById(R.id.closePickedButton);
+        closeLoadingScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeLoadingScreen();
+            }
+        });
+        closePickedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayoutPicked.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.VISIBLE);
+                personFab.setVisibility(View.VISIBLE);
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,6 +236,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutPerson = (RelativeLayout)findViewById(R.id.relativeLayoutPerson);
         ///relativeLayoutPerson.setEnabled(false);
         relativeLayoutPerson.setVisibility(View.INVISIBLE);
+        relativeLayoutPicked = (RelativeLayout)findViewById(R.id.relativeLayoutPicked);
+        ///relativeLayoutPerson.setEnabled(false);
+        relativeLayoutPicked.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
+        closeLoadingScreen.setVisibility(View.INVISIBLE);
 
 
         collectedRef = myRef.child("collectedItems");
@@ -323,6 +358,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 setLevelBar(object.level, object.XP);
 
 
+
                 ///Omvandla long till formaterat String-datum
                 ///SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy HH:mm:ss");
                 /// String formatedDate = sdf.format(tmpToDoNote.date);
@@ -340,10 +376,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                Toast.makeText(MapsActivity.this, "Map is loaded",
-                        Toast.LENGTH_SHORT).show();
-                mImageViewBackground.setVisibility(ImageView.INVISIBLE);
+
+
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+                closeLoadingScreen.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -560,11 +597,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Cancels the previous animation
 
-        mHandler.removeCallbacks(mAnimation);
 
         // Starts the bounce animation
-        BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
-        mHandler.post(mAnimation);
+        ///mHandler.removeCallbacks(mAnimation);
+       /// BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
+       /// mHandler.post(mAnimation);
        //Slut på bounceAnimationkod
 
         String name= marker.getTitle();
@@ -585,6 +622,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[0]);
         Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[1]);
         if (distance[0] > mCircle.getRadius()) {
+            mHandler.removeCallbacks(mAnimation);
+            BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
+            mHandler.post(mAnimation);
             Log.d("TAG", "DISTANCE IS BIGGER THAN RADIUS");
             Toast.makeText(this, "You are not in range",
                     Toast.LENGTH_SHORT).show();
@@ -723,6 +763,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ///Cirkel 1
 
+
         int randomNumber = 0;
         double randomPosition = 0.0000;
 
@@ -784,6 +825,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
         tmpMarkerslist.add(tmpMarkerHouse);
+
+        MyMarker tmpTestMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "air");
+        tmpMarkerslist.add(tmpTestMarker);
+        MyMarker tmpTestMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude + 0.0002, "fire");
+        tmpMarkerslist.add(tmpTestMarker2);
 
 
 
@@ -1111,19 +1157,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///setlevelbar i slutet
     }
     public void showPickedUpItem (String name, String tmpId){
+
+
         myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
         myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
 
+        if (name.equals("earth")){
+            itemType.setText(getResources().getString(R.string.a_plant));
+            pickImage.setBackgroundResource(R.drawable.earth_item);
+
+        }
+        else if (name.equals("fire")){
+            itemType.setText(getResources().getString(R.string.a_flame));
+            pickImage.setBackgroundResource(R.drawable.fire_item);
+        }
+        else if (name.equals("air")){
+            itemType.setText(getResources().getString(R.string.trombulus));
+            pickImage.setBackgroundResource(R.drawable.air_item);
+        }
+        else if (name.equals("water")){
+            itemType.setText(getResources().getString(R.string.a_waterdrop));
+            pickImage.setBackgroundResource(R.drawable.water_item);
+        }
+        else if (name.equals("scroll")){
+            itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        itemType = (TextView)findViewById(R.id.itemType);
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
+
+
+
+
+
+       /*
         fragmentManager = getSupportFragmentManager();
         PickupFragment pickupFragment = new PickupFragment();
         pickupFragment.show(fragmentManager, "pickupFragment");
         Bundle bundle = new Bundle();
         bundle.putString("itemtype", name);
         pickupFragment.setArguments(bundle);
+        */
 
-        Toast.makeText(this, "You collected an item",
-                Toast.LENGTH_SHORT).show();
 
+       /// Toast.makeText(this, "You collected an item",
+          ///      Toast.LENGTH_SHORT).show();
+
+    }
+    public void closeLoadingScreen(){
+
+        mImageViewBackground.setVisibility(ImageView.INVISIBLE);
+        fab.setVisibility(View.VISIBLE);
+        personFab.setVisibility(View.VISIBLE);
+        closeLoadingScreen.setVisibility(View.INVISIBLE);
     }
 
 }

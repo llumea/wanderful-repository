@@ -35,6 +35,7 @@ public class PickupFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_pickup, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         closeButton = (ImageButton)view.findViewById(R.id.closeButton);
+        closeButton.requestFocus();
         itemType = (TextView)view.findViewById(R.id.itemType);
         pickImage = (ImageView)view.findViewById(R.id.pickImage);
         String markerType = getArguments().getString("itemtype");
