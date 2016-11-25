@@ -8,28 +8,28 @@
     <ImageView
 
         android:layout_margin="4dp"
-        android:id="@+id/item_icon_map"
+        android:id="@+id/itemIconList"
         android:padding="4dp"
         android:layout_alignParentLeft="true"
         android:layout_width="48dp"
         android:layout_height="48dp"/>
 
     <TextView
-        android:id="@+id/itemName_map"
+        android:id="@+id/itemNameList"
         android:text="Testar RecyclerView"
         android:textColor="@color/colorTextIcons"
         android:textSize="22sp"
-        android:layout_toRightOf="@id/item_icon_map"
+        android:layout_toRightOf="@id/itemIconList"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginBottom="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/itemType_map"
+        android:id="@+id/itemTypeList"
         android:text="Testar RecyclerView"
-        android:layout_below="@id/itemName_map"
-        android:layout_toRightOf="@id/item_icon_map"
+        android:layout_below="@id/itemNameList"
+        android:layout_toRightOf="@id/itemIconList"
         android:textColor="@color/colorTextIcons"
         android:textSize="22sp"
         android:layout_marginTop="4dp"
@@ -40,7 +40,7 @@
 
     <ImageButton
         android:layout_margin="4dp"
-        android:id="@+id/removeButton_map"
+        android:id="@+id/removeButtonList"
         android:layout_alignParentRight="true"
         android:src="@drawable/trash"
         android:background="#00000000"
@@ -51,7 +51,7 @@
     <TextView
         android:id="@+id/divider_map"
         android:drawableBottom="@drawable/divider"
-        android:layout_below="@id/removeButton_map"
+        android:layout_below="@id/removeButtonList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

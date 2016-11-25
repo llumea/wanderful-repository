@@ -32,11 +32,21 @@
     <string name="a_plant">a Plant</string>
     <string name="a_flame">a Flame</string>
     <string name="a_waterdrop">a Waterdrop</string>
-    <string name="trombulus">a Trombulus</string>
+    <string name="a_trombulus">a Trombulus</string>
     <string name="an_ancient_scrollifix">an Ancient Scrollifix</string>
     <string name="earth">Earth</string>
     <string name="fire">Fire</string>
     <string name="air">Air</string>
     <string name="water">Water</string>
     <string name="scroll">Scroll</string>
+    <string name="ancient_scrollifix">Ancient Scrollifix</string>
+    <string name="flame">Flame</string>
+    <string name="trombulus">Trombulus</string>
+    <string name="waterdrop">Waterdrop</string>
+    <string name="plant">Plant</string>
+    <string name="plant_description">You can use Plants in combination with a Scrnollidge to gain more experience (xp)</string>
+    <string name="flame_description">You can use Flames in combination with a Scrollipow to gain more combat points (cp)</string>
+    <string name="trombulus_description">You can use 4 Trombuluses in combination with a Scrollifly to create a Travelwind</string>
+    <string name="waterdrop_description">You can use Waterdrops in combination with an Ancient Scrollifix to restore your health (hp)</string>
+    <string name="scrollifix_description">The Ancient Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself</string>
 </resources>

@@ -126,6 +126,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     ImageView pickImage;
     TextView itemType;
+    TextView itemTitle;
+    TextView itemDescription;
 
     ImageButton closeLoadingScreen;
 
@@ -172,6 +174,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personTotalXP = (TextView)findViewById(R.id.personTotalXP);
         pickImage = (ImageView)findViewById(R.id.pickImage);
         itemType = (TextView)findViewById(R.id.itemType);
+        itemTitle = (TextView)findViewById(R.id.itemTitle);
+        itemDescription = (TextView)findViewById(R.id.itemDescription);
         fab = (ImageButton) findViewById(R.id.fabRecycler);
         personFab = (ImageButton) findViewById(R.id.fabPerson);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
@@ -195,11 +199,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
-                    personFab.setVisibility(View.INVISIBLE);
+                    relativeLayoutPerson.setVisibility(View.INVISIBLE);
+                   /// personFab.setVisibility(View.INVISIBLE);
+                    personFab.setBackgroundResource(R.drawable.girlfaceblue);
                     fab.setBackgroundResource(R.drawable.close);
                 } else {
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                     personFab.setVisibility(View.VISIBLE);
+
                     fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                 }
                 /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -212,7 +219,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 if (relativeLayoutPerson.getVisibility()==View.INVISIBLE) {
                     relativeLayoutPerson.setVisibility(View.VISIBLE);
-                    fab.setVisibility(View.INVISIBLE);
+                    relativeLayoutRecycle.setVisibility(View.INVISIBLE);
+                   /// fab.setVisibility(View.INVISIBLE);
+                    fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                     personFab.setBackgroundResource(R.drawable.close);
                 } else {
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
@@ -558,32 +567,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 tmpCollectedItems.add(tmpCollectedItem);
 
-                objectViewHolder.itemName.setText(collectedItem.itemName);
-                objectViewHolder.itemType.setText(collectedItem.itemType);
+                ///objectViewHolder.itemName.setText(collectedItem.itemName);
+               /// objectViewHolder.itemType.setText(collectedItem.itemType);
                 if (collectedItem.itemType.equals("Earth")) {
-                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.earth_item);
-                    objectViewHolder.itemName.setText(R.string.a_plant);
-                    objectViewHolder.itemType.setText(R.string.earth);
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.earth_item);
+                    objectViewHolder.itemNameList.setText(R.string.plant);
+                    objectViewHolder.itemTypeList.setText(R.string.earth);
                 }
                 else if (collectedItem.itemType.equals("Fire")) {
-                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.fire_item);
-                    objectViewHolder.itemName.setText(R.string.a_flame);
-                    objectViewHolder.itemType.setText(R.string.fire);
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.fire_item);
+                    objectViewHolder.itemNameList.setText(R.string.flame);
+                    objectViewHolder.itemTypeList.setText(R.string.fire);
                 }
                 else if (collectedItem.itemType.equals("Air")) {
-                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.air_item);
-                    objectViewHolder.itemName.setText(R.string.trombulus);
-                    objectViewHolder.itemType.setText(R.string.air);
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.air_item);
+                    objectViewHolder.itemNameList.setText(R.string.trombulus);
+                    objectViewHolder.itemTypeList.setText(R.string.air);
                 }
                 else if (collectedItem.itemType.equals("Water")) {
-                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.water_item);
-                    objectViewHolder.itemName.setText(R.string.a_waterdrop);
-                    objectViewHolder.itemType.setText(R.string.water);
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.water_item);
+                    objectViewHolder.itemNameList.setText(R.string.waterdrop);
+                    objectViewHolder.itemTypeList.setText(R.string.water);
                 }
                 else if (collectedItem.itemType.equals("Scroll")) {
-                    objectViewHolder.itemIconMap.setBackgroundResource(R.drawable.scroll_item);
-                    objectViewHolder.itemName.setText(R.string.an_ancient_scrollifix);
-                    objectViewHolder.itemType.setText(R.string.scroll);
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemNameList.setText(R.string.ancient_scrollifix);
+                    objectViewHolder.itemTypeList.setText(R.string.scroll);
                 }
 
             }
@@ -856,19 +865,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static class ObjectViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView itemIconMap;
-        TextView itemName;
-        TextView itemType;
+        ImageView itemIconList;
+        TextView itemNameList;
+        TextView itemTypeList;
         TextView mDivider;
         ImageButton removeButton;
 
         public ObjectViewHolder(View v) {
             super(v);
-            itemIconMap = (ImageView) v.findViewById(R.id.item_icon_map);
-            itemName = (TextView) v.findViewById(R.id.itemName_map);
-            itemType = (TextView) v.findViewById(R.id.itemType_map);
+            itemIconList = (ImageView) v.findViewById(R.id.itemIconList);
+            itemNameList = (TextView) v.findViewById(R.id.itemNameList);
+            itemTypeList = (TextView) v.findViewById(R.id.itemTypeList);
             mDivider = (TextView) v.findViewById(R.id.divider_map);
-            removeButton = (ImageButton) v.findViewById(R.id.removeButton_map);
+            removeButton = (ImageButton) v.findViewById(R.id.removeButtonList);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -897,12 +906,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     return false;
                 }
             });
-            itemName.setOnClickListener(new View.OnClickListener() {
+            itemNameList.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Log.i ("TAG", "Item clicked; "+position);
-                    String thisItemName = itemName.getText().toString();
+                    String thisItemName = itemNameList.getText().toString();
 
                     Log.i ("TAG", "Key clicked; "+""+tmpCollectedItems.get(position).uid);
 
@@ -1186,7 +1195,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
         myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
 
-
+        itemTitle.setText(getResources().getString(R.string.you_picked_up));
+        itemDescription.setText(getResources().getString(R.string.item_added_in_backpack));
 
         if (name.equals("earth")){
             itemType.setText(getResources().getString(R.string.a_plant));
@@ -1198,7 +1208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.fire_item);
         }
         else if (name.equals("air")){
-            itemType.setText(getResources().getString(R.string.trombulus));
+            itemType.setText(getResources().getString(R.string.a_trombulus));
             pickImage.setBackgroundResource(R.drawable.air_item);
         }
         else if (name.equals("water")){
@@ -1218,26 +1228,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void showItem(String name, String type){
 
-        itemType = (TextView)findViewById(R.id.itemType);
+       /// itemType = (TextView)findViewById(R.id.itemType);
         if (type.equals("Earth")){
-            itemType.setText(getResources().getString(R.string.a_plant));
+            itemTitle.setText(getResources().getString(R.string.plant));
+            itemType.setText(getResources().getString(R.string.earth));
+            itemDescription.setText(getResources().getString(R.string.plant_description));
             pickImage.setBackgroundResource(R.drawable.earth_item);
 
         }
         else if (type.equals("Fire")){
-            itemType.setText(getResources().getString(R.string.a_flame));
+            itemTitle.setText(getResources().getString(R.string.flame));
+            itemType.setText(getResources().getString(R.string.fire));
+            itemDescription.setText(getResources().getString(R.string.flame_description));
             pickImage.setBackgroundResource(R.drawable.fire_item);
         }
         else if (type.equals("Air")){
-            itemType.setText(getResources().getString(R.string.trombulus));
+            itemTitle.setText(getResources().getString(R.string.trombulus));
+            itemType.setText(getResources().getString(R.string.air));
+            itemDescription.setText(getResources().getString(R.string.trombulus_description));
             pickImage.setBackgroundResource(R.drawable.air_item);
         }
         else if (type.equals("Water")){
-            itemType.setText(getResources().getString(R.string.a_waterdrop));
+            itemTitle.setText(getResources().getString(R.string.waterdrop));
+            itemType.setText(getResources().getString(R.string.water));
+            itemDescription.setText(getResources().getString(R.string.waterdrop_description));
             pickImage.setBackgroundResource(R.drawable.water_item);
         }
         else if (type.equals("Scroll")){
-          itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
+          itemTitle.setText(getResources().getString(R.string.ancient_scrollifix));
+            itemType.setText(getResources().getString(R.string.scroll));
+            itemDescription.setText(getResources().getString(R.string.scrollifix_description));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
 

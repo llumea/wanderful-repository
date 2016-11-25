@@ -29,7 +29,7 @@
     <string name="a_plant">en Planta</string>
     <string name="a_waterdrop">en Vattendroppe</string>
     <string name="an_ancient_scrollifix">en Uråldrig Scrollifix</string>
-    <string name="trombulus">en Trombulus</string>
+    <string name="trombulus">Trombulus</string>
     <string name="title_activity_maps">Karta</string>
     <string name="this_is">Det här är...</string>
     <string name="earth">Jord</string>
@@ -37,4 +37,14 @@
     <string name="fire">Eld</string>
     <string name="water">Vatten</string>
     <string name="scroll">Skriftrulle</string>
+    <string name="a_trombulus">en Trombulus</string>
+    <string name="ancient_scrollifix">Uråldrig Scrollifix</string>
+    <string name="flame">Eldflamma</string>
+    <string name="plant">Planta</string>
+    <string name="waterdrop">Vattendroppe</string>
+    <string name="plant_description">Du kan använda Plantor i kombination med en Scrnollidge för att öka dina erfarenhetspoäng (xp)</string>
+    <string name="scrollifix_description">Du kan återställa din hp med en Uråldrig Scrollifix. Men det kostar 4 Vattendroppar och din Scrollifix.</string>
+    <string name="trombulus_description">Du kan använda 4 Trombulusar tillsammans med en Scrollifly och skapa en Travelwind.</string>
+    <string name="waterdrop_description">Du kan använda Vattendroppar tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
+    <string name="flame_description">Du kan använda Eldflammor tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
 </resources>

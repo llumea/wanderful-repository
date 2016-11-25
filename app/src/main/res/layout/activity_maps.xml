@@ -289,7 +289,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/youPicked"
+                android:id="@+id/itemTitle"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/colorTextIcons"
                 android:layout_marginTop="16dp"
@@ -302,7 +302,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/earth_item"
                 android:layout_marginTop="16dp"
-                android:layout_below="@id/youPicked"
+                android:layout_below="@id/itemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -323,6 +323,7 @@
                 android:textColor="@color/colorTextIcons"
                 android:textSize="16sp"
                 android:layout_marginTop="24dp"
+                android:layout_margin="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/item_added_in_backpack"/>
