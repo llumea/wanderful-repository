@@ -49,4 +49,7 @@
     <string name="trombulus_description">You can use 4 Trombuluses in combination with a Scrollifly to create a Travelwind</string>
     <string name="waterdrop_description">You can use Waterdrops in combination with an Ancient Scrollifix to restore your health (hp)</string>
     <string name="scrollifix_description">The Ancient Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself</string>
+    <string name="wizardacademy_title">Magic Academy</string>
+    <string name="wizardacademy_type">Arnroth, Master of Magi</string>
+    <string name="wizardacademy_description">Greetings young apprentice. We are glad to see that you are interested in applying to our institution. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World.</string>
 </resources>

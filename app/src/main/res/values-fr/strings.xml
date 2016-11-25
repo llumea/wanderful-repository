@@ -47,4 +47,7 @@
     <string name="trombulus_description">Vous pouver utiliser 4 Tromubus en combinaison d\'un Scrollifly pour créer un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
+    <string name="wizardacademy_description"></string>
+    <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
+    <string name="wizardacademy_title">Académy de Magi</string>
 </resources>

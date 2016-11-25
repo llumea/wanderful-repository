@@ -13,6 +13,11 @@
         android:layout_alignParentLeft="true"
         android:layout_width="48dp"
         android:layout_height="48dp"/>
+    <TextView
+        android:id="@+id/itemNoLocale"
+        android:layout_alignParentLeft="true"
+        android:layout_width="0sp"
+        android:layout_height="0sp"/>
 
     <TextView
         android:id="@+id/itemNameList"
@@ -37,6 +42,16 @@
         android:layout_marginBottom="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/itemKeyList"
+        android:text="Key"
+        android:layout_below="@id/itemTypeList"
+        android:layout_toRightOf="@id/itemIconList"
+        android:textColor="@color/colorTextIcons"
+        android:textSize="14sp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <ImageButton
         android:layout_margin="4dp"
@@ -51,7 +66,7 @@
     <TextView
         android:id="@+id/divider_map"
         android:drawableBottom="@drawable/divider"
-        android:layout_below="@id/removeButtonList"
+        android:layout_below="@id/itemKeyList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -359,6 +359,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if (object.markerList.get(i).markerType.equals("wizardacademy")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.wizardacademy)));
                     }
+                    else if (object.markerList.get(i).markerType.equals("towerair")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerair)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("towerearth")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerearth)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("towerwater")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerwater)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("towerfire")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerfire)));
+                    }
                     if (tmpMarker!=null){tmpMarker.setAnchor(0.5f,1.0f);}
                     Log.d("TAG", "markerSize: "+object.markerList.size());
                 }
@@ -564,33 +576,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tmpCollectedItem.level = collectedItem.level;
                 tmpCollectedItem.timestamp = collectedItem.timestamp;
                 tmpCollectedItem.uid = collectedItem.uid;
-
+                String key = collectedItem.uid;
                 tmpCollectedItems.add(tmpCollectedItem);
+                objectViewHolder.itemKeyList.setText(key);
 
                 ///objectViewHolder.itemName.setText(collectedItem.itemName);
                /// objectViewHolder.itemType.setText(collectedItem.itemType);
                 if (collectedItem.itemType.equals("Earth")) {
+                    objectViewHolder.itemNoLocale.setText("Earth");
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.earth_item);
                     objectViewHolder.itemNameList.setText(R.string.plant);
                     objectViewHolder.itemTypeList.setText(R.string.earth);
                 }
                 else if (collectedItem.itemType.equals("Fire")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.fire_item);
+                    objectViewHolder.itemNoLocale.setText("Fire");
                     objectViewHolder.itemNameList.setText(R.string.flame);
                     objectViewHolder.itemTypeList.setText(R.string.fire);
                 }
                 else if (collectedItem.itemType.equals("Air")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.air_item);
+                    objectViewHolder.itemNoLocale.setText("Air");
                     objectViewHolder.itemNameList.setText(R.string.trombulus);
                     objectViewHolder.itemTypeList.setText(R.string.air);
                 }
                 else if (collectedItem.itemType.equals("Water")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.water_item);
+                    objectViewHolder.itemNoLocale.setText("Water");
                     objectViewHolder.itemNameList.setText(R.string.waterdrop);
                     objectViewHolder.itemTypeList.setText(R.string.water);
                 }
                 else if (collectedItem.itemType.equals("Scroll")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemNoLocale.setText("Scroll");
                     objectViewHolder.itemNameList.setText(R.string.ancient_scrollifix);
                     objectViewHolder.itemTypeList.setText(R.string.scroll);
                 }
@@ -705,8 +723,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             for (int i=0;i<object.markerList.size();i++){
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     if (object.markerList.get(i).markerType.equals("wizardacademy")){
-                        Toast.makeText(this, "You need to collect 5 artefacts to enter Wizard Academy!",
-                                Toast.LENGTH_SHORT).show();
+                        showWizardAcademy();
+
                     }
 
                 }
@@ -852,6 +870,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker tmpTestMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude + 0.0002, "fire");
         tmpMarkerslist.add(tmpTestMarker2);
 
+        MyMarker towerAir = new MyMarker(myLatitude + 0.00215, myLongitude, "towerair");
+        tmpMarkerslist.add(towerAir);
+        MyMarker towerEarth = new MyMarker(myLatitude - 0.00215, myLongitude, "towerearth");
+        tmpMarkerslist.add(towerEarth);
+        MyMarker towerFire = new MyMarker(myLatitude, myLongitude + 0.0049, "towerfire");
+        tmpMarkerslist.add(towerFire);
+        MyMarker towerWater = new MyMarker(myLatitude, myLongitude - 0.0049, "towerwater");
+        tmpMarkerslist.add(towerWater);
+
 
 
 
@@ -869,6 +896,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         TextView itemNameList;
         TextView itemTypeList;
         TextView mDivider;
+        TextView itemKeyList;
+        TextView itemNoLocale;
         ImageButton removeButton;
 
         public ObjectViewHolder(View v) {
@@ -876,6 +905,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemIconList = (ImageView) v.findViewById(R.id.itemIconList);
             itemNameList = (TextView) v.findViewById(R.id.itemNameList);
             itemTypeList = (TextView) v.findViewById(R.id.itemTypeList);
+            itemKeyList = (TextView) v.findViewById(R.id.itemKeyList);
+            itemNoLocale = (TextView) v.findViewById(R.id.itemNoLocale);
             mDivider = (TextView) v.findViewById(R.id.divider_map);
             removeButton = (ImageButton) v.findViewById(R.id.removeButtonList);
 
@@ -883,11 +914,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    String name = tmpCollectedItems.get(position).itemName;
-                    String type = tmpCollectedItems.get(position).itemType;
+                    String name = itemNameList.getText().toString();
+                    String type = itemNoLocale.getText().toString();
                     mMapsActivity.getInstance().showItem(name,type);
 
                     Log.i("TAG", "Item clicked JUST ON VIEW: "+position+" Name: " +name+" Type: "+type);
+                    Log.i("TAG", "I WILL REMOVE THIS ONE: "+itemKeyList.getText().toString());
                 }
             });
             removeButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -897,9 +929,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     int position = getAdapterPosition();
 
                     Log.i ("TAG", "Remove item clicked; "+position);
+
                     Log.i ("TAG", "Remove key clicked; "+""+tmpCollectedItems.get(position).uid);
-                    myFirebaseRef.child(tmpCollectedItems.get(position).uid).removeValue();
-                    tmpCollectedItems.remove(position);
+                    myFirebaseRef.child(itemKeyList.getText().toString()).removeValue();
+
                     Log.i ("TAG", "Storlek på tmpListan: "+tmpCollectedItems.size());
 
 
@@ -1219,7 +1252,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
-        itemType = (TextView)findViewById(R.id.itemType);
+        ///itemType = (TextView)findViewById(R.id.itemType);
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
@@ -1228,7 +1261,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void showItem(String name, String type){
 
-       /// itemType = (TextView)findViewById(R.id.itemType);
+
         if (type.equals("Earth")){
             itemTitle.setText(getResources().getString(R.string.plant));
             itemType.setText(getResources().getString(R.string.earth));
@@ -1273,6 +1306,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
         closeLoadingScreen.setVisibility(View.INVISIBLE);
+    }
+    public void showWizardAcademy(){
+
+        itemTitle.setText(getResources().getString(R.string.wizardacademy_title));
+        itemType.setText(getResources().getString(R.string.wizardacademy_type));
+        itemDescription.setText(getResources().getString(R.string.wizardacademy_description));
+        pickImage.setBackgroundResource(R.drawable.wizardacademy);
+
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
+
     }
     public static MapsActivity getInstance() {
         return mMapsActivity;
