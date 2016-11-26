@@ -294,13 +294,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMinZoomPreference(17.0f);
+        mMap.setMaxZoomPreference(19.0f);
 
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
             boolean success = mMap.setMapStyle(
                     MapStyleOptions.loadRawResourceStyle(
-                            this, R.raw.style_json));
+                            this, R.raw.night));
 
             if (!success) {
                 Log.e("MapsActivityRaw", "Style parsing failed.");
@@ -329,17 +331,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 /// textHome.setText(object.username+" "+object.email);
 
+                ///Ringar eller "cirklar" som märker ut 250 meter respektive 500 meter
+
                 mPositionLatitude.setText(""+object.latitude);
                 mPositionLongitude.setText(""+object.longitude);
                 mCircleTotal.center(new LatLng(myPositionLatitude, myPositionLongitude));
                 mCircleTotal.radius(250);
-                mCircleTotal.strokeColor(Color.parseColor("#28b6e8"));
+                mCircleTotal.strokeColor(Color.parseColor("#dedede"));
                 mCircleTotal.strokeWidth(50f);
                 mMap.addCircle(mCircleTotal);
 
                 mCircleTotalMax.center(new LatLng(myPositionLatitude, myPositionLongitude));
                 mCircleTotalMax.radius(500);
-                mCircleTotalMax.strokeColor(Color.parseColor("#28b6e8"));
+                mCircleTotalMax.strokeColor(Color.parseColor("#dedede"));
                 mCircleTotalMax.strokeWidth(50f);
                 mMap.addCircle(mCircleTotalMax);
 
@@ -506,6 +510,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location) {
 
+
+
         if (onlyOneTime==1){onlyOneTime=0;} ///Nollställ uppdatering av markers
         animateCircle();
         mCircle.strokeColor(0x00000000);
@@ -517,17 +523,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///Tidigare var myPositionLatitude+0.0005, men rotationen blev sned
         LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
         CameraPosition currentCameraPosition = mMap.getCameraPosition();
+        Log.i("TAG", "CURRENT CAMERA POSITION" +currentCameraPosition);
         ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                         .bearing(currentCameraPosition.bearing)
                         .target(cameraPosition)
                         .tilt(90)
-                        .zoom(18)
+                        .zoom(19)
                         .build()));
 
 
-        mMap.getUiSettings(). setZoomGesturesEnabled(false);
+        ///mMap.getUiSettings(). setZoomGesturesEnabled(false);
         mMap.getUiSettings(). setScrollGesturesEnabled(false);
         mMap.getUiSettings(). setCompassEnabled(false);
 
@@ -647,6 +654,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
 
 
+
         ///Startar bounceAnimationkod
         final long start = SystemClock.uptimeMillis();
         final long duration = 1500L;
@@ -761,7 +769,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (mCircle.getStrokeColor()==0x00000000 && mCircle.getFillColor()==0x00000000){
                mCircle.strokeColor(Color.parseColor("#dedede"));
                 mCircle.strokeWidth(50f);
-               mCircle.fillColor(Color.parseColor("#28b6e8"));
+                ///De första 4 värdena anger transparent 55 procent
+               mCircle.fillColor(0x5528b6e8);
+
                 mMap.addCircle(mCircle);
                 circleAnimation.stop();
                 circleAnimation.start();
