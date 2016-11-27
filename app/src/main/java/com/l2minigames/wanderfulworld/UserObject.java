@@ -11,12 +11,19 @@ public class UserObject {
 
     public String username;
     public String email;
+    public int earthpower;
+    public int firepower;
+    public int airpower;
+    public int waterpower;
+    public int hp;
+    public int maxhp;
+    public int cp;
+    public int maxcp;
     public long timer;
     public int XP;
     public int level;
     double latitude;
     double longitude;
-    Wand myWand = new Wand();
     ArrayList<MyMarker> markerList = new ArrayList<>();
     Map<String, CollectedItem> collectedItems = new HashMap<>();
 
@@ -25,15 +32,22 @@ public class UserObject {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public UserObject(String username, String email, long timer, int XP, int level, double latitude, double longitude, Wand myWand, ArrayList<MyMarker> markerList, HashMap<String, CollectedItem> collectedItems) {
+    public UserObject(String username, String email, int earthpower, int firepower, int airpower, int waterpower, int hp, int maxhp, int cp, int maxcp, long timer, int XP, int level, double latitude, double longitude, ArrayList<MyMarker> markerList, HashMap<String, CollectedItem> collectedItems) {
         this.username = username;
         this.email = email;
+        this.earthpower = earthpower;
+        this.firepower = firepower;
+        this.airpower = airpower;
+        this.waterpower = waterpower;
+        this.hp = hp;
+        this.maxhp =maxhp;
+        this.cp = cp;
+        this.maxcp = maxcp;
         this.timer = timer;
         this.XP = XP;
         this.level = level;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.myWand = myWand;
         this.markerList = markerList;
         this.collectedItems = collectedItems;
 

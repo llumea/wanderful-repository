@@ -597,13 +597,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ///String key = this.getRef(i).getKey();
                 ///Fill objects
                 CollectedItem tmpCollectedItem = new CollectedItem();
-                tmpCollectedItem.cp = collectedItem.cp;
-                tmpCollectedItem.elementType = collectedItem.elementType;
-                tmpCollectedItem.hp = collectedItem.hp;
+
                 tmpCollectedItem.imageRef = collectedItem.imageRef;
                 tmpCollectedItem.itemName = collectedItem.itemName;
                 tmpCollectedItem.itemType = collectedItem.itemType;
-                tmpCollectedItem.level = collectedItem.level;
                 tmpCollectedItem.timestamp = collectedItem.timestamp;
                 tmpCollectedItem.uid = collectedItem.uid;
                 String key = collectedItem.uid;
@@ -716,36 +713,133 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String tmpId = Integer.toString(i);
                     if (object.markerList.get(i).markerType.equals("earth")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
-
+                    }
+                    else if (object.markerList.get(i).markerType.equals("earth2")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("earth3")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("earth4")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Plant", "Earth", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("fire")){
-
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire2")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire3")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire4")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Flames", "Fire", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("air")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("air2")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("air3")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                    }
+                    else if (object.markerList.get(i).markerType.equals("air4")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Trombulus", "Air", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
                     }
                     else if (object.markerList.get(i).markerType.equals("water")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water","earth", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
+                        break;
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water2")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                        break;
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water3")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                        break;
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water4")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Waterdrop", "Water", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+                        break;
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll","scroll", "imageRef", itemTimestamp, 1, 10, 10, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
+
                     }
+                    else if (object.markerList.get(i).markerType.equals("scroll2")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll3")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll4")){
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        showPickedUpItem(name, tmpId);
+
+                    }
+
 
 
                 }
@@ -848,12 +942,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.i("TAG", "RANDOMLISTAN"+randomPosition);
         }
 
-
+///ToDo fix two first markers
 
             ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + randomList.get(0), myLongitude+randomList.get(1), "earth");
+            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "earth");
             tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude + randomList.get(2), myLongitude+randomList.get(3), "fire");
+            MyMarker tmpMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude + 0.0002, "fire");
             tmpMarkerslist.add(tmpMarker2);
             MyMarker tmpMarker3 = new MyMarker(myLatitude + randomList.get(4), myLongitude+randomList.get(5), "air");
             tmpMarkerslist.add(tmpMarker3);
@@ -862,46 +956,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MyMarker tmpMarker5 = new MyMarker(myLatitude + randomList.get(8), myLongitude+randomList.get(9), "scroll");
             tmpMarkerslist.add(tmpMarker5);
 
-            MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth");
+            MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth2");
             tmpMarkerslist.add(tmpMarker6);
-            MyMarker tmpMarker7 = new MyMarker(myLatitude - randomList.get(12), myLongitude+randomList.get(13), "fire");
+            MyMarker tmpMarker7 = new MyMarker(myLatitude - randomList.get(12), myLongitude+randomList.get(13), "fire2");
             tmpMarkerslist.add(tmpMarker7);
-            MyMarker tmpMarker8 = new MyMarker(myLatitude - randomList.get(14), myLongitude+randomList.get(15), "air");
+            MyMarker tmpMarker8 = new MyMarker(myLatitude - randomList.get(14), myLongitude+randomList.get(15), "air2");
             tmpMarkerslist.add(tmpMarker8);
-            MyMarker tmpMarker9 = new MyMarker(myLatitude - randomList.get(16), myLongitude+randomList.get(17), "water");
+            MyMarker tmpMarker9 = new MyMarker(myLatitude - randomList.get(16), myLongitude+randomList.get(17), "water2");
             tmpMarkerslist.add(tmpMarker9);
-            MyMarker tmpMarker10 = new MyMarker(myLatitude - randomList.get(18), myLongitude+randomList.get(19), "scroll");
+            MyMarker tmpMarker10 = new MyMarker(myLatitude - randomList.get(18), myLongitude+randomList.get(19), "scroll2");
             tmpMarkerslist.add(tmpMarker10);
 
-            MyMarker tmpMarker11 = new MyMarker(myLatitude - randomList.get(20), myLongitude-randomList.get(21), "earth");
+            MyMarker tmpMarker11 = new MyMarker(myLatitude - randomList.get(20), myLongitude-randomList.get(21), "earth3");
             tmpMarkerslist.add(tmpMarker11);
-            MyMarker tmpMarker12 = new MyMarker(myLatitude - randomList.get(22), myLongitude-randomList.get(23), "fire");
+            MyMarker tmpMarker12 = new MyMarker(myLatitude - randomList.get(22), myLongitude-randomList.get(23), "fire3");
             tmpMarkerslist.add(tmpMarker12);
-            MyMarker tmpMarker13 = new MyMarker(myLatitude - randomList.get(24), myLongitude-randomList.get(25), "air");
+            MyMarker tmpMarker13 = new MyMarker(myLatitude - randomList.get(24), myLongitude-randomList.get(25), "air3");
             tmpMarkerslist.add(tmpMarker13);
-            MyMarker tmpMarker14 = new MyMarker(myLatitude - randomList.get(26), myLongitude-randomList.get(27), "water");
+            MyMarker tmpMarker14 = new MyMarker(myLatitude - randomList.get(26), myLongitude-randomList.get(27), "water3");
             tmpMarkerslist.add(tmpMarker14);
-            MyMarker tmpMarker15 = new MyMarker(myLatitude - randomList.get(28), myLongitude-randomList.get(29), "scroll");
+            MyMarker tmpMarker15 = new MyMarker(myLatitude - randomList.get(28), myLongitude-randomList.get(29), "scroll3");
             tmpMarkerslist.add(tmpMarker15);
 
-            MyMarker tmpMarker16 = new MyMarker(myLatitude + randomList.get(30), myLongitude-randomList.get(31), "earth");
+            MyMarker tmpMarker16 = new MyMarker(myLatitude + randomList.get(30), myLongitude-randomList.get(31), "earth4");
             tmpMarkerslist.add(tmpMarker16);
-            MyMarker tmpMarker17 = new MyMarker(myLatitude + randomList.get(32), myLongitude-randomList.get(33), "fire");
+            MyMarker tmpMarker17 = new MyMarker(myLatitude + randomList.get(32), myLongitude-randomList.get(33), "fire4");
             tmpMarkerslist.add(tmpMarker17);
-            MyMarker tmpMarker18 = new MyMarker(myLatitude + randomList.get(34), myLongitude-randomList.get(35), "air");
+            MyMarker tmpMarker18 = new MyMarker(myLatitude + randomList.get(34), myLongitude-randomList.get(35), "air4");
             tmpMarkerslist.add(tmpMarker18);
-            MyMarker tmpMarker19 = new MyMarker(myLatitude + randomList.get(36), myLongitude-randomList.get(37), "water");
+            MyMarker tmpMarker19 = new MyMarker(myLatitude + randomList.get(36), myLongitude-randomList.get(37), "water4");
             tmpMarkerslist.add(tmpMarker19);
-            MyMarker tmpMarker20 = new MyMarker(myLatitude + randomList.get(38), myLongitude-randomList.get(39), "scroll");
+            MyMarker tmpMarker20 = new MyMarker(myLatitude + randomList.get(38), myLongitude-randomList.get(39), "scroll4");
             tmpMarkerslist.add(tmpMarker20);
 
         MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
         tmpMarkerslist.add(tmpMarkerHouse);
-
-        MyMarker tmpTestMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "air");
-        tmpMarkerslist.add(tmpTestMarker);
-        MyMarker tmpTestMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude + 0.0002, "fire");
-        tmpMarkerslist.add(tmpTestMarker2);
 
         MyMarker towerAir = new MyMarker(myLatitude + 0.00215, myLongitude, "towerair");
         tmpMarkerslist.add(towerAir);

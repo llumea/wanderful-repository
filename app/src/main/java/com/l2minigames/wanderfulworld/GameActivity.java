@@ -222,13 +222,9 @@ public class GameActivity extends AppCompatActivity
                ///String key = this.getRef(i).getKey();
                 ///Fill objects
                 CollectedItem tmpCollectedItem = new CollectedItem();
-                tmpCollectedItem.cp = collectedItem.cp;
-                tmpCollectedItem.elementType = collectedItem.elementType;
-                tmpCollectedItem.hp = collectedItem.hp;
                 tmpCollectedItem.imageRef = collectedItem.imageRef;
                 tmpCollectedItem.itemName = collectedItem.itemName;
                 tmpCollectedItem.itemType = collectedItem.itemType;
-                tmpCollectedItem.level = collectedItem.level;
                 tmpCollectedItem.timestamp = collectedItem.timestamp;
                 tmpCollectedItem.uid = collectedItem.uid;
 

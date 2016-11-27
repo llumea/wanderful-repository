@@ -12,12 +12,8 @@ public class CollectedItem {
 
     public String itemName;
     public String itemType;
-    public String elementType;
     public String imageRef;
     public long timestamp;
-    public int level;
-    public int cp;
-    public int hp;
     public String uid;
 
 
@@ -26,17 +22,13 @@ public class CollectedItem {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public CollectedItem(String itemName, String itemType, String elementType, String imageRef, long timestamp, int level, int cp, int hp, String uid) {
+    public CollectedItem(String itemName, String itemType, String imageRef, long timestamp, String uid) {
 
 
         this.itemName = itemName;
         this.itemType = itemType;
-        this.elementType = elementType;
         this.imageRef = imageRef;
         this.timestamp = timestamp;
-        this.level = level;
-        this.cp = cp;
-        this.hp = hp;
         this.uid = uid;
 
     }

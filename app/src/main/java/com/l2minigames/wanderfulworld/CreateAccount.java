@@ -100,13 +100,26 @@ public class CreateAccount extends AppCompatActivity {
                         HashMap<String, CollectedItem> tmpCollectedItems = new HashMap<>();
                         MyMarker myMarker = new MyMarker(0,0,"hallon");
                         tmpMarkerList.add(myMarker);
-                        Wand myWand = new Wand(10,10,10,10);
+
                         String default_name = getResources().getString(R.string.default_name);
+                        int earthpower = 10;
+                        int firepower = 10;
+                        int airpower = 10;
+                        int waterpower = 10;
+                        int hp = 10;
+                        int maxhp = 10;
+                        int cp = 10;
+                        int maxcp = 10;
+                        long timer = 0;
+                        int XP = 0;
+                        int level = 1;
+                        double latitude = 0;
+                        double longitude = 0;
 
                         ///CollectedItem tmpCollectedItem = new CollectedItem();
                        /// CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
                         ///tmpCollectedItems.put("collectedItems", tmpCollectedItem);
-                        UserObject mUser = new UserObject(default_name, email, 10, 0, 1,0, 0, myWand, tmpMarkerList, tmpCollectedItems);
+                        UserObject mUser = new UserObject(default_name, email, earthpower,firepower, airpower,waterpower, hp, maxhp, cp, maxcp, timer, XP, level, latitude, longitude, tmpMarkerList, tmpCollectedItems);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);
