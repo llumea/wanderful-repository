@@ -44,7 +44,7 @@
     <string name="trombulus">Trombulus</string>
     <string name="waterdrop">Waterdrop</string>
     <string name="plant">Plant</string>
-    <string name="plant_description">You can use Plants in combination with a Scrnollidge to gain more experience (xp)</string>
+    <string name="plant_description">You can use Plants in combination with a Scrollidge to gain more experience (xp)</string>
     <string name="flame_description">You can use Flames in combination with a Scrollipow to gain more combat points (cp)</string>
     <string name="trombulus_description">You can use 4 Trombuluses in combination with a Scrollifly to create a Travelwind</string>
     <string name="waterdrop_description">You can use Waterdrops in combination with an Ancient Scrollifix to restore your health (hp)</string>
