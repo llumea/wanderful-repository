@@ -58,4 +58,6 @@
     <string name="a_swift_scrollifly">en Blixtsnabb Scrollifly</string>
     <string name="a_healing_scrollifix">en Helande Scrollifix</string>
     <string name="hold_to_remove">Håll ned på papperskorgen om du vill ta bort objektet</string>
+    <string name="scrollidge_description">Du kan öka din xp med denna Uråldriga Scrollidge. Men det kostar 4 plantor och din Scrollidge.</string>
+    <string name="scrollifly_description">Du kan resa till olika platser i Wanderful World med denna Blixtsnabba Scrollifly. Men det kostar 4 trombulus och din Scrollifly.</string>
 </resources>

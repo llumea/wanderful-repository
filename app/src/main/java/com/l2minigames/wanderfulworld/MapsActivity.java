@@ -114,6 +114,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int onlyOneTime;
     ArrayList<Double> randomList = new ArrayList<>();
 
+    ArrayList<String> flamesList = new ArrayList<>();
+    ArrayList<String> plantsList = new ArrayList<>();
+    ArrayList<String> trombulusList = new ArrayList<>();
+    ArrayList<String> waterdropsList = new ArrayList<>();
+
+    String currentItemSelected;
+
     FragmentManager fragmentManager;
 
     ImageView personImage;
@@ -151,6 +158,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     ImageButton fab;
     ImageButton personFab;
+    ImageButton useScrollButton;
     ImageButton closePickedButton;
 
     private static MapsActivity mMapsActivity;
@@ -193,6 +201,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab = (ImageButton) findViewById(R.id.fabRecycler);
         personFab = (ImageButton) findViewById(R.id.fabPerson);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
+        useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
         closePickedButton = (ImageButton) findViewById(R.id.closePickedButton);
         closeLoadingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,6 +213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 relativeLayoutPicked.setVisibility(View.INVISIBLE);
+                useScrollButton.setVisibility(View.INVISIBLE);
                 fab.setVisibility(View.VISIBLE);
                 personFab.setVisibility(View.VISIBLE);
             }
@@ -382,7 +392,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (object.markerList.get(i).markerType.equals("earth")){
                         tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
                     }
+                    else if (object.markerList.get(i).markerType.equals("earth2")){
+                        tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("earth3")){
+                        tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("earth4")){
+                        tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
+                    }
                     else if (object.markerList.get(i).markerType.equals("fire")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire2")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire3")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("fire4")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fire_item)));
                     }
 
@@ -390,10 +418,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
 
                     }
+                    else if (object.markerList.get(i).markerType.equals("ai2")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+
+                    }
+                    else if (object.markerList.get(i).markerType.equals("air3")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+
+                    }
+                    else if (object.markerList.get(i).markerType.equals("air4")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.air_item)));
+
+                    }
                     else if (object.markerList.get(i).markerType.equals("water")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
                     }
+                    else if (object.markerList.get(i).markerType.equals("water2")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water3")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("water4")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.water_item)));
+                    }
                     else if (object.markerList.get(i).markerType.equals("scroll")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll2")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll3")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("scroll4")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.scroll_item)));
                     }
                     else if (object.markerList.get(i).markerType.equals("wizardacademy")){
@@ -625,40 +683,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 tmpCollectedItem.itemType = collectedItem.itemType;
                 tmpCollectedItem.timestamp = collectedItem.timestamp;
                 tmpCollectedItem.uid = collectedItem.uid;
-                String key = collectedItem.uid;
                 tmpCollectedItems.add(tmpCollectedItem);
+
+                String key = collectedItem.uid;
                 objectViewHolder.itemKeyList.setText(key);
 
                 ///objectViewHolder.itemName.setText(collectedItem.itemName);
                /// objectViewHolder.itemType.setText(collectedItem.itemType);
-                if (collectedItem.itemType.equals("Earth")) {
-                    objectViewHolder.itemNoLocale.setText("Earth");
+                Log.i("TAGGY", "POPULATE ITEMNAME: "+collectedItem.itemName);
+
+                if (collectedItem.itemName.equals("Plant")) {
+                    objectViewHolder.itemNoLocale.setText("Plant");
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.earth_item);
                     objectViewHolder.itemNameList.setText(R.string.plant);
                     objectViewHolder.itemTypeList.setText(R.string.earth);
                 }
-                else if (collectedItem.itemType.equals("Fire")) {
+                else if (collectedItem.itemName.equals("Flames")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.fire_item);
-                    objectViewHolder.itemNoLocale.setText("Fire");
+                    objectViewHolder.itemNoLocale.setText("Flames");
                     objectViewHolder.itemNameList.setText(R.string.flame);
                     objectViewHolder.itemTypeList.setText(R.string.fire);
                 }
-                else if (collectedItem.itemType.equals("Air")) {
+                else if (collectedItem.itemName.equals("Trombulus")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.air_item);
-                    objectViewHolder.itemNoLocale.setText("Air");
+                    objectViewHolder.itemNoLocale.setText("Trombulus");
                     objectViewHolder.itemNameList.setText(R.string.trombulus);
                     objectViewHolder.itemTypeList.setText(R.string.air);
                 }
-                else if (collectedItem.itemType.equals("Water")) {
+                else if (collectedItem.itemName.equals("Waterdrop")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.water_item);
-                    objectViewHolder.itemNoLocale.setText("Water");
+                    objectViewHolder.itemNoLocale.setText("Waterdrop");
                     objectViewHolder.itemNameList.setText(R.string.waterdrop);
                     objectViewHolder.itemTypeList.setText(R.string.water);
                 }
-                else if (collectedItem.itemType.equals("Scroll")) {
+                else if (collectedItem.itemName.equals("Healing Scrollifix")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
-                    objectViewHolder.itemNoLocale.setText("Scroll");
+                    objectViewHolder.itemNoLocale.setText("Healing Scrollifix");
                     objectViewHolder.itemNameList.setText(R.string.healing_scrollifix);
+                    objectViewHolder.itemTypeList.setText(R.string.scroll);
+                }
+                else if (collectedItem.itemName.equals("Mighty Scrollipow")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemNoLocale.setText("Mighty Scrollipow");
+                    objectViewHolder.itemNameList.setText(R.string.mighty_scrollipow);
+                    objectViewHolder.itemTypeList.setText(R.string.scroll);
+                }
+                else if (collectedItem.itemName.equals("Swift Scrollifly")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemNoLocale.setText("Swift Scrollifly");
+                    objectViewHolder.itemNameList.setText(R.string.swift_scrollifly);
+                    objectViewHolder.itemTypeList.setText(R.string.scroll);
+                }
+                else if (collectedItem.itemName.equals("Ancient Scrollidge")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
+                    objectViewHolder.itemNoLocale.setText("Ancient Scrollidge");
+                    objectViewHolder.itemNameList.setText(R.string.ancient_scrollidge);
                     objectViewHolder.itemTypeList.setText(R.string.scroll);
                 }
 
@@ -849,14 +928,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll3")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Swift Scrollifly", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll4")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollidge", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
@@ -967,9 +1046,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 ///ToDo fix two first markers
 
             ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "earth");
+            MyMarker tmpMarker = new MyMarker(myLatitude + randomList.get(0), myLongitude+randomList.get(1), "earth");
             tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude + 0.0002, "fire");
+            MyMarker tmpMarker2 = new MyMarker(myLatitude + randomList.get(2), myLongitude+randomList.get(3), "fire");
             tmpMarkerslist.add(tmpMarker2);
             MyMarker tmpMarker3 = new MyMarker(myLatitude + randomList.get(4), myLongitude+randomList.get(5), "air");
             tmpMarkerslist.add(tmpMarker3);
@@ -986,7 +1065,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpMarkerslist.add(tmpMarker8);
             MyMarker tmpMarker9 = new MyMarker(myLatitude - randomList.get(16), myLongitude+randomList.get(17), "water2");
             tmpMarkerslist.add(tmpMarker9);
-            MyMarker tmpMarker10 = new MyMarker(myLatitude - randomList.get(18), myLongitude+randomList.get(19), "scroll2");
+            MyMarker tmpMarker10 = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "scroll2");
             tmpMarkerslist.add(tmpMarker10);
 
             MyMarker tmpMarker11 = new MyMarker(myLatitude - randomList.get(20), myLongitude-randomList.get(21), "earth3");
@@ -997,7 +1076,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpMarkerslist.add(tmpMarker13);
             MyMarker tmpMarker14 = new MyMarker(myLatitude - randomList.get(26), myLongitude-randomList.get(27), "water3");
             tmpMarkerslist.add(tmpMarker14);
-            MyMarker tmpMarker15 = new MyMarker(myLatitude - randomList.get(28), myLongitude-randomList.get(29), "scroll3");
+            MyMarker tmpMarker15 = new MyMarker(myLatitude + 0.0004, myLongitude + 0.0004, "scroll3");
             tmpMarkerslist.add(tmpMarker15);
 
             MyMarker tmpMarker16 = new MyMarker(myLatitude + randomList.get(30), myLongitude-randomList.get(31), "earth4");
@@ -1008,7 +1087,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpMarkerslist.add(tmpMarker18);
             MyMarker tmpMarker19 = new MyMarker(myLatitude + randomList.get(36), myLongitude-randomList.get(37), "water4");
             tmpMarkerslist.add(tmpMarker19);
-            MyMarker tmpMarker20 = new MyMarker(myLatitude + randomList.get(38), myLongitude-randomList.get(39), "scroll4");
+            MyMarker tmpMarker20 = new MyMarker(myLatitude - 0.0003, myLongitude - 0.0003, "scroll4");
             tmpMarkerslist.add(tmpMarker20);
 
         MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
@@ -1058,9 +1137,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    String name = itemNameList.getText().toString();
+                    String name = itemNoLocale.getText().toString();
                     String type = itemNoLocale.getText().toString();
                     mMapsActivity.getInstance().showItem(name,type);
+                    ///Hämta key för valt objekt
+                    mMapsActivity.getInstance().currentItemSelected = itemKeyList.getText().toString();
+
+                    ///Hämta antal elementobjekt och deras key
+                    int listSize = mMapsActivity.getInstance().adapter.getItemCount();
+                    if (name.equals("Healing Scrollifix")){
+                        mMapsActivity.getInstance().useScrollButton.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().waterdropsList.clear();
+                        for (int i = 0;i<listSize;i++){
+                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Waterdrop")){
+                                mMapsActivity.getInstance().waterdropsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
+                                Log.i("TAGGY", "UI för Waterdrop: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
+                            }
+                        }
+                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET WATERDROPS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+
+                    }
+                    else if (name.equals("Mighty Scrollipow")){
+                        mMapsActivity.getInstance().useScrollButton.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().flamesList.clear();
+                        for (int i = 0;i<listSize;i++){
+                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Flames")){
+                                mMapsActivity.getInstance().flamesList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
+                                Log.i("TAGGY", "UI för Flames: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
+                            }
+                        }
+                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET FLAMES ÄR: "+mMapsActivity.getInstance().flamesList.size());
+
+                    }
+                    else if (name.equals("Swift Scrollifly")){
+                        mMapsActivity.getInstance().useScrollButton.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().trombulusList.clear();
+                        for (int i = 0;i<listSize;i++){
+                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Trombulus")){
+                                mMapsActivity.getInstance().trombulusList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
+                                Log.i("TAGGY", "UI för Trombulus: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
+                            }
+                        }
+                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET TROMBULUS ÄR: "+mMapsActivity.getInstance().trombulusList.size());
+
+                    }
+                    else if (name.equals("Ancient Scrollidge")){
+                        mMapsActivity.getInstance().useScrollButton.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().plantsList.clear();
+                        for (int i = 0;i<listSize;i++){
+                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){
+                                mMapsActivity.getInstance().plantsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
+                                Log.i("TAGGY", "UI för Plant: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
+                            }
+                        }
+                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+
+                    }
+
+
+
+
 
                     Log.i("TAG", "Item clicked JUST ON VIEW: "+position+" Name: " +name+" Type: "+type);
                     Log.i("TAG", "I WILL REMOVE THIS ONE: "+itemKeyList.getText().toString());
@@ -1403,9 +1543,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
         else if (name.equals("scroll2")){
-            itemType.setText(getResources().getString(R.string.a_healing_scrollifix));
+            itemType.setText(getResources().getString(R.string.a_mighty_scrollipow));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
+        else if (name.equals("scroll3")){
+            itemType.setText(getResources().getString(R.string.a_swift_scrollifly));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("scroll4")){
+            itemType.setText(getResources().getString(R.string.an_ancient_scrollidge));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+
         ///itemType = (TextView)findViewById(R.id.itemType);
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
@@ -1416,35 +1565,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void showItem(String name, String type){
 
 
-        if (type.equals("Earth")){
+        Log.i("TAGGY", "showITEMNAAME: "+name);
+
+        if (name.equals("Plant")){
             itemTitle.setText(getResources().getString(R.string.plant));
             itemType.setText(getResources().getString(R.string.earth));
             itemDescription.setText(getResources().getString(R.string.plant_description));
             pickImage.setBackgroundResource(R.drawable.earth_item);
 
         }
-        else if (type.equals("Fire")){
+        else if (name.equals("Flames")){
             itemTitle.setText(getResources().getString(R.string.flame));
             itemType.setText(getResources().getString(R.string.fire));
             itemDescription.setText(getResources().getString(R.string.flame_description));
             pickImage.setBackgroundResource(R.drawable.fire_item);
         }
-        else if (type.equals("Air")){
+        else if (name.equals("Trombulus")){
             itemTitle.setText(getResources().getString(R.string.trombulus));
             itemType.setText(getResources().getString(R.string.air));
             itemDescription.setText(getResources().getString(R.string.trombulus_description));
             pickImage.setBackgroundResource(R.drawable.air_item);
         }
-        else if (type.equals("Water")){
+        else if (name.equals("Waterdrop")){
             itemTitle.setText(getResources().getString(R.string.waterdrop));
             itemType.setText(getResources().getString(R.string.water));
             itemDescription.setText(getResources().getString(R.string.waterdrop_description));
             pickImage.setBackgroundResource(R.drawable.water_item);
         }
-        else if (type.equals("Scroll")){
+        else if (name.equals("Healing Scrollifix")){
           itemTitle.setText(getResources().getString(R.string.healing_scrollifix));
             itemType.setText(getResources().getString(R.string.scroll));
             itemDescription.setText(getResources().getString(R.string.scrollifix_description));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("Mighty Scrollipow")){
+            itemTitle.setText(getResources().getString(R.string.mighty_scrollipow));
+            itemType.setText(getResources().getString(R.string.scroll));
+            itemDescription.setText(getResources().getString(R.string.scrollipow_description));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("Swift Scrollifly")){
+            itemTitle.setText(getResources().getString(R.string.swift_scrollifly));
+            itemType.setText(getResources().getString(R.string.scroll));
+            itemDescription.setText(getResources().getString(R.string.scrollifly_description));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("Ancient Scrollidge")){
+            itemTitle.setText(getResources().getString(R.string.ancient_scrollidge));
+            itemType.setText(getResources().getString(R.string.scroll));
+            itemDescription.setText(getResources().getString(R.string.scrollidge_description));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
 

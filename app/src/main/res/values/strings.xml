@@ -56,6 +56,8 @@
     <string name="waterdrop_description">You can use Waterdrops in combination with an Ancient Scrollifix to restore your health (hp)</string>
     <string name="scrollifix_description">The Healing Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself.</string>
     <string name="scrollipow_description">The Mighty Scrollifix lets you increase your cp. The cost is 4 flames and the Scrollipow itself.</string>
+    <string name="scrollifly_description">The Swift Scrollifly lets you travel to distant areas of Wanderful World. The cost is 4 trombuluses and the Scrollifly itself.</string>
+    <string name="scrollidge_description">The Ancient Scrollidge lets you increase your xp. The cost is 4 plants and the Scrollidge itself.</string>
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
     <string name="wizardacademy_description">Greetings young apprentice. We are glad to see that you are interested in applying to our institution. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World.</string>

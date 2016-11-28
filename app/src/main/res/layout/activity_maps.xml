@@ -346,9 +346,17 @@
                 android:layout_height="wrap_content"
                 android:text="@string/item_added_in_backpack"/>
             <ImageButton
+                android:id="@+id/useScrollButton"
+                android:background="@drawable/usescroll"
+                android:layout_below="@id/itemDescription"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"/>
+            <ImageButton
                 android:id="@+id/closePickedButton"
                 android:background="@drawable/close"
-                android:layout_below="@id/itemDescription"
+                android:layout_below="@id/useScrollButton"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="32dp"
                 android:layout_width="48dp"

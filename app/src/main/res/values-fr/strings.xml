@@ -58,4 +58,6 @@
     <string name="a_swift_scrollifly">un Scrollifly Rapide</string>
     <string name="a_healing_scrollifix">un Scrollifix Guérissant</string>
     <string name="hold_to_remove">Appuyer plus de temps sur la poubelle si vous voulez jeter l\'objet</string>
+    <string name="scrollidge_description">Vous pouvez augmenter votre xp avec l\'Ancient Scrollidge. Ca vous coûte 4 Plantes et le Scrollidge..</string>
+    <string name="scrollifly_description">Vous pouvez voyager à differents endroits dans Wanderful World avec le Scrollifly Rapide. Ca vous coute 4 Trombulus et le Scrollifly.</string>
 </resources>
