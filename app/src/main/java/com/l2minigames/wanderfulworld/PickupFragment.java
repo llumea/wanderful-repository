@@ -57,7 +57,7 @@ public class PickupFragment extends DialogFragment {
             pickImage.setBackgroundResource(R.drawable.water_item);
         }
         else if (markerType.equals("scroll")){
-            itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
+            itemType.setText(getResources().getString(R.string.a_healing_scrollifix));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
 

@@ -115,6 +115,24 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/personHP"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextIcons"
+                android:layout_below="@id/personTotalXP"
+                android:layout_marginTop="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/personCP"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextIcons"
+                android:layout_below="@id/personHP"
+                android:layout_marginTop="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
                 </RelativeLayout>
@@ -152,12 +170,12 @@
         <ImageView
             android:id="@+id/elementEarth"
             android:layout_below="@id/dividerElementLeft"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="18dp"
             android:src="@drawable/earth"
             android:layout_gravity="left"
-            android:layout_width="48dp"
-            android:layout_height="48dp"/>
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
         <TextView
             android:id="@+id/elementEarthText"
             android:text="@string/element_earth"
@@ -165,7 +183,7 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/dividerElementLeft"
             android:layout_toRightOf="@id/elementEarth"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -176,19 +194,19 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/dividerElementLeft"
             android:layout_toRightOf="@id/elementEarthText"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
             android:id="@+id/elementFire"
             android:layout_below="@id/elementEarth"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="18dp"
             android:src="@drawable/fire"
             android:layout_gravity="left"
-            android:layout_width="48dp"
-            android:layout_height="48dp"/>
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
         <TextView
             android:id="@+id/elementFireText"
             android:text="@string/element_fire"
@@ -196,7 +214,7 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementEarth"
             android:layout_toRightOf="@id/elementFire"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -207,19 +225,19 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementEarth"
             android:layout_toRightOf="@id/elementFireText"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
             android:id="@+id/elementAir"
             android:layout_below="@id/elementFire"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="18dp"
             android:src="@drawable/air"
             android:layout_gravity="left"
-            android:layout_width="48dp"
-            android:layout_height="48dp"/>
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
         <TextView
             android:id="@+id/elementAirText"
             android:text="@string/element_air"
@@ -227,7 +245,7 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementFire"
             android:layout_toRightOf="@id/elementAir"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -238,19 +256,19 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementFire"
             android:layout_toRightOf="@id/elementAirText"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
             android:id="@+id/elementWater"
             android:layout_below="@id/elementAir"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="18dp"
             android:src="@drawable/water"
             android:layout_gravity="left"
-            android:layout_width="48dp"
-            android:layout_height="48dp"/>
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
         <TextView
             android:id="@+id/elementWaterText"
             android:text="@string/element_water"
@@ -258,7 +276,7 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementAir"
             android:layout_toRightOf="@id/elementWater"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -269,8 +287,8 @@
             android:textColor="@color/colorTextIcons"
             android:layout_below="@id/elementAir"
             android:layout_toRightOf="@id/elementWaterText"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

@@ -28,7 +28,6 @@
     <string name="a_flame">en Eldflamma</string>
     <string name="a_plant">en Planta</string>
     <string name="a_waterdrop">en Vattendroppe</string>
-    <string name="an_ancient_scrollifix">en Uråldrig Scrollifix</string>
     <string name="trombulus">Trombulus</string>
     <string name="title_activity_maps">Karta</string>
     <string name="this_is">Det här är...</string>
@@ -38,16 +37,25 @@
     <string name="water">Vatten</string>
     <string name="scroll">Skriftrulle</string>
     <string name="a_trombulus">en Trombulus</string>
-    <string name="ancient_scrollifix">Uråldrig Scrollifix</string>
     <string name="flame">Eldflamma</string>
     <string name="plant">Planta</string>
     <string name="waterdrop">Vattendroppe</string>
     <string name="plant_description">Du kan använda Plantor i kombination med en Scrnollidge för att öka dina erfarenhetspoäng (xp)</string>
-    <string name="scrollifix_description">Du kan återställa din hp med en Uråldrig Scrollifix. Men det kostar 4 Vattendroppar och din Scrollifix.</string>
+    <string name="scrollifix_description">Du kan återställa din hp med denna Helande Scrollifix. Men det kostar 4 Vattendroppar och din Scrollifix.</string>
     <string name="trombulus_description">Du kan använda 4 Trombulusar tillsammans med en Scrollifly och skapa en Travelwind.</string>
     <string name="waterdrop_description">Du kan använda Vattendroppar tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
     <string name="flame_description">Du kan använda Eldflammor tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
     <string name="wizardacademy_description">Var hälsad unga lärjunge. Vad trevligt att du är intresserad av att ansöka till vår institution. Om du lyckas hämta 5 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World.</string>
     <string name="wizardacademy_type">Arnroth, Magimästare</string>
     <string name="wizardacademy_title">Magiakademin</string>
+    <string name="a_mighty_scrollipow">en Mäktig Scrollipow</string>
+    <string name="mighty_scrollipow">Mäktig Scrollipow</string>
+    <string name="scrollipow_description">Du kan öka din cp med denna Mäktiga Scrollifix. Men det kostar 4 Eldflammor och din Scrollipow.</string>
+    <string name="swift_scrollifly">Blixtsnabb Scrollifly</string>
+    <string name="ancient_scrollidge">Uråldrig Scrollidge</string>
+    <string name="healing_scrollifix">Helande Scrollifix</string>
+    <string name="an_ancient_scrollidge">en Uråldrig Scrollidge</string>
+    <string name="a_swift_scrollifly">en Blixtsnabb Scrollifly</string>
+    <string name="a_healing_scrollifix">en Helande Scrollifix</string>
+    <string name="hold_to_remove">Håll ned på papperskorgen om du vill ta bort objektet</string>
 </resources>

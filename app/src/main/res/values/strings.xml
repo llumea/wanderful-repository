@@ -21,10 +21,10 @@
     <string name="default_name">Unknown Wizard</string>
     <string name="title_activity_maps">Map</string>
     <string name="element_text">ELEMENTS</string>
-    <string name="element_earth">EARTH POWER:</string>
-    <string name="element_fire">FIRE POWER:</string>
+    <string name="element_earth">EARTH POWER: </string>
+    <string name="element_fire">FIRE POWER: </string>
     <string name="element_air">AIR POWER:</string>
-    <string name="element_water">WATER POWER:</string>
+    <string name="element_water">WATER POWER: </string>
 
     <string name="you_picked_up">You picked up...</string>
     <string name="this_is">This is...</string>
@@ -33,13 +33,19 @@
     <string name="a_flame">a Flame</string>
     <string name="a_waterdrop">a Waterdrop</string>
     <string name="a_trombulus">a Trombulus</string>
-    <string name="an_ancient_scrollifix">an Ancient Scrollifix</string>
+    <string name="a_healing_scrollifix">a Healing Scrollifix</string>
+    <string name="a_mighty_scrollipow">a Mighty Scrollipow</string>
+    <string name="a_swift_scrollifly">a Swift Scrollifly</string>
+    <string name="an_ancient_scrollidge">an Ancient Scrollidge</string>
     <string name="earth">Earth</string>
     <string name="fire">Fire</string>
     <string name="air">Air</string>
     <string name="water">Water</string>
     <string name="scroll">Scroll</string>
-    <string name="ancient_scrollifix">Ancient Scrollifix</string>
+    <string name="healing_scrollifix">Healing Scrollifix</string>
+    <string name="mighty_scrollipow">Mighty Scrollipow</string>
+    <string name="swift_scrollifly">Swift Scrollifly</string>
+    <string name="ancient_scrollidge">Ancient Scrollidge</string>
     <string name="flame">Flame</string>
     <string name="trombulus">Trombulus</string>
     <string name="waterdrop">Waterdrop</string>
@@ -48,8 +54,10 @@
     <string name="flame_description">You can use Flames in combination with a Scrollipow to gain more combat points (cp)</string>
     <string name="trombulus_description">You can use 4 Trombuluses in combination with a Scrollifly to create a Travelwind</string>
     <string name="waterdrop_description">You can use Waterdrops in combination with an Ancient Scrollifix to restore your health (hp)</string>
-    <string name="scrollifix_description">The Ancient Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself</string>
+    <string name="scrollifix_description">The Healing Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself.</string>
+    <string name="scrollipow_description">The Mighty Scrollifix lets you increase your cp. The cost is 4 flames and the Scrollipow itself.</string>
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
     <string name="wizardacademy_description">Greetings young apprentice. We are glad to see that you are interested in applying to our institution. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World.</string>
+    <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
 </resources>

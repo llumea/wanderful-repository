@@ -123,6 +123,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageView personProgressTotal;
     TextView personXP;
     TextView personTotalXP;
+    TextView personHP;
+    TextView personCP;
+
+    TextView elementWaterValue;
+    TextView elementEarthValue;
+    TextView elementFireValue;
+    TextView elementAirValue;
 
 
     ImageView pickImage;
@@ -173,6 +180,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personProgressTotal = (ImageView)findViewById(R.id.personProgressTotal);
         personXP = (TextView)findViewById(R.id.personXP);
         personTotalXP = (TextView)findViewById(R.id.personTotalXP);
+        personHP = (TextView)findViewById(R.id.personHP);
+        personCP = (TextView)findViewById(R.id.personCP);
+        elementEarthValue = (TextView)findViewById(R.id.elementEarthValue);
+        elementFireValue = (TextView)findViewById(R.id.elementFireValue);
+        elementAirValue = (TextView)findViewById(R.id.elementAirValue);
+        elementWaterValue = (TextView)findViewById(R.id.elementWaterValue);
         pickImage = (ImageView)findViewById(R.id.pickImage);
         itemType = (TextView)findViewById(R.id.itemType);
         itemTitle = (TextView)findViewById(R.id.itemTitle);
@@ -326,7 +339,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.clear();
                 object = dataSnapshot.getValue(UserObject.class);
-                if (object.timer==10){createMarkersFirstTime();}
+                ///if (object.timer==10){createMarkersFirstTime();}
 
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
@@ -405,6 +418,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ///Fyller Personobjekt här
                 ///personImage = (ImageView)findViewById(R.id.personImage);
                 personUserName.setText(object.username);
+
+                personCP.setText("CP: "+object.cp+"/"+object.maxcp);
+                personHP.setText("HP: "+object.hp+"/"+object.maxhp);
+                elementEarthValue.setText(" "+object.earthpower);
+                elementFireValue.setText(" "+object.firepower);
+                elementAirValue.setText(" "+object.airpower);
+                elementWaterValue.setText(" "+object.waterpower);
+
+
                 checkNewLevel(object.level, object.XP);
                 setLevelBar(object.level, object.XP);
 
@@ -636,7 +658,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 else if (collectedItem.itemType.equals("Scroll")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.scroll_item);
                     objectViewHolder.itemNoLocale.setText("Scroll");
-                    objectViewHolder.itemNameList.setText(R.string.ancient_scrollifix);
+                    objectViewHolder.itemNameList.setText(R.string.healing_scrollifix);
                     objectViewHolder.itemTypeList.setText(R.string.scroll);
                 }
 
@@ -813,28 +835,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll2")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Mighty Scrollipow", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll3")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
                     }
                     else if (object.markerList.get(i).markerType.equals("scroll4")){
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Ancient Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Scrollifix", "Scroll", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
                         showPickedUpItem(name, tmpId);
 
@@ -953,7 +975,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpMarkerslist.add(tmpMarker3);
             MyMarker tmpMarker4 = new MyMarker(myLatitude + randomList.get(6), myLongitude+randomList.get(7), "water");
             tmpMarkerslist.add(tmpMarker4);
-            MyMarker tmpMarker5 = new MyMarker(myLatitude + randomList.get(8), myLongitude+randomList.get(9), "scroll");
+            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "scroll");
             tmpMarkerslist.add(tmpMarker5);
 
             MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth2");
@@ -1059,6 +1081,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     return false;
+                }
+            });
+            removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mMapsActivity.getInstance(), ""+mMapsActivity.getInstance().getResources().getString(R.string.hold_to_remove), Toast.LENGTH_SHORT).show();
                 }
             });
             itemNameList.setOnClickListener(new View.OnClickListener() {
@@ -1371,7 +1399,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.water_item);
         }
         else if (name.equals("scroll")){
-            itemType.setText(getResources().getString(R.string.an_ancient_scrollifix));
+            itemType.setText(getResources().getString(R.string.a_healing_scrollifix));
+            pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("scroll2")){
+            itemType.setText(getResources().getString(R.string.a_healing_scrollifix));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
         ///itemType = (TextView)findViewById(R.id.itemType);
@@ -1410,7 +1442,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.water_item);
         }
         else if (type.equals("Scroll")){
-          itemTitle.setText(getResources().getString(R.string.ancient_scrollifix));
+          itemTitle.setText(getResources().getString(R.string.healing_scrollifix));
             itemType.setText(getResources().getString(R.string.scroll));
             itemDescription.setText(getResources().getString(R.string.scrollifix_description));
             pickImage.setBackgroundResource(R.drawable.scroll_item);

@@ -28,7 +28,6 @@
     <string name="a_flame">une Flamme</string>
     <string name="a_plant">une Plante</string>
     <string name="a_waterdrop">une Goutte d\'Eau</string>
-    <string name="an_ancient_scrollifix">un Ancient Scrollifix</string>
     <string name="trombulus">Trombulus</string>
     <string name="title_activity_maps">Carte</string>
     <string name="this_is">Voilà ...</string>
@@ -38,16 +37,25 @@
     <string name="water">Eau</string>
     <string name="scroll">Scroll</string>
     <string name="a_trombulus">un Trombulus</string>
-    <string name="ancient_scrollifix">Ancient Scrollifix</string>
     <string name="flame">Flamme</string>
     <string name="plant">Plante</string>
     <string name="waterdrop">Goutte d\'eau</string>
     <string name="plant_description">Vous pouvez utiliser des Plantes en combinaison d\'un Scrnollidge pour gagner plus d\'expérience (xp)</string>
-    <string name="scrollifix_description">Vous pouvez restaurer votre hp avec l\'Ancient Scrollifix. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix.</string>
+    <string name="scrollifix_description">Vous pouvez restaurer votre hp avec l\'Ancient Scrollifix Guérissant. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix..</string>
     <string name="trombulus_description">Vous pouver utiliser 4 Tromubus en combinaison d\'un Scrollifly pour créer un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
     <string name="wizardacademy_description"></string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académy de Magi</string>
+    <string name="a_mighty_scrollipow">un Scrollipow Puissant</string>
+    <string name="mighty_scrollipow">Scrollipow Puissant</string>
+    <string name="scrollipow_description">Vous pouvez améliorer votre cp avec le Scrollipow Puissant. Ca vous coûte 4 Flammes et le Scrollipow.</string>
+    <string name="swift_scrollifly">Scrollifly Rapide</string>
+    <string name="ancient_scrollidge">Ancient Scrollidge</string>
+    <string name="healing_scrollifix">Scrollifix Guérissant</string>
+    <string name="an_ancient_scrollidge">un Ancient Scrollidge</string>
+    <string name="a_swift_scrollifly">un Scrollifly Rapide</string>
+    <string name="a_healing_scrollifix">un Scrollifix Guérissant</string>
+    <string name="hold_to_remove">Appuyer plus de temps sur la poubelle si vous voulez jeter l\'objet</string>
 </resources>
