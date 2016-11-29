@@ -60,4 +60,9 @@
     <string name="hold_to_remove">Håll ned på papperskorgen om du vill ta bort objektet</string>
     <string name="scrollidge_description">Du kan öka din xp med denna Uråldriga Scrollidge. Men det kostar 4 plantor och din Scrollidge.</string>
     <string name="scrollifly_description">Du kan resa till olika platser i Wanderful World med denna Blixtsnabba Scrollifly. Men det kostar 4 trombulus och din Scrollifly.</string>
+    <string name="you_need_more_flames">Du behöver fler eldflammor. Du kan plocka upp dem i Wanderful World.</string>
+    <string name="you_need_more_plants">Du behöver fler plantor. Du kan plocka upp dem i Wanderful World.</string>
+    <string name="you_need_more_tromuluses">Du behöver fler trombulusar. Du kan plocka upp dem i Wanderful World.</string>
+    <string name="you_need_more_waterdrops">Du behöver fler vattendroppar. Du kan plocka upp dem i Wanderful World.</string>
+    <string name="your_xp_increased_with">Abrakadabra, din XP ökade med 150</string>
 </resources>

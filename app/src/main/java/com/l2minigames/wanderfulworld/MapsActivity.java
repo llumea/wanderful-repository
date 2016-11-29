@@ -119,7 +119,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<String> trombulusList = new ArrayList<>();
     ArrayList<String> waterdropsList = new ArrayList<>();
 
-    String currentItemSelected;
+    String currentItemKeySelected;
+    String currentItemNameSelected;
 
     FragmentManager fragmentManager;
 
@@ -202,6 +203,75 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personFab = (ImageButton) findViewById(R.id.fabPerson);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
+        useScrollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ///Kontrollerar om det finns tillräckligt med elements och genomför eventuellt en "förvandling"
+                Log.i("TAGGY", "Key selected: "+currentItemKeySelected);
+                Log.i("TAGGY", "Name selected: "+currentItemNameSelected);
+                if (currentItemNameSelected.equals("Ancient Scrollidge")){
+                    Log.i("TAGGY", "PersonTotalXP: "+mMapsActivity.getInstance().personTotalXP.getText().toString());
+
+                    if (plantsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_plants),
+                            Toast.LENGTH_SHORT).show();}
+                    else if (plantsList.size()>3){
+                        ///Ta bort fyra plants från collectibleItems på servern
+                        myFirebaseRef.child(plantsList.get(0)).removeValue();
+                        myFirebaseRef.child(plantsList.get(1)).removeValue();
+                        myFirebaseRef.child(plantsList.get(2)).removeValue();
+                        myFirebaseRef.child(plantsList.get(3)).removeValue();
+                        ///Ta bort aktuell scroll från servern
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        ///Lägg till ökad xp
+                        int tmpXP = mMapsActivity.getInstance().object.XP;
+                        int changeXP = tmpXP+150;
+                        myRef.child("XP").setValue(changeXP);
+
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.your_xp_increased_with),
+                                Toast.LENGTH_LONG).show();
+                        closePicked();
+
+                        for (int i=0;i<plantsList.size();i++){
+                            Log.i("TAGGY", "PlantsList: "+plantsList.get(i));
+
+                        }
+                    }
+                }
+                else if (currentItemNameSelected.equals("Healing Scrollifix")){
+                    if (waterdropsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_waterdrops),
+                            Toast.LENGTH_SHORT).show();}
+                    if (waterdropsList.size()>0){
+                        for (int i=0;i<waterdropsList.size();i++){
+                            Log.i("TAGGY", "WaterdropsList: "+waterdropsList.get(i));
+
+                        }
+                    }
+                }
+                else if (currentItemNameSelected.equals("Swift Scrollifly")){
+                    if (trombulusList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_tromuluses),
+                            Toast.LENGTH_SHORT).show();}
+                    if (trombulusList.size()>0){
+                        for (int i=0;i<trombulusList.size();i++){
+                            Log.i("TAGGY", "TrombulusList: "+trombulusList.get(i));
+
+                        }
+                    }
+                }
+                else if (currentItemNameSelected.equals("Mighty Scrollipow")){
+                    if (flamesList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_flames),
+                            Toast.LENGTH_SHORT).show();}
+                    if (flamesList.size()>0){
+                        for (int i=0;i<flamesList.size();i++){
+                            Log.i("TAGGY", "FlamesList: "+flamesList.get(i));
+
+                        }
+                    }
+                }
+
+            }
+        });
+
         closePickedButton = (ImageButton) findViewById(R.id.closePickedButton);
         closeLoadingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,10 +282,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         closePickedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                relativeLayoutPicked.setVisibility(View.INVISIBLE);
-                useScrollButton.setVisibility(View.INVISIBLE);
-                fab.setVisibility(View.VISIBLE);
-                personFab.setVisibility(View.VISIBLE);
+
+                closePicked();
+
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
@@ -1046,15 +1115,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 ///ToDo fix two first markers
 
             ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + randomList.get(0), myLongitude+randomList.get(1), "earth");
+            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "earth");
             tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude + randomList.get(2), myLongitude+randomList.get(3), "fire");
+            MyMarker tmpMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "fire");
             tmpMarkerslist.add(tmpMarker2);
-            MyMarker tmpMarker3 = new MyMarker(myLatitude + randomList.get(4), myLongitude+randomList.get(5), "air");
+            MyMarker tmpMarker3 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "air");
             tmpMarkerslist.add(tmpMarker3);
-            MyMarker tmpMarker4 = new MyMarker(myLatitude + randomList.get(6), myLongitude+randomList.get(7), "water");
+            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "water");
             tmpMarkerslist.add(tmpMarker4);
-            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "scroll");
+            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "scroll");
             tmpMarkerslist.add(tmpMarker5);
 
             MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth2");
@@ -1136,12 +1205,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     int position = getAdapterPosition();
                     String name = itemNoLocale.getText().toString();
                     String type = itemNoLocale.getText().toString();
                     mMapsActivity.getInstance().showItem(name,type);
                     ///Hämta key för valt objekt
-                    mMapsActivity.getInstance().currentItemSelected = itemKeyList.getText().toString();
+                    mMapsActivity.getInstance().currentItemKeySelected = itemKeyList.getText().toString();
+                    mMapsActivity.getInstance().currentItemNameSelected = name;
 
                     ///Hämta antal elementobjekt och deras key
                     int listSize = mMapsActivity.getInstance().adapter.getItemCount();
@@ -1196,7 +1267,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                         Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
 
-                    }
+                    } else {mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);}
 
 
 
@@ -1344,8 +1415,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ///personProgress = (ImageView)findViewById(R.id.personProgress);
         ///personXP = (TextView)findViewById(R.id.personXP);
-        xp = 53710;
-        level = 15;
+
         personLevel.setText("Level "+level);
         personTotalXP.setText(""+xp+" XP");
        ///Testa olika xp och levels här
@@ -1645,5 +1715,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static MapsActivity getInstance() {
         return mMapsActivity;
     }
+
+    public void closePicked(){
+
+        relativeLayoutPicked.setVisibility(View.INVISIBLE);
+        useScrollButton.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.VISIBLE);
+        personFab.setVisibility(View.VISIBLE);
+    }
+
 
 }

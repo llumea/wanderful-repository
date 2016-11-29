@@ -348,6 +348,7 @@
             <ImageButton
                 android:id="@+id/useScrollButton"
                 android:background="@drawable/usescroll"
+                android:visibility="invisible"
                 android:layout_below="@id/itemDescription"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="32dp"

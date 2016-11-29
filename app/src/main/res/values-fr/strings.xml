@@ -42,10 +42,10 @@
     <string name="waterdrop">Goutte d\'eau</string>
     <string name="plant_description">Vous pouvez utiliser des Plantes en combinaison d\'un Scrnollidge pour gagner plus d\'expérience (xp)</string>
     <string name="scrollifix_description">Vous pouvez restaurer votre hp avec l\'Ancient Scrollifix Guérissant. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix..</string>
-    <string name="trombulus_description">Vous pouver utiliser 4 Tromubus en combinaison d\'un Scrollifly pour créer un Travelwind.</string>
+    <string name="trombulus_description">Vous pouver utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour créer un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
-    <string name="wizardacademy_description"></string>
+    <string name="wizardacademy_description">Bien venu jeune disciple. Nous sommes heureux que vous voulez vous inscrire dans notre académie. Revenez avec 5 artefacts et vous serez acceptée dans l\'académie.</string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académy de Magi</string>
     <string name="a_mighty_scrollipow">un Scrollipow Puissant</string>
@@ -60,4 +60,9 @@
     <string name="hold_to_remove">Appuyer plus de temps sur la poubelle si vous voulez jeter l\'objet</string>
     <string name="scrollidge_description">Vous pouvez augmenter votre xp avec l\'Ancient Scrollidge. Ca vous coûte 4 Plantes et le Scrollidge..</string>
     <string name="scrollifly_description">Vous pouvez voyager à differents endroits dans Wanderful World avec le Scrollifly Rapide. Ca vous coute 4 Trombulus et le Scrollifly.</string>
+    <string name="you_need_more_flames">Vous avez besoin de plus de flammes. Vous pouvez les ramasser dans Wanderful World.</string>
+    <string name="you_need_more_plants">Vous avez besoin de plus de plantes. Vous pouvez les ramasser dans Wanderful World.</string>
+    <string name="you_need_more_tromuluses">Vous avez besoin de plus de trombulus. Vous pouvez les ramasser dans Wanderful World.</string>
+    <string name="you_need_more_waterdrops">Vous avez besoin de plus de gouttes d\'eau. Vous pouvez les ramasser dans Wanderful World.</string>
+    <string name="your_xp_increased_with">Abrakadabra, votre XP a augmenté avec 150</string>
 </resources>
