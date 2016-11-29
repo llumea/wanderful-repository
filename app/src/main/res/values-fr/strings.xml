@@ -41,8 +41,8 @@
     <string name="plant">Plante</string>
     <string name="waterdrop">Goutte d\'eau</string>
     <string name="plant_description">Vous pouvez utiliser des Plantes en combinaison d\'un Scrnollidge pour gagner plus d\'expérience (xp)</string>
-    <string name="scrollifix_description">Vous pouvez restaurer votre hp avec l\'Ancient Scrollifix Guérissant. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix..</string>
-    <string name="trombulus_description">Vous pouver utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour créer un Travelwind.</string>
+    <string name="scrollifix_description">Vous pouvez restaurer votre hp avec le Scrollifix de Guérison. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix..</string>
+    <string name="trombulus_description">Vous pouver utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
     <string name="wizardacademy_description">Bien venu jeune disciple. Nous sommes heureux que vous voulez vous inscrire dans notre académie. Revenez avec 5 artefacts et vous serez acceptée dans l\'académie.</string>
@@ -53,16 +53,31 @@
     <string name="scrollipow_description">Vous pouvez améliorer votre cp avec le Scrollipow Puissant. Ca vous coûte 4 Flammes et le Scrollipow.</string>
     <string name="swift_scrollifly">Scrollifly Rapide</string>
     <string name="ancient_scrollidge">Ancient Scrollidge</string>
-    <string name="healing_scrollifix">Scrollifix Guérissant</string>
+    <string name="healing_scrollifix">Scrollifix de Guérison</string>
     <string name="an_ancient_scrollidge">un Ancient Scrollidge</string>
     <string name="a_swift_scrollifly">un Scrollifly Rapide</string>
-    <string name="a_healing_scrollifix">un Scrollifix Guérissant</string>
+    <string name="a_healing_scrollifix">un Scrollifix de Guérison</string>
     <string name="hold_to_remove">Appuyer plus de temps sur la poubelle si vous voulez jeter l\'objet</string>
     <string name="scrollidge_description">Vous pouvez augmenter votre xp avec l\'Ancient Scrollidge. Ca vous coûte 4 Plantes et le Scrollidge..</string>
-    <string name="scrollifly_description">Vous pouvez voyager à differents endroits dans Wanderful World avec le Scrollifly Rapide. Ca vous coute 4 Trombulus et le Scrollifly.</string>
+    <string name="scrollifly_description">Avecl le Scrollify Rapide vous pouvez créer un Voyage Précieux pour que vous puissiez voyager à differents endroits dans Wanderful World. Un Voyage Précieux vous coûte 4 Trombulus et le Scrollifly.</string>
     <string name="you_need_more_flames">Vous avez besoin de plus de flammes. Vous pouvez les ramasser dans Wanderful World.</string>
     <string name="you_need_more_plants">Vous avez besoin de plus de plantes. Vous pouvez les ramasser dans Wanderful World.</string>
     <string name="you_need_more_tromuluses">Vous avez besoin de plus de trombulus. Vous pouvez les ramasser dans Wanderful World.</string>
     <string name="you_need_more_waterdrops">Vous avez besoin de plus de gouttes d\'eau. Vous pouvez les ramasser dans Wanderful World.</string>
     <string name="your_xp_increased_with">Abrakadabra, votre XP a augmenté avec 150</string>
+    <string name="healing_potion_added">Une potion de guérison est ajoutée dans votre sac à dos. Vous pouvez vous en servir dans une bataille. Mais en ce cas elle est consommée.</string>
+    <string name="a_healing_potion">une Potion de Guérison</string>
+    <string name="healing_potion">Potion de Guérison</string>
+    <string name="healing_potion_description">Avec la Potion de Guérison vous pouvez restaurer votre hp pendant une bataille. Utilisez-la avec prudence étant donné qu\'elle sera consommée et enlever de votre sac à dos. </string>
+    <string name="potion">Potion</string>
+    <string name="combat_potion">Potion de Combat</string>
+    <string name="combat_potion_added">Une potion de combat est ajoutée dans votre sac à dos. Vous pouvez vous en servir dans une bataille. Mais en ce cas elle est consommée.</string>
+    <string name="combat_potion_description">Avec la Potion de Combat vous pouvez restaurer votre combat power pendant une bataille. Utilisez-la avec prudence étant donné qu\'elle sera consommée et enlever de votre sac à dos.</string>
+    <string name="a_combat_potion">une Potion de Combat</string>
+    <string name="a_travelwind">un Voyage Precieux</string>
+    <string name="travel">Voyage</string>
+    <string name="travelwind">Voyage Précieux</string>
+    <string name="travelwind_added">Un Voyage Précieux est ajoutée dans votre sac à dos. Vous pouvez vous en servir pour voyager loin dans Wanderful World. Mais en ce cas elle est consommée.</string>
+    <string name="travelwind_description">Avec le Voyage Précieux vous pouvez voyager loin dans Wanderful World. Utilisez-le avec prudence étant donné qu\'il sera consommé et enlevé de votre sac à dos.</string>
+    <string name="google_maps_key" translatable="false"></string>
 </resources>

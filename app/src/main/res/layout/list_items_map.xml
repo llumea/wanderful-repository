@@ -27,7 +27,7 @@
         android:layout_toRightOf="@id/itemIconList"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginBottom="4dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -35,11 +35,11 @@
         android:text="Testar RecyclerView"
         android:layout_below="@id/itemNameList"
         android:layout_toRightOf="@id/itemIconList"
-        android:textColor="@color/colorTextIcons"
-        android:textSize="22sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -48,8 +48,17 @@
         android:layout_below="@id/itemTypeList"
         android:layout_toRightOf="@id/itemIconList"
         android:textColor="@color/colorTextIcons"
-        android:textSize="14sp"
-        android:layout_marginBottom="4dp"
+        android:textSize="0sp"
+
+        android:layout_width="0sp"
+        android:layout_height="10sp"/>
+    <TextView
+        android:id="@+id/itemDateList"
+        android:text="Date"
+        android:layout_below="@id/itemTypeList"
+        android:layout_toRightOf="@id/itemIconList"
+        android:textColor="@color/colorTextIcons"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -66,7 +75,8 @@
     <TextView
         android:id="@+id/divider_map"
         android:drawableBottom="@drawable/divider"
-        android:layout_below="@id/itemKeyList"
+        android:layout_below="@id/itemDateList"
+        android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

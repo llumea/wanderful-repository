@@ -42,7 +42,7 @@
     <string name="waterdrop">Vattendroppe</string>
     <string name="plant_description">Du kan använda Plantor i kombination med en Scrnollidge för att öka dina erfarenhetspoäng (xp)</string>
     <string name="scrollifix_description">Du kan återställa din hp med denna Helande Scrollifix. Men det kostar 4 Vattendroppar och din Scrollifix.</string>
-    <string name="trombulus_description">Du kan använda 4 Trombulusar tillsammans med en Scrollifly och skapa en Travelwind.</string>
+    <string name="trombulus_description">Du kan använda 4 Trombulusar tillsammans med en Scrollifly och trolla fram en Vindresa.</string>
     <string name="waterdrop_description">Du kan använda Vattendroppar tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
     <string name="flame_description">Du kan använda Eldflammor tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
     <string name="wizardacademy_description">Var hälsad unga lärjunge. Vad trevligt att du är intresserad av att ansöka till vår institution. Om du lyckas hämta 5 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World.</string>
@@ -59,10 +59,24 @@
     <string name="a_healing_scrollifix">en Helande Scrollifix</string>
     <string name="hold_to_remove">Håll ned på papperskorgen om du vill ta bort objektet</string>
     <string name="scrollidge_description">Du kan öka din xp med denna Uråldriga Scrollidge. Men det kostar 4 plantor och din Scrollidge.</string>
-    <string name="scrollifly_description">Du kan resa till olika platser i Wanderful World med denna Blixtsnabba Scrollifly. Men det kostar 4 trombulus och din Scrollifly.</string>
+    <string name="scrollifly_description">Med en Blixtsnabb Scrollify kan du skapa en Vindresa som gör att du kan resa till olika platser i Wanderful World . Men Vindresan kostar 4 Trombulus och din Scrollifly.</string>
     <string name="you_need_more_flames">Du behöver fler eldflammor. Du kan plocka upp dem i Wanderful World.</string>
     <string name="you_need_more_plants">Du behöver fler plantor. Du kan plocka upp dem i Wanderful World.</string>
     <string name="you_need_more_tromuluses">Du behöver fler trombulusar. Du kan plocka upp dem i Wanderful World.</string>
     <string name="you_need_more_waterdrops">Du behöver fler vattendroppar. Du kan plocka upp dem i Wanderful World.</string>
     <string name="your_xp_increased_with">Abrakadabra, din XP ökade med 150</string>
+    <string name="healing_potion_added">En helande trolldryck lades till i din ryggsäck. Du kan använda den i strid. Men i så fall förbrukas den.</string>
+    <string name="a_healing_potion">en Helande Trolldryck</string>
+    <string name="healing_potion">Helande Trolldryck</string>
+    <string name="healing_potion_description">Du kan använda en Helande Trolldryck under en strid för att återställa din hp. Använd den på ett klokt sätt eftersom den förbrukas och tas bort från ryggsäcken.</string>
+    <string name="potion">Trolldryck</string>
+    <string name="combat_potion">Stridsdryck</string>
+    <string name="combat_potion_added">En stridsdryck lades till i din ryggsäck. Du kan använda den i strid. Men i så fall förbrukas den.</string>
+    <string name="combat_potion_description">Du kan använda en Stridsdryck under en strid för att återställa din stridskraft (cp). Använd den på ett klokt sätt eftersom den förbrukas och tas bort från ryggsäcken.</string>
+    <string name="a_combat_potion">en Stridsdryck</string>
+    <string name="a_travelwind">en Vindresa</string>
+    <string name="travel">Resa</string>
+    <string name="travelwind">Vindresa</string>
+    <string name="travelwind_added">En Vindresa har lagts till i din ryggsäck. Med den kan du resa långt bort i Wanderful World. Men använd den väl eftersom den förbrukas och försvinner från ryggsäcken när du använder den.</string>
+    <string name="travelwind_description">En Vindresa tar dig till avlägsna platser i Wanderful World. Den förbrukas och försvinner från ryggsäcken när du använder den.</string>
 </resources>

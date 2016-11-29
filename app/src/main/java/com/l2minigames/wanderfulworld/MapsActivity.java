@@ -232,40 +232,77 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Toast.LENGTH_LONG).show();
                         closePicked();
 
-                        for (int i=0;i<plantsList.size();i++){
-                            Log.i("TAGGY", "PlantsList: "+plantsList.get(i));
-
-                        }
                     }
                 }
                 else if (currentItemNameSelected.equals("Healing Scrollifix")){
                     if (waterdropsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_waterdrops),
                             Toast.LENGTH_SHORT).show();}
-                    if (waterdropsList.size()>0){
-                        for (int i=0;i<waterdropsList.size();i++){
-                            Log.i("TAGGY", "WaterdropsList: "+waterdropsList.get(i));
-
-                        }
+                    else if (waterdropsList.size()>3){
+                        ///Ta bort fyra waterdrops från collectibleItems på servern
+                        myFirebaseRef.child(waterdropsList.get(0)).removeValue();
+                        myFirebaseRef.child(waterdropsList.get(1)).removeValue();
+                        myFirebaseRef.child(waterdropsList.get(2)).removeValue();
+                        myFirebaseRef.child(waterdropsList.get(3)).removeValue();
+                        ///Ta bort aktuell scroll från servern
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        ///Lägg till Healing Portion
+                        Calendar calendar = Calendar.getInstance();
+                        Date date = calendar.getTime();
+                        long itemTimestamp = date.getTime();
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Potion", "Potion", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.healing_potion_added),
+                                Toast.LENGTH_LONG).show();
+                        closePicked();
                     }
                 }
                 else if (currentItemNameSelected.equals("Swift Scrollifly")){
                     if (trombulusList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_tromuluses),
                             Toast.LENGTH_SHORT).show();}
-                    if (trombulusList.size()>0){
-                        for (int i=0;i<trombulusList.size();i++){
-                            Log.i("TAGGY", "TrombulusList: "+trombulusList.get(i));
+                    if (trombulusList.size()>3){
 
-                        }
+                        myFirebaseRef.child(trombulusList.get(0)).removeValue();
+                        myFirebaseRef.child(trombulusList.get(1)).removeValue();
+                        myFirebaseRef.child(trombulusList.get(2)).removeValue();
+                        myFirebaseRef.child(trombulusList.get(3)).removeValue();
+                        ///Ta bort aktuell scroll från servern
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        ///Lägg till Healing Portion
+                        Calendar calendar = Calendar.getInstance();
+                        Date date = calendar.getTime();
+                        long itemTimestamp = date.getTime();
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind", "Travel", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.travelwind_added),
+                                Toast.LENGTH_LONG).show();
+                        closePicked();
+
                     }
                 }
                 else if (currentItemNameSelected.equals("Mighty Scrollipow")){
                     if (flamesList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_flames),
                             Toast.LENGTH_SHORT).show();}
-                    if (flamesList.size()>0){
-                        for (int i=0;i<flamesList.size();i++){
-                            Log.i("TAGGY", "FlamesList: "+flamesList.get(i));
+                    else if (flamesList.size()>3){
 
-                        }
+                        myFirebaseRef.child(flamesList.get(0)).removeValue();
+                        myFirebaseRef.child(flamesList.get(1)).removeValue();
+                        myFirebaseRef.child(flamesList.get(2)).removeValue();
+                        myFirebaseRef.child(flamesList.get(3)).removeValue();
+                        ///Ta bort aktuell scroll från servern
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        ///Lägg till Healing Portion
+                        Calendar calendar = Calendar.getInstance();
+                        Date date = calendar.getTime();
+                        long itemTimestamp = date.getTime();
+                        String key = myRef.child("collectedItems").push().getKey();
+                        CollectedItem tmpCollectedItem2 = new CollectedItem("Combat Potion", "Potion", "imageRef", itemTimestamp, key);
+                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.combat_potion_added),
+                                Toast.LENGTH_LONG).show();
+                        closePicked();
+
                     }
                 }
 
@@ -756,6 +793,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String key = collectedItem.uid;
                 objectViewHolder.itemKeyList.setText(key);
+                SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy HH:mm:ss");
+                String formatedDate = sdf.format(collectedItem.timestamp);
+                objectViewHolder.itemDateList.setText(formatedDate);
 
                 ///objectViewHolder.itemName.setText(collectedItem.itemName);
                /// objectViewHolder.itemType.setText(collectedItem.itemType);
@@ -808,6 +848,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     objectViewHolder.itemNoLocale.setText("Ancient Scrollidge");
                     objectViewHolder.itemNameList.setText(R.string.ancient_scrollidge);
                     objectViewHolder.itemTypeList.setText(R.string.scroll);
+                }
+                else if (collectedItem.itemName.equals("Healing Potion")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.healingpotion);
+                    objectViewHolder.itemNoLocale.setText("Healing Potion");
+                    objectViewHolder.itemNameList.setText(R.string.healing_potion);
+                    objectViewHolder.itemTypeList.setText(R.string.potion);
+                }
+                else if (collectedItem.itemName.equals("Combat Potion")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.cppotion);
+                    objectViewHolder.itemNoLocale.setText("Combat Potion");
+                    objectViewHolder.itemNameList.setText(R.string.combat_potion);
+                    objectViewHolder.itemTypeList.setText(R.string.potion);
+                }
+                else if (collectedItem.itemName.equals("Travelwind")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.travelwind);
+                    objectViewHolder.itemNoLocale.setText("Travelwind");
+                    objectViewHolder.itemNameList.setText(R.string.travelwind);
+                    objectViewHolder.itemTypeList.setText(R.string.travel);
                 }
 
             }
@@ -1190,6 +1248,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         TextView mDivider;
         TextView itemKeyList;
         TextView itemNoLocale;
+        TextView itemDateList;
         ImageButton removeButton;
 
         public ObjectViewHolder(View v) {
@@ -1199,6 +1258,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemTypeList = (TextView) v.findViewById(R.id.itemTypeList);
             itemKeyList = (TextView) v.findViewById(R.id.itemKeyList);
             itemNoLocale = (TextView) v.findViewById(R.id.itemNoLocale);
+            itemDateList = (TextView) v.findViewById(R.id.itemDateList);
             mDivider = (TextView) v.findViewById(R.id.divider_map);
             removeButton = (ImageButton) v.findViewById(R.id.removeButtonList);
 
@@ -1685,6 +1745,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemType.setText(getResources().getString(R.string.scroll));
             itemDescription.setText(getResources().getString(R.string.scrollidge_description));
             pickImage.setBackgroundResource(R.drawable.scroll_item);
+        }
+        else if (name.equals("Healing Potion")){
+            itemTitle.setText(getResources().getString(R.string.healing_potion));
+            itemType.setText(getResources().getString(R.string.potion));
+            itemDescription.setText(getResources().getString(R.string.healing_potion_description));
+            pickImage.setBackgroundResource(R.drawable.healingpotion);
+        }
+        else if (name.equals("Combat Potion")){
+            itemTitle.setText(getResources().getString(R.string.combat_potion));
+            itemType.setText(getResources().getString(R.string.potion));
+            itemDescription.setText(getResources().getString(R.string.combat_potion_description));
+            pickImage.setBackgroundResource(R.drawable.cppotion);
+        }
+        else if (name.equals("Travelwind")){
+            itemTitle.setText(getResources().getString(R.string.travelwind));
+            itemType.setText(getResources().getString(R.string.travel));
+            itemDescription.setText(getResources().getString(R.string.travelwind_description));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
         }
 
         relativeLayoutPicked.setVisibility(View.VISIBLE);
