@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -161,6 +162,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton personFab;
     ImageButton useScrollButton;
     ImageButton closePickedButton;
+    Button travelParis;
+    int travelMode;
+    double lastTravelLatitude;
+    double lastTravelLongitude;
+    double lastNormalLatitude;
+    double lastNormalLongitude;
+    boolean travelStarted;
 
     private static MapsActivity mMapsActivity;
 
@@ -171,6 +179,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mMapsActivity = this;
+        travelMode=1;
+        travelStarted =false;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
@@ -203,6 +213,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personFab = (ImageButton) findViewById(R.id.fabPerson);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
+        travelParis = (Button) findViewById(R.id.travelParis);
+        travelParis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ///ToDo check level
+                travelMode=0;
+            }
+        });
         useScrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -460,7 +478,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
-                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0) {
+                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&travelMode==0) {
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
                 }
@@ -708,8 +726,92 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         animateCircle();
         mCircle.strokeColor(0x00000000);
         mCircle.fillColor(0x00000000);
-        myPositionLatitude = location.getLatitude();
-        myPositionLongitude = location.getLongitude();
+        if (travelMode==1){
+            Log.i("TAGGY", "TravelStarted: "+travelStarted);
+           /// myPositionLatitude = 48.852966;
+            if (travelStarted==false){
+                myPositionLatitude = 48.853320;
+                myPositionLongitude = 2.348600;
+                lastTravelLatitude = 48.853320;
+                lastTravelLongitude = 2.348600;
+                travelStarted=true;
+                lastNormalLatitude = location.getLatitude();
+                lastNormalLongitude = location.getLongitude();
+
+            } else if(travelStarted==true) {
+
+
+              /// myPositionLatitude = location.getLatitude();
+              /// myPositionLongitude = location.getLongitude();
+                Location lastLocation = new Location("");
+                ///Sätt värdet innan det sätts till ett nytt
+                lastLocation.setLatitude(lastNormalLatitude);
+                lastLocation.setLongitude(lastNormalLongitude);
+                ///Sätt det nya värdet
+                lastNormalLatitude = location.getLatitude();
+                lastNormalLongitude = location.getLongitude();
+                float distance = lastLocation.distanceTo(location);
+                float bearing = lastLocation.bearingTo(location);
+                Log.i("TAGGY", "Distance between last location and new location: "+distance);
+                Log.i("TAGGY", "Bearing for last location and new bearing: "+bearing);
+
+                double dist = (double)distance/6371e3;
+                double brng = Math.toRadians((double)bearing);
+                double lat1 = Math.toRadians(lastTravelLatitude);
+                double lon1 = Math.toRadians(lastTravelLongitude);
+
+                double lat2 = Math.asin( Math.sin(lat1)*Math.cos(dist) + Math.cos(lat1)*Math.sin(dist)*Math.cos(brng) );
+                double a = Math.atan2(Math.sin(brng)*Math.sin(dist)*Math.cos(lat1), Math.cos(dist)-Math.sin(lat1)*Math.sin(lat2));
+                System.out.println("a = " +  a);
+                double lon2 = lon1 + a;
+
+                lon2 = (lon2+ 3*Math.PI) % (2*Math.PI) - Math.PI;
+
+                lastTravelLatitude = Math.toDegrees(lat2);
+                lastTravelLongitude = Math.toDegrees(lon2);
+                myPositionLatitude = lastTravelLatitude;
+                myPositionLongitude = lastTravelLongitude;
+                ///System.out.println("Latitude = "+Math.toDegrees(lat2)+"\nLongitude = "+Math.toDegrees(lon2));
+
+
+
+                Log.i("TAGGY", "MyPositionLatitude"+myPositionLatitude);
+                Log.i("TAGGY", "MyPositionLongitude"+myPositionLongitude);
+                Log.i("TAGGY", "LastNormalLatitude"+lastNormalLatitude);
+                Log.i("TAGGY", "LastNormalLongitude"+lastNormalLongitude);
+                Log.i("TAGGY", "LastTravelLatitude"+lastTravelLatitude);
+                Log.i("TAGGY", "LastTravelLongitude"+lastTravelLongitude);
+
+            /*
+                if (myPositionLatitude >= lastNormalLatitude) {
+                    double tmpDifferenceLatitude = myPositionLatitude - lastNormalLatitude;
+                    myPositionLatitude = lastTravelLatitude + tmpDifferenceLatitude;
+                    lastTravelLatitude = myPositionLatitude;
+                    lastNormalLatitude = location.getLatitude();
+                } else if (myPositionLatitude < lastNormalLatitude) {
+                    double tmpDifferenceLatitude = lastNormalLatitude - myPositionLatitude;
+                    myPositionLatitude = lastTravelLatitude - tmpDifferenceLatitude;
+                    lastTravelLatitude = myPositionLatitude;
+                    lastNormalLatitude = location.getLatitude();
+                }
+                if (myPositionLongitude >= lastNormalLongitude) {
+                    double tmpDifferenceLongitude = myPositionLongitude - lastNormalLongitude;
+                    myPositionLongitude = lastTravelLongitude + tmpDifferenceLongitude;
+                    lastTravelLongitude = myPositionLongitude;
+                    lastNormalLongitude = location.getLongitude();
+                } else if (myPositionLongitude < lastNormalLongitude) {
+                    double tmpDifferenceLongitude = lastNormalLongitude - myPositionLongitude;
+                    myPositionLongitude = lastTravelLongitude - tmpDifferenceLongitude;
+                    lastTravelLongitude = myPositionLongitude;
+                    lastNormalLongitude = location.getLongitude();
+                }
+                */
+            }
+
+        }else {
+            myPositionLatitude = location.getLatitude();
+            myPositionLongitude = location.getLongitude();
+        }
         myRef.child("latitude").setValue(myPositionLatitude);
         myRef.child("longitude").setValue(myPositionLongitude);
         ///Tidigare var myPositionLatitude+0.0005, men rotationen blev sned
@@ -727,43 +829,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         ///mMap.getUiSettings(). setZoomGesturesEnabled(false);
+
         mMap.getUiSettings(). setScrollGesturesEnabled(false);
         mMap.getUiSettings(). setCompassEnabled(false);
 
-      /*
-       /// mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-        mMap.clear();
-        createMarkers();
-        mMap.setOnMarkerClickListener(this);
 
 
-        myPositionLatitude = location.getLatitude();
-        myPositionLongitude = location.getLongitude();
-        mPositionLatitude.setText(String.valueOf(location.getLatitude()));
-        mPositionLongitude.setText(String.valueOf(location.getLongitude()));
-        Log.d("TAG", "MyLatitude in onLocationChanged: "+location.getLatitude());
-        Log.d("TAG", "MyLongitude in onLocationChanged: "+location.getLongitude());
-        LatLng mPosition = new LatLng(myPositionLatitude, myPositionLongitude);
-        mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker"));
-        if (mMarkers.size()>0) {
-            Log.d("TAG", "INNE I MARKERSUTSKRIFT");
-            for (int i=0;i<mMarkers.size();i++) {
-                LatLng tmpPosition = new LatLng(mMarkers.get(i).markerLatitude, mMarkers.get(i).markerLongitude);
-                mMap.addMarker(new MarkerOptions().position(tmpPosition).title(mMarkers.get(i).markerType));
-            }
-
-        }
-        LatLng cameraPosition = new LatLng(myPositionLatitude+0.0005, myPositionLongitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                new CameraPosition.Builder()
-                        .target(cameraPosition)
-                        .tilt(90)
-                        .zoom(18)
-                        .build()));
-
-       /// mImageViewBackground.setVisibility(ImageView.INVISIBLE);
-       */
     }
 
     @Override
@@ -1317,6 +1388,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     else if (name.equals("Ancient Scrollidge")){
                         mMapsActivity.getInstance().useScrollButton.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().plantsList.clear();
+                        for (int i = 0;i<listSize;i++){
+                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){
+                                mMapsActivity.getInstance().plantsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
+                                Log.i("TAGGY", "UI för Plant: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
+                            }
+                        }
+                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+
+                    }
+                    else if (name.equals("Travelwind")){
+                        mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);
+                        mMapsActivity.getInstance().travelParis.setVisibility(View.VISIBLE);
                         mMapsActivity.getInstance().plantsList.clear();
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){

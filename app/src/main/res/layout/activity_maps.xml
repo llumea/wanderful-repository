@@ -354,6 +354,18 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="72dp"
                 android:layout_height="72dp"/>
+            <Button
+                android:id="@+id/travelParis"
+                android:background="@color/colorAccent"
+                android:visibility="invisible"
+                android:textColor="@color/colorTextIcons"
+                android:text="Paris (level 2+)"
+                android:textSize="20sp"
+                android:layout_below="@id/itemDescription"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
             <ImageButton
                 android:id="@+id/closePickedButton"
                 android:background="@drawable/close"
