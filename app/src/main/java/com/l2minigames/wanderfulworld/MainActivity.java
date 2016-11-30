@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    ///Ändrar från GameActivity till MapsActivity nedan
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

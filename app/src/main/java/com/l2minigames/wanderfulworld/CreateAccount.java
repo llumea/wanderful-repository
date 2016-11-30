@@ -138,7 +138,9 @@ public class CreateAccount extends AppCompatActivity {
                         ///myRef.child(collectedpush().
                        /// collectedUpdates.put("new items", tmpCollectedItem2);
                        /// collectedRef.push().setValue(collectedUpdates);
-                        Intent intent = new Intent(CreateAccount.this, GameActivity.class);
+
+                        ///Ändrar från GameActivity till MapsActivity nedan
+                        Intent intent = new Intent(CreateAccount.this, MapsActivity.class);
                         startActivity(intent);
                         finish();
 

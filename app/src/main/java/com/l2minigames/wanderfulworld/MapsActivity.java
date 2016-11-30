@@ -179,7 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mMapsActivity = this;
-        travelMode=1;
+        travelMode=0;
         travelStarted =false;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
@@ -218,7 +218,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 ///ToDo check level
-                travelMode=0;
+                closePicked();
+                if (mMap!=null) {
+                    travelMode = 1;
+                    myPositionLatitude = 48.853320;
+                    myPositionLongitude = 2.348600;
+                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_traveled_to_paris),
+                            Toast.LENGTH_LONG).show();
+                    LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                    CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                    Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                    ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                            new CameraPosition.Builder()
+                                    .bearing(currentCameraPosition.bearing)
+                                    .target(cameraPosition)
+                                    .tilt(90)
+                                    .zoom(19)
+                                    .build()));
+                }
             }
         });
         useScrollButton.setOnClickListener(new View.OnClickListener() {
@@ -737,6 +757,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 travelStarted=true;
                 lastNormalLatitude = location.getLatitude();
                 lastNormalLongitude = location.getLongitude();
+
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_landed),
+                            Toast.LENGTH_LONG).show();
+
 
             } else if(travelStarted==true) {
 
@@ -1885,7 +1909,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         useScrollButton.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
+        travelParis.setVisibility(View.INVISIBLE);
     }
+
 
 
 }
