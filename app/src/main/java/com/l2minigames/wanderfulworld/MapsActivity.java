@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -115,6 +116,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker tmpMarker;
     int onlyOneTime;
     ArrayList<Double> randomList = new ArrayList<>();
+    ArrayList<Double> randomList2 = new ArrayList<>();
+    ArrayList<MyMarker> tmpMarkersList = new ArrayList<>();
 
     ArrayList<String> flamesList = new ArrayList<>();
     ArrayList<String> plantsList = new ArrayList<>();
@@ -221,6 +224,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (mMap!=null) {
+                    vibrate();
                     myRef.child("travelMode").setValue(0);
                     myPositionLatitude = lastNormalLatitude;
                     myPositionLongitude = lastNormalLongitude;
@@ -235,6 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ///ToDo check level
                 closePicked();
                 if (mMap!=null) {
+                    vibrate();
                     myRef.child("travelMode").setValue(1);
                     myPositionLatitude = 48.853320;
                     myPositionLongitude = 2.348600;
@@ -269,6 +274,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (plantsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_plants),
                             Toast.LENGTH_SHORT).show();}
                     else if (plantsList.size()>3){
+
+                        vibrate();
                         ///Ta bort fyra plants från collectibleItems på servern
                         myFirebaseRef.child(plantsList.get(0)).removeValue();
                         myFirebaseRef.child(plantsList.get(1)).removeValue();
@@ -291,6 +298,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (waterdropsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_waterdrops),
                             Toast.LENGTH_SHORT).show();}
                     else if (waterdropsList.size()>3){
+                        vibrate();
                         ///Ta bort fyra waterdrops från collectibleItems på servern
                         myFirebaseRef.child(waterdropsList.get(0)).removeValue();
                         myFirebaseRef.child(waterdropsList.get(1)).removeValue();
@@ -314,6 +322,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (trombulusList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_tromuluses),
                             Toast.LENGTH_SHORT).show();}
                     if (trombulusList.size()>3){
+                        vibrate();
 
                         myFirebaseRef.child(trombulusList.get(0)).removeValue();
                         myFirebaseRef.child(trombulusList.get(1)).removeValue();
@@ -338,6 +347,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (flamesList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_flames),
                             Toast.LENGTH_SHORT).show();}
                     else if (flamesList.size()>3){
+                        vibrate();
 
                         myFirebaseRef.child(flamesList.get(0)).removeValue();
                         myFirebaseRef.child(flamesList.get(1)).removeValue();
@@ -796,7 +806,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 float bearing = lastLocation.bearingTo(location);
                 Log.i("TAGGY", "Distance between last location and new location: "+distance);
                 Log.i("TAGGY", "Bearing for last location and new bearing: "+bearing);
-
+                LatLng tmpPosition = getLatLng(distance, bearing, lastTravelLatitude, lastTravelLongitude);
+                lastTravelLatitude = tmpPosition.latitude;
+                lastTravelLongitude = tmpPosition.longitude;
+                /*
                 double dist = (double)distance/6371e3;
                 double brng = Math.toRadians((double)bearing);
                 double lat1 = Math.toRadians(lastTravelLatitude);
@@ -811,6 +824,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 lastTravelLatitude = Math.toDegrees(lat2);
                 lastTravelLongitude = Math.toDegrees(lon2);
+                */
                 myPositionLatitude = lastTravelLatitude;
                 myPositionLongitude = lastTravelLongitude;
 
@@ -1183,6 +1197,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addCircle(mCircle);
                 circleAnimation.stop();
                 circleAnimation.start();
+                ///ToDo move to right methods
+                circleImageView.setVisibility(View.VISIBLE);
 
 
 
@@ -1238,81 +1254,99 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///Cirkel 1
 
 
-        int randomNumber = 0;
-        double randomPosition = 0.0000;
+        int randomDistance = 0;
+        float randomBearing = 0.0f;
 
         randomList.clear();
-        for (int i=0;i<40;i++){
+        randomList2.clear();
+        tmpMarkersList.clear();
+        for (int i=0;i<20;i++){
             ///Jag vill ha noll också
-            randomNumber = (int) (50 * Math.random());
-            randomPosition = (double)randomNumber/10000;
-            randomList.add(randomPosition);
-            Log.i("TAG", "RANDOMLISTAN"+randomPosition);
+            if (i<6) {
+                randomBearing = (float) (90 * Math.random());
+            } else if (i>5&&i<11){
+                randomBearing = (float) ((90 * Math.random())+90);
+            }
+            else if (i>10&&i<16){
+                randomBearing = (float) ((90 * Math.random())+180);
+            }
+            else if (i>15&&i<21){
+                randomBearing = (float) ((90 * Math.random())+270);
+            }
+            randomDistance = (int) ((500 * Math.random()) + 80);
+            LatLng tmpLatLng = getLatLng(randomDistance, randomBearing, myLatitude, myLongitude);
+            double theLatitude = tmpLatLng.latitude;
+            double theLongitude = tmpLatLng.longitude;
+            randomList.add(theLatitude);
+            randomList2.add(theLongitude);
         }
 
 ///ToDo fix two first markers
 
-            ArrayList<MyMarker> tmpMarkerslist = new ArrayList<>();
-            MyMarker tmpMarker = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "earth");
-            tmpMarkerslist.add(tmpMarker);
-            MyMarker tmpMarker2 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "fire");
-            tmpMarkerslist.add(tmpMarker2);
-            MyMarker tmpMarker3 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "air");
-            tmpMarkerslist.add(tmpMarker3);
-            MyMarker tmpMarker4 = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "water");
-            tmpMarkerslist.add(tmpMarker4);
-            MyMarker tmpMarker5 = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "scroll");
-            tmpMarkerslist.add(tmpMarker5);
+        ///Här vill jag kunna placera ut 20 olika markers plus standardmarkers (wizhouse och torn)
 
-            MyMarker tmpMarker6 = new MyMarker(myLatitude - randomList.get(10), myLongitude+randomList.get(11), "earth2");
-            tmpMarkerslist.add(tmpMarker6);
-            MyMarker tmpMarker7 = new MyMarker(myLatitude - randomList.get(12), myLongitude+randomList.get(13), "fire2");
-            tmpMarkerslist.add(tmpMarker7);
-            MyMarker tmpMarker8 = new MyMarker(myLatitude - randomList.get(14), myLongitude+randomList.get(15), "air2");
-            tmpMarkerslist.add(tmpMarker8);
-            MyMarker tmpMarker9 = new MyMarker(myLatitude - randomList.get(16), myLongitude+randomList.get(17), "water2");
-            tmpMarkerslist.add(tmpMarker9);
-            MyMarker tmpMarker10 = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "scroll2");
-            tmpMarkerslist.add(tmpMarker10);
 
-            MyMarker tmpMarker11 = new MyMarker(myLatitude - randomList.get(20), myLongitude-randomList.get(21), "earth3");
-            tmpMarkerslist.add(tmpMarker11);
-            MyMarker tmpMarker12 = new MyMarker(myLatitude - randomList.get(22), myLongitude-randomList.get(23), "fire3");
-            tmpMarkerslist.add(tmpMarker12);
-            MyMarker tmpMarker13 = new MyMarker(myLatitude - randomList.get(24), myLongitude-randomList.get(25), "air3");
-            tmpMarkerslist.add(tmpMarker13);
-            MyMarker tmpMarker14 = new MyMarker(myLatitude - randomList.get(26), myLongitude-randomList.get(27), "water3");
-            tmpMarkerslist.add(tmpMarker14);
-            MyMarker tmpMarker15 = new MyMarker(myLatitude + 0.0004, myLongitude + 0.0004, "scroll3");
-            tmpMarkerslist.add(tmpMarker15);
+            MyMarker tmpMarker = new MyMarker(randomList.get(0), randomList2.get(0), "earth");
+            tmpMarkersList.add(tmpMarker);
+            MyMarker tmpMarker2 = new MyMarker(randomList.get(1), randomList2.get(1), "fire");
+            tmpMarkersList.add(tmpMarker2);
+            MyMarker tmpMarker3 = new MyMarker(randomList.get(2), randomList2.get(2), "air");
+            tmpMarkersList.add(tmpMarker3);
+            MyMarker tmpMarker4 = new MyMarker(randomList.get(3), randomList2.get(3), "water");
+            tmpMarkersList.add(tmpMarker4);
+            MyMarker tmpMarker5 = new MyMarker(randomList.get(4), randomList2.get(4), "scroll");
+            tmpMarkersList.add(tmpMarker5);
 
-            MyMarker tmpMarker16 = new MyMarker(myLatitude + randomList.get(30), myLongitude-randomList.get(31), "earth4");
-            tmpMarkerslist.add(tmpMarker16);
-            MyMarker tmpMarker17 = new MyMarker(myLatitude + randomList.get(32), myLongitude-randomList.get(33), "fire4");
-            tmpMarkerslist.add(tmpMarker17);
-            MyMarker tmpMarker18 = new MyMarker(myLatitude + randomList.get(34), myLongitude-randomList.get(35), "air4");
-            tmpMarkerslist.add(tmpMarker18);
-            MyMarker tmpMarker19 = new MyMarker(myLatitude + randomList.get(36), myLongitude-randomList.get(37), "water4");
-            tmpMarkerslist.add(tmpMarker19);
-            MyMarker tmpMarker20 = new MyMarker(myLatitude - 0.0003, myLongitude - 0.0003, "scroll4");
-            tmpMarkerslist.add(tmpMarker20);
+            MyMarker tmpMarker6 = new MyMarker(randomList.get(5), randomList2.get(5), "earth2");
+            tmpMarkersList.add(tmpMarker6);
+            MyMarker tmpMarker7 = new MyMarker(randomList.get(6), randomList2.get(6), "fire2");
+            tmpMarkersList.add(tmpMarker7);
+            MyMarker tmpMarker8 = new MyMarker(randomList.get(7), randomList2.get(7), "air2");
+            tmpMarkersList.add(tmpMarker8);
+            MyMarker tmpMarker9 = new MyMarker(randomList.get(8), randomList2.get(8), "water2");
+            tmpMarkersList.add(tmpMarker9);
+            MyMarker tmpMarker10 = new MyMarker(randomList.get(9), randomList2.get(9), "scroll2");
+            tmpMarkersList.add(tmpMarker10);
 
+            MyMarker tmpMarker11 = new MyMarker(randomList.get(10), randomList2.get(10), "earth3");
+            tmpMarkersList.add(tmpMarker11);
+            MyMarker tmpMarker12 = new MyMarker(randomList.get(11), randomList2.get(11), "fire3");
+            tmpMarkersList.add(tmpMarker12);
+            MyMarker tmpMarker13 = new MyMarker(randomList.get(12), randomList2.get(12), "air3");
+            tmpMarkersList.add(tmpMarker13);
+            MyMarker tmpMarker14 = new MyMarker(randomList.get(13), randomList2.get(13), "water3");
+            tmpMarkersList.add(tmpMarker14);
+            MyMarker tmpMarker15 = new MyMarker(randomList.get(14), randomList2.get(14), "scroll3");
+            tmpMarkersList.add(tmpMarker15);
+
+            MyMarker tmpMarker16 = new MyMarker(randomList.get(15), randomList2.get(15), "earth4");
+            tmpMarkersList.add(tmpMarker16);
+            MyMarker tmpMarker17 = new MyMarker(randomList.get(16), randomList2.get(16), "fire4");
+            tmpMarkersList.add(tmpMarker17);
+            MyMarker tmpMarker18 = new MyMarker(randomList.get(17), randomList2.get(17), "air4");
+            tmpMarkersList.add(tmpMarker18);
+            MyMarker tmpMarker19 = new MyMarker(randomList.get(18), randomList2.get(18), "water4");
+            tmpMarkersList.add(tmpMarker19);
+            MyMarker tmpMarker20 = new MyMarker(randomList.get(19), randomList2.get(19), "scroll4");
+            tmpMarkersList.add(tmpMarker20);
+
+        ///ToDo fixa till lat/long för de här också
         MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
-        tmpMarkerslist.add(tmpMarkerHouse);
+        tmpMarkersList.add(tmpMarkerHouse);
 
         MyMarker towerAir = new MyMarker(myLatitude + 0.00215, myLongitude, "towerair");
-        tmpMarkerslist.add(towerAir);
+        tmpMarkersList.add(towerAir);
         MyMarker towerEarth = new MyMarker(myLatitude - 0.00215, myLongitude, "towerearth");
-        tmpMarkerslist.add(towerEarth);
+        tmpMarkersList.add(towerEarth);
         MyMarker towerFire = new MyMarker(myLatitude, myLongitude + 0.0049, "towerfire");
-        tmpMarkerslist.add(towerFire);
+        tmpMarkersList.add(towerFire);
         MyMarker towerWater = new MyMarker(myLatitude, myLongitude - 0.0049, "towerwater");
-        tmpMarkerslist.add(towerWater);
+        tmpMarkersList.add(towerWater);
 
 
 
 
-            myRef.child("markerList").setValue(tmpMarkerslist);
+            myRef.child("markerList").setValue(tmpMarkersList);
             Toast.makeText(this, "Items are updated!",
                     Toast.LENGTH_SHORT).show();
 
@@ -1899,6 +1933,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         travelHome.setVisibility(View.INVISIBLE);
     }
 
+    public LatLng getLatLng(float distance, float bearing, double latitude, double longitude){
 
+        double dist = (double)distance/6371e3;
+        double brng = Math.toRadians((double)bearing);
+        double lat1 = Math.toRadians(latitude);
+        double lon1 = Math.toRadians(longitude);
+
+        double lat2 = Math.asin( Math.sin(lat1)*Math.cos(dist) + Math.cos(lat1)*Math.sin(dist)*Math.cos(brng) );
+        double a = Math.atan2(Math.sin(brng)*Math.sin(dist)*Math.cos(lat1), Math.cos(dist)-Math.sin(lat1)*Math.sin(lat2));
+        double lon2 = lon1 + a;
+        lon2 = (lon2+ 3*Math.PI) % (2*Math.PI) - Math.PI;
+        double sendBackLatitude = Math.toDegrees(lat2);
+        double sendBackLongitude = Math.toDegrees(lon2);
+
+        LatLng tmpLatLng = new LatLng(sendBackLatitude, sendBackLongitude);
+        return tmpLatLng;
+    }
+
+    public void vibrate(){
+
+        Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(500);
+    }
 
 }

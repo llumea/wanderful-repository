@@ -45,7 +45,7 @@
     <string name="trombulus_description">Vous pouver utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
-    <string name="wizardacademy_description">Bien venu jeune disciple. Nous sommes heureux que vous voulez vous inscrire dans notre académie. Revenez avec 5 artefacts et vous serez acceptée dans l\'académie.</string>
+    <string name="wizardacademy_description">Bien venu jeune disciple. Revenez avec 5 artefacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des "scrolls" dans le sac à dos et utilisez 2 doigts pour tourner/zoomer sur la carte.</string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académy de Magi</string>
     <string name="a_mighty_scrollipow">un Scrollipow Puissant</string>

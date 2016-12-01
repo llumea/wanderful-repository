@@ -72,7 +72,7 @@
     <string name="travelwind_description">The Travelwind lets you travel to a distant place in Wanderful World. Use it wisely since it will be consumed and removed from your backpack.</string>
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
-    <string name="wizardacademy_description">Greetings young apprentice. We are glad to see that you are interested in applying to our institution. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World.</string>
+    <string name="wizardacademy_description">Greetings young apprentice. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use 2 fingers to rotate/zoom on the map.</string>
     <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
     <string name="you_need_more_flames">You need more flames. You collect them in Wanderful World.</string>
     <string name="you_need_more_plants">You need more plants. You collect them in Wanderful World.</string>
