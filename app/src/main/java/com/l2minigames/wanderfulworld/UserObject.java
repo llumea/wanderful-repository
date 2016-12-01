@@ -22,6 +22,7 @@ public class UserObject {
     public long timer;
     public int XP;
     public int level;
+    public int travelMode;
     double latitude;
     double longitude;
     ArrayList<MyMarker> markerList = new ArrayList<>();
@@ -32,7 +33,7 @@ public class UserObject {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public UserObject(String username, String email, int earthpower, int firepower, int airpower, int waterpower, int hp, int maxhp, int cp, int maxcp, long timer, int XP, int level, double latitude, double longitude, ArrayList<MyMarker> markerList, HashMap<String, CollectedItem> collectedItems) {
+    public UserObject(String username, String email, int earthpower, int firepower, int airpower, int waterpower, int hp, int maxhp, int cp, int maxcp, long timer, int XP, int level, int travelMode,double latitude, double longitude, ArrayList<MyMarker> markerList, HashMap<String, CollectedItem> collectedItems) {
         this.username = username;
         this.email = email;
         this.earthpower = earthpower;
@@ -46,6 +47,7 @@ public class UserObject {
         this.timer = timer;
         this.XP = XP;
         this.level = level;
+        this.travelMode = travelMode;
         this.latitude = latitude;
         this.longitude = longitude;
         this.markerList = markerList;

@@ -111,6 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     CircleOptions mCircleTotalMax;
     Timer timer;
     int timerTime;
+    int localTravelMode;
     Marker tmpMarker;
     int onlyOneTime;
     ArrayList<Double> randomList = new ArrayList<>();
@@ -163,7 +164,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton useScrollButton;
     ImageButton closePickedButton;
     Button travelParis;
-    int travelMode;
+    Button travelHome;
+
     double lastTravelLatitude;
     double lastTravelLongitude;
     double lastNormalLatitude;
@@ -179,7 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mMapsActivity = this;
-        travelMode=0;
+
         travelStarted =false;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
@@ -214,13 +216,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
         travelParis = (Button) findViewById(R.id.travelParis);
+        travelHome = (Button) findViewById(R.id.travelHome);
+        travelHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMap!=null) {
+                    myRef.child("travelMode").setValue(0);
+                    myPositionLatitude = lastNormalLatitude;
+                    myPositionLongitude = lastNormalLongitude;
+                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_traveled_home),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         travelParis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ///ToDo check level
                 closePicked();
                 if (mMap!=null) {
-                    travelMode = 1;
+                    myRef.child("travelMode").setValue(1);
                     myPositionLatitude = 48.853320;
                     myPositionLongitude = 2.348600;
                     Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_traveled_to_paris),
@@ -493,12 +508,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.clear();
                 object = dataSnapshot.getValue(UserObject.class);
-                ///if (object.timer==10){createMarkersFirstTime();}
+
+                ///Hämta reseläget från servern och sätt det lokalt. Är detta ok???
+                localTravelMode=object.travelMode;
 
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
-                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&travelMode==0) {
+                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
                 }
@@ -746,7 +763,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         animateCircle();
         mCircle.strokeColor(0x00000000);
         mCircle.fillColor(0x00000000);
-        if (travelMode==1){
+
+        if (localTravelMode==1){
             Log.i("TAGGY", "TravelStarted: "+travelStarted);
            /// myPositionLatitude = 48.852966;
             if (travelStarted==false){
@@ -795,41 +813,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lastTravelLongitude = Math.toDegrees(lon2);
                 myPositionLatitude = lastTravelLatitude;
                 myPositionLongitude = lastTravelLongitude;
-                ///System.out.println("Latitude = "+Math.toDegrees(lat2)+"\nLongitude = "+Math.toDegrees(lon2));
 
-
-
-                Log.i("TAGGY", "MyPositionLatitude"+myPositionLatitude);
-                Log.i("TAGGY", "MyPositionLongitude"+myPositionLongitude);
-                Log.i("TAGGY", "LastNormalLatitude"+lastNormalLatitude);
-                Log.i("TAGGY", "LastNormalLongitude"+lastNormalLongitude);
-                Log.i("TAGGY", "LastTravelLatitude"+lastTravelLatitude);
-                Log.i("TAGGY", "LastTravelLongitude"+lastTravelLongitude);
-
-            /*
-                if (myPositionLatitude >= lastNormalLatitude) {
-                    double tmpDifferenceLatitude = myPositionLatitude - lastNormalLatitude;
-                    myPositionLatitude = lastTravelLatitude + tmpDifferenceLatitude;
-                    lastTravelLatitude = myPositionLatitude;
-                    lastNormalLatitude = location.getLatitude();
-                } else if (myPositionLatitude < lastNormalLatitude) {
-                    double tmpDifferenceLatitude = lastNormalLatitude - myPositionLatitude;
-                    myPositionLatitude = lastTravelLatitude - tmpDifferenceLatitude;
-                    lastTravelLatitude = myPositionLatitude;
-                    lastNormalLatitude = location.getLatitude();
-                }
-                if (myPositionLongitude >= lastNormalLongitude) {
-                    double tmpDifferenceLongitude = myPositionLongitude - lastNormalLongitude;
-                    myPositionLongitude = lastTravelLongitude + tmpDifferenceLongitude;
-                    lastTravelLongitude = myPositionLongitude;
-                    lastNormalLongitude = location.getLongitude();
-                } else if (myPositionLongitude < lastNormalLongitude) {
-                    double tmpDifferenceLongitude = lastNormalLongitude - myPositionLongitude;
-                    myPositionLongitude = lastTravelLongitude - tmpDifferenceLongitude;
-                    lastTravelLongitude = myPositionLongitude;
-                    lastNormalLongitude = location.getLongitude();
-                }
-                */
             }
 
         }else {
@@ -973,6 +957,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();
+
         super.onStop();
     }
 
@@ -1426,6 +1411,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if (name.equals("Travelwind")){
                         mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);
                         mMapsActivity.getInstance().travelParis.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().travelHome.setVisibility(View.VISIBLE);
                         mMapsActivity.getInstance().plantsList.clear();
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){
@@ -1910,6 +1896,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
         travelParis.setVisibility(View.INVISIBLE);
+        travelHome.setVisibility(View.INVISIBLE);
     }
 
 

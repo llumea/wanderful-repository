@@ -113,13 +113,14 @@ public class CreateAccount extends AppCompatActivity {
                         long timer = 0;
                         int XP = 0;
                         int level = 1;
+                        int travelMode = 0;
                         double latitude = 0;
                         double longitude = 0;
 
                         ///CollectedItem tmpCollectedItem = new CollectedItem();
                        /// CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
                         ///tmpCollectedItems.put("collectedItems", tmpCollectedItem);
-                        UserObject mUser = new UserObject(default_name, email, earthpower,firepower, airpower,waterpower, hp, maxhp, cp, maxcp, timer, XP, level, latitude, longitude, tmpMarkerList, tmpCollectedItems);
+                        UserObject mUser = new UserObject(default_name, email, earthpower,firepower, airpower,waterpower, hp, maxhp, cp, maxcp, timer, XP, level, travelMode, latitude, longitude, tmpMarkerList, tmpCollectedItems);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);

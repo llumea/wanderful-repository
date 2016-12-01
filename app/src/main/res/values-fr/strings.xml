@@ -13,7 +13,7 @@
     <string name="name_unknown">Magicien inconnu</string>
     <string name="logout_drawer">Déconnecter</string>
     <string name="open_map_button">Découvrer le monde!</string>
-    <string name="default_name">Magicien inconnu</string>
+    <string name="default_name">Molly</string>
     <string name="navigation_drawer_close">Fermer navigation</string>
     <string name="navigation_drawer_open">Ouvrir navigation</string>
     <string name="action_settings">Préférences</string>
@@ -82,4 +82,6 @@
     <string name="google_maps_key" translatable="false"></string>
     <string name="you_traveled_to_paris">Le Voyage Précieux vous faites voler jusqu\'au cathedrale Notre-Dame de Paris.</string>
     <string name="you_landed">Vous avec atteri sans problèmes. Vous pouvez vous promener comme d\'habitude et votre position est marquée sur la carte, mais faites gaffe. N\'oubliez pas que le plan ne correspond pas à votre position dans le monde réel.</string>
+    <string name="travel_home">Retourner à la maison</string>
+    <string name="you_traveled_home">Le Voyage Précieux vous faites voler jusqu\'à votre point de départ.</string>
 </resources>

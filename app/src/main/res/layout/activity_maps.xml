@@ -44,7 +44,7 @@
         android:id="@+id/relativeLayoutPerson"
         android:clickable="true"
         android:background="@color/colorPrimary"
-        android:alpha="0.9"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -298,7 +298,7 @@
         android:id="@+id/relativeLayoutPicked"
         android:clickable="true"
         android:background="@color/colorPrimary"
-        android:alpha="0.9"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
@@ -363,7 +363,18 @@
                 android:textSize="20sp"
                 android:layout_below="@id/itemDescription"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+            <Button
+                android:id="@+id/travelHome"
+                android:background="@color/colorAccent"
+                android:visibility="invisible"
+                android:textColor="@color/colorTextIcons"
+                android:text="@string/travel_home"
+                android:textSize="20sp"
+                android:layout_below="@id/travelParis"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"/>
             <ImageButton
