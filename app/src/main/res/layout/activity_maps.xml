@@ -453,6 +453,13 @@
         android:layout_gravity="top|start"
         android:layout_margin="16dp"
         android:background="@drawable/girlfaceblue"/>
+    <ImageButton
+        android:id="@+id/gameButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/button"/>
 
 
     </fragment>

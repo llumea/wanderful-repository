@@ -1,27 +1,18 @@
 package com.l2minigames.wanderfulworld;
 
-import android.animation.IntEvaluator;
-import android.animation.ValueAnimator;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -30,35 +21,26 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.GroundOverlay;
-import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
@@ -79,9 +61,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
 
@@ -164,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     ImageButton fab;
     ImageButton personFab;
+    ImageButton gameButton;
     ImageButton useScrollButton;
     ImageButton closePickedButton;
     Button travelParis;
@@ -216,10 +197,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         itemDescription = (TextView)findViewById(R.id.itemDescription);
         fab = (ImageButton) findViewById(R.id.fabRecycler);
         personFab = (ImageButton) findViewById(R.id.fabPerson);
+        gameButton = (ImageButton) findViewById(R.id.gameButton);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
         travelParis = (Button) findViewById(R.id.travelParis);
         travelHome = (Button) findViewById(R.id.travelHome);
+        gameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
+                startActivity(intent);
+            }
+        });
         travelHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1162,8 +1151,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     }
 
-
-
                 }
 
             }
@@ -1173,13 +1160,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         showWizardAcademy();
 
                     }
-
                 }
-
-
             }
-
-
         }
 
         if (name.equalsIgnoreCase("MyMarker"))
@@ -1200,16 +1182,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ///ToDo move to right methods
                 circleImageView.setVisibility(View.VISIBLE);
 
-
-
-
             }
 
-
-
-
             Log.d("TAG", "MyMarker is so tapped!");
-
 
         }
 
@@ -1241,7 +1216,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker tmpMarker2 = new MyMarker(myPositionLatitude-0.0005, myPositionLongitude, "Marker 2");
         tmpMarkerslist.add(tmpMarker2);
 
-
     }
 
     public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
@@ -1252,7 +1226,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             myRef.child("timer").setValue(timestamp);
 
         ///Cirkel 1
-
 
         int randomDistance = 0;
         float randomBearing = 0.0f;
@@ -1284,7 +1257,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 ///ToDo fix two first markers
 
         ///Här vill jag kunna placera ut 20 olika markers plus standardmarkers (wizhouse och torn)
-
 
             MyMarker tmpMarker = new MyMarker(randomList.get(0), randomList2.get(0), "earth");
             tmpMarkersList.add(tmpMarker);
