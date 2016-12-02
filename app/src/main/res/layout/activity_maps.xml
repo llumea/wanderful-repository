@@ -397,8 +397,8 @@
         android:id="@+id/circleImageView"
         android:visibility="invisible"
         android:layout_gravity="center"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
     <ImageView
         android:id="@+id/image_view_background"
         android:src="@drawable/mysplash"
