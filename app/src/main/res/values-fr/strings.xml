@@ -84,4 +84,6 @@
     <string name="you_landed">Vous avec atteri sans problèmes. Vous pouvez vous promener comme d\'habitude et votre position est marquée sur la carte, mais faites gaffe. N\'oubliez pas que le plan ne correspond pas à votre position dans le monde réel.</string>
     <string name="travel_home">Retourner à la maison</string>
     <string name="you_traveled_home">Le Voyage Précieux vous faites voler jusqu\'à votre point de départ.</string>
+    <string name="abrakadabra">ABRAKADABRA!</string>
+    <string name="you_leveled_up">Vous avez atteint un nouveau niveau !</string>
 </resources>

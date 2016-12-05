@@ -83,4 +83,6 @@
     <string name="you_landed">Du landade i god trollkarlsstil. Du kan promenera runt som vanligt och din position visas på kartan, men var försiktig. Kartan motsvarar inte din position i verkliga livet.</string>
     <string name="travel_home">Res hem igen</string>
     <string name="you_traveled_home">Vindresan lyfter upp dig i luften och flyger dig till hem igen.</string>
+    <string name="abrakadabra">ABRAKADABRA!</string>
+    <string name="you_leveled_up">Du har levlat upp!</string>
 </resources>

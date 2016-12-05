@@ -11,6 +11,16 @@
     <item android:drawable="@drawable/trolla3" android:duration="100" />
     <item android:drawable="@drawable/trolla4" android:duration="100" />
     <item android:drawable="@drawable/trolla5" android:duration="100" />
+    <item android:drawable="@drawable/trolla1" android:duration="100" />
+    <item android:drawable="@drawable/trolla2" android:duration="100" />
+    <item android:drawable="@drawable/trolla3" android:duration="100" />
+    <item android:drawable="@drawable/trolla4" android:duration="100" />
+    <item android:drawable="@drawable/trolla5" android:duration="100" />
+    <item android:drawable="@drawable/trolla1" android:duration="100" />
+    <item android:drawable="@drawable/trolla2" android:duration="100" />
+    <item android:drawable="@drawable/trolla3" android:duration="100" />
+    <item android:drawable="@drawable/trolla4" android:duration="100" />
+    <item android:drawable="@drawable/trolla5" android:duration="100" />
     <item android:drawable="@drawable/trolla6" android:duration="100" />
 
 </animation-list>

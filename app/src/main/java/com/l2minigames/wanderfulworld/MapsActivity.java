@@ -1,6 +1,7 @@
 package com.l2minigames.wanderfulworld;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -61,6 +62,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.Timer;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,LocationListener, GoogleMap.OnMarkerClickListener {
@@ -155,6 +157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lastNormalLatitude;
     double lastNormalLongitude;
     boolean travelStarted;
+    boolean isLeveledUp;
 
     private static MapsActivity mMapsActivity;
 
@@ -164,8 +167,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        mMapsActivity = this;
 
+        mMapsActivity = this;
         travelStarted =false;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
@@ -202,6 +205,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
         travelParis = (Button) findViewById(R.id.travelParis);
         travelHome = (Button) findViewById(R.id.travelHome);
+        isLeveledUp =false;
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,27 +217,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (mMap!=null) {
-                    vibrate();
+                    ;
                     myRef.child("travelMode").setValue(0);
                     myPositionLatitude = lastNormalLatitude;
                     myPositionLongitude = lastNormalLongitude;
-                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_traveled_home),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        travelParis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ///ToDo check level
-                closePicked();
-                if (mMap!=null) {
-                    vibrate();
-                    myRef.child("travelMode").setValue(1);
-                    myPositionLatitude = 48.853320;
-                    myPositionLongitude = 2.348600;
-                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_traveled_to_paris),
-                            Toast.LENGTH_LONG).show();
+                    String magic = "Travel Home";
                     LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                     CameraPosition currentCameraPosition = mMap.getCameraPosition();
                     Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
@@ -247,7 +235,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .tilt(90)
                                     .zoom(19)
                                     .build()));
+
+                    closePicked();
+                    closeBackpack();
+                    vibrate();
+                    doMagicAnimation(magic);
                 }
+            }
+        });
+        travelParis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ///ToDo check level
+
+                if (mMap!=null) {
+
+                    myRef.child("travelMode").setValue(1);
+                    myPositionLatitude = 48.853320;
+                    myPositionLongitude = 2.348600;
+                    String magic;
+                    magic ="Paris";
+                    LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                    CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                    Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                    ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                            new CameraPosition.Builder()
+                                    .bearing(currentCameraPosition.bearing)
+                                    .target(cameraPosition)
+                                    .tilt(90)
+                                    .zoom(19)
+                                    .build()));
+
+                    closePicked();
+                    closeBackpack();
+                    vibrate();
+                    doMagicAnimation(magic);
+                }
+
             }
         });
         useScrollButton.setOnClickListener(new View.OnClickListener() {
@@ -264,7 +291,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Toast.LENGTH_SHORT).show();}
                     else if (plantsList.size()>3){
 
-                        vibrate();
+
                         ///Ta bort fyra plants från collectibleItems på servern
                         myFirebaseRef.child(plantsList.get(0)).removeValue();
                         myFirebaseRef.child(plantsList.get(1)).removeValue();
@@ -276,10 +303,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         int tmpXP = mMapsActivity.getInstance().object.XP;
                         int changeXP = tmpXP+150;
                         myRef.child("XP").setValue(changeXP);
-
-                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.your_xp_increased_with),
-                                Toast.LENGTH_LONG).show();
+                        String magic = "XP Increased";
                         closePicked();
+                        closeBackpack();
+                        vibrate();
+                        doMagicAnimation(magic);
 
                     }
                 }
@@ -287,7 +315,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (waterdropsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_waterdrops),
                             Toast.LENGTH_SHORT).show();}
                     else if (waterdropsList.size()>3){
-                        vibrate();
+
                         ///Ta bort fyra waterdrops från collectibleItems på servern
                         myFirebaseRef.child(waterdropsList.get(0)).removeValue();
                         myFirebaseRef.child(waterdropsList.get(1)).removeValue();
@@ -302,16 +330,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Potion", "Potion", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
-                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.healing_potion_added),
-                                Toast.LENGTH_LONG).show();
+                        String magic = "Heling Potion";
                         closePicked();
+                        closeBackpack();
+                        vibrate();
+                        doMagicAnimation(magic);
                     }
                 }
                 else if (currentItemNameSelected.equals("Swift Scrollifly")){
                     if (trombulusList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_tromuluses),
                             Toast.LENGTH_SHORT).show();}
                     if (trombulusList.size()>3){
-                        vibrate();
+
 
                         myFirebaseRef.child(trombulusList.get(0)).removeValue();
                         myFirebaseRef.child(trombulusList.get(1)).removeValue();
@@ -326,9 +356,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind", "Travel", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
-                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.travelwind_added),
-                                Toast.LENGTH_LONG).show();
+                        String magic = "Travelwind Added";
                         closePicked();
+                        closeBackpack();
+                        vibrate();
+                        doMagicAnimation(magic);
 
                     }
                 }
@@ -336,7 +368,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (flamesList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_flames),
                             Toast.LENGTH_SHORT).show();}
                     else if (flamesList.size()>3){
-                        vibrate();
+
 
                         myFirebaseRef.child(flamesList.get(0)).removeValue();
                         myFirebaseRef.child(flamesList.get(1)).removeValue();
@@ -351,9 +383,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Combat Potion", "Potion", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
-                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.combat_potion_added),
-                                Toast.LENGTH_LONG).show();
+                        String magic = "Combat Potion";
                         closePicked();
+                        closeBackpack();
+                        vibrate();
+                        doMagicAnimation(magic);
 
                     }
                 }
@@ -373,12 +407,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
 
                 closePicked();
+                ///isLeveledUp
+                isLeveledUp=false;
 
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
@@ -644,8 +681,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 elementAirValue.setText(" "+object.airpower);
                 elementWaterValue.setText(" "+object.waterpower);
 
-
-                checkNewLevel(object.level, object.XP);
+                if (isLeveledUp==false){checkNewLevel(object.level, object.XP);}
                 setLevelBar(object.level, object.XP);
 
 
@@ -774,10 +810,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 travelStarted=true;
                 lastNormalLatitude = location.getLatitude();
                 lastNormalLongitude = location.getLongitude();
-
-                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_landed),
-                            Toast.LENGTH_LONG).show();
-
 
             } else if(travelStarted==true) {
 
@@ -1177,10 +1209,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                mCircle.fillColor(0x5528b6e8);
 
                 mMap.addCircle(mCircle);
-                circleAnimation.stop();
-                circleAnimation.start();
+               /// circleAnimation.stop();
+               /// circleAnimation.start();
                 ///ToDo move to right methods
-                circleImageView.setVisibility(View.VISIBLE);
+               /// circleImageView.setVisibility(View.VISIBLE);
 
             }
 
@@ -1552,6 +1584,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         */
     }
     public void checkNewLevel(int level, int xp){
+        isLeveledUp = true;
         if (xp >=1000 && level ==1){setNewLevel(1);}
         else if (xp >=2000 && level ==2){setNewLevel(2);}
         else if (xp >=3000 && level ==3){setNewLevel(3);}
@@ -1579,6 +1612,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         personLevel.setText("Level "+level);
         personTotalXP.setText(""+xp+" XP");
+
        ///Testa olika xp och levels här
 
         ///levelprogressbar
@@ -1739,18 +1773,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     public void setNewLevel (int oldLevel){
+
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
+        int changeToLevel = oldLevel+1;
+        Random rnd1 = new Random();
+        int slumphp = rnd1.nextInt(3)+1;
+        int changeToHp = object.maxhp+slumphp;
+        Random rnd = new Random();
+        int slumpelement = rnd.nextInt(4)+1;
+        Log.i("TAGGY", "slumpelement: "+slumpelement);
+        Log.i("TAGGY", "slumphp: "+slumphp);
+        String changeToElement ="";
+        if (slumpelement==1){
+            int changeToEarthPower = object.earthpower+1;
+            myRef.child("earthpower").setValue(changeToEarthPower);
+            changeToElement=getResources().getString(R.string.earth);
+        }
+        else if (slumpelement==2){
+            int changeToFirePower = object.firepower+1;
+            myRef.child("firepower").setValue(changeToFirePower);
+            changeToElement=getResources().getString(R.string.fire);
+        }
+        else if (slumpelement==3){
+            int changeToAirPower = object.airpower+1;
+            myRef.child("airpower").setValue(changeToAirPower);
+            changeToElement=getResources().getString(R.string.air);}
+        else if (slumpelement==4){
+            int changeToWaterPower = object.waterpower+1;
+            myRef.child("waterpower").setValue(changeToWaterPower);
+            changeToElement=getResources().getString(R.string.water);
+        }
+
+        myRef.child("level").setValue(changeToLevel);
+        myRef.child("maxhp").setValue(changeToHp);
+        itemTitle.setText(getResources().getString(R.string.you_leveled_up));
+        itemDescription.setText("HP + "+slumphp+" "+" "+changeToElement+" + 1");
+        pickImage.setBackgroundResource(R.drawable.girlfaceblue);
+
+
+
         ///change different values
         ///show message about new level
         ///setlevelbar i slutet
     }
     public void showPickedUpItem (String name, String tmpId){
 
-
+        ///Flytta itemMarkers ut i havet utanför Afrika!
         myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
         myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
 
         itemTitle.setText(getResources().getString(R.string.you_picked_up));
         itemDescription.setText(getResources().getString(R.string.item_added_in_backpack));
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
 
         if (name.equals("earth")){
             itemType.setText(getResources().getString(R.string.a_plant));
@@ -1787,9 +1865,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         ///itemType = (TextView)findViewById(R.id.itemType);
-        relativeLayoutPicked.setVisibility(View.VISIBLE);
-        fab.setVisibility(View.INVISIBLE);
-        personFab.setVisibility(View.INVISIBLE);
+
 
 
     }
@@ -1904,6 +1980,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         travelParis.setVisibility(View.INVISIBLE);
         travelHome.setVisibility(View.INVISIBLE);
     }
+    public void closeBackpack(){
+
+        relativeLayoutRecycle.setVisibility(View.INVISIBLE);
+        fab.setBackgroundResource(R.drawable.backpackbuttonblue);
+
+    }
 
     public LatLng getLatLng(float distance, float bearing, double latitude, double longitude){
 
@@ -1928,6 +2010,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(500);
+    }
+    public void doMagicAnimation(String magic){
+
+        circleAnimation.stop();
+        circleAnimation.start();
+        circleImageView.setVisibility(View.VISIBLE);
+        itemTitle.setText(getResources().getString(R.string.abrakadabra));
+        if (magic.equals("Paris")){
+            itemDescription.setText(getResources().getString(R.string.you_traveled_to_paris)+" "+getResources().getString(R.string.you_landed));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (magic.equals("Combat Potion")){
+            itemDescription.setText(getResources().getString(R.string.combat_potion_added));
+            pickImage.setBackgroundResource(R.drawable.cppotion);
+        }
+        else if (magic.equals("Travelwind Added")){
+            itemDescription.setText(getResources().getString(R.string.travelwind_added));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (magic.equals("Healing Potion")){
+            itemDescription.setText(getResources().getString(R.string.healing_potion_added));
+            pickImage.setBackgroundResource(R.drawable.healingpotion);
+        }
+        else if (magic.equals("XP Increased")){
+            itemDescription.setText(getResources().getString(R.string.your_xp_increased_with));
+            ///ToDo Ändra bild för XP
+            pickImage.setBackgroundResource(R.drawable.girl);
+        }
+        else if (magic.equals("Travel Home")){
+            itemDescription.setText(getResources().getString(R.string.you_traveled_home));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+
+        relativeLayoutPicked.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+        personFab.setVisibility(View.INVISIBLE);
+
+
     }
 
 }

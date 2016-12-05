@@ -26,6 +26,9 @@
     <string name="element_air">AIR POWER:</string>
     <string name="element_water">WATER POWER: </string>
 
+
+    <string name="abrakadabra">ABRAKADABRA!</string>
+    <string name="you_leveled_up">You leveled up!</string>
     <string name="you_picked_up">You picked up...</string>
     <string name="this_is">This is...</string>
     <string name="item_added_in_backpack">You can find the item in your backpack.</string>
