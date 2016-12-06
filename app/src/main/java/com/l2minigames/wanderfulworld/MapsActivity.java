@@ -361,7 +361,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Toast.LENGTH_SHORT).show();}
                     if (trombulusList.size()>3){
 
-
                         myFirebaseRef.child(trombulusList.get(0)).removeValue();
                         myFirebaseRef.child(trombulusList.get(1)).removeValue();
                         myFirebaseRef.child(trombulusList.get(2)).removeValue();
@@ -573,6 +572,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // whenever data at this location is updated.
 
                 mMap.clear();
+                ///Ta en snapshot av databasen och lägg in den i UserObject object
                 object = dataSnapshot.getValue(UserObject.class);
 
                 ///Hämta reseläget från servern och sätt det lokalt. Är detta ok???
@@ -583,6 +583,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 long checkMarkersTimestamp = date.getTime();
                 ///ToDo Ändra värdet för timer till 30 minuter före test
                 if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
+                    ///ToDo object.latitude och object.longitude kan vara från andra delar av världen
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
                 }
@@ -845,18 +846,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     lastTravelLatitude = 51.508530;
                     lastTravelLongitude = -0.076132;
                 }else if (localTravelMode==3) {
-
-
                     myPositionLatitude = 27.173891;
                     myPositionLongitude = 78.042068;
                     lastTravelLatitude = 27.173891;
                     lastTravelLongitude = 78.042068;
-                    /*
-                    myPositionLatitude = 29.976480;
-                    myPositionLongitude = 31.131302;
-                    lastTravelLatitude = 29.976480;
-                    lastTravelLongitude = 31.131302;
-                    */
+
                 }
                 travelStarted=true;
                 lastNormalLatitude = location.getLatitude();
@@ -1521,15 +1515,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public boolean onLongClick(View v) {
 
                     int position = getAdapterPosition();
-
-                    Log.i ("TAG", "Remove item clicked; "+position);
-
-                    Log.i ("TAG", "Remove key clicked; "+""+tmpCollectedItems.get(position).uid);
                     myFirebaseRef.child(itemKeyList.getText().toString()).removeValue();
-
-                    Log.i ("TAG", "Storlek på tmpListan: "+tmpCollectedItems.size());
-
-
                     return false;
                 }
             });
