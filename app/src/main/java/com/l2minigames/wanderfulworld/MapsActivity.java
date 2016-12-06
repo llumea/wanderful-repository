@@ -108,6 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     String currentItemKeySelected;
     String currentItemNameSelected;
+    String currentTravelwindSelected;
 
     FragmentManager fragmentManager;
 
@@ -149,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton gameButton;
     ImageButton useScrollButton;
     ImageButton closePickedButton;
-    Button travelParis;
+    Button travelAway;
     Button travelHome;
 
     double lastTravelLatitude;
@@ -203,7 +204,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton = (ImageButton) findViewById(R.id.gameButton);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
-        travelParis = (Button) findViewById(R.id.travelParis);
+        travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
         isLeveledUp =false;
         gameButton.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +218,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (mMap!=null) {
-                    ;
+
                     myRef.child("travelMode").setValue(0);
                     myPositionLatitude = lastNormalLatitude;
                     myPositionLongitude = lastNormalLongitude;
@@ -243,18 +244,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-        travelParis.setOnClickListener(new View.OnClickListener() {
+        travelAway.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ///ToDo check level
 
                 if (mMap!=null) {
+                    String magic="";
+                    if (currentTravelwindSelected.equals("Paris")){
+                        myRef.child("travelMode").setValue(1);
+                        myPositionLatitude = 48.853320;
+                        myPositionLongitude = 2.348600;
+                        magic ="Paris";
+                    }
+                    else if (currentTravelwindSelected.equals("London")){
+                        myRef.child("travelMode").setValue(2);
+                        myPositionLatitude = 51.508530;
+                        myPositionLongitude = -0.076132;
+                        magic ="London";
+                    }
+                    else if (currentTravelwindSelected.equals("India")){
+                        myRef.child("travelMode").setValue(3);
 
-                    myRef.child("travelMode").setValue(1);
-                    myPositionLatitude = 48.853320;
-                    myPositionLongitude = 2.348600;
-                    String magic;
-                    magic ="Paris";
+                        myPositionLatitude = 27.173891;
+                        myPositionLongitude = 78.042068;
+
+                        ///myPositionLatitude = 29.976480;
+                       /// myPositionLongitude = 31.131302;
+                        magic ="India";
+                    }
+
                     LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                     CameraPosition currentCameraPosition = mMap.getCameraPosition();
                     Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
@@ -354,8 +373,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Date date = calendar.getTime();
                         long itemTimestamp = date.getTime();
                         String key = myRef.child("collectedItems").push().getKey();
-                        CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind", "Travel", "imageRef", itemTimestamp, key);
-                        myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        Random randomTravelwind = new Random();
+                        int slumpTravelwind = randomTravelwind.nextInt(3)+1;
+                        if (slumpTravelwind==1) {
+                            CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind Paris", "Travel", "imageRef", itemTimestamp, key);
+                            myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        }else if (slumpTravelwind==2) {
+                            CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind London", "Travel", "imageRef", itemTimestamp, key);
+                            myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        }else if (slumpTravelwind==3) {
+                            CollectedItem tmpCollectedItem2 = new CollectedItem("Travelwind India", "Travel", "imageRef", itemTimestamp, key);
+                            myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
+                        }
+
                         String magic = "Travelwind Added";
                         closePicked();
                         closeBackpack();
@@ -551,6 +581,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
+                ///ToDo Ändra värdet för timer till 30 minuter före test
                 if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
@@ -799,23 +830,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mCircle.strokeColor(0x00000000);
         mCircle.fillColor(0x00000000);
 
-        if (localTravelMode==1){
+        if (localTravelMode>0){
             Log.i("TAGGY", "TravelStarted: "+travelStarted);
            /// myPositionLatitude = 48.852966;
             if (travelStarted==false){
-                myPositionLatitude = 48.853320;
-                myPositionLongitude = 2.348600;
-                lastTravelLatitude = 48.853320;
-                lastTravelLongitude = 2.348600;
+                if (localTravelMode==1) {
+                    myPositionLatitude = 48.853320;
+                    myPositionLongitude = 2.348600;
+                    lastTravelLatitude = 48.853320;
+                    lastTravelLongitude = 2.348600;
+                }else if (localTravelMode==2) {
+                    myPositionLatitude = 51.508530;
+                    myPositionLongitude = -0.076132;
+                    lastTravelLatitude = 51.508530;
+                    lastTravelLongitude = -0.076132;
+                }else if (localTravelMode==3) {
+
+
+                    myPositionLatitude = 27.173891;
+                    myPositionLongitude = 78.042068;
+                    lastTravelLatitude = 27.173891;
+                    lastTravelLongitude = 78.042068;
+                    /*
+                    myPositionLatitude = 29.976480;
+                    myPositionLongitude = 31.131302;
+                    lastTravelLatitude = 29.976480;
+                    lastTravelLongitude = 31.131302;
+                    */
+                }
                 travelStarted=true;
                 lastNormalLatitude = location.getLatitude();
                 lastNormalLongitude = location.getLongitude();
 
             } else if(travelStarted==true) {
 
-
-              /// myPositionLatitude = location.getLatitude();
-              /// myPositionLongitude = location.getLongitude();
                 Location lastLocation = new Location("");
                 ///Sätt värdet innan det sätts till ett nytt
                 lastLocation.setLatitude(lastNormalLatitude);
@@ -825,27 +873,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lastNormalLongitude = location.getLongitude();
                 float distance = lastLocation.distanceTo(location);
                 float bearing = lastLocation.bearingTo(location);
-                Log.i("TAGGY", "Distance between last location and new location: "+distance);
-                Log.i("TAGGY", "Bearing for last location and new bearing: "+bearing);
                 LatLng tmpPosition = getLatLng(distance, bearing, lastTravelLatitude, lastTravelLongitude);
                 lastTravelLatitude = tmpPosition.latitude;
                 lastTravelLongitude = tmpPosition.longitude;
-                /*
-                double dist = (double)distance/6371e3;
-                double brng = Math.toRadians((double)bearing);
-                double lat1 = Math.toRadians(lastTravelLatitude);
-                double lon1 = Math.toRadians(lastTravelLongitude);
-
-                double lat2 = Math.asin( Math.sin(lat1)*Math.cos(dist) + Math.cos(lat1)*Math.sin(dist)*Math.cos(brng) );
-                double a = Math.atan2(Math.sin(brng)*Math.sin(dist)*Math.cos(lat1), Math.cos(dist)-Math.sin(lat1)*Math.sin(lat2));
-                System.out.println("a = " +  a);
-                double lon2 = lon1 + a;
-
-                lon2 = (lon2+ 3*Math.PI) % (2*Math.PI) - Math.PI;
-
-                lastTravelLatitude = Math.toDegrees(lat2);
-                lastTravelLongitude = Math.toDegrees(lon2);
-                */
                 myPositionLatitude = lastTravelLatitude;
                 myPositionLongitude = lastTravelLongitude;
 
@@ -975,10 +1005,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     objectViewHolder.itemNameList.setText(R.string.combat_potion);
                     objectViewHolder.itemTypeList.setText(R.string.potion);
                 }
-                else if (collectedItem.itemName.equals("Travelwind")) {
+                else if (collectedItem.itemName.equals("Travelwind Paris")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.travelwind);
-                    objectViewHolder.itemNoLocale.setText("Travelwind");
-                    objectViewHolder.itemNameList.setText(R.string.travelwind);
+                    objectViewHolder.itemNoLocale.setText("Travelwind Paris");
+                    objectViewHolder.itemNameList.setText(R.string.travelwind_paris);
+                    objectViewHolder.itemTypeList.setText(R.string.travel);
+                }
+                else if (collectedItem.itemName.equals("Travelwind London")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.travelwind);
+                    objectViewHolder.itemNoLocale.setText("Travelwind London");
+                    objectViewHolder.itemNameList.setText(R.string.travelwind_london);
+                    objectViewHolder.itemTypeList.setText(R.string.travel);
+                }
+                else if (collectedItem.itemName.equals("Travelwind India")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.travelwind);
+                    objectViewHolder.itemNoLocale.setText("Travelwind India");
+                    objectViewHolder.itemNameList.setText(R.string.travelwind_india);
                     objectViewHolder.itemTypeList.setText(R.string.travel);
                 }
 
@@ -1446,19 +1488,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
 
                     }
-                    else if (name.equals("Travelwind")){
+                    else if (name.equals("Travelwind Paris")||name.equals("Travelwind London")||name.equals("Travelwind India")){
                         mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);
-                        mMapsActivity.getInstance().travelParis.setVisibility(View.VISIBLE);
+                        mMapsActivity.getInstance().travelAway.setVisibility(View.VISIBLE);
                         mMapsActivity.getInstance().travelHome.setVisibility(View.VISIBLE);
-                        mMapsActivity.getInstance().plantsList.clear();
-                        for (int i = 0;i<listSize;i++){
-                            if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){
-                                mMapsActivity.getInstance().plantsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
-                                Log.i("TAGGY", "UI för Plant: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
 
-                            }
+                        if (name.equals("Travelwind Paris")){
+                            mMapsActivity.getInstance().currentTravelwindSelected = "Paris";
+                            mMapsActivity.getInstance().travelAway.setText(R.string.paris_button);
                         }
-                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+                        else if (name.equals("Travelwind London")){
+                            mMapsActivity.getInstance().currentTravelwindSelected = "London";
+                            mMapsActivity.getInstance().travelAway.setText(R.string.london_button);
+                        }
+                        else if (name.equals("Travelwind India")){
+                            mMapsActivity.getInstance().currentTravelwindSelected = "India";
+                            mMapsActivity.getInstance().travelAway.setText(R.string.india_button);
+                        }
 
                     } else {mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);}
 
@@ -1935,8 +1981,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemDescription.setText(getResources().getString(R.string.combat_potion_description));
             pickImage.setBackgroundResource(R.drawable.cppotion);
         }
-        else if (name.equals("Travelwind")){
-            itemTitle.setText(getResources().getString(R.string.travelwind));
+        else if (name.equals("Travelwind Paris")){
+            itemTitle.setText(getResources().getString(R.string.travelwind_paris));
+            itemType.setText(getResources().getString(R.string.travel));
+            itemDescription.setText(getResources().getString(R.string.travelwind_description));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (name.equals("Travelwind London")){
+            itemTitle.setText(getResources().getString(R.string.travelwind_london));
+            itemType.setText(getResources().getString(R.string.travel));
+            itemDescription.setText(getResources().getString(R.string.travelwind_description));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (name.equals("Travelwind India")){
+            itemTitle.setText(getResources().getString(R.string.travelwind_india));
             itemType.setText(getResources().getString(R.string.travel));
             itemDescription.setText(getResources().getString(R.string.travelwind_description));
             pickImage.setBackgroundResource(R.drawable.travelwind);
@@ -1977,7 +2035,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         useScrollButton.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
-        travelParis.setVisibility(View.INVISIBLE);
+        travelAway.setVisibility(View.INVISIBLE);
         travelHome.setVisibility(View.INVISIBLE);
     }
     public void closeBackpack(){
@@ -2019,6 +2077,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         itemTitle.setText(getResources().getString(R.string.abrakadabra));
         if (magic.equals("Paris")){
             itemDescription.setText(getResources().getString(R.string.you_traveled_to_paris)+" "+getResources().getString(R.string.you_landed));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (magic.equals("London")){
+            itemDescription.setText(getResources().getString(R.string.you_traveled_to_london)+" "+getResources().getString(R.string.you_landed));
+            pickImage.setBackgroundResource(R.drawable.travelwind);
+        }
+        else if (magic.equals("India")){
+            itemDescription.setText(getResources().getString(R.string.you_traveled_to_india)+" "+getResources().getString(R.string.you_landed));
             pickImage.setBackgroundResource(R.drawable.travelwind);
         }
         else if (magic.equals("Combat Potion")){

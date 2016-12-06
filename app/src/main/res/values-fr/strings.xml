@@ -78,12 +78,19 @@
     <string name="travel">Voyage</string>
     <string name="travelwind">Voyage Précieux</string>
     <string name="travelwind_added">Un Voyage Précieux est ajoutée dans votre sac à dos. Vous pouvez vous en servir pour voyager loin dans Wanderful World. Mais en ce cas elle est consommée.</string>
-    <string name="travelwind_description">Avec le Voyage Précieux vous pouvez voyager loin dans Wanderful World. Utilisez-le avec prudence étant donné qu\'il sera consommé et enlevé de votre sac à dos.</string>
-    <string name="google_maps_key" translatable="false"></string>
+    <string name="travelwind_description">Avec le Voyage Précieux vous pouvez voyager loin dans Wanderful World. Et il vous ramène quand vous voulez.</string>
     <string name="you_traveled_to_paris">Le Voyage Précieux vous faites voler jusqu\'au cathedrale Notre-Dame de Paris.</string>
     <string name="you_landed">Vous avec atteri sans problèmes. Vous pouvez vous promener comme d\'habitude et votre position est marquée sur la carte, mais faites gaffe. N\'oubliez pas que le plan ne correspond pas à votre position dans le monde réel.</string>
     <string name="travel_home">Retourner à la maison</string>
-    <string name="you_traveled_home">Le Voyage Précieux vous faites voler jusqu\'à votre point de départ.</string>
+    <string name="you_traveled_home">Le monde commence à tourner. Le vent puissant vous souléve du terre. Tout d\'un coup vous ètes retourné à votre point de départ.</string>
     <string name="abrakadabra">ABRAKADABRA!</string>
     <string name="you_leveled_up">Vous avez atteint un nouveau niveau !</string>
+    <string name="travelwind_london">Voyage Précieux à Londre</string>
+    <string name="travelwind_paris">Voyage Précieux à Paris</string>
+    <string name="you_traveled_to_london">Le Voyage Précieux vous faites voler jusqu\'en Angleterre, à côté de Tower of London.</string>
+    <string name="london_button">Londre (Level 4+)</string>
+    <string name="paris_button">Paris (Level 2+)</string>
+    <string name="you_traveled_to_india">Le Voyage Précieux vous faites voler jusqu\'en Inde, juste devant Taj Mahal.</string>
+    <string name="travelwind_india">Voyage Précieux en Inde</string>
+    <string name="india_button">Inde (Level 6+)</string>
 </resources>

@@ -48,6 +48,9 @@
     <string name="air">Air</string>
     <string name="water">Water</string>
     <string name="scroll">Scroll</string>
+    <string name="paris_button">Paris (Level 2+)</string>
+    <string name="london_button">London (Level 4+)</string>
+    <string name="india_button">India (Level 6+)</string>
     <string name="healing_scrollifix">Healing Scrollifix</string>
     <string name="mighty_scrollipow">Mighty Scrollipow</string>
     <string name="swift_scrollifly">Swift Scrollifly</string>
@@ -55,6 +58,9 @@
     <string name="healing_potion">Healing Potion</string>
     <string name="combat_potion">Combat Potion</string>
     <string name="travelwind">Travelwind</string>
+    <string name="travelwind_paris">Travelwind to Paris</string>
+    <string name="travelwind_london">Travelwind to London</string>
+    <string name="travelwind_india">Travelwind to India</string>
     <string name="flame">Flame</string>
     <string name="trombulus">Trombulus</string>
     <string name="waterdrop">Waterdrop</string>
@@ -72,7 +78,7 @@
     <string name="scrollidge_description">The Ancient Scrollidge lets you increase your xp. The cost is 4 plants and the Scrollidge itself.</string>
     <string name="healing_potion_description">The Healing Potion lets you regain hp during a fight. Use it wisely since it will be consumed and removed from your backpack.</string>
     <string name="combat_potion_description">The Combat Potion lets you increase your combat power during a fight. Use it wisely since it will be consumed and removed from your backpack.</string>
-    <string name="travelwind_description">The Travelwind lets you travel to a distant place in Wanderful World. Use it wisely since it will be consumed and removed from your backpack.</string>
+    <string name="travelwind_description">The Travelwind lets you travel to a distant place in Wanderful World. And it takes you back home again.</string>
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
     <string name="wizardacademy_description">Greetings young apprentice. If you manage to bring back 5 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use 2 fingers to rotate/zoom on the map.</string>
@@ -86,7 +92,9 @@
     <string name="combat_potion_added">A combat potion was added in your backpack. You can use it in a fight. But in that case it is consumed.</string>
     <string name="travelwind_added">A Travelwind was added in your backpack. You can use it to travel to a distant place in Wanderful World. But in that case it is consumed.</string>
     <string name="you_traveled_to_paris">The Travelwind is lifting you in the air and brings you to Paris, just outside of the famous cathedral Notre-Dame de Paris.</string>
-    <string name="you_traveled_home">The Travelwind is lifting you in the air and brings you home.</string>
+    <string name="you_traveled_to_london">The Travelwind is lifting you in the air and brings you to London, just outside of the famous Tower of London.</string>
+    <string name="you_traveled_to_india">The Travelwind is lifting you in the air and brings you to India, just outside of the famous Taj Mahal.</string>
+    <string name="you_traveled_home">Everything starts spinning. You are lifted in the air by the powerful wind. Suddenly your home again.</string>
     <string name="you_landed">You landed safe and sound. You can move around as usual and your location is shown on the map, but be careful. Keep in mind that this is not your real life location.</string>
 
 </resources>

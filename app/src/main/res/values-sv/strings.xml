@@ -78,11 +78,19 @@
     <string name="travel">Resa</string>
     <string name="travelwind">Vindresa</string>
     <string name="travelwind_added">En Vindresa har lagts till i din ryggsäck. Med den kan du resa långt bort i Wanderful World. Men använd den väl eftersom den förbrukas och försvinner från ryggsäcken när du använder den.</string>
-    <string name="travelwind_description">En Vindresa tar dig till avlägsna platser i Wanderful World. Den förbrukas och försvinner från ryggsäcken när du använder den.</string>
+    <string name="travelwind_description">En Vindresa tar dig till avlägsna platser i Wanderful World. Och den tar dig även hem igen.</string>
     <string name="you_traveled_to_paris">Vindresan lyfter upp dig i luften och flyger dig till den berömda katedralen Notre-Dame de Paris.</string>
     <string name="you_landed">Du landade i god trollkarlsstil. Du kan promenera runt som vanligt och din position visas på kartan, men var försiktig. Kartan motsvarar inte din position i verkliga livet.</string>
     <string name="travel_home">Res hem igen</string>
-    <string name="you_traveled_home">Vindresan lyfter upp dig i luften och flyger dig till hem igen.</string>
+    <string name="you_traveled_home">Allt börjar snurra. Du lyfts upp i luften av en kraftfull vind. Plötsligt är du hemma igen.</string>
     <string name="abrakadabra">ABRAKADABRA!</string>
     <string name="you_leveled_up">Du har levlat upp!</string>
+    <string name="travelwind_london">Vindresa till London</string>
+    <string name="travelwind_paris">Vindresa till Paris</string>
+    <string name="you_traveled_to_london">Vindresan lyfter upp dig i luften och flyger dig till England, precis utanför Tower of London.</string>
+    <string name="london_button">London (Level 4+)</string>
+    <string name="paris_button">Paris (Level 2+)</string>
+    <string name="you_traveled_to_india">Vindresan lyfter upp dig i luften och flyger dig till Indien, precis utanför Taj Mahal.</string>
+    <string name="travelwind_india">Vindresa till Indien</string>
+    <string name="india_button">Indien (Level 6+)</string>
 </resources>
