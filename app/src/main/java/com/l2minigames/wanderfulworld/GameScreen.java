@@ -45,7 +45,7 @@ public class GameScreen extends GLScreen {
 
         this.mContext = context;
         state = GAME_READY;
-        guiCam = new Camera2D(glGraphics, 320, 480);
+        guiCam = new Camera2D(glGraphics, 640, 960);
         touchPoint = new Vector2();
         batcher = new SpriteBatcher(glGraphics, 1000);
         worldListener = new WorldListener() {

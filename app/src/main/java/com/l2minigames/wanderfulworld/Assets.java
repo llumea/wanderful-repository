@@ -10,7 +10,10 @@ import com.l2minigames.framework.impl.GLGame;
 
 public class Assets {
     public static Texture background;
+    public static Texture background_vektor;
     public static TextureRegion backgroundRegion;
+    public static TextureRegion backgroundRegionVektorWorld;
+    public static TextureRegion backgroundRegionVektorWorld2;
     
     public static Texture items;        
     public static TextureRegion mainMenu;
@@ -43,8 +46,10 @@ public class Assets {
 
     public static void load(GLGame game) {
         background = new Texture(game, "background.png");
+        background_vektor = new Texture(game, "bakgrund_vektor.png");
         backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
-        
+        backgroundRegionVektorWorld = new TextureRegion(background_vektor, 0, 0, 512, 448);
+        backgroundRegionVektorWorld2 = new TextureRegion(background_vektor, 0, 400, 512, 48);
         items = new Texture(game, "items.png");        
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
@@ -97,6 +102,7 @@ public class Assets {
 
     public static void reload() {
         background.reload();
+        background_vektor.reload();
         items.reload();
         if(Settings.soundEnabled)
             music.play();

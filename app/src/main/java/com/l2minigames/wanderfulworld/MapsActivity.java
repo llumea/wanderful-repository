@@ -210,6 +210,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ///ToDo fungerar bara om det finns koppling till servern
                 Bundle bundle = new Bundle();
                 bundle.putString("ENEMY", "hunchback");
                 bundle.putString("WORLD", "paris");

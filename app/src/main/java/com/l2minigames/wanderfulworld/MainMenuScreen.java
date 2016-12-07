@@ -30,7 +30,7 @@ public class MainMenuScreen extends GLScreen {
     public MainMenuScreen(Game game, SuperJumper context) {
         super(game);
         this.mContext = context;
-        guiCam = new Camera2D(glGraphics, 320, 480);
+        guiCam = new Camera2D(glGraphics, 640, 960);
         batcher = new SpriteBatcher(glGraphics, 100);
         soundBounds = new Rectangle(0, 0, 64, 64);
         playBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
@@ -90,11 +90,16 @@ public class MainMenuScreen extends GLScreen {
         gl.glEnable(GL10.GL_TEXTURE_2D);
         
         batcher.beginBatch(Assets.background);
-        batcher.drawSprite(160, 240, 320, 480, Assets.backgroundRegion);
+        batcher.drawSprite(320, 480, 640, 960, Assets.backgroundRegion); ///tidigare 160, 240, 320, 480
         batcher.endBatch();
         
         gl.glEnable(GL10.GL_BLEND);
-        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);               
+        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+
+        batcher.beginBatch(Assets.background_vektor);
+        batcher.drawSprite(320, 734, 640, 448, Assets.backgroundRegionVektorWorld); ///tidigare 160, 240, 320, 480
+        batcher.drawSprite(320, 300, 640, 448, Assets.backgroundRegionVektorWorld2); ///tidigare 160, 240, 320, 480
+        batcher.endBatch();
         
         batcher.beginBatch(Assets.items);                 
         
