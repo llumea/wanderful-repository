@@ -210,7 +210,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("ENEMY", "hunchback");
+                bundle.putString("WORLD", "paris");
+                bundle.putInt("HP", object.hp);
+                bundle.putInt("MAX_HP", object.maxhp);
+                bundle.putInt("CP", object.cp);
+                bundle.putInt("MAX_CP", object.maxcp);
+                bundle.putInt("EARTH_POWER", object.earthpower);
+                bundle.putInt("FIRE_POWER", object.firepower);
+                bundle.putInt("AIR_POWER", object.airpower);
+                bundle.putInt("WATER_POWER", object.waterpower);
                 Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -218,7 +230,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (mMap!=null) {
-
+                    ///Sätter lat/long så att inte markers uppdateras i fel värld!
+                    myRef.child("latitude").setValue(lastNormalLatitude);
+                    myRef.child("longitude").setValue(lastNormalLongitude);
                     myRef.child("travelMode").setValue(0);
                     myPositionLatitude = lastNormalLatitude;
                     myPositionLongitude = lastNormalLongitude;
