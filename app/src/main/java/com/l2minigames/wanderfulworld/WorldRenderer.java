@@ -65,11 +65,14 @@ public class WorldRenderer {
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         
         batcher.beginBatch(Assets.items);
-        renderBob();
-        renderPlatforms();
-        renderItems();
-        renderSquirrels();
-        renderCastle();
+
+       /// renderBob();
+       /// renderPlatforms();
+       /// renderItems();
+       /// renderSquirrels();
+       /// renderCastle();
+        renderGround();
+        renderProgress();
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
@@ -90,6 +93,42 @@ public class WorldRenderer {
         
         float side = world.bob.velocity.x < 0? -1: 1;        
         batcher.drawSprite(world.bob.position.x, world.bob.position.y, side * 1, 1, keyFrame);        
+    }
+    private void renderProgress() {
+        ///För spelaren
+        float fullsize=5f;
+        float actualsize = 4.5f;
+        float marginLeft = 4f;
+        float difference = (fullsize-actualsize)/2;
+        batcher.drawSprite(marginLeft, 29, fullsize, 0.5f, Assets.itemsHPBarBlack);
+        batcher.drawSprite(marginLeft-difference, 29, actualsize, 0.5f, Assets.itemsHPBarGreen);
+        ///För AI
+        float fullsizeAI=5f;
+        float actualsizeAI = 3f;
+        float marginLeftAI = 16f;
+        float differenceAI = (fullsizeAI-actualsizeAI)/2;
+        batcher.drawSprite(marginLeftAI, 29, fullsizeAI, 0.5f, Assets.itemsHPBarBlack);
+        batcher.drawSprite(marginLeftAI-differenceAI, 29, actualsizeAI, 0.5f, Assets.itemsHPBarGreen);
+
+        ///Elementpowers
+        batcher.drawSprite(7.7f, 29, 1.5f, 1.5f, Assets.itemsEarth);
+        batcher.drawSprite(9.2f, 29, 1.5f, 1.5f, Assets.itemsFire);
+        batcher.drawSprite(10.7f, 29, 1.5f, 1.5f, Assets.itemsAir);
+        batcher.drawSprite(12.2f, 29, 1.5f, 1.5f, Assets.itemsWater);
+
+
+
+    }
+    private void renderGround() {
+
+        if (mContext.world.equals("wanderful world")) {
+            batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);
+            batcher.drawSprite(6, 16, 4, 1, Assets.itemsLog);
+            batcher.drawSprite(10, 16, 4, 1, Assets.itemsLog);
+            batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
+            batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
+        }
+
     }
 
     private void renderPlatforms() {

@@ -40,6 +40,7 @@ public class GameScreen extends GLScreen {
     SuperJumper mContext;
 
 
+
     public GameScreen(Game game, SuperJumper context) {
         super(game);
 
@@ -244,13 +245,16 @@ public class GameScreen extends GLScreen {
     }
 
     private void presentRunning() {
+
         batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
-        Assets.font.drawText(batcher, scoreString, 16, 480-20);
+        Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
+        Assets.font.drawText(batcher, "HELLO", 500, 800);
+        ///Assets.font.drawText(batcher, "HELLO", 500, 800);
     }
 
     private void presentPaused() {        
         batcher.drawSprite(160, 240, 192, 96, Assets.pauseMenu);
-        Assets.font.drawText(batcher, scoreString, 16, 480-20);
+        Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
     }
 
     private void presentLevelEnd() {

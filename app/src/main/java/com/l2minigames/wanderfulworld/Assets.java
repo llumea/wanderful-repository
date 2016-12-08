@@ -21,7 +21,14 @@ public class Assets {
     public static TextureRegion backgroundRegionVektorIndia;
     public static TextureRegion backgroundRegionVektorIndia2;
     
-    public static Texture items;        
+    public static Texture items;
+    public static TextureRegion itemsHPBarBlack;
+    public static TextureRegion itemsHPBarGreen;
+    public static TextureRegion itemsLog;
+    public static TextureRegion itemsEarth;
+    public static TextureRegion itemsFire;
+    public static TextureRegion itemsAir;
+    public static TextureRegion itemsWater;
     public static TextureRegion mainMenu;
     public static TextureRegion pauseMenu;
     public static TextureRegion ready;
@@ -62,7 +69,14 @@ public class Assets {
         backgroundRegionVektorLondon2 = new TextureRegion(background_vektor, 0, 830, 512, 48);
         backgroundRegionVektorIndia = new TextureRegion(background_vektor, 512, 448, 512, 448);
         backgroundRegionVektorIndia2 = new TextureRegion(background_vektor, 512, 830, 512, 48);
-        items = new Texture(game, "items.png");        
+        items = new Texture(game, "items.png");
+        itemsHPBarBlack = new TextureRegion(items, 620, 700, 200, 20);
+        itemsHPBarGreen = new TextureRegion(items, 620, 720, 200, 20);
+        itemsLog = new TextureRegion(items, 0, 680, 260, 60);
+        itemsEarth = new TextureRegion(items, 860, 240, 64, 64);
+        itemsFire = new TextureRegion(items, 860, 320, 64, 64);
+        itemsAir = new TextureRegion(items, 940, 240, 64, 64);
+        itemsWater = new TextureRegion(items, 940, 320, 64, 64);
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
         ready = new TextureRegion(items, 320, 224, 192, 32);
@@ -91,14 +105,14 @@ public class Assets {
         squirrelFly = new Animation(0.2f, 
                                     new TextureRegion(items, 0, 160, 32, 32),
                                     new TextureRegion(items, 32, 160, 32, 32));
-        platform = new TextureRegion(items, 64, 160, 64, 16);
+        platform = new TextureRegion(items, 128, 320, 128, 32); ///Tidigare 64,160,64,16
         brakingPlatform = new Animation(0.2f,
                                      new TextureRegion(items, 64, 160, 64, 16),
                                      new TextureRegion(items, 64, 176, 64, 16),
                                      new TextureRegion(items, 64, 192, 64, 16),
                                      new TextureRegion(items, 64, 208, 64, 16));
         
-        font = new Font(items, 224, 0, 16, 16, 20);
+        font = new Font(items, 448, 0, 16, 32, 40); ///Tidigare 224,0,16,16,20
         
         music = game.getAudio().newMusic("music.mp3");
         music.setLooping(true);
