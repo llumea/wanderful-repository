@@ -14,6 +14,12 @@ public class Assets {
     public static TextureRegion backgroundRegion;
     public static TextureRegion backgroundRegionVektorWorld;
     public static TextureRegion backgroundRegionVektorWorld2;
+    public static TextureRegion backgroundRegionVektorParis;
+    public static TextureRegion backgroundRegionVektorParis2;
+    public static TextureRegion backgroundRegionVektorLondon;
+    public static TextureRegion backgroundRegionVektorLondon2;
+    public static TextureRegion backgroundRegionVektorIndia;
+    public static TextureRegion backgroundRegionVektorIndia2;
     
     public static Texture items;        
     public static TextureRegion mainMenu;
@@ -50,6 +56,12 @@ public class Assets {
         backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
         backgroundRegionVektorWorld = new TextureRegion(background_vektor, 0, 0, 512, 448);
         backgroundRegionVektorWorld2 = new TextureRegion(background_vektor, 0, 400, 512, 48);
+        backgroundRegionVektorParis = new TextureRegion(background_vektor, 512, 0, 512, 448);
+        backgroundRegionVektorParis2 = new TextureRegion(background_vektor, 512, 400, 512, 48);
+        backgroundRegionVektorLondon = new TextureRegion(background_vektor, 0, 448, 512, 448);
+        backgroundRegionVektorLondon2 = new TextureRegion(background_vektor, 0, 830, 512, 48);
+        backgroundRegionVektorIndia = new TextureRegion(background_vektor, 512, 448, 512, 448);
+        backgroundRegionVektorIndia2 = new TextureRegion(background_vektor, 512, 830, 512, 48);
         items = new Texture(game, "items.png");        
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);

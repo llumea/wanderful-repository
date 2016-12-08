@@ -9,18 +9,20 @@ import com.l2minigames.framework.gl.TextureRegion;
 import com.l2minigames.framework.impl.GLGraphics;
 
 public class WorldRenderer {
-    static final float FRUSTUM_WIDTH = 10;
-    static final float FRUSTUM_HEIGHT = 15;    
+    static final float FRUSTUM_WIDTH = 20; ///Tidigare 10
+    static final float FRUSTUM_HEIGHT = 30; ///Tidigare 15
     GLGraphics glGraphics;
     World world;
     Camera2D cam;
-    SpriteBatcher batcher;    
+    SpriteBatcher batcher;
+    SuperJumper mContext;
     
-    public WorldRenderer(GLGraphics glGraphics, SpriteBatcher batcher, World world) {
+    public WorldRenderer(GLGraphics glGraphics, SpriteBatcher batcher, World world, SuperJumper context) {
         this.glGraphics = glGraphics;
         this.world = world;
         this.cam = new Camera2D(glGraphics, FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
-        this.batcher = batcher;        
+        this.batcher = batcher;
+        this.mContext = context;
     }
     
     public void render() {
@@ -32,11 +34,29 @@ public class WorldRenderer {
     }
 
     public void renderBackground() {
-        batcher.beginBatch(Assets.background);
-        batcher.drawSprite(cam.position.x, cam.position.y,
-                           FRUSTUM_WIDTH, FRUSTUM_HEIGHT, 
-                           Assets.backgroundRegion);
+
+        batcher.beginBatch(Assets.background_vektor);
+        if (mContext.world.equals("wanderful world")) {
+            batcher.drawSprite(cam.position.x, cam.position.y+8f, FRUSTUM_WIDTH, FRUSTUM_WIDTH-5.8f, Assets.backgroundRegionVektorWorld); ///tidigare 160, 240, 320, 480
+            batcher.drawSprite(cam.position.x, cam.position.y-7, FRUSTUM_WIDTH, FRUSTUM_WIDTH-2f, Assets.backgroundRegionVektorWorld2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("paris")) {
+            batcher.drawSprite(cam.position.x, cam.position.y+8f, FRUSTUM_WIDTH, FRUSTUM_WIDTH-5.8f, Assets.backgroundRegionVektorParis); ///tidigare 160, 240, 320, 480
+            batcher.drawSprite(cam.position.x, cam.position.y-7, FRUSTUM_WIDTH, FRUSTUM_WIDTH-2f, Assets.backgroundRegionVektorParis2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("london")) {
+            batcher.drawSprite(cam.position.x, cam.position.y+8f, FRUSTUM_WIDTH, FRUSTUM_WIDTH-5.8f, Assets.backgroundRegionVektorLondon); ///tidigare 160, 240, 320, 480
+            batcher.drawSprite(cam.position.x, cam.position.y-7, FRUSTUM_WIDTH, FRUSTUM_WIDTH-2f, Assets.backgroundRegionVektorLondon2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("india")) {
+            batcher.drawSprite(cam.position.x, cam.position.y+8f, FRUSTUM_WIDTH, FRUSTUM_WIDTH-5.8f, Assets.backgroundRegionVektorIndia); ///tidigare 160, 240, 320, 480
+            batcher.drawSprite(cam.position.x, cam.position.y-7, FRUSTUM_WIDTH, FRUSTUM_WIDTH-2f, Assets.backgroundRegionVektorIndia2); ///tidigare 160, 240, 320, 480
+        }
+
         batcher.endBatch();
+
+        ///batcher.beginBatch(Assets.background);
+        ///batcher.drawSprite(cam.position.x, cam.position.y,
+         ///                  FRUSTUM_WIDTH, FRUSTUM_HEIGHT,
+          ///                 Assets.backgroundRegion);
+       /// batcher.endBatch();
     }
 
     public void renderObjects() {

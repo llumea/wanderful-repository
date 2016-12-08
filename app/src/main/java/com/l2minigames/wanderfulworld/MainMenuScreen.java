@@ -97,8 +97,20 @@ public class MainMenuScreen extends GLScreen {
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 
         batcher.beginBatch(Assets.background_vektor);
-        batcher.drawSprite(320, 734, 640, 448, Assets.backgroundRegionVektorWorld); ///tidigare 160, 240, 320, 480
-        batcher.drawSprite(320, 300, 640, 448, Assets.backgroundRegionVektorWorld2); ///tidigare 160, 240, 320, 480
+    if (mContext.world.equals("wanderful world")) {
+        batcher.drawSprite(320, 736, 640, 448, Assets.backgroundRegionVektorWorld); ///tidigare 160, 240, 320, 480
+        batcher.drawSprite(320, 300, 640, 600, Assets.backgroundRegionVektorWorld2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("paris")) {
+            batcher.drawSprite(320, 736, 640, 448, Assets.backgroundRegionVektorParis); ///tidigare 160, 240, 320, 480
+            batcher.drawSprite(320, 300, 640, 600, Assets.backgroundRegionVektorParis2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("london")) {
+        batcher.drawSprite(320, 736, 640, 448, Assets.backgroundRegionVektorLondon); ///tidigare 160, 240, 320, 480
+        batcher.drawSprite(320, 300, 640, 600, Assets.backgroundRegionVektorLondon2); ///tidigare 160, 240, 320, 480
+        }else if (mContext.world.equals("india")) {
+        batcher.drawSprite(320, 736, 640, 448, Assets.backgroundRegionVektorIndia); ///tidigare 160, 240, 320, 480
+        batcher.drawSprite(320, 300, 640, 600, Assets.backgroundRegionVektorIndia2); ///tidigare 160, 240, 320, 480
+    }
+
         batcher.endBatch();
         
         batcher.beginBatch(Assets.items);                 

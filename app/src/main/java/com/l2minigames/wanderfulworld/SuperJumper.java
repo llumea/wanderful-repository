@@ -14,6 +14,16 @@ import com.l2minigames.framework.impl.GLGame;
 
 public class SuperJumper extends GLGame {
     boolean firstTimeCreate = true;
+    int hp;
+    int max_hp;
+    int cp;
+    int max_cp;
+    int earth_power;
+    int fire_power;
+    int air_power;
+    int water_power;
+    String enemy;
+    String world;
 
     
     public Screen getStartScreen() {
@@ -34,16 +44,16 @@ public class SuperJumper extends GLGame {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String enemy = bundle.getString("ENEMY");
-        String world = bundle.getString("WORLD");
-        int hp = bundle.getInt("HP");
-        int max_hp = bundle.getInt("MAX_HP");
-        int cp = bundle.getInt("CP");
-        int max_cp = bundle.getInt("MAX_CP");
-        int earth_power = bundle.getInt("EARTH_POWER");
-        int fire_power = bundle.getInt("FIRE_POWER");
-        int air_power = bundle.getInt("AIR_POWER");
-        int water_power = bundle.getInt("WATER_POWER");
+        enemy = bundle.getString("ENEMY");
+        world = bundle.getString("WORLD");
+        hp = bundle.getInt("HP");
+        max_hp = bundle.getInt("MAX_HP");
+        cp = bundle.getInt("CP");
+        max_cp = bundle.getInt("MAX_CP");
+        earth_power = bundle.getInt("EARTH_POWER");
+        fire_power = bundle.getInt("FIRE_POWER");
+        air_power = bundle.getInt("AIR_POWER");
+        water_power = bundle.getInt("WATER_POWER");
 
         Log.i("SUPERJUMPER", "BUNDLE VALUES: "+"enemy: "+enemy+" world: "+world+" hp: "+hp+" maxhp: "+max_hp+" cp: "+cp+" maxcp: "+max_cp+" earthpower: "+earth_power +" firepower: "+fire_power+" airpower: "+air_power+" waterpower: "+water_power);
     }     

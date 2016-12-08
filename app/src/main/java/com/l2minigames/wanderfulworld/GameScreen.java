@@ -66,7 +66,7 @@ public class GameScreen extends GLScreen {
             }                      
         };
         world = new World(worldListener);
-        renderer = new WorldRenderer(glGraphics, batcher, world);
+        renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
         pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
@@ -175,7 +175,7 @@ public class GameScreen extends GLScreen {
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
             world = new World(worldListener);
-            renderer = new WorldRenderer(glGraphics, batcher, world);
+            renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
             world.score = lastScore;
             state = GAME_READY;
         }
