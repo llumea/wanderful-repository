@@ -29,6 +29,11 @@ public class Assets {
     public static TextureRegion itemsFire;
     public static TextureRegion itemsAir;
     public static TextureRegion itemsWater;
+    public static TextureRegion itemsElementIndicator;
+    public static TextureRegion itemsElementIndicatorEarth;
+    public static TextureRegion itemsElementIndicatorFire;
+    public static TextureRegion itemsElementIndicatorAir;
+    public static TextureRegion itemsElementIndicatorWater;
     public static TextureRegion mainMenu;
     public static TextureRegion pauseMenu;
     public static TextureRegion ready;
@@ -77,6 +82,11 @@ public class Assets {
         itemsFire = new TextureRegion(items, 860, 320, 64, 64);
         itemsAir = new TextureRegion(items, 940, 240, 64, 64);
         itemsWater = new TextureRegion(items, 940, 320, 64, 64);
+        itemsElementIndicator = new TextureRegion(items, 400, 680, 220, 100);
+        itemsElementIndicatorEarth = new TextureRegion(items, 260, 800, 200, 200);
+        itemsElementIndicatorFire = new TextureRegion(items, 380, 800, 200, 200);
+        itemsElementIndicatorAir = new TextureRegion(items, 500, 800, 200, 200);
+        itemsElementIndicatorWater = new TextureRegion(items, 620, 800, 200, 200);
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
         ready = new TextureRegion(items, 320, 224, 192, 32);

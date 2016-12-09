@@ -111,10 +111,26 @@ public class WorldRenderer {
         batcher.drawSprite(marginLeftAI-differenceAI, 29, actualsizeAI, 0.5f, Assets.itemsHPBarGreen);
 
         ///Elementpowers
+
         batcher.drawSprite(7.7f, 29, 1.5f, 1.5f, Assets.itemsEarth);
         batcher.drawSprite(9.2f, 29, 1.5f, 1.5f, Assets.itemsFire);
         batcher.drawSprite(10.7f, 29, 1.5f, 1.5f, Assets.itemsAir);
         batcher.drawSprite(12.2f, 29, 1.5f, 1.5f, Assets.itemsWater);
+
+        ///Elementindicators
+
+        ///Earth
+        batcher.drawSprite(3f, 27, 2.2f, 1f, Assets.itemsElementIndicator);
+        batcher.drawSprite(3f-0.1f, 27-0.5f, 2f, 2f, -75f, Assets.itemsElementIndicatorEarth);
+        batcher.drawSprite(3f-0.1f, 27-0.5f, 2f, 2f, -50f, Assets.itemsElementIndicatorEarth);
+        batcher.drawSprite(3f-0.1f, 27-0.5f, 2f, 2f, -25f, Assets.itemsElementIndicatorEarth);
+        batcher.drawSprite(3f-0.1f, 27-0.5f, 2f, 2f, Assets.itemsElementIndicatorEarth);
+        ///Fire
+        batcher.drawSprite(7.5f, 27, 2.2f, 1f, Assets.itemsElementIndicator);
+        ///Air
+        batcher.drawSprite(12f, 27, 2.2f, 1f, Assets.itemsElementIndicator);
+        ///Water
+        batcher.drawSprite(16.5f, 27, 2.2f, 1f, Assets.itemsElementIndicator);
 
 
 
