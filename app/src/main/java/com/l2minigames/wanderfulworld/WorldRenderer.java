@@ -74,6 +74,9 @@ public class WorldRenderer {
         renderGround();
         renderProgress();
         batcher.endBatch();
+        batcher.beginBatch(Assets.playeratlas);
+        renderMolly();
+        batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
 
@@ -93,6 +96,10 @@ public class WorldRenderer {
         
         float side = world.bob.velocity.x < 0? -1: 1;        
         batcher.drawSprite(world.bob.position.x, world.bob.position.y, side * 1, 1, keyFrame);        
+    }
+    private void renderMolly() {
+
+        batcher.drawSprite(world.molly.position.x, world.molly.position.y, 6, 6, Assets.playerNormal);
     }
     private void renderProgress() {
         ///För spelaren

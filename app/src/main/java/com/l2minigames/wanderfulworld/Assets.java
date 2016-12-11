@@ -54,6 +54,10 @@ public class Assets {
     public static TextureRegion platform;
     public static Animation brakingPlatform;    
     public static Font font;
+
+    public static Texture playeratlas;
+    public static TextureRegion playerNormal;
+
     
     public static Music music;
     public static Sound jumpSound;
@@ -64,6 +68,7 @@ public class Assets {
 
     public static void load(GLGame game) {
         background = new Texture(game, "background.png");
+        playeratlas = new Texture(game, "playeratlas.png");
         background_vektor = new Texture(game, "bakgrund_vektor.png");
         backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
         backgroundRegionVektorWorld = new TextureRegion(background_vektor, 0, 0, 512, 448);
@@ -87,6 +92,8 @@ public class Assets {
         itemsElementIndicatorFire = new TextureRegion(items, 380, 800, 200, 200);
         itemsElementIndicatorAir = new TextureRegion(items, 500, 800, 200, 200);
         itemsElementIndicatorWater = new TextureRegion(items, 620, 800, 200, 200);
+
+        playerNormal = new TextureRegion(playeratlas, 0, 0, 128, 128);
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
         ready = new TextureRegion(items, 320, 224, 192, 32);
@@ -139,6 +146,7 @@ public class Assets {
     public static void reload() {
         background.reload();
         background_vektor.reload();
+        playeratlas.reload();
         items.reload();
         if(Settings.soundEnabled)
             music.play();

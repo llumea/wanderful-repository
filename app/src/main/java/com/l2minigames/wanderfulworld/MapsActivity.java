@@ -97,6 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int localTravelMode;
     Marker tmpMarker;
     int onlyOneTime;
+    int showWizard;
     ArrayList<Double> randomList = new ArrayList<>();
     ArrayList<Double> randomList2 = new ArrayList<>();
     ArrayList<MyMarker> tmpMarkersList = new ArrayList<>();
@@ -168,7 +169,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        showWizard = 0;
         mMapsActivity = this;
         travelStarted =false;
         mHandler = new Handler();
@@ -622,8 +623,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                 LatLng mPosition = new LatLng(object.latitude, object.longitude);
-                mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.girl)));
-
+                if (showWizard==0) {
+                    mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.girl)));
+                } else if (showWizard==1) {
+                    mMap.addMarker(new MarkerOptions().position(mPosition).title("MyMarker").icon(BitmapDescriptorFactory.fromResource(R.drawable.girl2)));
+                }
 
                 for (int i=0;i<object.markerList.size();i++){
                     Log.d("TAG", "markerSize before LatLng: "+object.markerList.size());
@@ -839,7 +843,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location) {
 
-
+    if (showWizard==0){showWizard=1;} else if (showWizard==1){showWizard=0;}
 
         if (onlyOneTime==1){onlyOneTime=0;} ///Nollställ uppdatering av markers
         animateCircle();

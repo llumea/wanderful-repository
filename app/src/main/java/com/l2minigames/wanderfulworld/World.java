@@ -22,7 +22,8 @@ public class World {
     public static final int WORLD_STATE_GAME_OVER = 2;
     public static final Vector2 gravity = new Vector2(0, -12);
 
-    public final Bob bob;           
+    public final Bob bob;
+    public final Molly molly;
     public final List<Platform> platforms;
     public final List<Spring> springs;
     public final List<Squirrel> squirrels;
@@ -36,7 +37,8 @@ public class World {
     public int state;
 
     public World(WorldListener listener) {
-        this.bob = new Bob(5, 1);        
+        this.bob = new Bob(5, 1);
+        this.molly = new Molly(3, 19);
         this.platforms = new ArrayList<Platform>();
         this.springs = new ArrayList<Spring>();
         this.squirrels = new ArrayList<Squirrel>();
@@ -95,6 +97,7 @@ public class World {
 
     public void update(float deltaTime, float accelX) {
         updateBob(deltaTime, accelX);
+        updateMolly(deltaTime);
         updatePlatforms(deltaTime);
         updateSquirrels(deltaTime);
         updateCoins(deltaTime);
@@ -110,6 +113,11 @@ public class World {
             bob.velocity.x = -accelX / 10 * Bob.BOB_MOVE_VELOCITY;
         bob.update(deltaTime);
         heightSoFar = Math.max(bob.position.y, heightSoFar);
+    }
+    private void updateMolly(float deltaTime) {
+
+        molly.update(deltaTime);
+
     }
 
     private void updatePlatforms(float deltaTime) {
