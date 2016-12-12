@@ -20,7 +20,7 @@ public class World {
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
-    public static final Vector2 gravity = new Vector2(0, -12);
+    public static final Vector2 gravity = new Vector2(0, -16); ///Tidigare 0,-12
 
     public final Bob bob;
     public final Molly molly;
@@ -96,7 +96,7 @@ public class World {
     }
 
     public void update(float deltaTime, float accelX) {
-        updateBob(deltaTime, accelX);
+       /// updateBob(deltaTime, accelX);
         updateMolly(deltaTime);
         updatePlatforms(deltaTime);
         updateSquirrels(deltaTime);

@@ -35,6 +35,7 @@ public class GameScreen extends GLScreen {
     Rectangle pauseBounds;
     Rectangle resumeBounds;
     Rectangle quitBounds;
+    Rectangle jumpBounds;
     int lastScore;
     String scoreString;
     SuperJumper mContext;
@@ -71,6 +72,7 @@ public class GameScreen extends GLScreen {
         pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
+        jumpBounds = new Rectangle(0, 0, 640, 960);
         lastScore = 0;
         scoreString = "score: 0";
     }
@@ -120,7 +122,17 @@ public class GameScreen extends GLScreen {
                 Assets.playSound(Assets.clickSound);
                 state = GAME_PAUSED;
                 return;
-            }            
+            }
+            if(OverlapTester.pointInRectangle(jumpBounds, touchPoint)) {
+                if (world.molly.state == world.molly.MOLLY_STATE_NORMAL){
+
+                }
+                world.molly.jump();
+                Assets.playSound(Assets.jumpSound);
+                ///world.createBall();
+                world.update(deltaTime, game.getInput().getAccelX()); ///uppdaterar med accelerator!!!
+                return;
+            }
         }
         
         world.update(deltaTime, game.getInput().getAccelX());

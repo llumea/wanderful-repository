@@ -99,7 +99,21 @@ public class WorldRenderer {
     }
     private void renderMolly() {
 
-        batcher.drawSprite(world.molly.position.x, world.molly.position.y, 6, 6, Assets.playerNormal);
+        TextureRegion keyFrame;
+        switch(world.molly.state) {
+            case Molly.MOLLY_STATE_JUMP:
+                keyFrame = Assets.mollyJump.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
+            case Molly.MOLLY_STATE_BEFORE_JUMP:
+                keyFrame = Assets.mollyJump.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
+            case Molly.MOLLY_STATE_HIT:
+            default:
+                keyFrame = Assets.playerNormal;
+        }
+
+
+        batcher.drawSprite(world.molly.position.x, world.molly.position.y, 6, 6, keyFrame);
     }
     private void renderProgress() {
         ///För spelaren

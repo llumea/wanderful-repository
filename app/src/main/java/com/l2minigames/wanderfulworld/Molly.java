@@ -15,7 +15,7 @@ public class Molly extends DynamicGameObject{
     public static final int MOLLY_STATE_WATER = 6;
     public static final int MOLLY_STATE_HIT = 7;
     public static final int MOLLY_STATE_DEAD = 8;
-    public static final float MOLLY_JUMP_VELOCITY = 11;
+    public static final float MOLLY_JUMP_VELOCITY = 16;
     public static final float MOLLY_MOVE_VELOCITY = 20;
     public static final float MOLLY_WIDTH = 0.8f;
     public static final float MOLLY_HEIGHT = 0.8f;
@@ -76,6 +76,11 @@ public class Molly extends DynamicGameObject{
     public void doWATER() {
 
         state = MOLLY_STATE_WATER;
+        stateTime = 0;
+    }
+    public void jump() {
+        velocity.y = MOLLY_JUMP_VELOCITY;
+        state = MOLLY_STATE_JUMP;
         stateTime = 0;
     }
 }
