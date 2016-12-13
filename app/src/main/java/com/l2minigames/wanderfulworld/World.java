@@ -20,10 +20,11 @@ public class World {
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
-    public static final Vector2 gravity = new Vector2(0, -16); ///Tidigare 0,-12
+    public static final Vector2 gravity = new Vector2(0, -30); ///Tidigare 0,-12
 
     public final Bob bob;
     public final Molly molly;
+    public final Ground ground;
     public final List<Platform> platforms;
     public final List<Spring> springs;
     public final List<Squirrel> squirrels;
@@ -39,6 +40,7 @@ public class World {
     public World(WorldListener listener) {
         this.bob = new Bob(5, 1);
         this.molly = new Molly(3, 19);
+        this.ground = new Ground(3,17);
         this.platforms = new ArrayList<Platform>();
         this.springs = new ArrayList<Spring>();
         this.squirrels = new ArrayList<Squirrel>();
@@ -101,6 +103,9 @@ public class World {
         updatePlatforms(deltaTime);
         updateSquirrels(deltaTime);
         updateCoins(deltaTime);
+
+        checkGround();
+
         if (bob.state != Bob.BOB_STATE_HIT)
             checkCollisions();
         checkGameOver();
@@ -119,6 +124,7 @@ public class World {
         molly.update(deltaTime);
 
     }
+
 
     private void updatePlatforms(float deltaTime) {
         int len = platforms.size();
@@ -219,6 +225,13 @@ public class World {
     private void checkCastleCollisions() {
         if (OverlapTester.overlapRectangles(castle.bounds, bob.bounds)) {
             state = WORLD_STATE_NEXT_LEVEL;
+        }
+    }
+    private void checkGround() {
+        if (OverlapTester.overlapRectangles(ground.bounds, molly.bounds)) {
+            molly.state = molly.MOLLY_STATE_NORMAL;
+            molly.position.y=19;
+            molly.velocity.y=0;
         }
     }
 

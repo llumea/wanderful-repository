@@ -49,6 +49,10 @@ public class Assets {
     public static Animation coinAnim;
     public static Animation bobJump;
     public static Animation mollyJump;
+    public static Animation mollyEarth;
+    public static Animation mollyFire;
+    public static Animation mollyAir;
+    public static Animation mollyWater;
     public static Animation bobFall;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
@@ -116,12 +120,42 @@ public class Assets {
         bobJump = new Animation(0.2f,
                                 new TextureRegion(items, 0, 128, 32, 32),
                                 new TextureRegion(items, 32, 128, 32, 32));
-        mollyJump = new Animation(0.1f,
+        mollyJump = new Animation(0.12f,
                 new TextureRegion(playeratlas, 128, 0, 128, 128),
                 new TextureRegion(playeratlas, 256, 0, 128, 128),
                 new TextureRegion(playeratlas, 384, 0, 128, 128),
+                new TextureRegion(playeratlas, 384, 0, 128, 128),
+                new TextureRegion(playeratlas, 384, 0, 128, 128),
+                new TextureRegion(playeratlas, 384, 0, 128, 128),
+                new TextureRegion(playeratlas, 384, 0, 128, 128),
                 new TextureRegion(playeratlas, 512, 0, 128, 128),
                 new TextureRegion(playeratlas, 640, 0, 128, 128));
+        mollyEarth = new Animation(0.12f,
+                new TextureRegion(playeratlas, 0, 384, 128, 128),
+                new TextureRegion(playeratlas, 128, 384, 128, 128),
+                new TextureRegion(playeratlas, 0, 384, 128, 128),
+                new TextureRegion(playeratlas, 128, 384, 128, 128),
+                new TextureRegion(playeratlas, 0, 384, 128, 128),
+                new TextureRegion(playeratlas, 128, 384, 128, 128),
+                new TextureRegion(playeratlas, 128, 384, 128, 128),
+                new TextureRegion(playeratlas, 128, 384, 128, 128));
+        mollyFire = new Animation(0.2f,
+                new TextureRegion(playeratlas, 0, 128, 128, 128),
+                new TextureRegion(playeratlas, 128, 128, 128, 128),
+                new TextureRegion(playeratlas, 128, 128, 128, 128),
+                new TextureRegion(playeratlas, 128, 128, 128, 128));
+        mollyWater = new Animation(0.4f,
+                new TextureRegion(playeratlas, 0, 512, 128, 128),
+                new TextureRegion(playeratlas, 128, 512, 128, 128));
+        mollyAir = new Animation(0.12f,
+                new TextureRegion(playeratlas, 0, 256, 128, 128),
+                new TextureRegion(playeratlas, 128, 256, 128, 128),
+                new TextureRegion(playeratlas, 256, 256, 128, 128),
+                new TextureRegion(playeratlas, 384, 256, 128, 128),
+                new TextureRegion(playeratlas, 0, 256, 128, 128),
+                new TextureRegion(playeratlas, 128, 256, 128, 128),
+                new TextureRegion(playeratlas, 256, 256, 128, 128),
+                new TextureRegion(playeratlas, 384, 256, 128, 128));
         bobFall = new Animation(0.2f,
                                 new TextureRegion(items, 64, 128, 32, 32),
                                 new TextureRegion(items, 96, 128, 32, 32));

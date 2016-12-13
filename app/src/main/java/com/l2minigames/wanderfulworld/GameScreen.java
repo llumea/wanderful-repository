@@ -2,6 +2,7 @@ package com.l2minigames.wanderfulworld;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import java.util.List;
 
@@ -39,6 +40,8 @@ public class GameScreen extends GLScreen {
     int lastScore;
     String scoreString;
     SuperJumper mContext;
+    int touchDownX;
+    int touchDownY;
 
 
 
@@ -75,6 +78,8 @@ public class GameScreen extends GLScreen {
         jumpBounds = new Rectangle(0, 0, 640, 960);
         lastScore = 0;
         scoreString = "score: 0";
+        touchDownX = 0;
+        touchDownY = 0;
     }
 
     @Override
@@ -110,12 +115,22 @@ public class GameScreen extends GLScreen {
     private void updateRunning(float deltaTime) {
         List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
         int len = touchEvents.size();
+
+
         for(int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
+            if (event.type == TouchEvent.TOUCH_DOWN){
+                touchDownX = event.x;
+                touchDownY = event.y;
+                Log.i("TOUCH", "IS TOUCH DOWN"+""+touchDownX+" "+touchDownY);
+            }
+
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
             
             touchPoint.set(event.x, event.y);
+
+
             guiCam.touchToWorld(touchPoint);
             
             if(OverlapTester.pointInRectangle(pauseBounds, touchPoint)) {
@@ -124,11 +139,34 @@ public class GameScreen extends GLScreen {
                 return;
             }
             if(OverlapTester.pointInRectangle(jumpBounds, touchPoint)) {
-                if (world.molly.state == world.molly.MOLLY_STATE_NORMAL){
 
+
+                ///Det är är punkten där man lyfter upp
+                Log.i("TOUCH", "TOUCH POSITION X: "+""+event.x);
+                Log.i("TOUCH", "TOUCH POSITION Y: "+""+event.y);
+                Log.i("TOUCH", "TOUCH DOWN POSITION X: "+""+touchDownX);
+                Log.i("TOUCH", "TOUCH DOWN POSITION Y: "+""+touchDownY);
+
+                if (touchDownY<event.y-200){
+                    world.molly.doEarth();
+                    ///ToDo Assets.playSound(Assets.jumpSound);
+                }else if (touchDownY>event.y+200){
+                    world.molly.doAir();
+                    ///ToDo Assets.playSound(Assets.jumpSound);
+                }else if (touchDownX<event.x-100){
+                    world.molly.doFire();
+                    ///ToDo Assets.playSound(Assets.jumpSound);
+                }else if (touchDownX>event.x+100){
+
+                    world.molly.doWater();
+                    ///ToDo Assets.playSound(Assets.jumpSound);
                 }
-                world.molly.jump();
-                Assets.playSound(Assets.jumpSound);
+
+                else if (world.molly.state == world.molly.MOLLY_STATE_NORMAL){
+                    world.molly.jump();
+                    Assets.playSound(Assets.jumpSound);
+                }
+
                 ///world.createBall();
                 world.update(deltaTime, game.getInput().getAccelX()); ///uppdaterar med accelerator!!!
                 return;

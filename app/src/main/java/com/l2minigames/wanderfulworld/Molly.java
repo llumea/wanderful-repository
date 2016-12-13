@@ -15,10 +15,10 @@ public class Molly extends DynamicGameObject{
     public static final int MOLLY_STATE_WATER = 6;
     public static final int MOLLY_STATE_HIT = 7;
     public static final int MOLLY_STATE_DEAD = 8;
-    public static final float MOLLY_JUMP_VELOCITY = 16;
+    public static final float MOLLY_JUMP_VELOCITY = 18;
     public static final float MOLLY_MOVE_VELOCITY = 20;
-    public static final float MOLLY_WIDTH = 0.8f;
-    public static final float MOLLY_HEIGHT = 0.8f;
+    public static final float MOLLY_WIDTH = 1f;
+    public static final float MOLLY_HEIGHT = 1f;
 
     int state;
     float stateTime;
@@ -30,9 +30,9 @@ public class Molly extends DynamicGameObject{
     }
 
     public void update(float deltaTime) {
-        velocity.add(World.gravity.x * deltaTime, World.gravity.y * deltaTime);
+        if (state==MOLLY_STATE_JUMP){velocity.add(World.gravity.x * deltaTime, World.gravity.y * deltaTime);}
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-        bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);
+        bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2+1f);
 ///Sätt state = normal om höjdled = 0 och inget annat state är aktivt
         if(velocity.y == 0 && state != MOLLY_STATE_BEFORE_JUMP && state !=MOLLY_STATE_EARTH && state !=MOLLY_STATE_FIRE && state !=MOLLY_STATE_AIR && state !=MOLLY_STATE_WATER) {
             if(state != MOLLY_STATE_NORMAL) {
@@ -58,22 +58,22 @@ public class Molly extends DynamicGameObject{
         stateTime = 0;
     }
 
-    public void doEARTH() {
+    public void doEarth() {
 
         state = MOLLY_STATE_EARTH;
         stateTime = 0;
     }
-    public void doFIRE() {
+    public void doFire() {
 
         state = MOLLY_STATE_FIRE;
         stateTime = 0;
     }
-    public void doAIR() {
+    public void doAir() {
 
         state = MOLLY_STATE_AIR;
         stateTime = 0;
     }
-    public void doWATER() {
+    public void doWater() {
 
         state = MOLLY_STATE_WATER;
         stateTime = 0;

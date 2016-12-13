@@ -107,6 +107,18 @@ public class WorldRenderer {
             case Molly.MOLLY_STATE_BEFORE_JUMP:
                 keyFrame = Assets.mollyJump.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
                 break;
+            case Molly.MOLLY_STATE_EARTH:
+                keyFrame = Assets.mollyEarth.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
+            case Molly.MOLLY_STATE_FIRE:
+                keyFrame = Assets.mollyFire.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
+            case Molly.MOLLY_STATE_AIR:
+                keyFrame = Assets.mollyAir.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
+            case Molly.MOLLY_STATE_WATER:
+                keyFrame = Assets.mollyWater.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                break;
             case Molly.MOLLY_STATE_HIT:
             default:
                 keyFrame = Assets.playerNormal;
@@ -192,8 +204,12 @@ public class WorldRenderer {
     }
     private void renderGround() {
 
+        ///Kollar mot world.ground
+
+        if (world.ground.type.equals("normal")){batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);}
+
         if (mContext.world.equals("wanderful world")) {
-            batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);
+           /// batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(6, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(10, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
