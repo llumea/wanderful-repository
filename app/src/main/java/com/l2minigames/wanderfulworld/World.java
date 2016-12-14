@@ -26,6 +26,10 @@ public class World {
     public final Molly molly;
     public final Ground ground;
     public final List<Platform> platforms;
+    public final List<Earth> earths;
+    public final List<Fire> fires;
+    public final List<Air> airs;
+    public final List<Water> waters;
     public final List<Spring> springs;
     public final List<Squirrel> squirrels;
     public final List<Coin> coins;
@@ -42,6 +46,10 @@ public class World {
         this.molly = new Molly(3, 19);
         this.ground = new Ground(3,17);
         this.platforms = new ArrayList<Platform>();
+        this.earths = new ArrayList<Earth>();
+        this.fires = new ArrayList<Fire>();
+        this.airs = new ArrayList<Air>();
+        this.waters = new ArrayList<Water>();
         this.springs = new ArrayList<Spring>();
         this.squirrels = new ArrayList<Squirrel>();
         this.coins = new ArrayList<Coin>();        
@@ -103,6 +111,10 @@ public class World {
         updatePlatforms(deltaTime);
         updateSquirrels(deltaTime);
         updateCoins(deltaTime);
+        updateEarths(deltaTime);
+        updateFires(deltaTime);
+        updateAirs(deltaTime);
+        updateWaters(deltaTime);
 
         checkGround();
 
@@ -135,6 +147,54 @@ public class World {
                     && platform.stateTime > Platform.PLATFORM_PULVERIZE_TIME) {
                 platforms.remove(platform);
                 len = platforms.size();
+            }
+        }
+    }
+    private void updateEarths(float deltaTime) {
+        int len = earths.size();
+        for (int i = 0; i < len; i++) {
+            Earth earth = earths.get(i);
+            earth.update(deltaTime);
+            if (earth.state == Earth.EARTH_STATE_PULVERIZING
+                    && earth.stateTime > Earth.EARTH_PULVERIZE_TIME) {
+                earths.remove(earth);
+                len = earths.size();
+            }
+        }
+    }
+    private void updateFires(float deltaTime) {
+        int len = fires.size();
+        for (int i = 0; i < len; i++) {
+            Fire fire = fires.get(i);
+            fire.update(deltaTime);
+            if (fire.state == Fire.FIRE_STATE_PULVERIZING
+                    && fire.stateTime > Fire.FIRE_PULVERIZE_TIME) {
+                fires.remove(fire);
+                len = fires.size();
+            }
+        }
+    }
+    private void updateAirs(float deltaTime) {
+        int len = airs.size();
+        for (int i = 0; i < len; i++) {
+            Air air = airs.get(i);
+            air.update(deltaTime);
+            if (air.state == Air.AIR_STATE_PULVERIZING
+                    && air.stateTime > Air.AIR_PULVERIZE_TIME) {
+                airs.remove(air);
+                len = airs.size();
+            }
+        }
+    }
+    private void updateWaters(float deltaTime) {
+        int len = waters.size();
+        for (int i = 0; i < len; i++) {
+            Water water = waters.get(i);
+            water.update(deltaTime);
+            if (water.state == Water.WATER_STATE_PULVERIZING
+                    && water.stateTime > Water.WATER_PULVERIZE_TIME) {
+                waters.remove(water);
+                len = waters.size();
             }
         }
     }

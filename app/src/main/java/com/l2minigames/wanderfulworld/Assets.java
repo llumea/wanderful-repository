@@ -53,6 +53,10 @@ public class Assets {
     public static Animation mollyFire;
     public static Animation mollyAir;
     public static Animation mollyWater;
+    public static Animation earthAnimation;
+    public static Animation fireAnimation;
+    public static Animation airAnimation;
+    public static Animation waterAnimation;
     public static Animation bobFall;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
@@ -120,6 +124,30 @@ public class Assets {
         bobJump = new Animation(0.2f,
                                 new TextureRegion(items, 0, 128, 32, 32),
                                 new TextureRegion(items, 32, 128, 32, 32));
+        earthAnimation = new Animation(0.2f,
+                new TextureRegion(items, 256, 384, 32, 32),
+                new TextureRegion(items, 384, 384, 32, 32),
+                new TextureRegion(items, 512, 384, 32, 32),
+                new TextureRegion(items, 640, 384, 32, 32));
+        fireAnimation = new Animation(0.2f,
+                new TextureRegion(items, 256, 128, 32, 32),
+                new TextureRegion(items, 384, 128, 32, 32),
+                new TextureRegion(items, 512, 128, 32, 32),
+                new TextureRegion(items, 640, 128, 32, 32),
+                new TextureRegion(items, 768, 128, 32, 32));
+        airAnimation = new Animation(0.2f,
+                new TextureRegion(items, 0, 640, 32, 32),
+                new TextureRegion(items, 128, 640, 32, 32),
+                new TextureRegion(items, 256, 640, 32, 32),
+                new TextureRegion(items, 384, 640, 32, 32),
+                new TextureRegion(items, 512, 640, 32, 32),
+                new TextureRegion(items, 640, 640, 32, 32));
+        waterAnimation = new Animation(0.2f,
+                new TextureRegion(items, 256, 512, 32, 32),
+                new TextureRegion(items, 384, 512, 32, 32),
+                new TextureRegion(items, 512, 512, 32, 32),
+                new TextureRegion(items, 640, 512, 32, 32),
+                new TextureRegion(items, 768, 512, 32, 32));
         mollyJump = new Animation(0.12f,
                 new TextureRegion(playeratlas, 128, 0, 128, 128),
                 new TextureRegion(playeratlas, 256, 0, 128, 128),
