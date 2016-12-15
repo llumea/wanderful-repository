@@ -16,20 +16,31 @@ public class Molly extends DynamicGameObject{
     public static final int MOLLY_STATE_HIT = 7;
     public static final int MOLLY_STATE_DEAD = 8;
     public static final int MOLLY_STATE_PULVERIZE = 9;
-
     public static final float MOLLY_JUMP_VELOCITY = 18;
     public static final float MOLLY_MOVE_VELOCITY = 20;
     public static final float MOLLY_WIDTH = 1f;
     public static final float MOLLY_HEIGHT = 1f;
 
+    int hp;
+    int maxhp;
+    int earthCount;
+    int fireCount;
+    int waterCount;
+    int airCount;
     int state;
     float stateTime;
 
     public static float MOLLY_PULVERIZE_TIME = 0;
 
-    public Molly(float x, float y) {
+    public Molly(float x, float y, int hp, int maxhp, int earthCount, int fireCount, int airCount, int waterCount) {
         super(x, y, MOLLY_WIDTH, MOLLY_HEIGHT);
         state = MOLLY_STATE_NORMAL;
+        this.hp = hp;
+        this.maxhp = maxhp;
+        this.earthCount = earthCount;
+        this.fireCount = fireCount;
+        this.airCount = airCount;
+        this.waterCount = waterCount;
         stateTime = 0;
     }
 

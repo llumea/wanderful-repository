@@ -129,7 +129,7 @@ public class Assets {
                 new TextureRegion(playeratlas, 384, 384, 128, 128),
                 new TextureRegion(playeratlas, 512, 384, 128, 128),
                 new TextureRegion(playeratlas, 640, 384, 128, 128));
-        fireAnimation = new Animation(0.05f,
+        fireAnimation = new Animation(0.04f,
                 new TextureRegion(playeratlas, 896, 128, 128, 128),
                 new TextureRegion(playeratlas, 896, 128, 128, 128),
                 new TextureRegion(playeratlas, 896, 128, 128, 128),

@@ -1,5 +1,7 @@
 package com.l2minigames.wanderfulworld;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -40,10 +42,15 @@ public class World {
     public float heightSoFar;
     public int score;    
     public int state;
+    public int mollyHp;
+    SuperJumper mContext;
 
-    public World(WorldListener listener) {
+    public World(WorldListener listener, SuperJumper context) {
         this.bob = new Bob(5, 1);
-        this.molly = new Molly(3, 19);
+        this.mContext = context;
+        mollyHp = mContext.hp;
+        Log.i("GAME", "Molly HP"+mollyHp);
+        this.molly = new Molly(3, 19, mContext.hp, mContext.max_hp, mContext.earth_power, mContext.fire_power, mContext.air_power, mContext.water_power);
         this.ground = new Ground(3,17);
         this.platforms = new ArrayList<Platform>();
         this.earths = new ArrayList<Earth>();
@@ -170,41 +177,42 @@ public class World {
             Water water = waters.get(i);
             if (water.position.x>22||water.position.y<-4){
                 waters.remove(i);
-                len4=airs.size();
+                len4=waters.size();
             }
         }
 
     }
     public void createEarth(){
 
-        Earth earth = new Earth(3,32);
+        Earth earth = new Earth(molly.position.x,32); ///Tidigare 3
         earths.add(earth);
     }
     public void createFire(){
 
-        Fire fire = new Fire(4,19.5f);
+        Fire fire = new Fire(molly.position.x+1f,molly.position.y+0.5f);
         fire.velocity.x=12;
         fires.add(fire);
 
     }
     public void createAir(){
 
-        Air air = new Air(4.5f,18f);
-        air.velocity.x=6;
+        Air air = new Air(molly.position.x-3,molly.position.y+5);
+        air.velocity.x=8;
+        air.velocity.y=-1.2f;
         airs.add(air);
 
     }
     public void createWater(){
 
-        Water water = new Water(2.3f,17.5f);
+        Water water = new Water(molly.position.x-1,molly.position.y-1);
         water.velocity.x=10;
         water.velocity.y=15;
         waters.add(water);
-        Water water2 = new Water(2.7f,17.5f);
+        Water water2 = new Water(molly.position.x,molly.position.y-1);
         water2.velocity.x=10;
         water2.velocity.y=19;
         waters.add(water2);
-        Water water3 = new Water(3.1f,17.5f);
+        Water water3 = new Water(molly.position.x+1,molly.position.y-1);
         water3.velocity.x=10;
         water3.velocity.y=23;
         waters.add(water3);

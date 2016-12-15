@@ -1,5 +1,7 @@
 package com.l2minigames.wanderfulworld;
 
+import android.util.Log;
+
 import javax.microedition.khronos.opengles.GL10;
 
 import com.l2minigames.framework.gl.Animation;
@@ -134,11 +136,20 @@ public class WorldRenderer {
     private void renderProgress() {
         ///För spelaren
         float fullsize=5f;
+        float hp = world.molly.hp;
+        float maxhp = world.molly.maxhp;
+        float computeRatio = hp/maxhp*5f;
+        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
+        Log.i("GAME","MOLLY HP:"+world.molly.hp);
+        Log.i("GAME","MOLLY MAXHP:"+world.molly.maxhp);
+        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
+        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
+
         float actualsize = 4.5f;
         float marginLeft = 4f;
-        float difference = (fullsize-actualsize)/2;
+        float difference = (fullsize-computeRatio)/2; ///computeRatio tidigare actualsize
         batcher.drawSprite(marginLeft, 26.6f, fullsize, 0.5f, Assets.itemsHPBarBlack);
-        batcher.drawSprite(marginLeft-difference, 26.6f, actualsize, 0.5f, Assets.itemsHPBarGreen);
+        batcher.drawSprite(marginLeft-difference, 26.6f, computeRatio, 0.5f, Assets.itemsHPBarGreen);
         ///För AI
         float fullsizeAI=5f;
         float actualsizeAI = 3f;
@@ -155,53 +166,113 @@ public class WorldRenderer {
         batcher.drawSprite(3.4f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(3.3f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(3.5f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorEarth);
-        batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorEarth);
+
+        if (world.molly.earthCount>0) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorEarth);
+        }
+        if (world.molly.earthCount>1) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorEarth);
+        }
+        if (world.molly.earthCount>2) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorEarth);
+        }
+        if (world.molly.earthCount>3) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorEarth);
+        }
+        if (world.molly.earthCount>4) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorEarth);
+        }
+        if (world.molly.earthCount>5) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorEarth);
+        }
+        if(world.molly.earthCount>6) {
+            batcher.drawSprite(3.2f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorEarth);
+        }
         ///Fire
         batcher.drawSprite(7.9f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(8f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(7.8f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorFire);
-        batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorFire);
+
+        if(world.molly.fireCount>0) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>1) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>2) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>3) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>4) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>5) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorFire);
+        }
+        if (world.molly.fireCount>6) {
+            batcher.drawSprite(7.7f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorFire);
+        }
         ///Air
         batcher.drawSprite(12.4f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(12.3f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(12.5f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorAir);
-        batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorAir);
+
+        if (world.molly.airCount>0) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>1) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>2) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>3) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>4) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>5) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorAir);
+        }
+        if (world.molly.airCount>6) {
+            batcher.drawSprite(12.2f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorAir);
+        }
         ///Water
         batcher.drawSprite(16.9f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(16.8f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
         batcher.drawSprite(17f, 28.8f, 4.4f, 2f, Assets.itemsElementIndicator);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorWater);
-        batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorWater);
+
+        if (world.molly.waterCount>0) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 75f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>1) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 50f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>2) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, 25f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>3) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>4) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -25f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>5) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -50f, Assets.itemsElementIndicatorWater);
+        }
+        if (world.molly.waterCount>6) {
+            batcher.drawSprite(16.7f, 27.8f, 4f, 4f, -75f, Assets.itemsElementIndicatorWater);
+        }
 
         ///Elementpowers
 
         batcher.drawSprite(3.2f, 28.1f, 1.8f, 1.5f, Assets.itemsEarth);
-        batcher.drawSprite(7.8f, 28.1f, 1.8f, 1.5f, Assets.itemsFire);
-        batcher.drawSprite(12.3f, 28.1f, 1.8f, 1.5f, Assets.itemsAir);
-        batcher.drawSprite(16.8f, 28.1f, 1.8f, 1.5f, Assets.itemsWater);
+        batcher.drawSprite(7.7f, 28.1f, 1.8f, 1.5f, Assets.itemsFire);
+        batcher.drawSprite(12.2f, 28.1f, 1.8f, 1.5f, Assets.itemsAir);
+        batcher.drawSprite(16.7f, 28.1f, 1.8f, 1.5f, Assets.itemsWater);
 
 
 

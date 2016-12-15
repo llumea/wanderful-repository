@@ -70,7 +70,7 @@ public class GameScreen extends GLScreen {
                 Assets.playSound(Assets.coinSound);
             }                      
         };
-        world = new World(worldListener);
+        world = new World(worldListener, mContext);
         renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
         pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
@@ -148,22 +148,41 @@ public class GameScreen extends GLScreen {
                 Log.i("TOUCH", "TOUCH DOWN POSITION Y: "+""+touchDownY);
 
                 if (touchDownY<event.y-200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
-                    world.molly.doEarth();
-                    world.createEarth();
+                    if (world.molly.earthCount !=0) {
+                        world.molly.doEarth();
+                        world.createEarth();
+                        world.molly.earthCount = world.molly.earthCount - 1;
+                    }else {
+                        world.molly.doEarth();
+                    }
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }else if (touchDownY>event.y+200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
-                    world.molly.doAir();
-                    world.createAir();
+                    if (world.molly.airCount !=0) {
+                        world.molly.doAir();
+                        world.createAir();
+                        world.molly.airCount = world.molly.airCount - 1;
+                    }else {
+                        world.molly.doAir();
+                    }
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }else if (touchDownX<event.x-100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
-                    world.molly.doFire();
-                    world.createFire();
+                    if (world.molly.fireCount !=0) {
+                        world.molly.doFire();
+                        world.createFire();
+                        world.molly.fireCount = world.molly.fireCount - 1;
+                    } else {
+                        world.molly.doFire();
+                    }
 
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }else if (touchDownX>event.x+100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
-
-                    world.molly.doWater();
-                    world.createWater();
+                    if (world.molly.waterCount !=0) {
+                        world.molly.doWater();
+                        world.createWater();
+                        world.molly.waterCount = world.molly.waterCount - 1;
+                    }else {
+                        world.molly.doWater();
+                    }
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }
 
@@ -234,7 +253,7 @@ public class GameScreen extends GLScreen {
             TouchEvent event = touchEvents.get(i);
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
-            world = new World(worldListener);
+            world = new World(worldListener, mContext);
             renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
             world.score = lastScore;
             state = GAME_READY;
