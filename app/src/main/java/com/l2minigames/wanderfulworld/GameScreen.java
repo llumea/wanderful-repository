@@ -77,7 +77,7 @@ public class GameScreen extends GLScreen {
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
         jumpBounds = new Rectangle(0, 0, 640, 960);
         lastScore = 0;
-        scoreString = "score: 0";
+        scoreString = "";
         touchDownX = 0;
         touchDownY = 0;
     }
@@ -147,22 +147,27 @@ public class GameScreen extends GLScreen {
                 Log.i("TOUCH", "TOUCH DOWN POSITION X: "+""+touchDownX);
                 Log.i("TOUCH", "TOUCH DOWN POSITION Y: "+""+touchDownY);
 
-                if (touchDownY<event.y-200){
+                if (touchDownY<event.y-200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
                     world.molly.doEarth();
+                    world.createEarth();
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownY>event.y+200){
+                }else if (touchDownY>event.y+200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
                     world.molly.doAir();
+                    world.createAir();
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownX<event.x-100){
+                }else if (touchDownX<event.x-100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
                     world.molly.doFire();
+                    world.createFire();
+
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownX>event.x+100){
+                }else if (touchDownX>event.x+100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
 
                     world.molly.doWater();
+                    world.createWater();
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }
 
-                else if (world.molly.state == world.molly.MOLLY_STATE_NORMAL){
+                else if (world.molly.velocity.y==0){
                     world.molly.jump();
                     Assets.playSound(Assets.jumpSound);
                 }
@@ -174,21 +179,25 @@ public class GameScreen extends GLScreen {
         }
         
         world.update(deltaTime, game.getInput().getAccelX());
+        /*
         if(world.score != lastScore) {
             lastScore = world.score;
             scoreString = "" + lastScore;
         }
+        */
         if(world.state == World.WORLD_STATE_NEXT_LEVEL) {
             state = GAME_LEVEL_END;        
         }
         if(world.state == World.WORLD_STATE_GAME_OVER) {
             state = GAME_OVER;
+            /*
             if(lastScore >= Settings.highscores[4]) 
                 scoreString = "new highscore: " + lastScore;
             else
                 scoreString = "score: " + lastScore;
             Settings.addScore(lastScore);
             Settings.save(game.getFileIO());
+            */
         }
     }
 
@@ -297,8 +306,8 @@ public class GameScreen extends GLScreen {
     private void presentRunning() {
 
         batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
-        Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
-        Assets.font.drawText(batcher, "HELLO", 500, 800);
+        ///Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
+        ///Assets.font.drawText(batcher, "HELLO", 500, 800);
         ///Assets.font.drawText(batcher, "HELLO", 500, 800);
     }
 

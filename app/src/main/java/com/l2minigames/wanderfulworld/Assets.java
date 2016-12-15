@@ -125,29 +125,41 @@ public class Assets {
                                 new TextureRegion(items, 0, 128, 32, 32),
                                 new TextureRegion(items, 32, 128, 32, 32));
         earthAnimation = new Animation(0.2f,
-                new TextureRegion(items, 256, 384, 32, 32),
-                new TextureRegion(items, 384, 384, 32, 32),
-                new TextureRegion(items, 512, 384, 32, 32),
-                new TextureRegion(items, 640, 384, 32, 32));
-        fireAnimation = new Animation(0.2f,
-                new TextureRegion(items, 256, 128, 32, 32),
-                new TextureRegion(items, 384, 128, 32, 32),
-                new TextureRegion(items, 512, 128, 32, 32),
-                new TextureRegion(items, 640, 128, 32, 32),
-                new TextureRegion(items, 768, 128, 32, 32));
-        airAnimation = new Animation(0.2f,
-                new TextureRegion(items, 0, 640, 32, 32),
-                new TextureRegion(items, 128, 640, 32, 32),
-                new TextureRegion(items, 256, 640, 32, 32),
-                new TextureRegion(items, 384, 640, 32, 32),
-                new TextureRegion(items, 512, 640, 32, 32),
-                new TextureRegion(items, 640, 640, 32, 32));
-        waterAnimation = new Animation(0.2f,
-                new TextureRegion(items, 256, 512, 32, 32),
-                new TextureRegion(items, 384, 512, 32, 32),
-                new TextureRegion(items, 512, 512, 32, 32),
-                new TextureRegion(items, 640, 512, 32, 32),
-                new TextureRegion(items, 768, 512, 32, 32));
+                new TextureRegion(playeratlas, 256, 384, 128, 128),
+                new TextureRegion(playeratlas, 384, 384, 128, 128),
+                new TextureRegion(playeratlas, 512, 384, 128, 128),
+                new TextureRegion(playeratlas, 640, 384, 128, 128));
+        fireAnimation = new Animation(0.05f,
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 256, 128, 128, 128),
+                new TextureRegion(playeratlas, 384, 128, 128, 128),
+                new TextureRegion(playeratlas, 512, 128, 128, 128),
+                new TextureRegion(playeratlas, 640, 128, 128, 128),
+                new TextureRegion(playeratlas, 768, 128, 128, 128));
+        airAnimation = new Animation(0.1f,
+                new TextureRegion(playeratlas, 0, 640, 128, 128),
+                new TextureRegion(playeratlas, 128, 640, 128, 128),
+                new TextureRegion(playeratlas, 256, 640, 128, 128),
+                new TextureRegion(playeratlas, 384, 640, 128, 128),
+                new TextureRegion(playeratlas, 512, 640, 128, 128),
+                new TextureRegion(playeratlas, 640, 640, 128, 128));
+        waterAnimation = new Animation(0.05f,
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 896, 128, 128, 128),
+                new TextureRegion(playeratlas, 256, 512, 128, 128),
+                new TextureRegion(playeratlas, 384, 512, 128, 128),
+                new TextureRegion(playeratlas, 512, 512, 128, 128),
+                new TextureRegion(playeratlas, 640, 512, 128, 128),
+                new TextureRegion(playeratlas, 768, 512, 128, 128));
         mollyJump = new Animation(0.12f,
                 new TextureRegion(playeratlas, 128, 0, 128, 128),
                 new TextureRegion(playeratlas, 256, 0, 128, 128),
@@ -166,15 +178,21 @@ public class Assets {
                 new TextureRegion(playeratlas, 0, 384, 128, 128),
                 new TextureRegion(playeratlas, 128, 384, 128, 128),
                 new TextureRegion(playeratlas, 128, 384, 128, 128),
-                new TextureRegion(playeratlas, 128, 384, 128, 128));
+                new TextureRegion(playeratlas, 128, 384, 128, 128),
+                new TextureRegion(playeratlas, 0, 0, 128, 128));
+
         mollyFire = new Animation(0.2f,
                 new TextureRegion(playeratlas, 0, 128, 128, 128),
                 new TextureRegion(playeratlas, 128, 128, 128, 128),
                 new TextureRegion(playeratlas, 128, 128, 128, 128),
-                new TextureRegion(playeratlas, 128, 128, 128, 128));
+                new TextureRegion(playeratlas, 128, 128, 128, 128),
+                new TextureRegion(playeratlas, 0, 0, 128, 128));
+
         mollyWater = new Animation(0.4f,
                 new TextureRegion(playeratlas, 0, 512, 128, 128),
-                new TextureRegion(playeratlas, 128, 512, 128, 128));
+                new TextureRegion(playeratlas, 128, 512, 128, 128),
+                new TextureRegion(playeratlas, 0, 0, 128, 128));
+
         mollyAir = new Animation(0.12f,
                 new TextureRegion(playeratlas, 0, 256, 128, 128),
                 new TextureRegion(playeratlas, 128, 256, 128, 128),
@@ -183,7 +201,9 @@ public class Assets {
                 new TextureRegion(playeratlas, 0, 256, 128, 128),
                 new TextureRegion(playeratlas, 128, 256, 128, 128),
                 new TextureRegion(playeratlas, 256, 256, 128, 128),
-                new TextureRegion(playeratlas, 384, 256, 128, 128));
+                new TextureRegion(playeratlas, 384, 256, 128, 128),
+                new TextureRegion(playeratlas, 0, 0, 128, 128));
+
         bobFall = new Animation(0.2f,
                                 new TextureRegion(items, 64, 128, 32, 32),
                                 new TextureRegion(items, 96, 128, 32, 32));

@@ -20,7 +20,7 @@ public class Earth extends DynamicGameObject {
 
     public Earth(float x, float y) {
         super(x, y, EARTH_WIDTH, EARTH_HEIGHT);
-        state = EARTH_STATE_FALL;
+        state = EARTH_STATE_NORMAL;
         stateTime = 0;
     }
 

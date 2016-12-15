@@ -115,6 +115,7 @@ public class World {
         updateFires(deltaTime);
         updateAirs(deltaTime);
         updateWaters(deltaTime);
+        removeUnusedObjects(deltaTime);
 
         checkGround();
 
@@ -133,7 +134,80 @@ public class World {
     }
     private void updateMolly(float deltaTime) {
 
+
+
         molly.update(deltaTime);
+
+    }
+    private void removeUnusedObjects(float deltaTime) {
+
+        int len = earths.size();
+        for (int i = 0; i < len; i++) {
+            Earth earth = earths.get(i);
+            if (earth.position.x>22||earth.position.y<-4){
+                earths.remove(i);
+                len=earths.size();
+            }
+        }
+        int len2 = fires.size();
+        for (int i = 0; i < len2; i++) {
+            Fire fire = fires.get(i);
+            if (fire.position.x>22||fire.position.y<-4){
+                fires.remove(i);
+                len2=fires.size();
+            }
+        }
+        int len3 = airs.size();
+        for (int i = 0; i < len3; i++) {
+            Air air = airs.get(i);
+            if (air.position.x>22||air.position.y<-4){
+                airs.remove(i);
+                len3=airs.size();
+            }
+        }
+        int len4 = waters.size();
+        for (int i = 0; i < len4; i++) {
+            Water water = waters.get(i);
+            if (water.position.x>22||water.position.y<-4){
+                waters.remove(i);
+                len4=airs.size();
+            }
+        }
+
+    }
+    public void createEarth(){
+
+        Earth earth = new Earth(3,32);
+        earths.add(earth);
+    }
+    public void createFire(){
+
+        Fire fire = new Fire(4,19.5f);
+        fire.velocity.x=12;
+        fires.add(fire);
+
+    }
+    public void createAir(){
+
+        Air air = new Air(4.5f,18f);
+        air.velocity.x=6;
+        airs.add(air);
+
+    }
+    public void createWater(){
+
+        Water water = new Water(2.3f,17.5f);
+        water.velocity.x=10;
+        water.velocity.y=15;
+        waters.add(water);
+        Water water2 = new Water(2.7f,17.5f);
+        water2.velocity.x=10;
+        water2.velocity.y=19;
+        waters.add(water2);
+        Water water3 = new Water(3.1f,17.5f);
+        water3.velocity.x=10;
+        water3.velocity.y=23;
+        waters.add(water3);
 
     }
 
@@ -220,6 +294,7 @@ public class World {
         checkSquirrelCollisions();
         checkItemCollisions();
         checkCastleCollisions();
+        checkEarthGroundCollisions();
     }
 
     private void checkPlatformCollisions() {
@@ -250,6 +325,17 @@ public class World {
             if (OverlapTester.overlapRectangles(squirrel.bounds, bob.bounds)) {
                 bob.hitSquirrel();
                 listener.hit();
+            }
+        }
+    }
+    private void checkEarthGroundCollisions() {
+        int len = earths.size();
+        for (int i = 0; i < len; i++) {
+            Earth earth = earths.get(i);
+            if (OverlapTester.overlapRectangles(earth.bounds, ground.bounds)) {
+               earth.velocity.y = 0;
+               earth.velocity.x = 2;
+                earth.position.y =17.8f;
             }
         }
     }

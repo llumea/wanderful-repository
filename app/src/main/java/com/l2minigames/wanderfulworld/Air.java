@@ -25,7 +25,7 @@ public class Air extends DynamicGameObject {
     }
 
     public void update(float deltaTime) {
-        velocity.add(World.gravity.x * deltaTime, World.gravity.y * deltaTime);
+       /// velocity.add(World.gravity.x * deltaTime, World.gravity.y * deltaTime);
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);
         bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);
         stateTime += deltaTime;

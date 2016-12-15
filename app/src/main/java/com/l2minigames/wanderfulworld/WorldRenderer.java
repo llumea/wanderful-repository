@@ -76,6 +76,10 @@ public class WorldRenderer {
         batcher.endBatch();
         batcher.beginBatch(Assets.playeratlas);
         renderMolly();
+        renderEarths();
+        renderFires();
+        renderAirs();
+        renderWaters();
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
@@ -108,16 +112,16 @@ public class WorldRenderer {
                 keyFrame = Assets.mollyJump.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
                 break;
             case Molly.MOLLY_STATE_EARTH:
-                keyFrame = Assets.mollyEarth.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                keyFrame = Assets.mollyEarth.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_NONLOOPING);
                 break;
             case Molly.MOLLY_STATE_FIRE:
-                keyFrame = Assets.mollyFire.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                keyFrame = Assets.mollyFire.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_NONLOOPING);
                 break;
             case Molly.MOLLY_STATE_AIR:
-                keyFrame = Assets.mollyAir.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                keyFrame = Assets.mollyAir.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_NONLOOPING);
                 break;
             case Molly.MOLLY_STATE_WATER:
-                keyFrame = Assets.mollyWater.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_LOOPING);
+                keyFrame = Assets.mollyWater.getKeyFrame(world.molly.stateTime, Animation.ANIMATION_NONLOOPING);
                 break;
             case Molly.MOLLY_STATE_HIT:
             default:
@@ -244,6 +248,42 @@ public class WorldRenderer {
             Coin coin = world.coins.get(i);
             TextureRegion keyFrame = Assets.coinAnim.getKeyFrame(coin.stateTime, Animation.ANIMATION_LOOPING);
             batcher.drawSprite(coin.position.x, coin.position.y, 1, 1, keyFrame);
+        }
+    }
+    private void renderEarths() {
+
+        int len = world.earths.size();
+        for(int i = 0; i < len; i++) {
+            Earth earth = world.earths.get(i);
+            TextureRegion keyFrame = Assets.earthAnimation.getKeyFrame(earth.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(earth.position.x, earth.position.y, 4, 4, keyFrame);
+        }
+    }
+    private void renderFires() {
+
+        int len = world.fires.size();
+        for(int i = 0; i < len; i++) {
+            Fire fire = world.fires.get(i);
+            TextureRegion keyFrame = Assets.fireAnimation.getKeyFrame(fire.stateTime, Animation.ANIMATION_NONLOOPING);
+            batcher.drawSprite(fire.position.x, fire.position.y, 4, 4, keyFrame);
+        }
+    }
+    private void renderAirs() {
+
+        int len = world.airs.size();
+        for(int i = 0; i < len; i++) {
+            Air air = world.airs.get(i);
+            TextureRegion keyFrame = Assets.airAnimation.getKeyFrame(air.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(air.position.x, air.position.y, 6, 6, keyFrame);
+        }
+    }
+    private void renderWaters() {
+
+        int len = world.waters.size();
+        for(int i = 0; i < len; i++) {
+            Water water = world.waters.get(i);
+            TextureRegion keyFrame = Assets.waterAnimation.getKeyFrame(water.stateTime, Animation.ANIMATION_NONLOOPING);
+            batcher.drawSprite(water.position.x, water.position.y, 2, 2, keyFrame);
         }
     }
 
