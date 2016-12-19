@@ -64,6 +64,12 @@ public class Assets {
     public static Animation hedgehogAnimation;
     public static Animation wolfAnimation;
     public static Animation bulldogAnimation;
+    public static Animation captainAnimation;
+    public static Animation birdAnimation;
+    public static Animation dragonAnimation;
+    public static Animation snakeAnimation;
+    public static Animation stoneAnimation;
+    public static Animation ghostAnimation;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
     public static TextureRegion platform;
@@ -136,10 +142,24 @@ public class Assets {
                 new TextureRegion(playeratlas, 384, 384, 128, 128),
                 new TextureRegion(playeratlas, 512, 384, 128, 128),
                 new TextureRegion(playeratlas, 640, 384, 128, 128));
+
         hedgehogAnimation = new Animation(0.2f,
                 new TextureRegion(enemyatlas, 0, 0, 128, 128),
                 new TextureRegion(enemyatlas, 128, 0, 128, 128),
                 new TextureRegion(enemyatlas, 256, 0, 128, 128));
+        birdAnimation = new Animation(0.2f,
+                new TextureRegion(enemyatlas, 0, 448, 128, 128),
+                new TextureRegion(enemyatlas, 128, 448, 128, 128),
+                new TextureRegion(enemyatlas, 256, 448, 128, 128));
+        snakeAnimation = new Animation(0.2f,
+                new TextureRegion(enemyatlas, 768, 448, 128, 128),
+                new TextureRegion(enemyatlas, 896, 448, 128, 128));
+        dragonAnimation = new Animation(0.15f,
+                new TextureRegion(enemyatlas, 384, 448, 128, 128),
+                new TextureRegion(enemyatlas, 512, 448, 128, 128),
+                new TextureRegion(enemyatlas, 640, 448, 128, 128),
+                new TextureRegion(enemyatlas, 512, 448, 128, 128),
+                new TextureRegion(enemyatlas, 640, 448, 128, 128));
         wolfAnimation = new Animation(0.1f,
                 new TextureRegion(enemyatlas, 512, 0, 256, 128),
                 new TextureRegion(enemyatlas, 768, 0, 256, 128),
@@ -147,6 +167,13 @@ public class Assets {
                 new TextureRegion(enemyatlas, 256, 128, 256, 128),
                 new TextureRegion(enemyatlas, 512, 128, 256, 128),
                 new TextureRegion(enemyatlas, 768, 128, 256, 128));
+        stoneAnimation = new Animation(0.1f,
+                new TextureRegion(enemyatlas, 0, 576, 64, 64),
+                new TextureRegion(enemyatlas, 64, 576, 64, 64),
+                new TextureRegion(enemyatlas, 128, 576, 64, 64),
+                new TextureRegion(enemyatlas, 192, 576, 64, 64),
+                new TextureRegion(enemyatlas, 256, 576, 64, 64),
+                new TextureRegion(enemyatlas, 320, 576, 64, 64));
         bulldogAnimation = new Animation(0.1f,
                 new TextureRegion(enemyatlas, 0, 256, 128, 64),
                 new TextureRegion(enemyatlas, 128, 256, 128, 64),
@@ -154,6 +181,20 @@ public class Assets {
                 new TextureRegion(enemyatlas, 384, 256, 128, 64),
                 new TextureRegion(enemyatlas, 512, 256, 128, 64),
                 new TextureRegion(enemyatlas, 640, 256, 128, 64));
+        captainAnimation = new Animation(0.1f,
+                new TextureRegion(enemyatlas, 0, 320, 128, 128),
+                new TextureRegion(enemyatlas, 128, 320, 128, 128),
+                new TextureRegion(enemyatlas, 256, 320, 128, 128),
+                new TextureRegion(enemyatlas, 384, 320, 128, 128),
+                new TextureRegion(enemyatlas, 512, 320, 128, 128),
+                new TextureRegion(enemyatlas, 640, 320, 128, 128),
+                new TextureRegion(enemyatlas, 768, 320, 128, 128),
+                new TextureRegion(enemyatlas, 896, 320, 128, 128));
+        ghostAnimation = new Animation(0.15f,
+                new TextureRegion(enemyatlas, 384, 576, 128, 128),
+                new TextureRegion(enemyatlas, 512, 576, 128, 128),
+                new TextureRegion(enemyatlas, 640, 576, 128, 128),
+                new TextureRegion(enemyatlas, 768, 576, 128, 128));
         fireAnimation = new Animation(0.04f,
                 new TextureRegion(playeratlas, 896, 128, 128, 128),
                 new TextureRegion(playeratlas, 896, 128, 128, 128),

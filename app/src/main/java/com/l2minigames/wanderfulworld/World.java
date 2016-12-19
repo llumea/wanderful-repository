@@ -38,6 +38,12 @@ public class World {
     public final List<Hedgehog> hedgehogs;
     public final List<Wolf> wolves;
     public final List<Bulldog> bulldogs;
+    public final List<Captain> captains;
+    public final List<Bird> birds;
+    public final List<Dragon> dragons;
+    public final List<Snake> snakes;
+    public final List<Stone> stones;
+    public final List<Ghost> ghosts;
     public Castle castle;    
     public final WorldListener listener;
     public final Random rand;
@@ -59,6 +65,12 @@ public class World {
         this.hedgehogs = new ArrayList<Hedgehog>();
         this.wolves = new ArrayList<Wolf>();
         this.bulldogs = new ArrayList<Bulldog>();
+        this.captains = new ArrayList<Captain>();
+        this.birds = new ArrayList<Bird>();
+        this.dragons = new ArrayList<Dragon>();
+        this.snakes = new ArrayList<Snake>();
+        this.stones = new ArrayList<Stone>();
+        this.ghosts = new ArrayList<Ghost>();
         this.earths = new ArrayList<Earth>();
         this.fires = new ArrayList<Fire>();
         this.airs = new ArrayList<Air>();
@@ -72,6 +84,12 @@ public class World {
         createHedgehog(14,17,-4);
         createWolf(24,17.8f,-8);
         createBulldog(25,17.5f,-6);
+        createCaptain(25,18.5f,-4);
+        createBird(27,26f,-4);
+        createDragon(34,26f,-4);
+        createSnake(40,17.5f,-3);
+        createStone(50,18.2f,-7);
+        createGhost(53,22.2f,-4);
         
         this.heightSoFar = 0;
         this.score = 0;
@@ -210,6 +228,36 @@ public class World {
             Bulldog bulldog = bulldogs.get(i);
             bulldog.update(deltaTime);
         }
+        int len4 = captains.size();
+        for (int i = 0; i < len4; i++) {
+            Captain captain = captains.get(i);
+            captain.update(deltaTime);
+        }
+        int len5 = birds.size();
+        for (int i = 0; i < len5; i++) {
+            Bird bird = birds.get(i);
+            bird.update(deltaTime);
+        }
+        int len6 = dragons.size();
+        for (int i = 0; i < len6; i++) {
+            Dragon dragon = dragons.get(i);
+            dragon.update(deltaTime);
+        }
+        int len7 = snakes.size();
+        for (int i = 0; i < len7; i++) {
+            Snake snake = snakes.get(i);
+            snake.update(deltaTime);
+        }
+        int len8 = stones.size();
+        for (int i = 0; i < len8; i++) {
+            Stone stone = stones.get(i);
+            stone.update(deltaTime);
+        }
+        int len9 = ghosts.size();
+        for (int i = 0; i < len9; i++) {
+            Ghost ghost = ghosts.get(i);
+            ghost.update(deltaTime);
+        }
 
     }
     public void createEarth(){
@@ -243,6 +291,48 @@ public class World {
         Bulldog bulldog = new Bulldog(positionx,positiony);
         bulldog.velocity.x=velocity;
         bulldogs.add(bulldog);
+
+    }
+    public void createCaptain(float positionx, float positiony, float velocity){
+
+        Captain captain = new Captain(positionx,positiony);
+        captain.velocity.x=velocity;
+        captains.add(captain);
+
+    }
+    public void createBird(float positionx, float positiony, float velocity){
+
+        Bird bird = new Bird(positionx,positiony);
+        bird.velocity.x=velocity;
+        birds.add(bird);
+
+    }
+    public void createDragon(float positionx, float positiony, float velocity){
+
+        Dragon dragon = new Dragon(positionx,positiony);
+        dragon.velocity.x=velocity;
+        dragons.add(dragon);
+
+    }
+    public void createSnake(float positionx, float positiony, float velocity){
+
+        Snake snake = new Snake(positionx,positiony);
+        snake.velocity.x=velocity;
+        snakes.add(snake);
+
+    }
+    public void createStone(float positionx, float positiony, float velocity){
+
+        Stone stone = new Stone(positionx,positiony);
+        stone.velocity.x=velocity;
+        stones.add(stone);
+
+    }
+    public void createGhost(float positionx, float positiony, float velocity){
+
+        Ghost ghost = new Ghost(positionx,positiony);
+        ghost.velocity.x=velocity;
+        ghosts.add(ghost);
 
     }
     public void createAir(){

@@ -87,6 +87,12 @@ public class WorldRenderer {
         renderHedgehogs();
         renderWolves();
         renderBulldogs();
+        renderCaptains();
+        renderDragons();
+        renderBirds();
+        renderSnakes();
+        renderStones();
+        renderGhosts();
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
@@ -325,6 +331,54 @@ public class WorldRenderer {
             Wolf wolf = world.wolves.get(i);
             TextureRegion keyFrame = Assets.wolfAnimation.getKeyFrame(wolf.stateTime, Animation.ANIMATION_LOOPING);
             batcher.drawSprite(wolf.position.x, wolf.position.y, 8, 4, keyFrame);
+        }
+    }
+    private void renderCaptains() {
+        int len = world.captains.size();
+        for(int i = 0; i < len; i++) {
+            Captain captain = world.captains.get(i);
+            TextureRegion keyFrame = Assets.captainAnimation.getKeyFrame(captain.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(captain.position.x, captain.position.y, 7, 7, keyFrame);
+        }
+    }
+    private void renderBirds() {
+        int len = world.birds.size();
+        for(int i = 0; i < len; i++) {
+            Bird bird = world.birds.get(i);
+            TextureRegion keyFrame = Assets.birdAnimation.getKeyFrame(bird.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(bird.position.x, bird.position.y, 6, 6, keyFrame);
+        }
+    }
+    private void renderDragons() {
+        int len = world.dragons.size();
+        for(int i = 0; i < len; i++) {
+            Dragon dragon = world.dragons.get(i);
+            TextureRegion keyFrame = Assets.dragonAnimation.getKeyFrame(dragon.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(dragon.position.x, dragon.position.y, 6, 6, keyFrame);
+        }
+    }
+    private void renderSnakes() {
+        int len = world.snakes.size();
+        for(int i = 0; i < len; i++) {
+            Snake snake = world.snakes.get(i);
+            TextureRegion keyFrame = Assets.snakeAnimation.getKeyFrame(snake.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(snake.position.x, snake.position.y, 6, 6, keyFrame);
+        }
+    }
+    private void renderStones() {
+        int len = world.stones.size();
+        for(int i = 0; i < len; i++) {
+            Stone stone = world.stones.get(i);
+            TextureRegion keyFrame = Assets.stoneAnimation.getKeyFrame(stone.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(stone.position.x, stone.position.y, 5, 5, keyFrame);
+        }
+    }
+    private void renderGhosts() {
+        int len = world.ghosts.size();
+        for(int i = 0; i < len; i++) {
+            Ghost ghost = world.ghosts.get(i);
+            TextureRegion keyFrame = Assets.ghostAnimation.getKeyFrame(ghost.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(ghost.position.x, ghost.position.y, 6, 6, keyFrame);
         }
     }
     private void renderBulldogs() {

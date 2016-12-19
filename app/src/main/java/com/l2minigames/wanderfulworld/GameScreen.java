@@ -42,6 +42,7 @@ public class GameScreen extends GLScreen {
     SuperJumper mContext;
     int touchDownX;
     int touchDownY;
+    int startTouch = 0;
 
 
 
@@ -147,7 +148,9 @@ public class GameScreen extends GLScreen {
                 Log.i("TOUCH", "TOUCH DOWN POSITION X: "+""+touchDownX);
                 Log.i("TOUCH", "TOUCH DOWN POSITION Y: "+""+touchDownY);
 
-                if (touchDownY<event.y-200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
+                //ToDo Här körs doearth och createearth när spelet inleds
+
+                if (touchDownY<event.y-200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP &&startTouch!=0){
                     if (world.molly.earthCount !=0) {
                         world.molly.doEarth();
                         world.createEarth();
@@ -156,7 +159,7 @@ public class GameScreen extends GLScreen {
                         world.molly.doEarth();
                     }
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownY>event.y+200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
+                }else if (touchDownY>event.y+200 && world.molly.state!=world.molly.MOLLY_STATE_JUMP&&startTouch!=0){
                     if (world.molly.airCount !=0) {
                         world.molly.doAir();
                         world.createAir();
@@ -165,7 +168,7 @@ public class GameScreen extends GLScreen {
                         world.molly.doAir();
                     }
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownX<event.x-100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
+                }else if (touchDownX<event.x-100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP&&startTouch!=0){
                     if (world.molly.fireCount !=0) {
                         world.molly.doFire();
                         world.createFire();
@@ -175,7 +178,7 @@ public class GameScreen extends GLScreen {
                     }
 
                     ///ToDo Assets.playSound(Assets.jumpSound);
-                }else if (touchDownX>event.x+100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP){
+                }else if (touchDownX>event.x+100 && world.molly.state!=world.molly.MOLLY_STATE_JUMP&&startTouch!=0){
                     if (world.molly.waterCount !=0) {
                         world.molly.doWater();
                         world.createWater();
@@ -186,13 +189,14 @@ public class GameScreen extends GLScreen {
                     ///ToDo Assets.playSound(Assets.jumpSound);
                 }
 
-                else if (world.molly.velocity.y==0){
+                else if (world.molly.velocity.y==0&&startTouch!=0){
                     world.molly.jump();
                     Assets.playSound(Assets.jumpSound);
                 }
 
                 ///world.createBall();
                 world.update(deltaTime, game.getInput().getAccelX()); ///uppdaterar med accelerator!!!
+                startTouch=1;
                 return;
             }
         }
