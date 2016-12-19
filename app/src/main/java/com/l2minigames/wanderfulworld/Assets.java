@@ -11,6 +11,7 @@ import com.l2minigames.framework.impl.GLGame;
 public class Assets {
     public static Texture background;
     public static Texture background_vektor;
+    public static Texture enemyatlas;
     public static TextureRegion backgroundRegion;
     public static TextureRegion backgroundRegionVektorWorld;
     public static TextureRegion backgroundRegionVektorWorld2;
@@ -20,6 +21,8 @@ public class Assets {
     public static TextureRegion backgroundRegionVektorLondon2;
     public static TextureRegion backgroundRegionVektorIndia;
     public static TextureRegion backgroundRegionVektorIndia2;
+
+    public static TextureRegion enemyatlasHedgehog;
     
     public static Texture items;
     public static TextureRegion itemsHPBarBlack;
@@ -58,6 +61,9 @@ public class Assets {
     public static Animation airAnimation;
     public static Animation waterAnimation;
     public static Animation bobFall;
+    public static Animation hedgehogAnimation;
+    public static Animation wolfAnimation;
+    public static Animation bulldogAnimation;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
     public static TextureRegion platform;
@@ -79,6 +85,7 @@ public class Assets {
         background = new Texture(game, "background.png");
         playeratlas = new Texture(game, "playeratlas.png");
         background_vektor = new Texture(game, "bakgrund_vektor.png");
+        enemyatlas = new Texture(game, "enemyatlas.png");
         backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
         backgroundRegionVektorWorld = new TextureRegion(background_vektor, 0, 0, 512, 448);
         backgroundRegionVektorWorld2 = new TextureRegion(background_vektor, 0, 400, 512, 48);
@@ -129,6 +136,24 @@ public class Assets {
                 new TextureRegion(playeratlas, 384, 384, 128, 128),
                 new TextureRegion(playeratlas, 512, 384, 128, 128),
                 new TextureRegion(playeratlas, 640, 384, 128, 128));
+        hedgehogAnimation = new Animation(0.2f,
+                new TextureRegion(enemyatlas, 0, 0, 128, 128),
+                new TextureRegion(enemyatlas, 128, 0, 128, 128),
+                new TextureRegion(enemyatlas, 256, 0, 128, 128));
+        wolfAnimation = new Animation(0.1f,
+                new TextureRegion(enemyatlas, 512, 0, 256, 128),
+                new TextureRegion(enemyatlas, 768, 0, 256, 128),
+                new TextureRegion(enemyatlas, 0, 128, 256, 128),
+                new TextureRegion(enemyatlas, 256, 128, 256, 128),
+                new TextureRegion(enemyatlas, 512, 128, 256, 128),
+                new TextureRegion(enemyatlas, 768, 128, 256, 128));
+        bulldogAnimation = new Animation(0.1f,
+                new TextureRegion(enemyatlas, 0, 256, 128, 64),
+                new TextureRegion(enemyatlas, 128, 256, 128, 64),
+                new TextureRegion(enemyatlas, 256, 256, 128, 64),
+                new TextureRegion(enemyatlas, 384, 256, 128, 64),
+                new TextureRegion(enemyatlas, 512, 256, 128, 64),
+                new TextureRegion(enemyatlas, 640, 256, 128, 64));
         fireAnimation = new Animation(0.04f,
                 new TextureRegion(playeratlas, 896, 128, 128, 128),
                 new TextureRegion(playeratlas, 896, 128, 128, 128),
@@ -237,6 +262,7 @@ public class Assets {
         background_vektor.reload();
         playeratlas.reload();
         items.reload();
+        enemyatlas.reload();
         if(Settings.soundEnabled)
             music.play();
     }

@@ -83,6 +83,11 @@ public class WorldRenderer {
         renderAirs();
         renderWaters();
         batcher.endBatch();
+        batcher.beginBatch(Assets.enemyatlas);
+        renderHedgehogs();
+        renderWolves();
+        renderBulldogs();
+        batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
 
@@ -304,6 +309,30 @@ public class WorldRenderer {
                                    
             batcher.drawSprite(platform.position.x, platform.position.y, 
                                2, 0.5f, keyFrame);            
+        }
+    }
+    private void renderHedgehogs() {
+        int len = world.hedgehogs.size();
+        for(int i = 0; i < len; i++) {
+            Hedgehog hedgehog = world.hedgehogs.get(i);
+            TextureRegion keyFrame = Assets.hedgehogAnimation.getKeyFrame(hedgehog.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(hedgehog.position.x, hedgehog.position.y, 3, 3, keyFrame);
+        }
+    }
+    private void renderWolves() {
+        int len = world.wolves.size();
+        for(int i = 0; i < len; i++) {
+            Wolf wolf = world.wolves.get(i);
+            TextureRegion keyFrame = Assets.wolfAnimation.getKeyFrame(wolf.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(wolf.position.x, wolf.position.y, 8, 4, keyFrame);
+        }
+    }
+    private void renderBulldogs() {
+        int len = world.bulldogs.size();
+        for(int i = 0; i < len; i++) {
+            Bulldog bulldog = world.bulldogs.get(i);
+            TextureRegion keyFrame = Assets.bulldogAnimation.getKeyFrame(bulldog.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(bulldog.position.x, bulldog.position.y, 4, 2, keyFrame);
         }
     }
 

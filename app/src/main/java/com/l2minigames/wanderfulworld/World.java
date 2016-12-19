@@ -35,6 +35,9 @@ public class World {
     public final List<Spring> springs;
     public final List<Squirrel> squirrels;
     public final List<Coin> coins;
+    public final List<Hedgehog> hedgehogs;
+    public final List<Wolf> wolves;
+    public final List<Bulldog> bulldogs;
     public Castle castle;    
     public final WorldListener listener;
     public final Random rand;
@@ -53,6 +56,9 @@ public class World {
         this.molly = new Molly(3, 19, mContext.hp, mContext.max_hp, mContext.earth_power, mContext.fire_power, mContext.air_power, mContext.water_power);
         this.ground = new Ground(3,17);
         this.platforms = new ArrayList<Platform>();
+        this.hedgehogs = new ArrayList<Hedgehog>();
+        this.wolves = new ArrayList<Wolf>();
+        this.bulldogs = new ArrayList<Bulldog>();
         this.earths = new ArrayList<Earth>();
         this.fires = new ArrayList<Fire>();
         this.airs = new ArrayList<Air>();
@@ -63,6 +69,9 @@ public class World {
         this.listener = listener;
         rand = new Random();
         generateLevel();
+        createHedgehog(14,17,-4);
+        createWolf(24,17.8f,-8);
+        createBulldog(25,17.5f,-6);
         
         this.heightSoFar = 0;
         this.score = 0;
@@ -122,6 +131,7 @@ public class World {
         updateFires(deltaTime);
         updateAirs(deltaTime);
         updateWaters(deltaTime);
+        updateEnemies(deltaTime);
         removeUnusedObjects(deltaTime);
 
         checkGround();
@@ -182,6 +192,26 @@ public class World {
         }
 
     }
+    public void updateEnemies(float deltaTime){
+
+        int len = hedgehogs.size();
+        for (int i = 0; i < len; i++) {
+            Hedgehog hedgehog = hedgehogs.get(i);
+            hedgehog.update(deltaTime);
+        }
+
+        int len2 = wolves.size();
+        for (int i = 0; i < len2; i++) {
+            Wolf wolf = wolves.get(i);
+            wolf.update(deltaTime);
+        }
+        int len3 = bulldogs.size();
+        for (int i = 0; i < len3; i++) {
+            Bulldog bulldog = bulldogs.get(i);
+            bulldog.update(deltaTime);
+        }
+
+    }
     public void createEarth(){
 
         Earth earth = new Earth(molly.position.x,32); ///Tidigare 3
@@ -192,6 +222,27 @@ public class World {
         Fire fire = new Fire(molly.position.x+1f,molly.position.y+0.5f);
         fire.velocity.x=12;
         fires.add(fire);
+
+    }
+    public void createHedgehog(float positionx, float positiony, float velocity){
+
+        Hedgehog hedgehog = new Hedgehog(positionx,positiony);
+        hedgehog.velocity.x=velocity;
+        hedgehogs.add(hedgehog);
+
+    }
+    public void createWolf(float positionx, float positiony, float velocity){
+
+        Wolf wolf = new Wolf(positionx,positiony);
+        wolf.velocity.x=velocity;
+        wolves.add(wolf);
+
+    }
+    public void createBulldog(float positionx, float positiony, float velocity){
+
+        Bulldog bulldog = new Bulldog(positionx,positiony);
+        bulldog.velocity.x=velocity;
+        bulldogs.add(bulldog);
 
     }
     public void createAir(){
