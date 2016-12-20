@@ -81,6 +81,9 @@ public class World {
         this.listener = listener;
         rand = new Random();
         generateLevel();
+        ///Skapa en "dummy" utanför skärmen så att något alltid ritas ut från enemyatlas
+        createHedgehog(14,50,0);
+        //Rita ut enemies
         createHedgehog(14,17,-4);
         createWolf(24,17.8f,-8);
         createBulldog(25,17.5f,-6);
@@ -206,6 +209,91 @@ public class World {
             if (water.position.x>22||water.position.y<-4){
                 waters.remove(i);
                 len4=waters.size();
+            }
+        }
+/*
+        public final List<Hedgehog> hedgehogs;
+        public final List<Wolf> wolves;
+        public final List<Bulldog> bulldogs;
+        public final List<Captain> captains;
+        public final List<Bird> birds;
+        public final List<Dragon> dragons;
+        public final List<Snake> snakes;
+        public final List<Stone> stones;
+        public final List<Ghost> ghosts;
+        */
+ ///ENEMIES PLOCKAS BORT NÄR DE PASSERAT PLAYER
+
+        int len5 = hedgehogs.size();
+        for (int i = 0; i < len5; i++) {
+            Hedgehog hedgehog = hedgehogs.get(i);
+            if (hedgehog.position.x<2){
+                hedgehogs.remove(i);
+                len5=hedgehogs.size();
+            }
+        }
+        int len6 = wolves.size();
+        for (int i = 0; i < len6; i++) {
+            Wolf wolf = wolves.get(i);
+            if (wolf.position.x<2){
+                wolves.remove(i);
+                len6=wolves.size();
+            }
+        }
+        int len7 = bulldogs.size();
+        for (int i = 0; i < len7; i++) {
+            Bulldog bulldog = bulldogs.get(i);
+            if (bulldog.position.x<2){
+                bulldogs.remove(i);
+                len7=bulldogs.size();
+            }
+        }
+        int len8 = captains.size();
+        for (int i = 0; i < len8; i++) {
+            Captain captain = captains.get(i);
+            if (captain.position.x<2){
+                captains.remove(i);
+                len8=captains.size();
+            }
+        }
+        int len9 = birds.size();
+        for (int i = 0; i < len9; i++) {
+            Bird bird = birds.get(i);
+            if (bird.position.x<2){
+                birds.remove(i);
+                len9=birds.size();
+            }
+        }
+        int len10 = dragons.size();
+        for (int i = 0; i < len10; i++) {
+            Dragon dragon = dragons.get(i);
+            if (dragon.position.x<2){
+                dragons.remove(i);
+                len10=dragons.size();
+            }
+        }
+        int len11 = snakes.size();
+        for (int i = 0; i < len11; i++) {
+            Snake snake = snakes.get(i);
+            if (snake.position.x<2){
+                snakes.remove(i);
+                len11=snakes.size();
+            }
+        }
+        int len12 = stones.size();
+        for (int i = 0; i < len12; i++) {
+            Stone stone = stones.get(i);
+            if (stone.position.x<2){
+                stones.remove(i);
+                len12=stones.size();
+            }
+        }
+        int len13 = ghosts.size();
+        for (int i = 0; i < len13; i++) {
+            Ghost ghost = ghosts.get(i);
+            if (ghost.position.x<2){
+                ghosts.remove(i);
+                len13=ghosts.size();
             }
         }
 
