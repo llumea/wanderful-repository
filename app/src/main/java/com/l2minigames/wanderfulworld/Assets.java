@@ -49,6 +49,10 @@ public class Assets {
     public static TextureRegion pause;    
     public static TextureRegion spring;
     public static TextureRegion castle;
+    public static TextureRegion starGreen;
+    public static TextureRegion starRed;
+    public static TextureRegion starYellow;
+    public static TextureRegion starBlue;
     public static Animation coinAnim;
     public static Animation bobJump;
     public static Animation mollyJump;
@@ -129,6 +133,11 @@ public class Assets {
         
         spring = new TextureRegion(items, 128, 0, 32, 32);
         castle = new TextureRegion(items, 128, 64, 64, 64);
+        starGreen = new TextureRegion(playeratlas, 896, 0, 64, 64);
+        starRed = new TextureRegion(playeratlas, 960, 0, 64, 64);
+        starYellow = new TextureRegion(playeratlas, 896, 64, 64, 64);
+        starBlue = new TextureRegion(playeratlas, 960, 64, 64, 64);
+
         coinAnim = new Animation(0.2f,                                 
                                  new TextureRegion(items, 128, 32, 32, 32),
                                  new TextureRegion(items, 160, 32, 32, 32),

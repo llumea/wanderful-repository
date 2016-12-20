@@ -82,6 +82,7 @@ public class WorldRenderer {
         renderFires();
         renderAirs();
         renderWaters();
+        renderStars();
         batcher.endBatch();
         batcher.beginBatch(Assets.enemyatlas);
         renderHedgehogs();
@@ -300,6 +301,22 @@ public class WorldRenderer {
             batcher.drawSprite(10, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
+        }
+
+    }
+    private void renderStars(){
+        int len = world.stars.size();
+        for(int i = 0; i < len; i++) {
+            Star star = world.stars.get(i);
+            if (star.color.equals("green")) {
+                batcher.drawSprite(star.position.x, star.position.y, 3, 3, Assets.starGreen);
+            } else if (star.color.equals("red")) {
+                batcher.drawSprite(star.position.x, star.position.y, 3, 3, Assets.starRed);
+            } else if (star.color.equals("yellow")) {
+                batcher.drawSprite(star.position.x, star.position.y, 3, 3, Assets.starYellow);
+            } else if (star.color.equals("blue")) {
+                batcher.drawSprite(star.position.x, star.position.y, 3, 3, Assets.starBlue);
+            }
         }
 
     }

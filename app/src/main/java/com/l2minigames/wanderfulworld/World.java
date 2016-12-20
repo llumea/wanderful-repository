@@ -44,6 +44,7 @@ public class World {
     public final List<Snake> snakes;
     public final List<Stone> stones;
     public final List<Ghost> ghosts;
+    public final List<Star> stars;
     public Castle castle;    
     public final WorldListener listener;
     public final Random rand;
@@ -71,6 +72,7 @@ public class World {
         this.snakes = new ArrayList<Snake>();
         this.stones = new ArrayList<Stone>();
         this.ghosts = new ArrayList<Ghost>();
+        this.stars = new ArrayList<Star>();
         this.earths = new ArrayList<Earth>();
         this.fires = new ArrayList<Fire>();
         this.airs = new ArrayList<Air>();
@@ -153,6 +155,7 @@ public class World {
         updateAirs(deltaTime);
         updateWaters(deltaTime);
         updateEnemies(deltaTime);
+        updateStars(deltaTime);
         removeUnusedObjects(deltaTime);
 
         checkGround();
@@ -298,6 +301,17 @@ public class World {
         }
 
     }
+    public void updateStars(float deltaTime){
+        int len = stars.size();
+        for (int i = 0; i < len; i++) {
+            Star star = stars.get(i);
+            star.update(deltaTime);
+            if (star.position.x<0){
+                stars.remove(i);
+                len=stars.size();
+            }
+        }
+    }
     public void updateEnemies(float deltaTime){
 
         int len = hedgehogs.size();
@@ -431,6 +445,57 @@ public class World {
         airs.add(air);
 
     }
+    public void createStars(float posx, float posy, String color){
+
+        Star star = new Star(posx,posy);
+        star.velocity.x=15;
+        star.velocity.y=0;
+        star.color = color;
+        stars.add(star);
+
+        Star star2 = new Star(posx,posy);
+        star2.velocity.x=-15;
+        star2.velocity.y=0;
+        star2.color = color;
+        stars.add(star2);
+
+        Star star3 = new Star(posx,posy);
+        star3.velocity.x=0;
+        star3.velocity.y=15;
+        star3.color = color;
+        stars.add(star3);
+
+        Star star4 = new Star(posx,posy);
+        star4.velocity.x=0;
+        star4.velocity.y=-15;
+        star4.color = color;
+        stars.add(star4);
+
+        Star star5 = new Star(posx,posy);
+        star5.velocity.x=15;
+        star5.velocity.y=15;
+        star5.color = color;
+        stars.add(star5);
+
+        Star star6 = new Star(posx,posy);
+        star6.velocity.x=-15;
+        star6.velocity.y=15;
+        star6.color = color;
+        stars.add(star6);
+
+        Star star7 = new Star(posx,posy);
+        star7.velocity.x=15;
+        star7.velocity.y=-15;
+        star7.color = color;
+        stars.add(star7);
+
+        Star star8 = new Star(posx,posy);
+        star8.velocity.x=-15;
+        star8.velocity.y=-15;
+        star8.color = color;
+        stars.add(star8);
+
+    }
     public void createWater(){
 
         Water water = new Water(molly.position.x-1,molly.position.y-1);
@@ -527,11 +592,15 @@ public class World {
     }
 
     private void checkCollisions() {
+
+        ///SuperJumper-metoder
         checkPlatformCollisions();
         checkSquirrelCollisions();
         checkItemCollisions();
         checkCastleCollisions();
+        ///Mina metoder
         checkEarthGroundCollisions();
+        checkEarthEnemyCollisions();
     }
 
     private void checkPlatformCollisions() {
@@ -573,6 +642,38 @@ public class World {
                earth.velocity.y = 0;
                earth.velocity.x = 2;
                 earth.position.y =17.8f;
+            }
+        }
+    }
+
+    private void checkEarthEnemyCollisions() {
+        int len = earths.size();
+        int len2 = snakes.size();
+        int len3 = hedgehogs.size();
+        for (int i = 0; i < len; i++) {
+            Earth earth = earths.get(i);
+
+            for (int j = 0; j<len2;j++){
+                Snake snake = snakes.get(j);
+                if (OverlapTester.overlapRectangles(earth.bounds, snake.bounds)) {
+                    createStars(earth.position.x, earth.position.y, "green");
+                    earths.remove(earth);
+                    snakes.remove(snake);
+                    len2 = snakes.size();
+                    len =earths.size();
+
+                }
+            }
+
+            for (int j = 0; j<len3;j++){
+                Hedgehog hedgehog = hedgehogs.get(j);
+                if (OverlapTester.overlapRectangles(earth.bounds, hedgehog.bounds)) {
+                    createStars(earth.position.x, earth.position.y, "green");
+                    earths.remove(earth);
+                    hedgehogs.remove(hedgehog);
+                    len3 = hedgehogs.size();
+                    len =earths.size();
+                }
             }
         }
     }
