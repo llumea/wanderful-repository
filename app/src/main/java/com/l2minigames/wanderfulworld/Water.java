@@ -12,8 +12,8 @@ public class Water extends DynamicGameObject {
     public static final float WATER_PULVERIZE_TIME = 0.2f * 4;
     public static final float WATER_JUMP_VELOCITY = 11;
     public static final float WATER_MOVE_VELOCITY = 20;
-    public static final float WATER_WIDTH = 1f;
-    public static final float WATER_HEIGHT = 1f;
+    public static final float WATER_WIDTH = 2f;
+    public static final float WATER_HEIGHT = 2f;
 
     int state;
     float stateTime;
@@ -27,7 +27,7 @@ public class Water extends DynamicGameObject {
     public void update(float deltaTime) {
         velocity.add(World.gravity.x * deltaTime, World.gravity.y * deltaTime);
         position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-        bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);
+        bounds.lowerLeft.set(position).sub(bounds.width, bounds.height);
         stateTime += deltaTime;
     }
 

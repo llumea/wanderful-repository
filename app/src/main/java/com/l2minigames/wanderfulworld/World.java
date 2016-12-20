@@ -439,9 +439,9 @@ public class World {
     }
     public void createAir(){
 
-        Air air = new Air(molly.position.x-3,molly.position.y+5);
-        air.velocity.x=8;
-        air.velocity.y=-1.2f;
+        Air air = new Air(molly.position.x-4,molly.position.y);
+        air.velocity.x=10;
+        air.velocity.y=5f;
         airs.add(air);
 
     }
@@ -601,6 +601,9 @@ public class World {
         ///Mina metoder
         checkEarthGroundCollisions();
         checkEarthEnemyCollisions();
+        checkWaterEnemyCollisions();
+        checkAirEnemyCollisions();
+        checkFireEnemyCollisions();
     }
 
     private void checkPlatformCollisions() {
@@ -646,6 +649,37 @@ public class World {
         }
     }
 
+    private void checkFireEnemyCollisions() {
+        int len = fires.size();
+        int len2 = captains.size();
+        int len3 = wolves.size();
+        for (int i = 0; i < len; i++) {
+            Fire fire = fires.get(i);
+
+            for (int j = 0; j<len2;j++){
+                Captain captain = captains.get(j);
+                if (OverlapTester.overlapRectangles(fire.bounds, captain.bounds)) {
+                    createStars(fire.position.x, fire.position.y, "red");
+                    fires.remove(fire);
+                    captains.remove(captain);
+                    len2 = captains.size();
+                    len =fires.size();
+
+                }
+            }
+
+            for (int j = 0; j<len3;j++){
+                Wolf wolf = wolves.get(j);
+                if (OverlapTester.overlapRectangles(fire.bounds, wolf.bounds)) {
+                    createStars(fire.position.x, fire.position.y, "red");
+                    fires.remove(fire);
+                    wolves.remove(wolf);
+                    len3 = wolves.size();
+                    len =fires.size();
+                }
+            }
+        }
+    }
     private void checkEarthEnemyCollisions() {
         int len = earths.size();
         int len2 = snakes.size();
@@ -673,6 +707,68 @@ public class World {
                     hedgehogs.remove(hedgehog);
                     len3 = hedgehogs.size();
                     len =earths.size();
+                }
+            }
+        }
+    }
+    private void checkWaterEnemyCollisions() {
+        int len = waters.size();
+        int len2 = bulldogs.size();
+        int len3 = ghosts.size();
+        for (int i = 0; i < len; i++) {
+            Water water = waters.get(i);
+
+            for (int j = 0; j<len2;j++){
+                Bulldog bulldog = bulldogs.get(j);
+                if (OverlapTester.overlapRectangles(water.bounds, bulldog.bounds)) {
+                    createStars(water.position.x, water.position.y, "blue");
+                    waters.remove(water);
+                    bulldogs.remove(bulldog);
+                    len2 = bulldogs.size();
+                    len =waters.size();
+
+                }
+            }
+
+            for (int j = 0; j<len3;j++){
+                Ghost ghost = ghosts.get(j);
+                if (OverlapTester.overlapRectangles(water.bounds, ghost.bounds)) {
+                    createStars(water.position.x, water.position.y, "blue");
+                    waters.remove(water);
+                    ghosts.remove(ghost);
+                    len3 = ghosts.size();
+                    len =waters.size();
+                }
+            }
+        }
+    }
+    private void checkAirEnemyCollisions() {
+        int len = airs.size();
+        int len2 = birds.size();
+        int len3 = dragons.size();
+        for (int i = 0; i < len; i++) {
+            Air air = airs.get(i);
+
+            for (int j = 0; j<len2;j++){
+                Bird bird = birds.get(j);
+                if (OverlapTester.overlapRectangles(air.bounds, bird.bounds)) {
+                    createStars(air.position.x, air.position.y, "yellow");
+                    airs.remove(air);
+                    birds.remove(bird);
+                    len2 = birds.size();
+                    len =airs.size();
+
+                }
+            }
+
+            for (int j = 0; j<len3;j++){
+                Dragon dragon = dragons.get(j);
+                if (OverlapTester.overlapRectangles(air.bounds, dragon.bounds)) {
+                    createStars(air.position.x, air.position.y, "yellow");
+                    airs.remove(air);
+                    dragons.remove(dragon);
+                    len3 = dragons.size();
+                    len =airs.size();
                 }
             }
         }

@@ -12,8 +12,8 @@ public class Air extends DynamicGameObject {
     public static final float AIR_PULVERIZE_TIME = 0.2f * 4;
     public static final float AIR_JUMP_VELOCITY = 11;
     public static final float AIR_MOVE_VELOCITY = 20;
-    public static final float AIR_WIDTH = 1f;
-    public static final float AIR_HEIGHT = 1f;
+    public static final float AIR_WIDTH = 2f;
+    public static final float AIR_HEIGHT = 2f;
 
     int state;
     float stateTime;
