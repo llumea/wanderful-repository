@@ -40,11 +40,11 @@
     <string name="flame">Flamme</string>
     <string name="plant">Plante</string>
     <string name="waterdrop">Goutte d\'eau</string>
-    <string name="plant_description">Vous pouvez utiliser des Plantes en combinaison d\'un Scrnollidge pour gagner plus d\'expérience (xp)</string>
+    <string name="plant_description">Vous pouvez utiliser des Plantes pour augmenter votre force de terre, ou en combinaison d\'un Scrnollidge pour gagner plus d\'expérience (xp)</string>
     <string name="scrollifix_description">Vous pouvez restaurer votre hp avec le Scrollifix de Guérison. Ca vous coûte 4 Gouttes d\'eau et le Scrollifix..</string>
-    <string name="trombulus_description">Vous pouver utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
-    <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
-    <string name="flame_description">Vous pouvez utiliser des Flammes en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
+    <string name="trombulus_description">Vous pouver utiliser 1 Trombulus pour augmenter votre force d\'air, ou utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
+    <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau pour augmenter votre force d\'eau, ou en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
+    <string name="flame_description">Vous pouvez utiliser des Flammes pour augmenter votre force de feu, ou en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
     <string name="wizardacademy_description">Bien venu jeune disciple. Revenez avec 5 artefacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des "scrolls" dans le sac à dos et utilisez 2 doigts pour tourner/zoomer sur la carte.</string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académy de Magi</string>
@@ -93,4 +93,15 @@
     <string name="you_traveled_to_india">Le Voyage Précieux vous faites voler jusqu\'en Inde, juste devant Taj Mahal.</string>
     <string name="travelwind_india">Voyage Précieux en Inde</string>
     <string name="india_button">Inde (Level 6+)</string>
+    <string name="earthpower_increased">Votre force de terre a augmenté par 1</string>
+    <string name="firepower_increased">Votre force de feu a augmenté par 1</string>
+    <string name="airpower_increased">Votre force d\'air a augmenté par 1</string>
+    <string name="waterpower_increased">Votre force d\'eau a augmenté par 1</string>
+    <string name="not_in_range">Vous n\'êtes pas assez près. Approchez-vous.</string>
+    <string name="increase_airpower">Augmenter force d\'air +1</string>
+    <string name="increase_earthpower">Augmenter force de terre +1</string>
+    <string name="increase_firepower">Augmenter force de feu +1</string>
+    <string name="increase_waterpower">Augmenter force d\'eau +1</string>
+    <string name="you_can_only_have_7_elements_of_the_same_type">Vous ne pouvez pas avoir plus de 7 force d\'éléments du même catégorie.</string>
+    <string name="hp_increased">Votre hp a augmenté par</string>
 </resources>

@@ -153,6 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton closePickedButton;
     Button travelAway;
     Button travelHome;
+    Button increaseElementPowers;
 
     double lastTravelLatitude;
     double lastTravelLongitude;
@@ -160,6 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lastNormalLongitude;
     boolean travelStarted;
     boolean isLeveledUp;
+    String increaseThisElement;
 
     private static MapsActivity mMapsActivity;
 
@@ -207,7 +209,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
         travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
+        increaseThisElement ="nothing";
+        increaseElementPowers = (Button) findViewById(R.id.increaseElementPowers);
         isLeveledUp =false;
+        increaseElementPowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (increaseThisElement.equals("earth")){
+                    if (mMapsActivity.getInstance().object.earthpower>6){
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        int tmpEarthPower = mMapsActivity.getInstance().object.earthpower+1;
+                        myRef.child("earthpower").setValue(tmpEarthPower);
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.earthpower_increased),
+                                Toast.LENGTH_SHORT).show();
+                        closePicked();
+                    }
+                }
+                else if(increaseThisElement.equals("fire")){
+                    if (mMapsActivity.getInstance().object.firepower>6){
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        int tmpFirePower = mMapsActivity.getInstance().object.firepower+1;
+                        myRef.child("firepower").setValue(tmpFirePower);
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.firepower_increased),
+                                Toast.LENGTH_SHORT).show();
+                        closePicked();
+                    }
+
+                }else if(increaseThisElement.equals("air")){
+                    if (mMapsActivity.getInstance().object.airpower>6){
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        int tmpAirPower = mMapsActivity.getInstance().object.airpower+1;
+                        myRef.child("airpower").setValue(tmpAirPower);
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.airpower_increased),
+                                Toast.LENGTH_SHORT).show();
+                        closePicked();
+                    }
+
+                }
+                else if(increaseThisElement.equals("water")){
+                    if (mMapsActivity.getInstance().object.waterpower>6){
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        int tmpWaterPower = mMapsActivity.getInstance().object.waterpower+1;
+                        myRef.child("waterpower").setValue(tmpWaterPower);
+                        myFirebaseRef.child(currentItemKeySelected).removeValue();
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.waterpower_increased),
+                                Toast.LENGTH_SHORT).show();
+                        closePicked();
+                    }
+
+                }
+            }
+        });
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -365,7 +428,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String key = myRef.child("collectedItems").push().getKey();
                         CollectedItem tmpCollectedItem2 = new CollectedItem("Healing Potion", "Potion", "imageRef", itemTimestamp, key);
                         myRef.child("collectedItems").child(key).setValue(tmpCollectedItem2);
-                        String magic = "Heling Potion";
+                        String magic = "Healing Potion";
                         closePicked();
                         closeBackpack();
                         vibrate();
@@ -1091,7 +1154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
             mHandler.post(mAnimation);
             Log.d("TAG", "DISTANCE IS BIGGER THAN RADIUS");
-            Toast.makeText(this, "You are not in range",
+            Toast.makeText(this, R.string.not_in_range,
                     Toast.LENGTH_SHORT).show();
 
         }else if (distance[0] < mCircle.getRadius() && !name.equalsIgnoreCase("MyMarker")) {
@@ -1832,35 +1895,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Random rnd1 = new Random();
         int slumphp = rnd1.nextInt(3)+1;
         int changeToHp = object.maxhp+slumphp;
-        Random rnd = new Random();
-        int slumpelement = rnd.nextInt(4)+1;
-        Log.i("TAGGY", "slumpelement: "+slumpelement);
         Log.i("TAGGY", "slumphp: "+slumphp);
-        String changeToElement ="";
-        if (slumpelement==1){
-            int changeToEarthPower = object.earthpower+1;
-            myRef.child("earthpower").setValue(changeToEarthPower);
-            changeToElement=getResources().getString(R.string.earth);
-        }
-        else if (slumpelement==2){
-            int changeToFirePower = object.firepower+1;
-            myRef.child("firepower").setValue(changeToFirePower);
-            changeToElement=getResources().getString(R.string.fire);
-        }
-        else if (slumpelement==3){
-            int changeToAirPower = object.airpower+1;
-            myRef.child("airpower").setValue(changeToAirPower);
-            changeToElement=getResources().getString(R.string.air);}
-        else if (slumpelement==4){
-            int changeToWaterPower = object.waterpower+1;
-            myRef.child("waterpower").setValue(changeToWaterPower);
-            changeToElement=getResources().getString(R.string.water);
-        }
-
         myRef.child("level").setValue(changeToLevel);
         myRef.child("maxhp").setValue(changeToHp);
         itemTitle.setText(getResources().getString(R.string.you_leveled_up));
-        itemDescription.setText("HP + "+slumphp+" "+" "+changeToElement+" + 1");
+        itemDescription.setText(R.string.hp_increased+" + "+slumphp);
         pickImage.setBackgroundResource(R.drawable.girlfaceblue);
 
 
@@ -1928,27 +1967,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (name.equals("Plant")){
             itemTitle.setText(getResources().getString(R.string.plant));
             itemType.setText(getResources().getString(R.string.earth));
+            increaseElementPowers.setText(R.string.increase_earthpower);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemDescription.setText(getResources().getString(R.string.plant_description));
             pickImage.setBackgroundResource(R.drawable.earth_item);
+            increaseThisElement="earth";
 
         }
         else if (name.equals("Flames")){
             itemTitle.setText(getResources().getString(R.string.flame));
             itemType.setText(getResources().getString(R.string.fire));
+            increaseElementPowers.setText(R.string.increase_firepower);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemDescription.setText(getResources().getString(R.string.flame_description));
             pickImage.setBackgroundResource(R.drawable.fire_item);
+            increaseThisElement="fire";
         }
         else if (name.equals("Trombulus")){
             itemTitle.setText(getResources().getString(R.string.trombulus));
             itemType.setText(getResources().getString(R.string.air));
+            increaseElementPowers.setText(R.string.increase_airpower);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemDescription.setText(getResources().getString(R.string.trombulus_description));
             pickImage.setBackgroundResource(R.drawable.air_item);
+            increaseThisElement="air";
         }
         else if (name.equals("Waterdrop")){
             itemTitle.setText(getResources().getString(R.string.waterdrop));
             itemType.setText(getResources().getString(R.string.water));
+            increaseElementPowers.setText(R.string.increase_waterpower);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemDescription.setText(getResources().getString(R.string.waterdrop_description));
             pickImage.setBackgroundResource(R.drawable.water_item);
+            increaseThisElement="water";
         }
         else if (name.equals("Healing Scrollifix")){
           itemTitle.setText(getResources().getString(R.string.healing_scrollifix));

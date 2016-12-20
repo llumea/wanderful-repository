@@ -40,11 +40,11 @@
     <string name="flame">Eldflamma</string>
     <string name="plant">Planta</string>
     <string name="waterdrop">Vattendroppe</string>
-    <string name="plant_description">Du kan använda Plantor i kombination med en Scrnollidge för att öka dina erfarenhetspoäng (xp)</string>
+    <string name="plant_description">Du kan använda Plantor till att öka din jordkraft, eller använda dem i kombination med en Scrnollidge för att öka dina erfarenhetspoäng (xp)</string>
     <string name="scrollifix_description">Du kan återställa din hp med denna Helande Scrollifix. Men det kostar 4 Vattendroppar och din Scrollifix.</string>
-    <string name="trombulus_description">Du kan använda 4 Trombulusar tillsammans med en Scrollifly och trolla fram en Vindresa.</string>
-    <string name="waterdrop_description">Du kan använda Vattendroppar tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
-    <string name="flame_description">Du kan använda Eldflammor tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
+    <string name="trombulus_description">Du kan använda 1 Trombulus till att öka din luftkraft eller använda 4 Trombulusar tillsammans med en Scrollifly och trolla fram en Vindresa.</string>
+    <string name="waterdrop_description">Du kan använda Vattendroppar till att öka din vattenkraft, eller använda dem tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
+    <string name="flame_description">Du kan använda Eldflammor till att öka din eldkraft, eller använda dem tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
     <string name="wizardacademy_description">Var hälsad unga lärjunge. Om du lyckas hämta 5 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World. Plocka upp saker på kartan, använd skriftrullar i ryggsäcken och använd 2 fingrar samtidigt för att rotera/zooma på kartan.</string>
     <string name="wizardacademy_type">Arnroth, Magimästare</string>
     <string name="wizardacademy_title">Magiakademin</string>
@@ -93,4 +93,15 @@
     <string name="you_traveled_to_india">Vindresan lyfter upp dig i luften och flyger dig till Indien, precis utanför Taj Mahal.</string>
     <string name="travelwind_india">Vindresa till Indien</string>
     <string name="india_button">Indien (Level 6+)</string>
+    <string name="waterpower_increased">Din vattenkraft har ökat med 1</string>
+    <string name="airpower_increased">Din luftkraft har ökat med 1</string>
+    <string name="earthpower_increased">Din jordkraft har ökat med 1</string>
+    <string name="firepower_increased">Din eldkraft har ökat med 1</string>
+    <string name="not_in_range">Du är inte tillräckligt nära. Gå närmare.</string>
+    <string name="increase_airpower">Öka luftkraft +1</string>
+    <string name="increase_earthpower">Öka jordkraft +1</string>
+    <string name="increase_firepower">Öka eldkraft +1</string>
+    <string name="increase_waterpower">Öka vattenkraft +1</string>
+    <string name="you_can_only_have_7_elements_of_the_same_type">Du kan inte ha fler än 7 elementkrafter av en och samma typ.</string>
+    <string name="hp_increased">Din hp ökade med</string>
 </resources>

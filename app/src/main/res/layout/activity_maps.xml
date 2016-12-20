@@ -366,6 +366,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"/>
             <Button
+                android:id="@+id/increaseElementPowers"
+                android:background="@color/colorAccent"
+                android:visibility="invisible"
+                android:textColor="@color/colorTextIcons"
+                android:text="Increase Element Powers"
+                android:textSize="20sp"
+                android:layout_below="@id/itemDescription"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+            <Button
                 android:id="@+id/travelHome"
                 android:background="@color/colorAccent"
                 android:visibility="invisible"
