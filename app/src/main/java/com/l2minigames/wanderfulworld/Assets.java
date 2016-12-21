@@ -32,6 +32,8 @@ public class Assets {
     public static TextureRegion itemsFire;
     public static TextureRegion itemsAir;
     public static TextureRegion itemsWater;
+    public static TextureRegion itemsHelp;
+    public static TextureRegion itemsClose;
     public static TextureRegion itemsElementIndicator;
     public static TextureRegion itemsElementIndicatorEarth;
     public static TextureRegion itemsElementIndicatorFire;
@@ -113,6 +115,7 @@ public class Assets {
         itemsFire = new TextureRegion(items, 860, 320, 64, 64);
         itemsAir = new TextureRegion(items, 940, 240, 64, 64);
         itemsWater = new TextureRegion(items, 940, 320, 64, 64);
+        itemsClose = new TextureRegion(items, 320, 448, 128, 128);
         itemsElementIndicator = new TextureRegion(items, 400, 680, 220, 100);
         itemsElementIndicatorEarth = new TextureRegion(items, 260, 800, 200, 200);
         itemsElementIndicatorFire = new TextureRegion(items, 380, 800, 200, 200);
@@ -122,12 +125,13 @@ public class Assets {
         playerNormal = new TextureRegion(playeratlas, 0, 0, 128, 128);
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
         pauseMenu = new TextureRegion(items, 224, 128, 192, 96);
+        itemsHelp = new TextureRegion(items, 320, 320, 128,128);
         ready = new TextureRegion(items, 320, 224, 192, 32);
         gameOver = new TextureRegion(items, 352, 256, 160, 96);
         highScoresRegion = new TextureRegion(Assets.items, 0, 257, 300, 110 / 3);
-        logo = new TextureRegion(items, 0, 352, 274, 142);
-        soundOff = new TextureRegion(items, 0, 0, 64, 64);
-        soundOn = new TextureRegion(items, 64, 0, 64, 64);
+        logo = new TextureRegion(items, 0, 256, 256, 256);
+        soundOff = new TextureRegion(items, 0, 0, 128, 128);
+        soundOn = new TextureRegion(items, 128, 0, 128, 128);
         arrow = new TextureRegion(items, 0, 64, 64, 64);
         pause = new TextureRegion(items, 64, 64, 64, 64);
         

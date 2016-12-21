@@ -77,7 +77,7 @@
     <string name="firepower_increased">Your Fire Powers incresed by 1</string>
     <string name="airpower_increased">Your Air Powers incresed by 1</string>
     <string name="waterpower_increased">Your Water Powers incresed by 1</string>
-    <string name="hp_increased">Your HP increased by</string>
+    <string name="tap_and_swipe">press and swipe</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">You can have a maximum of 7 Element Powers of the same type.</string>
     <string name="plant_description">You can use Plants to increase your Earth Powers, or use them in combination with a Scrollidge to gain more experience (xp)</string>
     <string name="flame_description">You can use Flames to increase your Fire Power, or use them in combination with a Scrollipow to gain more combat points (cp)</string>
@@ -107,5 +107,6 @@
     <string name="you_traveled_to_india">The Travelwind is lifting you in the air and brings you to India, just outside of the famous Taj Mahal.</string>
     <string name="you_traveled_home">Everything starts spinning. You are lifted in the air by the powerful wind. Suddenly your home again.</string>
     <string name="you_landed">You landed safe and sound. You can move around as usual and your location is shown on the map, but be careful. Keep in mind that this is not your real life location.</string>
+    <string name="hp_increased">Your hp has increased by</string>
 
 </resources>

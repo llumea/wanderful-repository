@@ -104,4 +104,5 @@
     <string name="increase_waterpower">Augmenter force d\'eau +1</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">Vous ne pouvez pas avoir plus de 7 force d\'éléments du même catégorie.</string>
     <string name="hp_increased">Votre hp a augmenté par</string>
+    <string name="tap_and_swipe">taper et swiper</string>
 </resources>

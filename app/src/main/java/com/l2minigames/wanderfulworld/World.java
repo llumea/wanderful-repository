@@ -816,6 +816,8 @@ public class World {
     }
 
     private void checkGameOver() {
+
+        ///Kolla om Timern har gått ut
         if (heightSoFar - 7.5f > bob.position.y) {
             state = WORLD_STATE_GAME_OVER;
         }

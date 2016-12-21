@@ -104,4 +104,5 @@
     <string name="increase_waterpower">Öka vattenkraft +1</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">Du kan inte ha fler än 7 elementkrafter av en och samma typ.</string>
     <string name="hp_increased">Din hp ökade med</string>
+    <string name="tap_and_swipe">tryck och swipa</string>
 </resources>

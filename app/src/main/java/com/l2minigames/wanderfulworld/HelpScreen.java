@@ -27,15 +27,15 @@ public class HelpScreen extends GLScreen {
     public HelpScreen(Game game, SuperJumper context) {
         super(game);
         this.mContext = context;
-        guiCam = new Camera2D(glGraphics, 320, 480);
-        nextBounds = new Rectangle(320 - 64, 0, 64, 64);
+        guiCam = new Camera2D(glGraphics, 640, 960);
+        nextBounds = new Rectangle(640 - 128, 0, 128, 128);
         touchPoint = new Vector2();
         batcher = new SpriteBatcher(glGraphics, 1);
     }
 
     @Override
     public void resume() {
-        helpImage = new Texture(glGame, "help1.png" );
+        helpImage = new Texture(glGame, "help.png" );
         helpRegion = new TextureRegion(helpImage, 0, 0, 320, 480);
     }
     
@@ -73,16 +73,17 @@ public class HelpScreen extends GLScreen {
         gl.glEnable(GL10.GL_TEXTURE_2D);
         
         batcher.beginBatch(helpImage);
-        batcher.drawSprite(160, 240, 320, 480, helpRegion);
+        batcher.drawSprite(320, 480, 640, 960, helpRegion);
         batcher.endBatch();
         
         gl.glEnable(GL10.GL_BLEND);
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-        
-        batcher.beginBatch(Assets.items);          
-        batcher.drawSprite(320 - 32, 32, -64, 64, Assets.arrow);
+
+        batcher.beginBatch(Assets.items);
+        batcher.drawSprite(640 - 96, 76, -112, 96, Assets.itemsClose);
+
         batcher.endBatch();
-        
+
         gl.glDisable(GL10.GL_BLEND);
     }
 

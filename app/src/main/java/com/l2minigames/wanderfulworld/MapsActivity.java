@@ -780,6 +780,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if (object.markerList.get(i).markerType.equals("towerfire")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerfire)));
                     }
+                    else if (object.markerList.get(i).markerType.equals("fight")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fight)));
+                    }
                     if (tmpMarker!=null){tmpMarker.setAnchor(0.5f,1.0f);}
                     Log.d("TAG", "markerSize: "+object.markerList.size());
                 }
@@ -1305,9 +1308,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
             for (int i=0;i<object.markerList.size();i++){
+                String tmpId = Integer.toString(i);
                 if (name.equalsIgnoreCase(object.markerList.get(i).markerType)){
                     if (object.markerList.get(i).markerType.equals("wizardacademy")){
                         showWizardAcademy();
+
+                    } else if (object.markerList.get(i).markerType.equals("fight")){
+                        myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
+                        myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
+                        fight();
 
                     }
                 }
@@ -1464,6 +1473,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerFire);
         MyMarker towerWater = new MyMarker(myLatitude, myLongitude - 0.0049, "towerwater");
         tmpMarkersList.add(towerWater);
+        MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0001, "fight");
+        tmpMarkersList.add(fight);
 
 
 
@@ -2169,6 +2180,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
 
+
+    }
+    public void fight(){
+
+        Bundle bundle = new Bundle();
+        bundle.putString("ENEMY", "hunchback");
+        bundle.putString("WORLD", "wanderful world");
+        bundle.putInt("HP", object.hp);
+        bundle.putInt("MAX_HP", object.maxhp);
+        bundle.putInt("CP", object.cp);
+        bundle.putInt("MAX_CP", object.maxcp);
+        bundle.putInt("EARTH_POWER", object.earthpower);
+        bundle.putInt("FIRE_POWER", object.firepower);
+        bundle.putInt("AIR_POWER", object.airpower);
+        bundle.putInt("WATER_POWER", object.waterpower);
+        Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
 
     }
 

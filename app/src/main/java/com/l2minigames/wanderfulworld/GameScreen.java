@@ -23,7 +23,7 @@ public class GameScreen extends GLScreen {
     static final int GAME_READY = 0;    
     static final int GAME_RUNNING = 1;
     static final int GAME_PAUSED = 2;
-    static final int GAME_LEVEL_END = 3;
+    ///static final int GAME_LEVEL_END = 3;
     static final int GAME_OVER = 4;
   
     int state;
@@ -33,8 +33,8 @@ public class GameScreen extends GLScreen {
     World world;
     WorldListener worldListener;
     WorldRenderer renderer;    
-    Rectangle pauseBounds;
-    Rectangle resumeBounds;
+   /// Rectangle pauseBounds;
+   /// Rectangle resumeBounds;
     Rectangle quitBounds;
     Rectangle jumpBounds;
     int lastScore;
@@ -73,8 +73,8 @@ public class GameScreen extends GLScreen {
         };
         world = new World(worldListener, mContext);
         renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
-        pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
-        resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
+       /// pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
+       /// resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
         jumpBounds = new Rectangle(0, 0, 640, 960);
         lastScore = 0;
@@ -98,9 +98,11 @@ public class GameScreen extends GLScreen {
         case GAME_PAUSED:
             updatePaused();
             break;
+        /*
         case GAME_LEVEL_END:
             updateLevelEnd();
             break;
+            */
         case GAME_OVER:
             updateGameOver();
             break;
@@ -133,12 +135,13 @@ public class GameScreen extends GLScreen {
 
 
             guiCam.touchToWorld(touchPoint);
-            
+            /*
             if(OverlapTester.pointInRectangle(pauseBounds, touchPoint)) {
                 Assets.playSound(Assets.clickSound);
                 state = GAME_PAUSED;
                 return;
             }
+            */
             if(OverlapTester.pointInRectangle(jumpBounds, touchPoint)) {
 
 
@@ -208,9 +211,11 @@ public class GameScreen extends GLScreen {
             scoreString = "" + lastScore;
         }
         */
+        /*
         if(world.state == World.WORLD_STATE_NEXT_LEVEL) {
             state = GAME_LEVEL_END;        
         }
+        */
         if(world.state == World.WORLD_STATE_GAME_OVER) {
             state = GAME_OVER;
             /*
@@ -234,13 +239,13 @@ public class GameScreen extends GLScreen {
             
             touchPoint.set(event.x, event.y);
             guiCam.touchToWorld(touchPoint);
-            
+            /*
             if(OverlapTester.pointInRectangle(resumeBounds, touchPoint)) {
                 Assets.playSound(Assets.clickSound);
                 state = GAME_RUNNING;
                 return;
             }
-            
+            */
             if(OverlapTester.pointInRectangle(quitBounds, touchPoint)) {
                 Assets.playSound(Assets.clickSound);
                game.setScreen(new MainMenuScreen(game,mContext));
@@ -249,7 +254,7 @@ public class GameScreen extends GLScreen {
             }
         }
     }
-
+/*
     private void updateLevelEnd() {
         List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
         int len = touchEvents.size();
@@ -263,7 +268,7 @@ public class GameScreen extends GLScreen {
             state = GAME_READY;
         }
     }
-
+*/
     private void updateGameOver() {
         List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
         int len = touchEvents.size();
@@ -311,9 +316,11 @@ public class GameScreen extends GLScreen {
         case GAME_PAUSED:
             presentPaused();
             break;
+        /*
         case GAME_LEVEL_END:
             presentLevelEnd();
             break;
+            */
         case GAME_OVER:
             presentGameOver();
             break;
@@ -323,7 +330,9 @@ public class GameScreen extends GLScreen {
     }
 
     private void presentReady() {
-        batcher.drawSprite(160, 240, 192, 32, Assets.ready);
+        String tap = mContext.getResources().getString(R.string.tap_and_swipe);
+        Assets.font.drawText(batcher, tap, 96, 400);
+        ///batcher.drawSprite(160, 240, 192, 32, Assets.ready);
     }
 
     private void presentRunning() {
