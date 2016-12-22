@@ -274,21 +274,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ///ToDo fungerar bara om det finns koppling till servern
-                Bundle bundle = new Bundle();
-                bundle.putString("ENEMY", "hunchback");
-                bundle.putString("WORLD", "wanderful world");
-                bundle.putInt("HP", object.hp);
-                bundle.putInt("MAX_HP", object.maxhp);
-                bundle.putInt("CP", object.cp);
-                bundle.putInt("MAX_CP", object.maxcp);
-                bundle.putInt("EARTH_POWER", object.earthpower);
-                bundle.putInt("FIRE_POWER", object.firepower);
-                bundle.putInt("AIR_POWER", object.airpower);
-                bundle.putInt("WATER_POWER", object.waterpower);
-                Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
+                try{
+                    ///ToDo fungerar bara om det finns koppling till servern
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ENEMY", "hunchback");
+                    bundle.putString("WORLD", "wanderful world");
+                    bundle.putInt("HP", object.hp);
+                    bundle.putInt("MAX_HP", object.maxhp);
+                    bundle.putInt("CP", object.cp);
+                    bundle.putInt("MAX_CP", object.maxcp);
+                    bundle.putInt("EARTH_POWER", object.earthpower);
+                    bundle.putInt("FIRE_POWER", object.firepower);
+                    bundle.putInt("AIR_POWER", object.airpower);
+                    bundle.putInt("WATER_POWER", object.waterpower);
+                    Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                catch(Exception e){
+                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.no_connection),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
         travelHome.setOnClickListener(new View.OnClickListener() {
@@ -1314,9 +1323,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         showWizardAcademy();
 
                     } else if (object.markerList.get(i).markerType.equals("fight")){
-                        myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
-                        myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
-                        fight();
+                        try {
+                            myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
+                            myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
+                            fight();
+                        } catch (Exception e){
+
+                        }
 
                     }
                 }
@@ -1476,11 +1489,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0001, "fight");
         tmpMarkersList.add(fight);
 
-
-
-
             myRef.child("markerList").setValue(tmpMarkersList);
-            Toast.makeText(this, "Items are updated!",
+            Toast.makeText(this, R.string.world_has_changed,
                     Toast.LENGTH_SHORT).show();
 
 

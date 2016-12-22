@@ -3,6 +3,7 @@ package com.l2minigames.wanderfulworld;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -276,7 +277,13 @@ public class GameScreen extends GLScreen {
             TouchEvent event = touchEvents.get(i);
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
-            ///ToDo här skulle man kunna gå tillbaka till MapsActivity
+            try {
+                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp);
+            }catch(Exception e){
+                Toast.makeText(mContext, R.string.not_saved,
+                        Toast.LENGTH_SHORT).show();
+            }
+            ///ToDo Skapa artefact om enemy är en boss!
             mContext.finish();
 
 
@@ -332,12 +339,34 @@ public class GameScreen extends GLScreen {
     private void presentReady() {
         String tap = mContext.getResources().getString(R.string.tap_and_swipe);
         Assets.font.drawText(batcher, tap, 96, 400);
+        Assets.font.drawText(batcher, "20", 304, 850);
         ///batcher.drawSprite(160, 240, 192, 32, Assets.ready);
     }
 
     private void presentRunning() {
 
         batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
+        if (world.timer.position.x>=0 && world.timer.position.x<2){Assets.font.drawText(batcher, "20", 304, 850);}
+        if (world.timer.position.x>=2 && world.timer.position.x<4){Assets.font.drawText(batcher, "19", 304, 850);}
+        if (world.timer.position.x>=4 && world.timer.position.x<6){Assets.font.drawText(batcher, "18", 304, 850);}
+        if (world.timer.position.x>=6 && world.timer.position.x<8){Assets.font.drawText(batcher, "17", 304, 850);}
+        if (world.timer.position.x>=8 && world.timer.position.x<10){Assets.font.drawText(batcher, "16", 304, 850);}
+        if (world.timer.position.x>=10 && world.timer.position.x<12){Assets.font.drawText(batcher, "15", 304, 850);}
+        if (world.timer.position.x>=12 && world.timer.position.x<14){Assets.font.drawText(batcher, "14", 304, 850);}
+        if (world.timer.position.x>=14 && world.timer.position.x<16){Assets.font.drawText(batcher, "13", 304, 850);}
+        if (world.timer.position.x>=16 && world.timer.position.x<18){Assets.font.drawText(batcher, "12", 304, 850);}
+        if (world.timer.position.x>=18 && world.timer.position.x<20){Assets.font.drawText(batcher, "11", 304, 850);}
+        if (world.timer.position.x>=20 && world.timer.position.x<22){Assets.font.drawText(batcher, "10", 304, 850);}
+        if (world.timer.position.x>=22 && world.timer.position.x<24){Assets.font.drawText(batcher, "09", 304, 850);}
+        if (world.timer.position.x>=24 && world.timer.position.x<26){Assets.font.drawText(batcher, "08", 304, 850);}
+        if (world.timer.position.x>=26 && world.timer.position.x<28){Assets.font.drawText(batcher, "07", 304, 850);}
+        if (world.timer.position.x>=28 && world.timer.position.x<30){Assets.font.drawText(batcher, "06", 304, 850);}
+        if (world.timer.position.x>=30 && world.timer.position.x<32){Assets.font.drawText(batcher, "05", 304, 850);}
+        if (world.timer.position.x>=32 && world.timer.position.x<34){Assets.font.drawText(batcher, "04", 304, 850);}
+        if (world.timer.position.x>=34 && world.timer.position.x<36){Assets.font.drawText(batcher, "03", 304, 850);}
+        if (world.timer.position.x>=36 && world.timer.position.x<38){Assets.font.drawText(batcher, "02", 304, 850);}
+        if (world.timer.position.x>=38 && world.timer.position.x<40){Assets.font.drawText(batcher, "01", 304, 850);}
+        if (world.timer.position.x>=40 && world.timer.position.x<42){Assets.font.drawText(batcher, "00", 304, 850);}
         ///Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
         ///Assets.font.drawText(batcher, "HELLO", 500, 800);
         ///Assets.font.drawText(batcher, "HELLO", 500, 800);

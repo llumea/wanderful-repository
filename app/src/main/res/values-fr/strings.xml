@@ -105,4 +105,7 @@
     <string name="you_can_only_have_7_elements_of_the_same_type">Vous ne pouvez pas avoir plus de 7 force d\'éléments du même catégorie.</string>
     <string name="hp_increased">Votre hp a augmenté par</string>
     <string name="tap_and_swipe">taper et swiper</string>
+    <string name="world_has_changed">Maître Arnroth a mis à jour les object dans Wanderful world</string>
+    <string name="no_connection">Il y a un probème avec la connection magique d\'Internet</string>
+    <string name="not_saved">Le combat n\'a pas été registré à cause de magie noir (connection Internet)</string>
 </resources>

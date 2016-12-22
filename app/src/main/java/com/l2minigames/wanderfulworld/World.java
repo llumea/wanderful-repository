@@ -25,6 +25,7 @@ public class World {
     public static final Vector2 gravity = new Vector2(0, -30); ///Tidigare 0,-12
 
     public final Bob bob;
+    public final Timer timer;
     public final Molly molly;
     public final Ground ground;
     public final List<Platform> platforms;
@@ -57,6 +58,7 @@ public class World {
 
     public World(WorldListener listener, SuperJumper context) {
         this.bob = new Bob(5, 1);
+        this.timer = new Timer(0,0);
         this.mContext = context;
         mollyHp = mContext.hp;
         Log.i("GAME", "Molly HP"+mollyHp);
@@ -147,6 +149,7 @@ public class World {
     public void update(float deltaTime, float accelX) {
        /// updateBob(deltaTime, accelX);
         updateMolly(deltaTime);
+        updateTimer(deltaTime);
         updatePlatforms(deltaTime);
         updateSquirrels(deltaTime);
         updateCoins(deltaTime);
@@ -174,11 +177,10 @@ public class World {
         heightSoFar = Math.max(bob.position.y, heightSoFar);
     }
     private void updateMolly(float deltaTime) {
-
-
-
         molly.update(deltaTime);
-
+    }
+    private void updateTimer(float deltaTime) {
+        timer.update(deltaTime);
     }
     private void removeUnusedObjects(float deltaTime) {
 
@@ -817,6 +819,9 @@ public class World {
 
     private void checkGameOver() {
 
+        if (timer.position.x>=40){
+            state = WORLD_STATE_GAME_OVER;
+        }
         ///Kolla om Timern har gått ut
         if (heightSoFar - 7.5f > bob.position.y) {
             state = WORLD_STATE_GAME_OVER;

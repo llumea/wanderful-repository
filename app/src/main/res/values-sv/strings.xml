@@ -105,4 +105,7 @@
     <string name="you_can_only_have_7_elements_of_the_same_type">Du kan inte ha fler än 7 elementkrafter av en och samma typ.</string>
     <string name="hp_increased">Din hp ökade med</string>
     <string name="tap_and_swipe">tryck och swipa</string>
+    <string name="world_has_changed">Mästare Arnroth har uppdaterat föremålen i Wanderful World</string>
+    <string name="no_connection">Det har uppstått ett problem med den magiska anslutningen till Internet</string>
+    <string name="not_saved">Din strid har inte registrerats på grund av svartmagi (Internetanslutning)</string>
 </resources>

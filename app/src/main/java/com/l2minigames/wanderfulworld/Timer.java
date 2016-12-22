@@ -8,7 +8,7 @@ import com.l2minigames.framework.DynamicGameObject;
 public class Timer extends DynamicGameObject {
     public static final float TIMER_WIDTH = 1;
     public static final float TIMER_HEIGHT = 0.6f;
-    public static final float TIMER_VELOCITY = 3f;
+    public static final float TIMER_VELOCITY = 1.5f;
 
     float stateTime = 0;
 

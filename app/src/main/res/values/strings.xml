@@ -67,6 +67,9 @@
     <string name="plant">Plant</string>
     <string name="potion">Potion</string>
     <string name="travel">Travel</string>
+    <string name="not_saved">Your fight was not registered due to a black magic Internet error</string>
+    <string name="no_connection">There is a problem with the magic connection to Internet</string>
+    <string name="world_has_changed">Master Arnroth has updated the objects in Wanderful World</string>
     <string name="not_in_range">You are not in range. Move closer.</string>
     <string name="travel_home">Travel home again</string>
     <string name="increase_earthpower">Increase Earth Powers +1</string>
