@@ -99,6 +99,7 @@ public class SuperJumper extends GLGame {
         myRef.child("firepower").setValue(firepower);
         myRef.child("airpower").setValue(airpower);
         myRef.child("waterpower").setValue(waterpower);
+        if (hp<2){hp=2;}
         myRef.child("hp").setValue(hp);
         myRef.child("XP").setValue(xp);
     }

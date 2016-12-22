@@ -88,15 +88,16 @@ public class World {
         ///Skapa en "dummy" utanför skärmen så att något alltid ritas ut från enemyatlas
         createHedgehog(14,50,0);
         //Rita ut enemies
-        createHedgehog(14,17,-4);
-        createWolf(24,17.8f,-8);
-        createBulldog(25,17.5f,-6);
-        createCaptain(25,18.5f,-4);
-        createBird(27,26f,-4);
-        createDragon(34,26f,-4);
-        createSnake(40,17.5f,-3);
+
+        ///createHedgehog(14,17,-4);
+        ///createWolf(24,17.8f,-8);
+       /// createBulldog(25,17.5f,-6);
+       /// createCaptain(25,18.5f,-4);
+       createBird(27,26f,-4, -0.7f);
+       createDragon(34,26f,-4, -0.7f);
+       /// createSnake(40,17.5f,-3);
         createStone(50,18.2f,-7);
-        createGhost(53,22.2f,-4);
+        ///createGhost(53,22.2f,-4);
         
         this.heightSoFar = 0;
         this.score = 0;
@@ -413,17 +414,19 @@ public class World {
         captains.add(captain);
 
     }
-    public void createBird(float positionx, float positiony, float velocity){
+    public void createBird(float positionx, float positiony, float velocityx, float velocityy){
 
         Bird bird = new Bird(positionx,positiony);
-        bird.velocity.x=velocity;
+        bird.velocity.x=velocityx;
+        bird.velocity.y=velocityy;
         birds.add(bird);
 
     }
-    public void createDragon(float positionx, float positiony, float velocity){
+    public void createDragon(float positionx, float positiony, float velocityx, float velocityy){
 
         Dragon dragon = new Dragon(positionx,positiony);
-        dragon.velocity.x=velocity;
+        dragon.velocity.x=velocityx;
+        dragon.velocity.y=velocityy;
         dragons.add(dragon);
 
     }
@@ -687,7 +690,7 @@ public class World {
 
             Hedgehog hedgehog = hedgehogs.get(i);
             if (OverlapTester.overlapRectangles(hedgehog.bounds, molly.bounds)) {
-                molly.hp = molly.hp-3;
+                molly.hp = molly.hp-1;
                 ///listener.hit();
                 ///ToDo Smash up Molly
                 hedgehogs.remove(hedgehog);
@@ -709,11 +712,77 @@ public class World {
 
             Bulldog bulldog = bulldogs.get(i);
             if (OverlapTester.overlapRectangles(bulldog.bounds, molly.bounds)) {
-                molly.hp = molly.hp-3;
+                molly.hp = molly.hp-2;
                 ///listener.hit();
                 ///ToDo Smash up Molly
                 bulldogs.remove(bulldog);
                 len3 = bulldogs.size();
+            }
+        }
+        for (int i = 0; i < len4; i++) {
+
+            Captain captain = captains.get(i);
+            if (OverlapTester.overlapRectangles(captain.bounds, molly.bounds)) {
+                molly.hp = molly.hp-5;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                captains.remove(captain);
+                len4 = captains.size();
+            }
+        }
+        for (int i = 0; i < len5; i++) {
+
+            Bird bird = birds.get(i);
+            if (OverlapTester.overlapRectangles(bird.bounds, molly.bounds)) {
+                molly.hp = molly.hp-2;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                birds.remove(bird);
+                len5 = birds.size();
+            }
+        }
+        for (int i = 0; i < len6; i++) {
+
+            Dragon dragon = dragons.get(i);
+            if (OverlapTester.overlapRectangles(dragon.bounds, molly.bounds)) {
+                molly.hp = molly.hp-3;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                dragons.remove(dragon);
+                len6 = dragons.size();
+            }
+        }
+        for (int i = 0; i < len7; i++) {
+
+            Snake snake = snakes.get(i);
+            if (OverlapTester.overlapRectangles(snake.bounds, molly.bounds)) {
+                molly.hp = molly.hp-2;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                snakes.remove(snake);
+                len7 = snakes.size();
+            }
+        }
+        for (int i = 0; i < len8; i++) {
+
+            Stone stone = stones.get(i);
+            if (OverlapTester.overlapRectangles(stone.bounds, molly.bounds)) {
+                molly.hp = molly.hp-3;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                stones.remove(stone);
+                len8 = stones.size();
+            }
+        }
+        for (int i = 0; i < len9; i++) {
+
+            Ghost ghost = ghosts.get(i);
+            if (OverlapTester.overlapRectangles(ghost.bounds, molly.bounds)) {
+                molly.hp = molly.hp-4;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                ghosts.remove(ghost);
+                len9 = ghosts.size();
             }
         }
 
@@ -887,7 +956,9 @@ public class World {
 
     private void checkGameOver() {
 
-        if (timer.position.x>=40){
+        ///ToDo Fixa i GameScreen-klassen beroende på hur spelet slutade
+
+        if (timer.position.x>=40 || molly.hp<1){
             state = WORLD_STATE_GAME_OVER;
         }
         ///Kolla om Timern har gått ut

@@ -376,8 +376,8 @@ public class GameScreen extends GLScreen {
     }
 
     private void presentPaused() {        
-        batcher.drawSprite(160, 240, 192, 96, Assets.pauseMenu);
-        Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
+       /// batcher.drawSprite(160, 240, 192, 96, Assets.pauseMenu);
+       /// Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
     }
 
     private void presentLevelEnd() {
@@ -390,7 +390,12 @@ public class GameScreen extends GLScreen {
     }
 
     private void presentGameOver() {
-        batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);        
+        if (world.molly.hp<1) {
+            Assets.font.drawText(batcher, "game over", 190, 450);
+        } else {
+            Assets.font.drawText(batcher, "game over", 190, 450);
+        }
+        ///batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);
         float scoreWidth = Assets.font.glyphWidth * scoreString.length();
         Assets.font.drawText(batcher, scoreString, 160 - scoreWidth / 2, 480-20);
     }

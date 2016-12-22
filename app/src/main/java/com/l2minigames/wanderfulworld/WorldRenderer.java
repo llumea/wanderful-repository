@@ -389,7 +389,7 @@ public class WorldRenderer {
         for(int i = 0; i < len; i++) {
             Stone stone = world.stones.get(i);
             TextureRegion keyFrame = Assets.stoneAnimation.getKeyFrame(stone.stateTime, Animation.ANIMATION_LOOPING);
-            batcher.drawSprite(stone.position.x, stone.position.y, 5, 5, keyFrame);
+            batcher.drawSprite(stone.position.x, stone.position.y, 4, 4, keyFrame);
         }
     }
     private void renderGhosts() {

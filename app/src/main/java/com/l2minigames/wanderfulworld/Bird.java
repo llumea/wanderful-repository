@@ -6,8 +6,8 @@ import com.l2minigames.framework.DynamicGameObject;
  * Created by umyhlarsle on 2016-12-19.
  */
 public class Bird extends DynamicGameObject {
-    public static final float BIRD_WIDTH = 1;
-    public static final float BIRD_HEIGHT = 1f;
+    public static final float BIRD_WIDTH = 4f;
+    public static final float BIRD_HEIGHT = 4f;
     public static final float BIRD_VELOCITY = 1f;
 
     float stateTime = 0;
