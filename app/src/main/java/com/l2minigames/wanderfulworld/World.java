@@ -62,7 +62,7 @@ public class World {
         this.mContext = context;
         mollyHp = mContext.hp;
         Log.i("GAME", "Molly HP"+mollyHp);
-        this.molly = new Molly(3, 19, mContext.hp, mContext.max_hp, mContext.earth_power, mContext.fire_power, mContext.air_power, mContext.water_power);
+        this.molly = new Molly(3, 19, mContext.hp, mContext.max_hp, mContext.earth_power, mContext.fire_power, mContext.air_power, mContext.water_power, mContext.xp);
         this.ground = new Ground(3,17);
         this.platforms = new ArrayList<Platform>();
         this.hedgehogs = new ArrayList<Hedgehog>();
@@ -450,26 +450,26 @@ public class World {
     public void createStars(float posx, float posy, String color){
 
         Star star = new Star(posx,posy);
-        star.velocity.x=15;
+        star.velocity.x=20;
         star.velocity.y=0;
         star.color = color;
         stars.add(star);
 
         Star star2 = new Star(posx,posy);
-        star2.velocity.x=-15;
+        star2.velocity.x=-20;
         star2.velocity.y=0;
         star2.color = color;
         stars.add(star2);
 
         Star star3 = new Star(posx,posy);
         star3.velocity.x=0;
-        star3.velocity.y=15;
+        star3.velocity.y=20;
         star3.color = color;
         stars.add(star3);
 
         Star star4 = new Star(posx,posy);
         star4.velocity.x=0;
-        star4.velocity.y=-15;
+        star4.velocity.y=-20;
         star4.color = color;
         stars.add(star4);
 

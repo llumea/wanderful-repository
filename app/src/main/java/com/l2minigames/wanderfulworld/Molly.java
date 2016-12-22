@@ -27,12 +27,13 @@ public class Molly extends DynamicGameObject{
     int fireCount;
     int waterCount;
     int airCount;
+    int xp;
     int state;
     float stateTime;
 
     public static float MOLLY_PULVERIZE_TIME = 0;
 
-    public Molly(float x, float y, int hp, int maxhp, int earthCount, int fireCount, int airCount, int waterCount) {
+    public Molly(float x, float y, int hp, int maxhp, int earthCount, int fireCount, int airCount, int waterCount, int xp) {
         super(x, y, MOLLY_WIDTH, MOLLY_HEIGHT);
         state = MOLLY_STATE_NORMAL;
         this.hp = hp;
@@ -41,6 +42,7 @@ public class Molly extends DynamicGameObject{
         this.fireCount = fireCount;
         this.airCount = airCount;
         this.waterCount = waterCount;
+        this.xp = xp;
         stateTime = 0;
     }
 

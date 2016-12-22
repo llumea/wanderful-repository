@@ -32,6 +32,7 @@ public class SuperJumper extends GLGame {
     int fire_power;
     int air_power;
     int water_power;
+    int xp;
     String enemy;
     String world;
     String uid;
@@ -66,6 +67,7 @@ public class SuperJumper extends GLGame {
         fire_power = bundle.getInt("FIRE_POWER");
         air_power = bundle.getInt("AIR_POWER");
         water_power = bundle.getInt("WATER_POWER");
+        xp = bundle.getInt("XP");
         Firebase.setAndroidContext(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -92,12 +94,13 @@ public class SuperJumper extends GLGame {
         startActivity(intent);
     }
 
-    public void sendResultBeforeExit(int earthpower, int firepower, int airpower, int waterpower, int hp){
+    public void sendResultBeforeExit(int earthpower, int firepower, int airpower, int waterpower, int hp, int xp){
         myRef.child("earthpower").setValue(earthpower);
         myRef.child("firepower").setValue(firepower);
         myRef.child("airpower").setValue(airpower);
         myRef.child("waterpower").setValue(waterpower);
         myRef.child("hp").setValue(hp);
+        myRef.child("XP").setValue(xp);
     }
     public void sendArtefactBeforeExit(String artefact){
         Calendar calendar = Calendar.getInstance();

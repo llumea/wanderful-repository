@@ -278,7 +278,10 @@ public class GameScreen extends GLScreen {
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
             try {
-                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp);
+                ///ToDo Ändra xp efter motstånd
+                int xpToGain = 100;
+                world.molly.xp = world.molly.xp+xpToGain;
+                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, world.molly.xp);
             }catch(Exception e){
                 Toast.makeText(mContext, R.string.not_saved,
                         Toast.LENGTH_SHORT).show();

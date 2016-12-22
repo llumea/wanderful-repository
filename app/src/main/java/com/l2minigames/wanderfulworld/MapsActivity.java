@@ -288,6 +288,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     bundle.putInt("FIRE_POWER", object.firepower);
                     bundle.putInt("AIR_POWER", object.airpower);
                     bundle.putInt("WATER_POWER", object.waterpower);
+                    bundle.putInt("XP", object.XP);
                     Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
