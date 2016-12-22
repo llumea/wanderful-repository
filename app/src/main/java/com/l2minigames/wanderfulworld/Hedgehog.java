@@ -7,7 +7,7 @@ import com.l2minigames.framework.DynamicGameObject;
  */
 public class Hedgehog extends DynamicGameObject {
     public static final float HEDGEHOG_WIDTH = 1;
-    public static final float HEDGEHOG_HEIGHT = 1f;
+    public static final float HEDGEHOG_HEIGHT = 2f;
     public static final float HEDGEHOG_VELOCITY = 1f;
 
     float stateTime = 0;

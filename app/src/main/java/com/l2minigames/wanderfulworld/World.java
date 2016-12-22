@@ -216,23 +216,13 @@ public class World {
                 len4=waters.size();
             }
         }
-/*
-        public final List<Hedgehog> hedgehogs;
-        public final List<Wolf> wolves;
-        public final List<Bulldog> bulldogs;
-        public final List<Captain> captains;
-        public final List<Bird> birds;
-        public final List<Dragon> dragons;
-        public final List<Snake> snakes;
-        public final List<Stone> stones;
-        public final List<Ghost> ghosts;
-        */
+
  ///ENEMIES PLOCKAS BORT NÄR DE PASSERAT PLAYER
 
         int len5 = hedgehogs.size();
         for (int i = 0; i < len5; i++) {
             Hedgehog hedgehog = hedgehogs.get(i);
-            if (hedgehog.position.x<2){
+            if (hedgehog.position.x<0){
                 hedgehogs.remove(i);
                 len5=hedgehogs.size();
             }
@@ -240,7 +230,7 @@ public class World {
         int len6 = wolves.size();
         for (int i = 0; i < len6; i++) {
             Wolf wolf = wolves.get(i);
-            if (wolf.position.x<2){
+            if (wolf.position.x<0){
                 wolves.remove(i);
                 len6=wolves.size();
             }
@@ -248,7 +238,7 @@ public class World {
         int len7 = bulldogs.size();
         for (int i = 0; i < len7; i++) {
             Bulldog bulldog = bulldogs.get(i);
-            if (bulldog.position.x<2){
+            if (bulldog.position.x<0){
                 bulldogs.remove(i);
                 len7=bulldogs.size();
             }
@@ -256,7 +246,7 @@ public class World {
         int len8 = captains.size();
         for (int i = 0; i < len8; i++) {
             Captain captain = captains.get(i);
-            if (captain.position.x<2){
+            if (captain.position.x<0){
                 captains.remove(i);
                 len8=captains.size();
             }
@@ -264,7 +254,7 @@ public class World {
         int len9 = birds.size();
         for (int i = 0; i < len9; i++) {
             Bird bird = birds.get(i);
-            if (bird.position.x<2){
+            if (bird.position.x<0){
                 birds.remove(i);
                 len9=birds.size();
             }
@@ -272,7 +262,7 @@ public class World {
         int len10 = dragons.size();
         for (int i = 0; i < len10; i++) {
             Dragon dragon = dragons.get(i);
-            if (dragon.position.x<2){
+            if (dragon.position.x<0){
                 dragons.remove(i);
                 len10=dragons.size();
             }
@@ -280,7 +270,7 @@ public class World {
         int len11 = snakes.size();
         for (int i = 0; i < len11; i++) {
             Snake snake = snakes.get(i);
-            if (snake.position.x<2){
+            if (snake.position.x<0){
                 snakes.remove(i);
                 len11=snakes.size();
             }
@@ -288,7 +278,7 @@ public class World {
         int len12 = stones.size();
         for (int i = 0; i < len12; i++) {
             Stone stone = stones.get(i);
-            if (stone.position.x<2){
+            if (stone.position.x<0){
                 stones.remove(i);
                 len12=stones.size();
             }
@@ -296,9 +286,28 @@ public class World {
         int len13 = ghosts.size();
         for (int i = 0; i < len13; i++) {
             Ghost ghost = ghosts.get(i);
-            if (ghost.position.x<2){
+            if (ghost.position.x<0){
                 ghosts.remove(i);
                 len13=ghosts.size();
+            }
+        }
+        int len14 = stars.size();
+        for (int i = 0; i < len14; i++) {
+            Star star = stars.get(i);
+            if (star.position.x<0){
+                stars.remove(i);
+                len14=stars.size();
+            }
+            else if (star.position.x>22){
+                stars.remove(i);
+                len14=stars.size();
+            }
+            else if (star.position.y>30){
+                stars.remove(i);
+                len14=stars.size();
+            }else if (star.position.y<0){
+                stars.remove(i);
+                len14=stars.size();
             }
         }
 
@@ -606,6 +615,7 @@ public class World {
         checkWaterEnemyCollisions();
         checkAirEnemyCollisions();
         checkFireEnemyCollisions();
+        checkEnemyMollyCollisions();
     }
 
     private void checkPlatformCollisions() {
@@ -649,6 +659,64 @@ public class World {
                 earth.position.y =17.8f;
             }
         }
+    }
+
+    private void checkEnemyMollyCollisions(){
+
+        /* public final List<Hedgehog> hedgehogs;
+        public final List<Wolf> wolves;
+        public final List<Bulldog> bulldogs;
+        public final List<Captain> captains;
+        public final List<Bird> birds;
+        public final List<Dragon> dragons;
+        public final List<Snake> snakes;
+        public final List<Stone> stones;
+        public final List<Ghost> ghosts;
+        */
+        int len = hedgehogs.size();
+        int len2 = wolves.size();
+        int len3 = bulldogs.size();
+        int len4 = captains.size();
+        int len5 = birds.size();
+        int len6 = dragons.size();
+        int len7 = snakes.size();
+        int len8 = stones.size();
+        int len9 = ghosts.size();
+
+        for (int i = 0; i < len; i++) {
+
+            Hedgehog hedgehog = hedgehogs.get(i);
+            if (OverlapTester.overlapRectangles(hedgehog.bounds, molly.bounds)) {
+                molly.hp = molly.hp-3;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                hedgehogs.remove(hedgehog);
+                len = hedgehogs.size();
+            }
+        }
+        for (int i = 0; i < len2; i++) {
+
+            Wolf wolf = wolves.get(i);
+            if (OverlapTester.overlapRectangles(wolf.bounds, molly.bounds)) {
+                molly.hp = molly.hp-3;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                wolves.remove(wolf);
+                len2 = wolves.size();
+            }
+        }
+        for (int i = 0; i < len3; i++) {
+
+            Bulldog bulldog = bulldogs.get(i);
+            if (OverlapTester.overlapRectangles(bulldog.bounds, molly.bounds)) {
+                molly.hp = molly.hp-3;
+                ///listener.hit();
+                ///ToDo Smash up Molly
+                bulldogs.remove(bulldog);
+                len3 = bulldogs.size();
+            }
+        }
+
     }
 
     private void checkFireEnemyCollisions() {
