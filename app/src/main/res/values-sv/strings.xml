@@ -45,7 +45,7 @@
     <string name="trombulus_description">Du kan använda 1 Trombulus till att öka din luftkraft eller använda 4 Trombulusar tillsammans med en Scrollifly och trolla fram en Vindresa.</string>
     <string name="waterdrop_description">Du kan använda Vattendroppar till att öka din vattenkraft, eller använda dem tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
     <string name="flame_description">Du kan använda Eldflammor till att öka din eldkraft, eller använda dem tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
-    <string name="wizardacademy_description">Var hälsad unga lärjunge. Om du lyckas hämta 5 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World. Plocka upp saker på kartan, använd skriftrullar i ryggsäcken och använd 2 fingrar samtidigt för att rotera/zooma på kartan.</string>
+    <string name="wizardacademy_description">Var hälsad unga lärjunge. Om du lyckas hämta 3 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World. Plocka upp saker på kartan, använd skriftrullar i ryggsäcken och använd 2 fingrar samtidigt för att rotera/zooma på kartan.</string>
     <string name="wizardacademy_type">Arnroth, Magimästare</string>
     <string name="wizardacademy_title">Magiakademin</string>
     <string name="a_mighty_scrollipow">en Mäktig Scrollipow</string>
@@ -108,4 +108,12 @@
     <string name="world_has_changed">Mästare Arnroth har uppdaterat föremålen i Wanderful World</string>
     <string name="no_connection">Det har uppstått ett problem med den magiska anslutningen till Internet</string>
     <string name="not_saved">Din strid har inte registrerats på grund av svartmagi (Internetanslutning)</string>
+    <string name="artefact">Artefakt</string>
+    <string name="artefact_london">Telefonkiosk i London</string>
+    <string name="artefact_paris">Konstnär i Paris</string>
+    <string name="artefact_india">Nandi (Indien)</string>
+    <string name="artefact_india_description">Den här artefakten representerar tjuren som Shiva rider på. Det här är 1 av de 3 artefakter som du ska visa för mästare Arnroth i Magiakademin.</string>
+    <string name="lost">Game over</string>
+    <string name="artefact_london_description">Den här artefakten representerar de berömda telefonkioskerna i London. Det här är 1 av de 3 artefakter som du ska visa för mästare Arnroth i Magiakademin.</string>
+    <string name="artefact_paris_description">Den här artefakten representerar en konstnär och alla berömda tavlor som finns på muséerna i Paris. Det här är 1 av de 3 artefakter som du ska visa för mästare Arnroth i Magiakademin.</string>
 </resources>

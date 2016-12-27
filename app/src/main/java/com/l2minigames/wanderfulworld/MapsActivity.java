@@ -279,7 +279,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     ///ToDo fungerar bara om det finns koppling till servern
                     Bundle bundle = new Bundle();
                     bundle.putString("ENEMY", "hunchback");
-                    bundle.putString("WORLD", "wanderful world");
+                    bundle.putString("WORLD", "india");
                     bundle.putInt("HP", object.hp);
                     bundle.putInt("MAX_HP", object.maxhp);
                     bundle.putInt("CP", object.cp);
@@ -680,8 +680,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 ///Ringar eller "cirklar" som märker ut 250 meter respektive 500 meter
 
-                mPositionLatitude.setText(""+object.latitude);
-                mPositionLongitude.setText(""+object.longitude);
+               /// mPositionLatitude.setText(""+object.latitude);
+               /// mPositionLongitude.setText(""+object.longitude);
                 mCircleTotal.center(new LatLng(myPositionLatitude, myPositionLongitude));
                 mCircleTotal.radius(250);
                 mCircleTotal.strokeColor(Color.parseColor("#dedede"));
@@ -881,8 +881,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
         if (mLastLocation != null) {
-            mPositionLatitude.setText(String.valueOf(mLastLocation.getLatitude()));
-            mPositionLongitude.setText(String.valueOf(mLastLocation.getLongitude()));
+            ///mPositionLatitude.setText(String.valueOf(mLastLocation.getLatitude()));
+           /// mPositionLongitude.setText(String.valueOf(mLastLocation.getLongitude()));
         }
     }
     @Override
@@ -1111,6 +1111,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     objectViewHolder.itemNoLocale.setText("Travelwind India");
                     objectViewHolder.itemNameList.setText(R.string.travelwind_india);
                     objectViewHolder.itemTypeList.setText(R.string.travel);
+                }
+                else if (collectedItem.itemName.equals("Artefact Paris")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.artefact_painter);
+                    objectViewHolder.itemNoLocale.setText("Artefact Paris");
+                    objectViewHolder.itemNameList.setText(R.string.artefact_paris);
+                    objectViewHolder.itemTypeList.setText(R.string.artefact);
+                }
+                else if (collectedItem.itemName.equals("Artefact London")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.artefact_phone);
+                    objectViewHolder.itemNoLocale.setText("Artefact London");
+                    objectViewHolder.itemNameList.setText(R.string.artefact_london);
+                    objectViewHolder.itemTypeList.setText(R.string.artefact);
+                }
+                else if (collectedItem.itemName.equals("Artefact India")) {
+                    objectViewHolder.itemIconList.setBackgroundResource(R.drawable.artefact_bull);
+                    objectViewHolder.itemNoLocale.setText("Artefact India");
+                    objectViewHolder.itemNameList.setText(R.string.artefact_india);
+                    objectViewHolder.itemTypeList.setText(R.string.artefact);
                 }
 
             }
@@ -1487,7 +1505,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerFire);
         MyMarker towerWater = new MyMarker(myLatitude, myLongitude - 0.0049, "towerwater");
         tmpMarkersList.add(towerWater);
-        MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0001, "fight");
+        MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0100, "fight");
         tmpMarkersList.add(fight);
 
             myRef.child("markerList").setValue(tmpMarkersList);
@@ -1910,6 +1928,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void setNewLevel (int oldLevel){
 
+        ///ToDo Inte snyggt om detta körs innan koppling mot servern, dvs. vid start
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
@@ -1985,6 +2004,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         Log.i("TAGGY", "showITEMNAAME: "+name);
+        increaseElementPowers.setVisibility(View.INVISIBLE);
 
         if (name.equals("Plant")){
             itemTitle.setText(getResources().getString(R.string.plant));
@@ -2077,6 +2097,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             itemDescription.setText(getResources().getString(R.string.travelwind_description));
             pickImage.setBackgroundResource(R.drawable.travelwind);
         }
+        else if (name.equals("Artefact Paris")){
+            itemTitle.setText(getResources().getString(R.string.artefact_paris));
+            itemType.setText(getResources().getString(R.string.artefact));
+            itemDescription.setText(getResources().getString(R.string.artefact_paris_description));
+            pickImage.setBackgroundResource(R.drawable.artefact_painter);
+        }
+        else if (name.equals("Artefact London")){
+            itemTitle.setText(getResources().getString(R.string.artefact_london));
+            itemType.setText(getResources().getString(R.string.artefact));
+            itemDescription.setText(getResources().getString(R.string.artefact_london_description));
+            pickImage.setBackgroundResource(R.drawable.artefact_phone);
+        }
+        else if (name.equals("Artefact India")){
+            itemTitle.setText(getResources().getString(R.string.artefact_india));
+            itemType.setText(getResources().getString(R.string.artefact));
+            itemDescription.setText(getResources().getString(R.string.artefact_india_description));
+            pickImage.setBackgroundResource(R.drawable.artefact_bull);
+        }
 
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
@@ -2115,6 +2153,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personFab.setVisibility(View.VISIBLE);
         travelAway.setVisibility(View.INVISIBLE);
         travelHome.setVisibility(View.INVISIBLE);
+        increaseElementPowers.setVisibility(View.INVISIBLE);
+
     }
     public void closeBackpack(){
 
@@ -2197,7 +2237,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Bundle bundle = new Bundle();
         bundle.putString("ENEMY", "hunchback");
-        bundle.putString("WORLD", "wanderful world");
+        bundle.putString("WORLD", "paris");
         bundle.putInt("HP", object.hp);
         bundle.putInt("MAX_HP", object.maxhp);
         bundle.putInt("CP", object.cp);

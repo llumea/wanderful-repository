@@ -54,6 +54,8 @@ public class World {
     public int score;    
     public int state;
     public int mollyHp;
+    public int enemyHp;
+    public int enemyMaxHp;
     SuperJumper mContext;
 
     public World(WorldListener listener, SuperJumper context) {
@@ -84,20 +86,21 @@ public class World {
         this.coins = new ArrayList<Coin>();        
         this.listener = listener;
         rand = new Random();
+        setupEnemies();
         generateLevel();
         ///Skapa en "dummy" utanför skärmen så att något alltid ritas ut från enemyatlas
         createHedgehog(14,50,0);
         //Rita ut enemies
 
-        ///createHedgehog(14,17,-4);
-        ///createWolf(24,17.8f,-8);
-       /// createBulldog(25,17.5f,-6);
+        createHedgehog(14,17,-4);
+        createWolf(24,17.8f,-8);
+        ///createBulldog(25,17.5f,-6);
        /// createCaptain(25,18.5f,-4);
        createBird(27,26f,-4, -0.7f);
-       createDragon(34,26f,-4, -0.7f);
-       /// createSnake(40,17.5f,-3);
+       ////createDragon(34,26f,-4, -0.7f);
+       createSnake(40,17.5f,-3);
         createStone(50,18.2f,-7);
-        ///createGhost(53,22.2f,-4);
+        createGhost(53,22.2f,-4);
         
         this.heightSoFar = 0;
         this.score = 0;
@@ -552,6 +555,15 @@ public class World {
             }
         }
     }
+
+    private void setupEnemies(){
+
+        ///ToDo Slumpa var och vad som placeras ut. Jämför med mollys maxhp.
+        if (mContext.enemy.equals("hunchback")){
+                enemyMaxHp=10;
+                enemyHp=10;
+        }
+    }
     private void updateFires(float deltaTime) {
         int len = fires.size();
         for (int i = 0; i < len; i++) {
@@ -799,6 +811,8 @@ public class World {
                 Captain captain = captains.get(j);
                 if (OverlapTester.overlapRectangles(fire.bounds, captain.bounds)) {
                     createStars(fire.position.x, fire.position.y, "red");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     fires.remove(fire);
                     captains.remove(captain);
                     len2 = captains.size();
@@ -811,6 +825,8 @@ public class World {
                 Wolf wolf = wolves.get(j);
                 if (OverlapTester.overlapRectangles(fire.bounds, wolf.bounds)) {
                     createStars(fire.position.x, fire.position.y, "red");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     fires.remove(fire);
                     wolves.remove(wolf);
                     len3 = wolves.size();
@@ -830,6 +846,9 @@ public class World {
                 Snake snake = snakes.get(j);
                 if (OverlapTester.overlapRectangles(earth.bounds, snake.bounds)) {
                     createStars(earth.position.x, earth.position.y, "green");
+
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     earths.remove(earth);
                     snakes.remove(snake);
                     len2 = snakes.size();
@@ -842,6 +861,8 @@ public class World {
                 Hedgehog hedgehog = hedgehogs.get(j);
                 if (OverlapTester.overlapRectangles(earth.bounds, hedgehog.bounds)) {
                     createStars(earth.position.x, earth.position.y, "green");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     earths.remove(earth);
                     hedgehogs.remove(hedgehog);
                     len3 = hedgehogs.size();
@@ -861,6 +882,8 @@ public class World {
                 Bulldog bulldog = bulldogs.get(j);
                 if (OverlapTester.overlapRectangles(water.bounds, bulldog.bounds)) {
                     createStars(water.position.x, water.position.y, "blue");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     waters.remove(water);
                     bulldogs.remove(bulldog);
                     len2 = bulldogs.size();
@@ -873,6 +896,8 @@ public class World {
                 Ghost ghost = ghosts.get(j);
                 if (OverlapTester.overlapRectangles(water.bounds, ghost.bounds)) {
                     createStars(water.position.x, water.position.y, "blue");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     waters.remove(water);
                     ghosts.remove(ghost);
                     len3 = ghosts.size();
@@ -892,6 +917,8 @@ public class World {
                 Bird bird = birds.get(j);
                 if (OverlapTester.overlapRectangles(air.bounds, bird.bounds)) {
                     createStars(air.position.x, air.position.y, "yellow");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     airs.remove(air);
                     birds.remove(bird);
                     len2 = birds.size();
@@ -904,6 +931,8 @@ public class World {
                 Dragon dragon = dragons.get(j);
                 if (OverlapTester.overlapRectangles(air.bounds, dragon.bounds)) {
                     createStars(air.position.x, air.position.y, "yellow");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
                     airs.remove(air);
                     dragons.remove(dragon);
                     len3 = dragons.size();
@@ -958,12 +987,9 @@ public class World {
 
         ///ToDo Fixa i GameScreen-klassen beroende på hur spelet slutade
 
-        if (timer.position.x>=40 || molly.hp<1){
+        if (timer.position.x>=40 || molly.hp<1 || enemyHp<1){
             state = WORLD_STATE_GAME_OVER;
         }
-        ///Kolla om Timern har gått ut
-        if (heightSoFar - 7.5f > bob.position.y) {
-            state = WORLD_STATE_GAME_OVER;
-        }
+
     }
 }

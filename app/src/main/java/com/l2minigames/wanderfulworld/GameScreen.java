@@ -348,7 +348,7 @@ public class GameScreen extends GLScreen {
 
     private void presentRunning() {
 
-        batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
+       /// batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
         if (world.timer.position.x>=0 && world.timer.position.x<2){Assets.font.drawText(batcher, "20", 304, 850);}
         if (world.timer.position.x>=2 && world.timer.position.x<4){Assets.font.drawText(batcher, "19", 304, 850);}
         if (world.timer.position.x>=4 && world.timer.position.x<6){Assets.font.drawText(batcher, "18", 304, 850);}
@@ -393,7 +393,7 @@ public class GameScreen extends GLScreen {
         if (world.molly.hp<1) {
             Assets.font.drawText(batcher, "game over", 190, 450);
         } else {
-            Assets.font.drawText(batcher, "game over", 190, 450);
+            Assets.font.drawText(batcher, "bravissimo", 188, 450);
         }
         ///batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);
         float scoreWidth = Assets.font.glyphWidth * scoreString.length();

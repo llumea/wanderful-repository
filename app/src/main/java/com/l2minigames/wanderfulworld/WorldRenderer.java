@@ -151,24 +151,19 @@ public class WorldRenderer {
         float hp = world.molly.hp;
         float maxhp = world.molly.maxhp;
         float computeRatio = hp/maxhp*5f;
-        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
-        Log.i("GAME","MOLLY HP:"+world.molly.hp);
-        Log.i("GAME","MOLLY MAXHP:"+world.molly.maxhp);
-        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
-        Log.i("GAME","COMPUTE RATIO:"+computeRatio);
-
-        float actualsize = 4.5f;
         float marginLeft = 4f;
         float difference = (fullsize-computeRatio)/2; ///computeRatio tidigare actualsize
         batcher.drawSprite(marginLeft, 26.6f, fullsize, 0.5f, Assets.itemsHPBarBlack);
         batcher.drawSprite(marginLeft-difference, 26.6f, computeRatio, 0.5f, Assets.itemsHPBarGreen);
         ///För AI
         float fullsizeAI=5f;
-        float actualsizeAI = 3f;
+        float enemyHp = world.enemyHp;
+        float enemyMaxHp = world.enemyMaxHp;
+        float computeRatioAI = enemyHp/enemyMaxHp*5f;
         float marginLeftAI = 16f;
-        float differenceAI = (fullsizeAI-actualsizeAI)/2;
+        float differenceAI = (fullsizeAI-computeRatioAI)/2;
         batcher.drawSprite(marginLeftAI, 26.6f, fullsizeAI, 0.5f, Assets.itemsHPBarBlack);
-        batcher.drawSprite(marginLeftAI-differenceAI, 26.6f, actualsizeAI, 0.5f, Assets.itemsHPBarGreen);
+        batcher.drawSprite(marginLeftAI-differenceAI, 26.6f, computeRatioAI, 0.5f, Assets.itemsHPBarGreen);
 
 
 
@@ -294,8 +289,15 @@ public class WorldRenderer {
     private void renderGround() {
 
         ///Kollar mot world.ground
-
         if (world.ground.type.equals("normal")){batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);}
+
+        batcher.drawSprite(6, 16, 4, 1, Assets.itemsLog);
+        batcher.drawSprite(10, 16, 4, 1, Assets.itemsLog);
+        batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
+        batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
+
+
+/*
 
         if (mContext.world.equals("wanderful world")) {
            /// batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);
@@ -304,6 +306,7 @@ public class WorldRenderer {
             batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
             batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
         }
+        */
 
     }
     private void renderStars(){

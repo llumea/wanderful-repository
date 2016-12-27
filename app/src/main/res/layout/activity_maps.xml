@@ -429,14 +429,14 @@
 
     <TextView
         android:id="@+id/position_latitude"
-        android:text="PosLat"
+        android:text=""
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/position_longitude"
         android:layout_gravity="center_horizontal"
-        android:text="PosLon"
+        android:text=""
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -466,6 +466,7 @@
         android:background="@drawable/girlfaceblue"/>
     <ImageButton
         android:id="@+id/gameButton"
+
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="bottom|end"
