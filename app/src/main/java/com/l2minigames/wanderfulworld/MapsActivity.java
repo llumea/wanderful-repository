@@ -276,7 +276,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
 
                 try{
-                    ///ToDo fungerar bara om det finns koppling till servern
+                    ///ToDo fungerar bara om det finns koppling till servern OBS! Den här knappen ska tas bort!
                     Bundle bundle = new Bundle();
                     bundle.putString("ENEMY", "hunchback");
                     bundle.putString("WORLD", "india");
@@ -792,6 +792,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     else if (object.markerList.get(i).markerType.equals("fight")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fight)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("hunchback")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hunchback)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("gent")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_gent)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("bull")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_bull)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("captain")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_captain)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("wizgirl")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_wizgirl)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("wizboy")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_wizboy)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("darkwiz")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_darkwiz)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("birdman")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_birdman)));
+                    }
+                    else if (object.markerList.get(i).markerType.equals("speargirl")){
+                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_speargirl)));
                     }
                     if (tmpMarker!=null){tmpMarker.setAnchor(0.5f,1.0f);}
                     Log.d("TAG", "markerSize: "+object.markerList.size());
@@ -1507,6 +1534,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerWater);
         MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0100, "fight");
         tmpMarkersList.add(fight);
+        ///I London
+        MyMarker gent = new MyMarker(myLatitude, myLongitude - 0.0100, "gent");
+        tmpMarkersList.add(gent);
+        ///I Paris
+        MyMarker hunchback = new MyMarker(myLatitude, myLongitude + 0.0100, "hunchback");
+        tmpMarkersList.add(hunchback);
+        ///I Indien
+        MyMarker bull = new MyMarker(myLatitude - 0.0050, myLongitude, "bull");
+        tmpMarkersList.add(bull);
+
+        MyMarker birdman = new MyMarker(myLatitude - 0.0060, myLongitude, "birdman");
+        tmpMarkersList.add(birdman);
+
+        MyMarker captain = new MyMarker(myLatitude - 0.0020, myLongitude, "captain");
+        tmpMarkersList.add(captain);
+
+        MyMarker wizgirl = new MyMarker(myLatitude - 0.0090, myLongitude, "wizgirl");
+        tmpMarkersList.add(wizgirl);
+
+        MyMarker wizboy = new MyMarker(myLatitude - 0.0030, myLongitude, "wizboy");
+        tmpMarkersList.add(wizboy);
+
+        MyMarker speargirl = new MyMarker(myLatitude - 0.0090, myLongitude, "speargirl");
+        tmpMarkersList.add(speargirl);
+
+        MyMarker darkwiz = new MyMarker(myLatitude - 0.0080, myLongitude, "darkwiz");
+        tmpMarkersList.add(darkwiz);
 
             myRef.child("markerList").setValue(tmpMarkersList);
             Toast.makeText(this, R.string.world_has_changed,
