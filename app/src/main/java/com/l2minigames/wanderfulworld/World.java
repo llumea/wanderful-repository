@@ -15,6 +15,12 @@ public class World {
         public void highJump();
         public void hit();
         public void coin();
+        public void victory();
+        public void defeat();
+        public void earthSound();
+        public void fireSound();
+        public void airSound();
+        public void waterSound();
     }
 
     public static final float WORLD_WIDTH = 10;
@@ -378,12 +384,12 @@ public class World {
 
     }
     public void createEarth(){
-
+        listener.earthSound();
         Earth earth = new Earth(molly.position.x,32); ///Tidigare 3
         earths.add(earth);
     }
     public void createFire(){
-
+        listener.fireSound();
         Fire fire = new Fire(molly.position.x+1f,molly.position.y+0.5f);
         fire.velocity.x=12;
         fires.add(fire);
@@ -455,7 +461,7 @@ public class World {
 
     }
     public void createAir(){
-
+        listener.airSound();
         Air air = new Air(molly.position.x-4,molly.position.y);
         air.velocity.x=10;
         air.velocity.y=5f;
@@ -514,7 +520,7 @@ public class World {
 
     }
     public void createWater(){
-
+        listener.waterSound();
         Water water = new Water(molly.position.x-1,molly.position.y-1);
         water.velocity.x=10;
         water.velocity.y=15;
@@ -703,7 +709,7 @@ public class World {
             Hedgehog hedgehog = hedgehogs.get(i);
             if (OverlapTester.overlapRectangles(hedgehog.bounds, molly.bounds)) {
                 molly.hp = molly.hp-1;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 hedgehogs.remove(hedgehog);
                 len = hedgehogs.size();
@@ -714,7 +720,7 @@ public class World {
             Wolf wolf = wolves.get(i);
             if (OverlapTester.overlapRectangles(wolf.bounds, molly.bounds)) {
                 molly.hp = molly.hp-3;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 wolves.remove(wolf);
                 len2 = wolves.size();
@@ -725,7 +731,7 @@ public class World {
             Bulldog bulldog = bulldogs.get(i);
             if (OverlapTester.overlapRectangles(bulldog.bounds, molly.bounds)) {
                 molly.hp = molly.hp-2;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 bulldogs.remove(bulldog);
                 len3 = bulldogs.size();
@@ -736,7 +742,7 @@ public class World {
             Captain captain = captains.get(i);
             if (OverlapTester.overlapRectangles(captain.bounds, molly.bounds)) {
                 molly.hp = molly.hp-5;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 captains.remove(captain);
                 len4 = captains.size();
@@ -747,7 +753,7 @@ public class World {
             Bird bird = birds.get(i);
             if (OverlapTester.overlapRectangles(bird.bounds, molly.bounds)) {
                 molly.hp = molly.hp-2;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 birds.remove(bird);
                 len5 = birds.size();
@@ -758,7 +764,7 @@ public class World {
             Dragon dragon = dragons.get(i);
             if (OverlapTester.overlapRectangles(dragon.bounds, molly.bounds)) {
                 molly.hp = molly.hp-3;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 dragons.remove(dragon);
                 len6 = dragons.size();
@@ -769,7 +775,7 @@ public class World {
             Snake snake = snakes.get(i);
             if (OverlapTester.overlapRectangles(snake.bounds, molly.bounds)) {
                 molly.hp = molly.hp-2;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 snakes.remove(snake);
                 len7 = snakes.size();
@@ -780,7 +786,7 @@ public class World {
             Stone stone = stones.get(i);
             if (OverlapTester.overlapRectangles(stone.bounds, molly.bounds)) {
                 molly.hp = molly.hp-3;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 stones.remove(stone);
                 len8 = stones.size();
@@ -791,7 +797,7 @@ public class World {
             Ghost ghost = ghosts.get(i);
             if (OverlapTester.overlapRectangles(ghost.bounds, molly.bounds)) {
                 molly.hp = molly.hp-4;
-                ///listener.hit();
+                listener.hit();
                 ///ToDo Smash up Molly
                 ghosts.remove(ghost);
                 len9 = ghosts.size();
@@ -989,6 +995,7 @@ public class World {
 
         if (timer.position.x>=40 || molly.hp<1 || enemyHp<1){
             state = WORLD_STATE_GAME_OVER;
+            listener.defeat();
         }
 
     }

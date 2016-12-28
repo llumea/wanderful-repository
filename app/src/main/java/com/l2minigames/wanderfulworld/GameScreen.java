@@ -70,7 +70,25 @@ public class GameScreen extends GLScreen {
 
             public void coin() {
                 Assets.playSound(Assets.coinSound);
-            }                      
+            }
+            public void victory() {
+                Assets.playSound(Assets.victorySound);
+            }
+            public void defeat() {
+                Assets.playSound(Assets.defeatSound);
+            }
+            public void earthSound() {
+                Assets.playSound(Assets.earthSound);
+            }
+            public void fireSound() {
+                Assets.playSound(Assets.fireSound);
+            }
+            public void airSound() {
+                Assets.playSound(Assets.airSound);
+            }
+            public void waterSound() {
+                Assets.playSound(Assets.waterSound);
+            }
         };
         world = new World(worldListener, mContext);
         renderer = new WorldRenderer(glGraphics, batcher, world, mContext);

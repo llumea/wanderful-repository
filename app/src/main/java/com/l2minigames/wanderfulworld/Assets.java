@@ -92,6 +92,12 @@ public class Assets {
     public static Sound hitSound;
     public static Sound coinSound;
     public static Sound clickSound;
+    public static Sound victorySound;
+    public static Sound defeatSound;
+    public static Sound earthSound;
+    public static Sound fireSound;
+    public static Sound airSound;
+    public static Sound waterSound;
 
     public static void load(GLGame game) {
         background = new Texture(game, "background.png");
@@ -305,10 +311,16 @@ public class Assets {
         if(Settings.soundEnabled)
             music.play();
         jumpSound = game.getAudio().newSound("jump.ogg");
-        highJumpSound = game.getAudio().newSound("highjump.ogg");
+        highJumpSound = game.getAudio().newSound("jump.ogg");
         hitSound = game.getAudio().newSound("hit.ogg");
         coinSound = game.getAudio().newSound("coin.ogg");
-        clickSound = game.getAudio().newSound("click.ogg");       
+        clickSound = game.getAudio().newSound("click.ogg");
+        victorySound = game.getAudio().newSound("victory.ogg");
+        defeatSound = game.getAudio().newSound("gameover.ogg");
+        earthSound = game.getAudio().newSound("earthSound.ogg");
+        fireSound = game.getAudio().newSound("fireSound.ogg");
+        airSound = game.getAudio().newSound("airSound.ogg");
+        waterSound = game.getAudio().newSound("waterSound.ogg");
     }       
 
     public static void reload() {
