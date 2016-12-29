@@ -162,6 +162,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean travelStarted;
     boolean isLeveledUp;
     String increaseThisElement;
+    int artefactParis;
+    int artefactLondon;
+    int artefactIndia;
 
     private static MapsActivity mMapsActivity;
 
@@ -174,6 +177,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         showWizard = 0;
         mMapsActivity = this;
         travelStarted =false;
+        artefactParis = 0;
+        artefactLondon = 0;
+        artefactIndia = 0;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
@@ -267,6 +273,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Toast.LENGTH_SHORT).show();
                         closePicked();
                     }
+
+                }else if(increaseThisElement.equals("hp")){
+                    myRef.child("hp").setValue(object.maxhp);
+                    myFirebaseRef.child(currentItemKeySelected).removeValue();
+                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.hp_increased_max),
+                            Toast.LENGTH_SHORT).show();
+                    closePicked();
+
+                }else if(increaseThisElement.equals("elements")){
+                    myRef.child("earthpower").setValue(7);
+                    myRef.child("firepower").setValue(7);
+                    myRef.child("airpower").setValue(7);
+                    myRef.child("waterpower").setValue(7);
+                    myFirebaseRef.child(currentItemKeySelected).removeValue();
+                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.elements_increased_max),
+                            Toast.LENGTH_SHORT).show();
+                    closePicked();
 
                 }
             }
@@ -1144,18 +1167,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     objectViewHolder.itemNoLocale.setText("Artefact Paris");
                     objectViewHolder.itemNameList.setText(R.string.artefact_paris);
                     objectViewHolder.itemTypeList.setText(R.string.artefact);
+                    artefactParis = artefactParis+1;
                 }
                 else if (collectedItem.itemName.equals("Artefact London")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.artefact_phone);
                     objectViewHolder.itemNoLocale.setText("Artefact London");
                     objectViewHolder.itemNameList.setText(R.string.artefact_london);
                     objectViewHolder.itemTypeList.setText(R.string.artefact);
+                    artefactLondon = artefactLondon+1;
                 }
                 else if (collectedItem.itemName.equals("Artefact India")) {
                     objectViewHolder.itemIconList.setBackgroundResource(R.drawable.artefact_bull);
                     objectViewHolder.itemNoLocale.setText("Artefact India");
                     objectViewHolder.itemNameList.setText(R.string.artefact_india);
                     objectViewHolder.itemTypeList.setText(R.string.artefact);
+                    artefactIndia = artefactIndia+1;
                 }
 
             }
@@ -2097,6 +2123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.water_item);
             increaseThisElement="water";
         }
+
         else if (name.equals("Healing Scrollifix")){
           itemTitle.setText(getResources().getString(R.string.healing_scrollifix));
             itemType.setText(getResources().getString(R.string.scroll));
@@ -2122,16 +2149,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
         else if (name.equals("Healing Potion")){
+            increaseElementPowers.setText(R.string.increase_hp);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemTitle.setText(getResources().getString(R.string.healing_potion));
             itemType.setText(getResources().getString(R.string.potion));
             itemDescription.setText(getResources().getString(R.string.healing_potion_description));
             pickImage.setBackgroundResource(R.drawable.healingpotion);
+            increaseThisElement="hp";
         }
         else if (name.equals("Combat Potion")){
+            increaseElementPowers.setText(R.string.increase_elements);
+            increaseElementPowers.setVisibility(View.VISIBLE);
             itemTitle.setText(getResources().getString(R.string.combat_potion));
             itemType.setText(getResources().getString(R.string.potion));
             itemDescription.setText(getResources().getString(R.string.combat_potion_description));
             pickImage.setBackgroundResource(R.drawable.cppotion);
+            increaseThisElement="elements";
         }
         else if (name.equals("Travelwind Paris")){
             itemTitle.setText(getResources().getString(R.string.travelwind_paris));
@@ -2187,8 +2220,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         itemTitle.setText(getResources().getString(R.string.wizardacademy_title));
         itemType.setText(getResources().getString(R.string.wizardacademy_type));
-        itemDescription.setText(getResources().getString(R.string.wizardacademy_description));
-        pickImage.setBackgroundResource(R.drawable.wizardacademy);
+
+        if (artefactParis>0 && artefactLondon>0 && artefactIndia>0){
+            itemDescription.setText(getResources().getString(R.string.wizardacademy_accepted));
+            pickImage.setBackgroundResource(R.drawable.arnrothwizhouse);
+        } else {
+            itemDescription.setText(getResources().getString(R.string.wizardacademy_description));
+            pickImage.setBackgroundResource(R.drawable.arnrothwizhouse);}
+
 
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);

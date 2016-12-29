@@ -89,13 +89,17 @@
     <string name="firepower_increased">Your Fire Powers incresed by 1</string>
     <string name="airpower_increased">Your Air Powers incresed by 1</string>
     <string name="waterpower_increased">Your Water Powers incresed by 1</string>
+    <string name="hp_increased_max">Your hp is now set to max level</string>
+    <string name="elements_increased_max">Your elements are set to max</string>
+    <string name="increase_hp">Increase your hp to max</string>
+    <string name="increase_elements">Increase all elements</string>
     <string name="tap_and_swipe">press and swipe</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">You can have a maximum of 7 Element Powers of the same type.</string>
     <string name="plant_description">You can use Plants to increase your Earth Powers, or use them in combination with a Scrollidge to gain more experience (xp)</string>
     <string name="flame_description">You can use Flames to increase your Fire Power, or use them in combination with a Scrollipow to gain more combat points (cp)</string>
     <string name="trombulus_description">You can use 1 Trombulus to increase your Air Powers, or use 4 Trombuluses in combination with a Scrollifly to conjure up a Travelwind</string>
     <string name="waterdrop_description">You can use Waterdrops to increase your Water Powers, or use them in combination with an Ancient Scrollifix to restore your health (hp)</string>
-    <string name="scrollifix_description">The Healing Scrollifix lets you restore your hp. The cost is 4 waterdrops and the Scrollifix itself.</string>
+    <string name="scrollifix_description">The Healing Scrollifix lets you create a healing potion. The cost is 4 waterdrops and the Scrollifix itself.</string>
     <string name="scrollipow_description">The Mighty Scrollifix lets you increase your cp. The cost is 4 flames and the Scrollipow itself.</string>
     <string name="scrollifly_description">The Swift Scrollifly lets you create a Travelwind so you can travel to distant areas of Wanderful World. The cost to create a Travelwind is 4 Trombuluses and the Scrollifly itself.</string>
     <string name="scrollidge_description">The Ancient Scrollidge lets you increase your xp. The cost is 4 plants and the Scrollidge itself.</string>
@@ -105,6 +109,7 @@
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
     <string name="wizardacademy_description">Greetings young apprentice. If you manage to bring back 3 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use 2 fingers to rotate/zoom on the map.</string>
+    <string name="wizardacademy_accepted">Contratulations! You managed to complete your task. I never thought anyone would do that. Ehum, well this means you are now accepted in the Magic Academy!</string>
     <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
     <string name="you_need_more_flames">You need more flames. You collect them in Wanderful World.</string>
     <string name="you_need_more_plants">You need more plants. You collect them in Wanderful World.</string>
