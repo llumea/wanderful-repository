@@ -300,9 +300,17 @@ public class GameScreen extends GLScreen {
                 int xpToGain = 100;
                 world.molly.xp = world.molly.xp+xpToGain;
                 mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, world.molly.xp);
+                if (mContext.world.equals("paris")){
+                    mContext.sendArtefactBeforeExit("Artefact Paris");
+                }
+                if (mContext.world.equals("london")){
+                    mContext.sendArtefactBeforeExit("Artefact London");
+                }
+                if (mContext.world.equals("india")){
+                    mContext.sendArtefactBeforeExit("Artefact India");
+                }
             }catch(Exception e){
-                Toast.makeText(mContext, R.string.not_saved,
-                        Toast.LENGTH_SHORT).show();
+
             }
             ///ToDo Skapa artefact om enemy är en boss!
             mContext.finish();
@@ -412,6 +420,15 @@ public class GameScreen extends GLScreen {
             Assets.font.drawText(batcher, "game over", 190, 450);
         } else {
             Assets.font.drawText(batcher, "bravissimo", 188, 450);
+            if (mContext.world.equals("paris")){
+                Assets.font.drawText(batcher, mContext.getResources().getString(R.string.artefact_paris_added), 90, 350);
+            }
+            if (mContext.world.equals("london")){
+                Assets.font.drawText(batcher, mContext.getResources().getString(R.string.artefact_london_added), 90, 350);
+            }
+            if (mContext.world.equals("india")){
+                Assets.font.drawText(batcher, mContext.getResources().getString(R.string.artefact_india_added), 90, 350);
+            }
         }
         ///batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);
         float scoreWidth = Assets.font.glyphWidth * scoreString.length();

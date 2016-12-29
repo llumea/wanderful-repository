@@ -121,4 +121,7 @@
     <string name="increase_hp">Öka hp till max</string>
     <string name="hp_increased_max">Din hp är fylld till max</string>
     <string name="elements_increased_max">Dina element är fyllda till max</string>
+    <string name="artefact_india_added">artefakt tillagd</string>
+    <string name="artefact_london_added">artefakt tillagd</string>
+    <string name="artefact_paris_added">artefakt tillagd</string>
 </resources>

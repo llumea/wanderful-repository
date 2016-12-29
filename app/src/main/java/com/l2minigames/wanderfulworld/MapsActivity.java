@@ -224,39 +224,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (increaseThisElement.equals("earth")){
                     if (mMapsActivity.getInstance().object.earthpower>6){
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                     } else {
                         int tmpEarthPower = mMapsActivity.getInstance().object.earthpower+1;
                         myRef.child("earthpower").setValue(tmpEarthPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.earthpower_increased),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                         closePicked();
                     }
                 }
                 else if(increaseThisElement.equals("fire")){
                     if (mMapsActivity.getInstance().object.firepower>6){
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                     }else {
                         int tmpFirePower = mMapsActivity.getInstance().object.firepower+1;
                         myRef.child("firepower").setValue(tmpFirePower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.firepower_increased),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                         closePicked();
                     }
 
                 }else if(increaseThisElement.equals("air")){
                     if (mMapsActivity.getInstance().object.airpower>6){
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                     }else {
                         int tmpAirPower = mMapsActivity.getInstance().object.airpower+1;
                         myRef.child("airpower").setValue(tmpAirPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.airpower_increased),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                         closePicked();
                     }
 
@@ -264,13 +264,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 else if(increaseThisElement.equals("water")){
                     if (mMapsActivity.getInstance().object.waterpower>6){
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                     }else {
                         int tmpWaterPower = mMapsActivity.getInstance().object.waterpower+1;
                         myRef.child("waterpower").setValue(tmpWaterPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.waterpower_increased),
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_LONG).show();
                         closePicked();
                     }
 
@@ -278,7 +278,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     myRef.child("hp").setValue(object.maxhp);
                     myFirebaseRef.child(currentItemKeySelected).removeValue();
                     Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.hp_increased_max),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_LONG).show();
                     closePicked();
 
                 }else if(increaseThisElement.equals("elements")){
@@ -288,7 +288,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     myRef.child("waterpower").setValue(7);
                     myFirebaseRef.child(currentItemKeySelected).removeValue();
                     Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.elements_increased_max),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_LONG).show();
                     closePicked();
 
                 }
@@ -302,7 +302,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     ///ToDo fungerar bara om det finns koppling till servern OBS! Den här knappen ska tas bort!
                     Bundle bundle = new Bundle();
                     bundle.putString("ENEMY", "hunchback");
-                    bundle.putString("WORLD", "india");
+                    bundle.putString("WORLD", "paris");
                     bundle.putInt("HP", object.hp);
                     bundle.putInt("MAX_HP", object.maxhp);
                     bundle.putInt("CP", object.cp);
@@ -318,7 +318,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 catch(Exception e){
                     Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.no_connection),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_LONG).show();
                 }
 
 
@@ -419,7 +419,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Log.i("TAGGY", "PersonTotalXP: "+mMapsActivity.getInstance().personTotalXP.getText().toString());
 
                     if (plantsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_plants),
-                            Toast.LENGTH_SHORT).show();}
+                            Toast.LENGTH_LONG).show();}
                     else if (plantsList.size()>3){
 
 
@@ -444,7 +444,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 else if (currentItemNameSelected.equals("Healing Scrollifix")){
                     if (waterdropsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_waterdrops),
-                            Toast.LENGTH_SHORT).show();}
+                            Toast.LENGTH_LONG).show();}
                     else if (waterdropsList.size()>3){
 
                         ///Ta bort fyra waterdrops från collectibleItems på servern
@@ -470,7 +470,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 else if (currentItemNameSelected.equals("Swift Scrollifly")){
                     if (trombulusList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_tromuluses),
-                            Toast.LENGTH_SHORT).show();}
+                            Toast.LENGTH_LONG).show();}
                     if (trombulusList.size()>3){
 
                         myFirebaseRef.child(trombulusList.get(0)).removeValue();
@@ -507,7 +507,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 else if (currentItemNameSelected.equals("Mighty Scrollipow")){
                     if (flamesList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_flames),
-                            Toast.LENGTH_SHORT).show();}
+                            Toast.LENGTH_LONG).show();}
                     else if (flamesList.size()>3){
 
 
@@ -1239,7 +1239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mHandler.post(mAnimation);
             Log.d("TAG", "DISTANCE IS BIGGER THAN RADIUS");
             Toast.makeText(this, R.string.not_in_range,
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
 
         }else if (distance[0] < mCircle.getRadius() && !name.equalsIgnoreCase("MyMarker")) {
             Calendar calendar = Calendar.getInstance();
@@ -1590,7 +1590,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             myRef.child("markerList").setValue(tmpMarkersList);
             Toast.makeText(this, R.string.world_has_changed,
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
 
 
     }
@@ -1724,7 +1724,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             removeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mMapsActivity.getInstance(), ""+mMapsActivity.getInstance().getResources().getString(R.string.hold_to_remove), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mMapsActivity.getInstance(), ""+mMapsActivity.getInstance().getResources().getString(R.string.hold_to_remove), Toast.LENGTH_LONG).show();
                 }
             });
             itemNameList.setOnClickListener(new View.OnClickListener() {
@@ -2020,7 +2020,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myRef.child("level").setValue(changeToLevel);
         myRef.child("maxhp").setValue(changeToHp);
         itemTitle.setText(getResources().getString(R.string.you_leveled_up));
-        itemDescription.setText(R.string.hp_increased+" + "+slumphp);
+        itemType.setText("Level " +changeToLevel);
+        itemDescription.setText(getResources().getString(R.string.hp_increased)+" + "+slumphp);
         pickImage.setBackgroundResource(R.drawable.girlfaceblue);
 
 

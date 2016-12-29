@@ -6,8 +6,8 @@ import com.l2minigames.framework.DynamicGameObject;
  * Created by umyhlarsle on 2016-12-19.
  */
 public class Ghost extends DynamicGameObject {
-    public static final float GHOST_WIDTH = 1;
-    public static final float GHOST_HEIGHT = 1f;
+    public static final float GHOST_WIDTH = 4;
+    public static final float GHOST_HEIGHT = 6f;
     public static final float GHOST_VELOCITY = 1f;
 
     float stateTime = 0;

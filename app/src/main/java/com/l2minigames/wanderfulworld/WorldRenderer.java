@@ -78,6 +78,7 @@ public class WorldRenderer {
         batcher.endBatch();
         batcher.beginBatch(Assets.playeratlas);
         renderMolly();
+        renderHits();
         renderEarths();
         renderFires();
         renderAirs();
@@ -325,13 +326,25 @@ public class WorldRenderer {
         }
 
     }
+    private void renderHits(){
+        int len = world.hits.size();
+        for(int i = 0; i < len; i++) {
+            Hit hit = world.hits.get(i);
+
+            if(hit.state == Hit.HIT_STATE_PULVERIZING) {
+                TextureRegion keyFrame = Assets.hitAnimation.getKeyFrame(hit.stateTime, Animation.ANIMATION_NONLOOPING);
+                batcher.drawSprite(hit.position.x, hit.position.y, 8, 8, keyFrame);
+            }
+        }
+
+    }
 
     private void renderPlatforms() {
         int len = world.platforms.size();
         for(int i = 0; i < len; i++) {
             Platform platform = world.platforms.get(i);
             TextureRegion keyFrame = Assets.platform;
-            if(platform.state == Platform.PLATFORM_STATE_PULVERIZING) {                
+            if(platform.state == Platform.PLATFORM_STATE_PULVERIZING) {
                 keyFrame = Assets.brakingPlatform.getKeyFrame(platform.stateTime, Animation.ANIMATION_NONLOOPING);
             }            
                                    

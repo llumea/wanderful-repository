@@ -122,4 +122,7 @@
     <string name="increase_hp">Augmenter hp au maximum</string>
     <string name="hp_increased_max">Votre hp est au maximum</string>
     <string name="elements_increased_max">Vos élements sont au maximum</string>
+    <string name="artefact_india_added">artefact rajoutee</string>
+    <string name="artefact_london_added">artefact rajoutee</string>
+    <string name="artefact_paris_added">artefact rajoutee</string>
 </resources>

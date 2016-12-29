@@ -76,6 +76,7 @@ public class Assets {
     public static Animation snakeAnimation;
     public static Animation stoneAnimation;
     public static Animation ghostAnimation;
+    public static Animation hitAnimation;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
     public static TextureRegion platform;
@@ -272,6 +273,13 @@ public class Assets {
                 new TextureRegion(playeratlas, 128, 128, 128, 128),
                 new TextureRegion(playeratlas, 128, 128, 128, 128),
                 new TextureRegion(playeratlas, 0, 0, 128, 128));
+        hitAnimation = new Animation(0.05f,
+                new TextureRegion(playeratlas, 0, 768, 128, 128),
+                new TextureRegion(playeratlas, 128, 768, 128, 128),
+                new TextureRegion(playeratlas, 256, 768, 128, 128),
+                new TextureRegion(playeratlas, 384, 768, 128, 128),
+                new TextureRegion(playeratlas, 512, 768, 128, 128),
+                new TextureRegion(playeratlas, 640, 768, 128, 128));
 
         mollyWater = new Animation(0.4f,
                 new TextureRegion(playeratlas, 0, 512, 128, 128),
