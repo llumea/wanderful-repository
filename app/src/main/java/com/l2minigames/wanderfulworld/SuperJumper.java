@@ -89,7 +89,7 @@ public class SuperJumper extends GLGame {
         if(Settings.soundEnabled)
             Assets.music.pause();
 ///ToDo här hoppar man tillbaka till kartan om man går ur spelläget via hårdvaruknappar på telefonen. Ok?
-        
+
         finish();
     }
     public void goMapsActivity(){

@@ -55,6 +55,24 @@ public class Assets {
     public static TextureRegion starRed;
     public static TextureRegion starYellow;
     public static TextureRegion starBlue;
+    public static TextureRegion birdman1;
+    public static TextureRegion birdman2;
+    public static TextureRegion wizboy1;
+    public static TextureRegion wizboy2;
+    public static TextureRegion wizgirl1;
+    public static TextureRegion wizgirl2;
+    public static TextureRegion speargirl1;
+    public static TextureRegion speargirl2;
+    public static TextureRegion captain1;
+    public static TextureRegion captain2;
+    public static TextureRegion darkwiz1;
+    public static TextureRegion darkwiz2;
+    public static TextureRegion hunchback1;
+    public static TextureRegion hunchback2;
+    public static TextureRegion gent1;
+    public static TextureRegion gent2;
+    public static TextureRegion bull1;
+    public static TextureRegion bull2;
     public static Animation coinAnim;
     public static Animation bobJump;
     public static Animation mollyJump;
@@ -77,6 +95,7 @@ public class Assets {
     public static Animation stoneAnimation;
     public static Animation ghostAnimation;
     public static Animation hitAnimation;
+    public static Animation waveAnimation;
     public static TextureRegion bobHit;
     public static Animation squirrelFly;
     public static TextureRegion platform;
@@ -148,6 +167,28 @@ public class Assets {
         starRed = new TextureRegion(playeratlas, 960, 0, 64, 64);
         starYellow = new TextureRegion(playeratlas, 896, 64, 64, 64);
         starBlue = new TextureRegion(playeratlas, 960, 64, 64, 64);
+
+        birdman1 = new TextureRegion(enemyatlas, 0, 704, 128, 128);
+        birdman2 = new TextureRegion(enemyatlas, 0, 832, 128, 128);
+        speargirl1 = new TextureRegion(enemyatlas, 128, 704, 128, 128);
+        speargirl2 = new TextureRegion(enemyatlas, 128, 832, 128, 128);
+        wizboy1 = new TextureRegion(enemyatlas, 256, 704, 128, 128);
+        wizboy2 = new TextureRegion(enemyatlas, 256, 832, 128, 128);
+        wizgirl1 = new TextureRegion(enemyatlas, 384, 704, 128, 128);
+        wizgirl2 = new TextureRegion(enemyatlas, 384, 832, 128, 128);
+        captain1 = new TextureRegion(enemyatlas, 512, 704, 128, 128);
+        captain2 = new TextureRegion(enemyatlas, 512, 832, 128, 128);
+        darkwiz1 = new TextureRegion(enemyatlas, 640, 704, 128, 128);
+        darkwiz2 = new TextureRegion(enemyatlas, 640, 832, 128, 128);
+        hunchback1 = new TextureRegion(enemyatlas, 768, 704, 128, 128);
+        hunchback2 = new TextureRegion(enemyatlas, 768, 832, 128, 128);
+        gent1 = new TextureRegion(enemyatlas, 896, 704, 128, 128);
+        gent2 = new TextureRegion(enemyatlas, 896, 832, 128, 128);
+        bull1 = new TextureRegion(enemyatlas, 384, 0, 128, 128);
+        bull2 = new TextureRegion(enemyatlas, 896, 576, 128, 128);
+
+
+
 
         coinAnim = new Animation(0.2f,                                 
                                  new TextureRegion(items, 128, 32, 32, 32),
@@ -296,6 +337,15 @@ public class Assets {
                 new TextureRegion(playeratlas, 256, 256, 128, 128),
                 new TextureRegion(playeratlas, 384, 256, 128, 128),
                 new TextureRegion(playeratlas, 0, 0, 128, 128));
+
+
+        waveAnimation = new Animation(0.15f,
+                new TextureRegion(items, 576, 240, 260, 64),
+                new TextureRegion(items, 576, 304, 260, 64),
+                new TextureRegion(items, 576, 368, 260, 64),
+                new TextureRegion(items, 576, 432, 260, 64),
+                new TextureRegion(items, 576, 496, 260, 64),
+                new TextureRegion(items, 576, 560, 260, 64));
 
         bobFall = new Animation(0.2f,
                                 new TextureRegion(items, 64, 128, 32, 32),

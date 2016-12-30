@@ -114,6 +114,30 @@ public class MainMenuScreen extends GLScreen {
         batcher.drawSprite(96, 96-24, 96+24, 96, Settings.soundEnabled?Assets.soundOn:Assets.soundOff);
         ///Assets.font.drawText(batcher, mContext.enemy, 64, 896);
         batcher.endBatch();
+
+        batcher.endBatch();
+
+        batcher.beginBatch(Assets.enemyatlas);
+        if (mContext.enemy.equals("birdman")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.birdman1);
+        } else if (mContext.enemy.equals("speargirl")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.speargirl1);
+        } else if (mContext.enemy.equals("wizboy")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.wizboy1);
+        } else if (mContext.enemy.equals("wizgirl")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.wizgirl1);
+        } else if (mContext.enemy.equals("captain")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.captain1);
+        } else if (mContext.enemy.equals("darkwiz")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.darkwiz1);
+        } else if (mContext.enemy.equals("hunchback")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.hunchback1);
+        } else if (mContext.enemy.equals("gent")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.gent1);
+        } else if (mContext.enemy.equals("bull")) {
+            batcher.drawSprite(320, 640, 256, 256, Assets.bull1);
+        }
+        batcher.endBatch();
         
         gl.glDisable(GL10.GL_BLEND);
 

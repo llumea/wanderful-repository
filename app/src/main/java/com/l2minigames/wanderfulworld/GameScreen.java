@@ -362,8 +362,10 @@ public class GameScreen extends GLScreen {
             break;
         }
         batcher.endBatch();
+
         gl.glDisable(GL10.GL_BLEND);
     }
+
 
     private void presentReady() {
         String tap = mContext.getResources().getString(R.string.tap_and_swipe);

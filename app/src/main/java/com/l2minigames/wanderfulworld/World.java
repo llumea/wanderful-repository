@@ -33,6 +33,7 @@ public class World {
     public final Bob bob;
     public final Timer timer;
     public final Molly molly;
+    public final Wave wave;
     public final Ground ground;
     public final List<Platform> platforms;
     public final List<Earth> earths;
@@ -73,6 +74,7 @@ public class World {
         Log.i("GAME", "Molly HP"+mollyHp);
         this.molly = new Molly(3, 19, mContext.hp, mContext.max_hp, mContext.earth_power, mContext.fire_power, mContext.air_power, mContext.water_power, mContext.xp);
         this.ground = new Ground(3,17);
+        this.wave = new Wave(6,17);
         this.platforms = new ArrayList<Platform>();
         this.hits = new ArrayList<Hit>();
         this.hedgehogs = new ArrayList<Hedgehog>();
@@ -161,6 +163,7 @@ public class World {
     public void update(float deltaTime, float accelX) {
        /// updateBob(deltaTime, accelX);
         updateMolly(deltaTime);
+        updateWave(deltaTime);
         updateHits(deltaTime);
         updateTimer(deltaTime);
         updatePlatforms(deltaTime);
@@ -191,6 +194,9 @@ public class World {
     }
     private void updateMolly(float deltaTime) {
         molly.update(deltaTime);
+    }
+    private void updateWave(float deltaTime) {
+        wave.update(deltaTime);
     }
     private void updateHits(float deltaTime) {
 
@@ -586,9 +592,94 @@ public class World {
     private void setupEnemies(){
 
         ///ToDo Slumpa var och vad som placeras ut. Jämför med mollys maxhp.
-        if (mContext.enemy.equals("hunchback")){
-                enemyMaxHp=10;
-                enemyHp=10;
+        if (molly.maxhp<13) {
+            if (mContext.enemy.equals("birdman")) {
+                enemyMaxHp = 10;
+                enemyHp = 10;
+            } else if (mContext.enemy.equals("speargirl")) {
+                enemyMaxHp = 12;
+                enemyHp = 12;
+            } else if (mContext.enemy.equals("wizboy")) {
+                enemyMaxHp = 11;
+                enemyHp = 11;
+            } else if (mContext.enemy.equals("wizgirl")) {
+                enemyMaxHp = 11;
+                enemyHp = 11;
+            } else if (mContext.enemy.equals("captain")) {
+                enemyMaxHp = 14;
+                enemyHp = 14;
+            } else if (mContext.enemy.equals("darkwiz")) {
+                enemyMaxHp = 16;
+                enemyHp = 16;
+            } else if (mContext.enemy.equals("hunchback")) {
+                enemyMaxHp = 20;
+                enemyHp = 20;
+            } else if (mContext.enemy.equals("gent")) {
+                enemyMaxHp = 22;
+                enemyHp = 22;
+            } else if (mContext.enemy.equals("bull")) {
+                enemyMaxHp = 24;
+                enemyHp = 24;
+            }
+
+        } else if (molly.maxhp>12 && molly.maxhp<18){
+            if (mContext.enemy.equals("birdman")) {
+                enemyMaxHp = 12;
+                enemyHp = 12;
+            } else if (mContext.enemy.equals("speargirl")) {
+                enemyMaxHp = 14;
+                enemyHp = 14;
+            } else if (mContext.enemy.equals("wizboy")) {
+                enemyMaxHp = 13;
+                enemyHp = 13;
+            } else if (mContext.enemy.equals("wizgirl")) {
+                enemyMaxHp = 13;
+                enemyHp = 13;
+            } else if (mContext.enemy.equals("captain")) {
+                enemyMaxHp = 16;
+                enemyHp = 16;
+            } else if (mContext.enemy.equals("darkwiz")) {
+                enemyMaxHp = 18;
+                enemyHp = 18;
+            } else if (mContext.enemy.equals("hunchback")) {
+                enemyMaxHp = 20;
+                enemyHp = 20;
+            } else if (mContext.enemy.equals("gent")) {
+                enemyMaxHp = 22;
+                enemyHp = 22;
+            } else if (mContext.enemy.equals("bull")) {
+                enemyMaxHp = 24;
+                enemyHp = 24;
+            }
+        } else if (molly.maxhp>17){
+            if (mContext.enemy.equals("birdman")) {
+                enemyMaxHp = 14;
+                enemyHp = 14;
+            } else if (mContext.enemy.equals("speargirl")) {
+                enemyMaxHp = 16;
+                enemyHp = 16;
+            } else if (mContext.enemy.equals("wizboy")) {
+                enemyMaxHp = 15;
+                enemyHp = 15;
+            } else if (mContext.enemy.equals("wizgirl")) {
+                enemyMaxHp = 15;
+                enemyHp = 15;
+            } else if (mContext.enemy.equals("captain")) {
+                enemyMaxHp = 18;
+                enemyHp = 18;
+            } else if (mContext.enemy.equals("darkwiz")) {
+                enemyMaxHp = 20;
+                enemyHp = 20;
+            } else if (mContext.enemy.equals("hunchback")) {
+                enemyMaxHp = 20;
+                enemyHp = 20;
+            } else if (mContext.enemy.equals("gent")) {
+                enemyMaxHp = 22;
+                enemyHp = 22;
+            } else if (mContext.enemy.equals("bull")) {
+                enemyMaxHp = 24;
+                enemyHp = 24;
+            }
         }
     }
     private void updateFires(float deltaTime) {

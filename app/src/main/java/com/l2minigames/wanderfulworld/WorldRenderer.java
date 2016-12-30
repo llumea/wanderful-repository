@@ -74,6 +74,7 @@ public class WorldRenderer {
        /// renderSquirrels();
        /// renderCastle();
         renderGround();
+        renderWave();
         renderProgress();
         batcher.endBatch();
         batcher.beginBatch(Assets.playeratlas);
@@ -86,6 +87,7 @@ public class WorldRenderer {
         renderStars();
         batcher.endBatch();
         batcher.beginBatch(Assets.enemyatlas);
+        renderBosses();
         renderHedgehogs();
         renderWolves();
         renderBulldogs();
@@ -298,6 +300,7 @@ public class WorldRenderer {
         batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
 
 
+
 /*
 
         if (mContext.world.equals("wanderful world")) {
@@ -310,6 +313,67 @@ public class WorldRenderer {
         */
 
     }
+    private void renderWave(){
+
+            TextureRegion keyFrame = Assets.waveAnimation.getKeyFrame(world.wave.stateTime, Animation.ANIMATION_LOOPING);
+            batcher.drawSprite(world.wave.position.x-4, world.wave.position.y-1.4f, 6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+2f, world.wave.position.y-1.4f, -6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+8, world.wave.position.y-1.4f, 6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+14f, world.wave.position.y-1.4f, -6, 1.2f, keyFrame);
+
+    }
+    private void renderBosses() {
+
+        ///Kollar mot world.ground
+    if (mContext.enemy.equals("birdman")) {
+        if (world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>32 && world.timer.position.x<33.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.birdman2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.birdman1);}
+    } else if
+            (mContext.enemy.equals("speargirl")) {
+        if (world.timer.position.x>6 && world.timer.position.x<6.3f || world.timer.position.x>16 && world.timer.position.x<16.3f || world.timer.position.x>24 && world.timer.position.x<24.3f || world.timer.position.x>32 && world.timer.position.x<32.3f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.speargirl2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.speargirl1);}
+    } else if
+            (mContext.enemy.equals("wizboy")) {
+        if (world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>32 && world.timer.position.x<33.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.wizboy2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.wizboy1);}
+    } else if
+            (mContext.enemy.equals("wizgirl")) {
+        if (world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>32 && world.timer.position.x<33.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.wizgirl2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.wizgirl1);}
+    }else if
+            (mContext.enemy.equals("captain")) {
+        if (world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>32 && world.timer.position.x<33.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.captain2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.captain1);}
+    }else if
+            (mContext.enemy.equals("darkwiz")) {
+        if (world.timer.position.x>3 && world.timer.position.x<4.5f || world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>28 && world.timer.position.x<29.5f || world.timer.position.x>32 && world.timer.position.x<33.5f || world.timer.position.x>35 && world.timer.position.x<36.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.darkwiz2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.darkwiz1);}
+    }else if
+            (mContext.enemy.equals("hunchback")) {
+        if (world.timer.position.x>3 && world.timer.position.x<4.5f || world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>28 && world.timer.position.x<29.5f || world.timer.position.x>32 && world.timer.position.x<33.5f || world.timer.position.x>35 && world.timer.position.x<36.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.hunchback2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.hunchback1);}
+    }else if
+            (mContext.enemy.equals("gent")) {
+        if (world.timer.position.x>3 && world.timer.position.x<4.5f || world.timer.position.x>6 && world.timer.position.x<6.5f || world.timer.position.x>7 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<16.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>25 && world.timer.position.x<25.5f || world.timer.position.x>28 && world.timer.position.x<28.5f || world.timer.position.x>29 && world.timer.position.x<29.5f || world.timer.position.x>32 && world.timer.position.x<32.5f || world.timer.position.x>35 && world.timer.position.x<35.5f || world.timer.position.x>36 && world.timer.position.x<36.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.gent2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.gent1);}
+    }else if
+            (mContext.enemy.equals("bull")) {
+        if (world.timer.position.x>3 && world.timer.position.x<4.5f || world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>28 && world.timer.position.x<29.5f || world.timer.position.x>32 && world.timer.position.x<33.5f || world.timer.position.x>35 && world.timer.position.x<36.5f) {
+            batcher.drawSprite(16, 25, 3, 3, Assets.bull2);
+        } else {batcher.drawSprite(16, 25, 3, 3, Assets.bull1);}
+    }
+
+
+    }
+
     private void renderStars(){
         int len = world.stars.size();
         for(int i = 0; i < len; i++) {
