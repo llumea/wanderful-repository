@@ -102,15 +102,15 @@ public class World {
         createHedgehog(14,50,0);
         //Rita ut enemies
 
-        createHedgehog(14,17,-4);
-        createWolf(24,17.8f,-8);
+        ///createHedgehog(14,17,-4);
+        ///createWolf(24,17.8f,-8);
         ///createBulldog(25,17.5f,-6);
        /// createCaptain(25,18.5f,-4);
-       createBird(27,26f,-4, -0.7f);
+       ///createBird(27,26f,-4, -0.7f);
        ////createDragon(34,26f,-4, -0.7f);
-       createSnake(40,17.5f,-3);
-        createStone(50,18.2f,-7);
-        createGhost(53,22.2f,-4);
+       ///createSnake(40,17.5f,-3);
+        ///createStone(50,18.2f,-7);
+       /// createGhost(53,22.2f,-4);
         
         this.heightSoFar = 0;
         this.score = 0;
@@ -254,7 +254,7 @@ public class World {
         int len5 = hedgehogs.size();
         for (int i = 0; i < len5; i++) {
             Hedgehog hedgehog = hedgehogs.get(i);
-            if (hedgehog.position.x<0){
+            if (hedgehog.position.x<-4){
                 hedgehogs.remove(i);
                 len5=hedgehogs.size();
             }
@@ -262,7 +262,7 @@ public class World {
         int len6 = wolves.size();
         for (int i = 0; i < len6; i++) {
             Wolf wolf = wolves.get(i);
-            if (wolf.position.x<0){
+            if (wolf.position.x<-4){
                 wolves.remove(i);
                 len6=wolves.size();
             }
@@ -270,7 +270,7 @@ public class World {
         int len7 = bulldogs.size();
         for (int i = 0; i < len7; i++) {
             Bulldog bulldog = bulldogs.get(i);
-            if (bulldog.position.x<0){
+            if (bulldog.position.x<-4){
                 bulldogs.remove(i);
                 len7=bulldogs.size();
             }
@@ -278,7 +278,7 @@ public class World {
         int len8 = captains.size();
         for (int i = 0; i < len8; i++) {
             Captain captain = captains.get(i);
-            if (captain.position.x<0){
+            if (captain.position.x<-4){
                 captains.remove(i);
                 len8=captains.size();
             }
@@ -286,7 +286,7 @@ public class World {
         int len9 = birds.size();
         for (int i = 0; i < len9; i++) {
             Bird bird = birds.get(i);
-            if (bird.position.x<0){
+            if (bird.position.x<-4){
                 birds.remove(i);
                 len9=birds.size();
             }
@@ -294,7 +294,7 @@ public class World {
         int len10 = dragons.size();
         for (int i = 0; i < len10; i++) {
             Dragon dragon = dragons.get(i);
-            if (dragon.position.x<0){
+            if (dragon.position.x<-4){
                 dragons.remove(i);
                 len10=dragons.size();
             }
@@ -302,7 +302,7 @@ public class World {
         int len11 = snakes.size();
         for (int i = 0; i < len11; i++) {
             Snake snake = snakes.get(i);
-            if (snake.position.x<0){
+            if (snake.position.x<-4){
                 snakes.remove(i);
                 len11=snakes.size();
             }
@@ -310,7 +310,7 @@ public class World {
         int len12 = stones.size();
         for (int i = 0; i < len12; i++) {
             Stone stone = stones.get(i);
-            if (stone.position.x<0){
+            if (stone.position.x<-4){
                 stones.remove(i);
                 len12=stones.size();
             }
@@ -318,7 +318,7 @@ public class World {
         int len13 = ghosts.size();
         for (int i = 0; i < len13; i++) {
             Ghost ghost = ghosts.get(i);
-            if (ghost.position.x<0){
+            if (ghost.position.x<-4){
                 ghosts.remove(i);
                 len13=ghosts.size();
             }
@@ -326,7 +326,7 @@ public class World {
         int len14 = stars.size();
         for (int i = 0; i < len14; i++) {
             Star star = stars.get(i);
-            if (star.position.x<0){
+            if (star.position.x<-4){
                 stars.remove(i);
                 len14=stars.size();
             }
@@ -594,8 +594,25 @@ public class World {
         ///ToDo Slumpa var och vad som placeras ut. Jämför med mollys maxhp.
         if (molly.maxhp<13) {
             if (mContext.enemy.equals("birdman")) {
-                enemyMaxHp = 10;
-                enemyHp = 10;
+                enemyMaxHp = 8;
+                enemyHp = 8;
+                createBird(27,26f,-4, -0.7f);
+                createBird(47,21f,-4, 0f);
+                createBird(67,26f,-4, -0.5f);
+                createBird(87,21f,-4, 0f);
+                createBird(107,26f,-4, -0.3f);
+                createStone(24,18.2f,-7);
+                createStone(34,18.2f,-7);
+                createStone(64,18.2f,-7);
+                createStone(84,18.2f,-7);
+                createStone(104,18.2f,-7);
+                createStone(134,18.2f,-7);
+                createStone(144,18.2f,-7);
+                createStone(164,18.2f,-7);
+                createStone(174,18.2f,-7);
+                createStone(184,18.2f,-7);
+                createStone(194,18.2f,-7);
+
             } else if (mContext.enemy.equals("speargirl")) {
                 enemyMaxHp = 12;
                 enemyHp = 12;
@@ -624,8 +641,25 @@ public class World {
 
         } else if (molly.maxhp>12 && molly.maxhp<18){
             if (mContext.enemy.equals("birdman")) {
-                enemyMaxHp = 12;
-                enemyHp = 12;
+                enemyMaxHp = 10;
+                enemyHp = 10;
+                createBird(27,26f,-4, -0.7f);
+                createBird(54,21f,-4, 0f);
+                createBird(67,26f,-4, -0.5f);
+                createBird(87,21f,-4, 0f);
+                createBird(94,21f,-4, 0f);
+                createBird(107,26f,-4, -0.3f);
+                createStone(24,18.2f,-7);
+                createStone(34,18.2f,-7);
+                createStone(64,18.2f,-7);
+                createStone(84,18.2f,-7);
+                createStone(104,18.2f,-7);
+                createStone(134,18.2f,-7);
+                createStone(144,18.2f,-7);
+                createStone(164,18.2f,-7);
+                createStone(174,18.2f,-7);
+                createStone(184,18.2f,-7);
+                createStone(194,18.2f,-7);
             } else if (mContext.enemy.equals("speargirl")) {
                 enemyMaxHp = 14;
                 enemyHp = 14;
@@ -653,8 +687,29 @@ public class World {
             }
         } else if (molly.maxhp>17){
             if (mContext.enemy.equals("birdman")) {
-                enemyMaxHp = 14;
-                enemyHp = 14;
+                enemyMaxHp = 12;
+                enemyHp = 12;
+                createBird(27,26f,-4, -0.7f);
+                createBird(47,21f,-4, 0f);
+                createBird(54,21f,-4, 0f);
+                createBird(67,26f,-4, -0.5f);
+                createBird(87,21f,-4, 0f);
+                createBird(94,21f,-4, 0f);
+                createBird(107,26f,-4, -0.3f);
+                createStone(24,18.2f,-7);
+                createStone(34,18.2f,-7);
+                createStone(44,18.2f,-7);
+                createStone(64,18.2f,-7);
+                createStone(84,18.2f,-7);
+                createStone(104,18.2f,-7);
+                createStone(124,18.2f,-7);
+                createStone(134,18.2f,-7);
+                createStone(144,18.2f,-7);
+                createStone(154,18.2f,-7);
+                createStone(164,18.2f,-7);
+                createStone(174,18.2f,-7);
+                createStone(184,18.2f,-7);
+                createStone(194,18.2f,-7);
             } else if (mContext.enemy.equals("speargirl")) {
                 enemyMaxHp = 16;
                 enemyHp = 16;
@@ -739,9 +794,9 @@ public class World {
 
         ///SuperJumper-metoder
         checkPlatformCollisions();
-        checkSquirrelCollisions();
+       /// checkSquirrelCollisions();
         checkItemCollisions();
-        checkCastleCollisions();
+        ///checkCastleCollisions();
         ///Mina metoder
         checkEarthGroundCollisions();
         checkEarthEnemyCollisions();
@@ -788,7 +843,7 @@ public class World {
             Earth earth = earths.get(i);
             if (OverlapTester.overlapRectangles(earth.bounds, ground.bounds)) {
                earth.velocity.y = 0;
-               earth.velocity.x = 2;
+               earth.velocity.x = 3;
                 earth.position.y =17.8f;
             }
         }
@@ -931,6 +986,7 @@ public class World {
         int len = fires.size();
         int len2 = captains.size();
         int len3 = wolves.size();
+        int len4 = birds.size();
         for (int i = 0; i < len; i++) {
             Fire fire = fires.get(i);
 
@@ -960,12 +1016,26 @@ public class World {
                     len =fires.size();
                 }
             }
+            for (int j = 0; j<len4;j++){
+                Bird bird = birds.get(j);
+                if (OverlapTester.overlapRectangles(fire.bounds, bird.bounds)) {
+                    createStars(fire.position.x, fire.position.y, "red");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    fires.remove(fire);
+                    birds.remove(bird);
+                    len4 = birds.size();
+                    len =fires.size();
+                }
+            }
         }
     }
     private void checkEarthEnemyCollisions() {
         int len = earths.size();
         int len2 = snakes.size();
         int len3 = hedgehogs.size();
+        int len4 = birds.size();
+        int len5 = stones.size();
         for (int i = 0; i < len; i++) {
             Earth earth = earths.get(i);
 
@@ -993,6 +1063,30 @@ public class World {
                     earths.remove(earth);
                     hedgehogs.remove(hedgehog);
                     len3 = hedgehogs.size();
+                    len =earths.size();
+                }
+            }
+            for (int j = 0; j<len4;j++){
+                Bird bird = birds.get(j);
+                if (OverlapTester.overlapRectangles(earth.bounds, bird.bounds)) {
+                    createStars(earth.position.x, earth.position.y, "green");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    earths.remove(earth);
+                    birds.remove(bird);
+                    len4 = birds.size();
+                    len =earths.size();
+                }
+            }
+            for (int j = 0; j<len5;j++){
+                Stone stone = stones.get(j);
+                if (OverlapTester.overlapRectangles(earth.bounds, stone.bounds)) {
+                    createStars(earth.position.x, earth.position.y, "green");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    earths.remove(earth);
+                    stones.remove(stone);
+                    len5 = stones.size();
                     len =earths.size();
                 }
             }

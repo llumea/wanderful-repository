@@ -50,6 +50,11 @@
     <string name="artefact_paris_added">artefact added</string>
     <string name="artefact_india_added">artefact added</string>
     <string name="artefact_london_added">artefact added</string>
+    <string name="added_100_xp">plus 100 xp</string>
+    <string name="added_110_xp">plus 110 xp</string>
+    <string name="added_120_xp">plus 120 xp</string>
+    <string name="added_130_xp">plus 130 xp</string>
+    <string name="added_140_xp">plus 140 xp</string>
     <string name="artefact_india_description">This artefact represents the bull which serves as the mount of the god Shiva. This is 1 of the 3 artefacts that you should bring back to master Arnroth at the Magic Academy.</string>
     <string name="artefact_paris_description">This artefact represents an artist and the many famous paintings in the museums of Paris. This is 1 of the 3 artefacts that you should bring back to master Arnroth at the Magic Academy.</string>
     <string name="artefact_london_description">This artefact represents the iconic red phone booths in London. This is 1 of the 3 artefacts that you should bring back to master Arnroth at the Magic Academy.</string>

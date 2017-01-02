@@ -300,26 +300,14 @@ public class WorldRenderer {
         batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
 
 
-
-/*
-
-        if (mContext.world.equals("wanderful world")) {
-           /// batcher.drawSprite(2, 16, 4, 1, Assets.itemsLog);
-            batcher.drawSprite(6, 16, 4, 1, Assets.itemsLog);
-            batcher.drawSprite(10, 16, 4, 1, Assets.itemsLog);
-            batcher.drawSprite(14, 16, 4, 1, Assets.itemsLog);
-            batcher.drawSprite(18, 16, 4, 1, Assets.itemsLog);
-        }
-        */
-
     }
     private void renderWave(){
 
             TextureRegion keyFrame = Assets.waveAnimation.getKeyFrame(world.wave.stateTime, Animation.ANIMATION_LOOPING);
-            batcher.drawSprite(world.wave.position.x-4, world.wave.position.y-1.4f, 6, 1.2f, keyFrame);
-        batcher.drawSprite(world.wave.position.x+2f, world.wave.position.y-1.4f, -6, 1.2f, keyFrame);
-        batcher.drawSprite(world.wave.position.x+8, world.wave.position.y-1.4f, 6, 1.2f, keyFrame);
-        batcher.drawSprite(world.wave.position.x+14f, world.wave.position.y-1.4f, -6, 1.2f, keyFrame);
+            batcher.drawSprite(world.wave.position.x-4, world.wave.position.y-1.3f, 6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+2f, world.wave.position.y-1.3f, -6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+8, world.wave.position.y-1.3f, 6, 1.2f, keyFrame);
+        batcher.drawSprite(world.wave.position.x+14f, world.wave.position.y-1.3f, -6, 1.2f, keyFrame);
 
     }
     private void renderBosses() {
@@ -469,7 +457,7 @@ public class WorldRenderer {
         for(int i = 0; i < len; i++) {
             Stone stone = world.stones.get(i);
             TextureRegion keyFrame = Assets.stoneAnimation.getKeyFrame(stone.stateTime, Animation.ANIMATION_LOOPING);
-            batcher.drawSprite(stone.position.x, stone.position.y, 4, 4, keyFrame);
+            batcher.drawSprite(stone.position.x, stone.position.y-1f, 3, 3, keyFrame);
         }
     }
     private void renderGhosts() {

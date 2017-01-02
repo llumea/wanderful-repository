@@ -813,9 +813,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if (object.markerList.get(i).markerType.equals("towerfire")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.towerfire)));
                     }
-                    else if (object.markerList.get(i).markerType.equals("fight")){
-                        tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.fight)));
-                    }
                     else if (object.markerList.get(i).markerType.equals("hunchback")){
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hunchback)));
                     }
@@ -1394,11 +1391,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (object.markerList.get(i).markerType.equals("wizardacademy")){
                         showWizardAcademy();
 
-                    } else if (object.markerList.get(i).markerType.equals("fight")){
+                    } else if (object.markerList.get(i).markerType.equals("birdman")
+                            ||object.markerList.get(i).markerType.equals("speargirl")
+                            ||object.markerList.get(i).markerType.equals("wizboy")
+                            ||object.markerList.get(i).markerType.equals("wizgirl")
+                            ||object.markerList.get(i).markerType.equals("captain")
+                            ||object.markerList.get(i).markerType.equals("darkwiz")
+                            ||object.markerList.get(i).markerType.equals("hunchback")
+                            ||object.markerList.get(i).markerType.equals("gent")
+                            ||object.markerList.get(i).markerType.equals("bull")
+                            ){
                         try {
                             myRef.child("markerList").child(tmpId).child("markerLatitude").setValue(0);
                             myRef.child("markerList").child(tmpId).child("markerLongitude").setValue(0);
-                            fight();
+                            if (object.markerList.get(i).markerType.equals("birdman")){
+                            fight("birdman", "wanderful world");
+                            } else if (object.markerList.get(i).markerType.equals("speargirl")){
+                                fight("speargirl", "wanderful world");
+                            }else if (object.markerList.get(i).markerType.equals("wizboy")){
+                                fight("wizboy", "wanderful world");
+                            }else if (object.markerList.get(i).markerType.equals("wizgirl")){
+                                fight("wizgirl", "wanderful world");
+                            }else if (object.markerList.get(i).markerType.equals("captain")){
+                                fight("captain", "wanderful world");
+                            }else if (object.markerList.get(i).markerType.equals("darkwiz")){
+                                fight("darkwiz", "wanderful world");
+                            }else if (object.markerList.get(i).markerType.equals("hunchback")){
+                                fight("hunchback", "paris");
+                            }else if (object.markerList.get(i).markerType.equals("gent")){
+                                fight("gent", "london");
+                            }else if (object.markerList.get(i).markerType.equals("bull")){
+                                fight("bull", "india");
+                            }
                         } catch (Exception e){
 
                         }
@@ -1558,34 +1582,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerFire);
         MyMarker towerWater = new MyMarker(myLatitude, myLongitude - 0.0049, "towerwater");
         tmpMarkersList.add(towerWater);
-        MyMarker fight = new MyMarker(myLatitude, myLongitude - 0.0100, "fight");
-        tmpMarkersList.add(fight);
+
         ///I London
-        MyMarker gent = new MyMarker(myLatitude, myLongitude - 0.0100, "gent");
+        MyMarker gent = new MyMarker(myLatitude, myLongitude - 0.0001, "gent");
         tmpMarkersList.add(gent);
         ///I Paris
-        MyMarker hunchback = new MyMarker(myLatitude, myLongitude + 0.0100, "hunchback");
+        MyMarker hunchback = new MyMarker(myLatitude, myLongitude + 0.0001, "hunchback");
         tmpMarkersList.add(hunchback);
         ///I Indien
-        MyMarker bull = new MyMarker(myLatitude - 0.0050, myLongitude, "bull");
+        MyMarker bull = new MyMarker(myLatitude - 0.00001, myLongitude- 0.00001, "bull");
         tmpMarkersList.add(bull);
 
-        MyMarker birdman = new MyMarker(myLatitude - 0.0060, myLongitude, "birdman");
+        MyMarker birdman = new MyMarker(myLatitude + 0.00012, myLongitude+ 0.00012, "birdman");
         tmpMarkersList.add(birdman);
 
-        MyMarker captain = new MyMarker(myLatitude - 0.0020, myLongitude, "captain");
+        MyMarker captain = new MyMarker(myLatitude - 0.00011, myLongitude- 0.00011, "captain");
         tmpMarkersList.add(captain);
 
-        MyMarker wizgirl = new MyMarker(myLatitude - 0.0090, myLongitude, "wizgirl");
+        MyMarker wizgirl = new MyMarker(myLatitude + 0.00006, myLongitude, "wizgirl");
         tmpMarkersList.add(wizgirl);
 
-        MyMarker wizboy = new MyMarker(myLatitude - 0.0030, myLongitude, "wizboy");
+        MyMarker wizboy = new MyMarker(myLatitude - 0.00007, myLongitude, "wizboy");
         tmpMarkersList.add(wizboy);
 
-        MyMarker speargirl = new MyMarker(myLatitude - 0.0090, myLongitude, "speargirl");
+        MyMarker speargirl = new MyMarker(myLatitude + 0.0008, myLongitude, "speargirl");
         tmpMarkersList.add(speargirl);
 
-        MyMarker darkwiz = new MyMarker(myLatitude - 0.0080, myLongitude, "darkwiz");
+        MyMarker darkwiz = new MyMarker(myLatitude - 0.0008, myLongitude, "darkwiz");
         tmpMarkersList.add(darkwiz);
 
             myRef.child("markerList").setValue(tmpMarkersList);
@@ -2327,11 +2350,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-    public void fight(){
+    public void fight(String enemy, String world){
 
         Bundle bundle = new Bundle();
-        bundle.putString("ENEMY", "hunchback");
-        bundle.putString("WORLD", "paris");
+        bundle.putString("ENEMY", enemy);
+        bundle.putString("WORLD", world);
         bundle.putInt("HP", object.hp);
         bundle.putInt("MAX_HP", object.maxhp);
         bundle.putInt("CP", object.cp);
@@ -2340,6 +2363,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bundle.putInt("FIRE_POWER", object.firepower);
         bundle.putInt("AIR_POWER", object.airpower);
         bundle.putInt("WATER_POWER", object.waterpower);
+        bundle.putInt("XP", object.XP);
         Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
         intent.putExtras(bundle);
         startActivity(intent);

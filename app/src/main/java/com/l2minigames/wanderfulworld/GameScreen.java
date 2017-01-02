@@ -297,9 +297,29 @@ public class GameScreen extends GLScreen {
                 continue;
             try {
                 ///ToDo Ändra xp efter motstånd
-                int xpToGain = 100;
-                world.molly.xp = world.molly.xp+xpToGain;
-                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, world.molly.xp);
+                int xpToGain = 0;
+                if (mContext.enemy.equals("birdman")){
+                    xpToGain = 100;
+                } else if(mContext.enemy.equals("speargirl")){
+                    xpToGain = 100;
+                }else if(mContext.enemy.equals("wizboy")){
+                    xpToGain = 110;
+                }else if(mContext.enemy.equals("wizgirl")){
+                    xpToGain = 110;
+                }else if(mContext.enemy.equals("captain")){
+                    xpToGain = 120;
+                }else if(mContext.enemy.equals("darkwiz")){
+                    xpToGain = 130;
+                }else if(mContext.enemy.equals("hunchback")){
+                    xpToGain = 140;
+                }else if(mContext.enemy.equals("gent")){
+                    xpToGain = 140;
+                }else if(mContext.enemy.equals("bull")){
+                    xpToGain = 140;
+                }
+
+                mContext.xp = mContext.xp+xpToGain;
+                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, mContext.xp);
                 if (mContext.world.equals("paris")){
                     mContext.sendArtefactBeforeExit("Artefact Paris");
                 }
@@ -430,6 +450,28 @@ public class GameScreen extends GLScreen {
             }
             if (mContext.world.equals("india")){
                 Assets.font.drawText(batcher, mContext.getResources().getString(R.string.artefact_india_added), 90, 350);
+            }
+            ///Visa XP som läggs till
+            if (mContext.world.equals("wanderful world")){
+                if (mContext.enemy.equals("birdman")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_100_xp), 170, 400);
+                }else if (mContext.enemy.equals("speargirl")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_100_xp), 170, 400);
+                }else if (mContext.enemy.equals("wizboy")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_110_xp), 170, 400);
+                }else if (mContext.enemy.equals("wizgirl")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_110_xp), 170, 400);
+                }else if (mContext.enemy.equals("captain")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_120_xp), 170, 400);
+                }else if (mContext.enemy.equals("darkwiz")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_130_xp), 170, 400);
+                }else if (mContext.enemy.equals("hunchback")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_140_xp), 170, 400);
+                }else if (mContext.enemy.equals("gent")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_140_xp), 170, 400);
+                }else if (mContext.enemy.equals("bull")) {
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_140_xp), 170, 400);
+                }
             }
         }
         ///batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);

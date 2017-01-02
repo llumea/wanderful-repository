@@ -124,4 +124,9 @@
     <string name="artefact_india_added">artefakt tillagd</string>
     <string name="artefact_london_added">artefakt tillagd</string>
     <string name="artefact_paris_added">artefakt tillagd</string>
+    <string name="artefact_100_hp_added">plus 100 xp</string>
+    <string name="artefact_110_hp_added">plus 110 xp</string>
+    <string name="artefact_120_hp_added">plus 120 xp</string>
+    <string name="artefact_130_hp_added">plus 130 xp</string>
+    <string name="artefact_140_hp_added">plus 140 xp</string>
 </resources>
