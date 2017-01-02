@@ -88,6 +88,7 @@ public class WorldRenderer {
         batcher.endBatch();
         batcher.beginBatch(Assets.enemyatlas);
         renderBosses();
+        renderSpears();
         renderHedgehogs();
         renderWolves();
         renderBulldogs();
@@ -312,7 +313,7 @@ public class WorldRenderer {
     }
     private void renderBosses() {
 
-        ///Kollar mot world.ground
+        ///Kollar mot world.ground ANIMERING AV SMÅ BOSSFIGURER
     if (mContext.enemy.equals("birdman")) {
         if (world.timer.position.x>6 && world.timer.position.x<7.5f || world.timer.position.x>16 && world.timer.position.x<17.5f || world.timer.position.x>24 && world.timer.position.x<25.5f || world.timer.position.x>32 && world.timer.position.x<33.5f) {
             batcher.drawSprite(16, 25, 3, 3, Assets.birdman2);
@@ -375,6 +376,14 @@ public class WorldRenderer {
             } else if (star.color.equals("blue")) {
                 batcher.drawSprite(star.position.x, star.position.y, 3, 3, Assets.starBlue);
             }
+        }
+
+    }
+    private void renderSpears(){
+        int len = world.spears.size();
+        for(int i = 0; i < len; i++) {
+            Spear spear = world.spears.get(i);
+            batcher.drawSprite(spear.position.x, spear.position.y, 5, 1.5f, Assets.spear);
         }
 
     }
@@ -476,6 +485,7 @@ public class WorldRenderer {
             batcher.drawSprite(bulldog.position.x, bulldog.position.y, 4, 2, keyFrame);
         }
     }
+
 
     private void renderItems() {
         int len = world.springs.size();

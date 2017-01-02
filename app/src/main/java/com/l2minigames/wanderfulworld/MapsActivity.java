@@ -1605,7 +1605,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker wizboy = new MyMarker(myLatitude - 0.00007, myLongitude, "wizboy");
         tmpMarkersList.add(wizboy);
 
-        MyMarker speargirl = new MyMarker(myLatitude + 0.0008, myLongitude, "speargirl");
+        MyMarker speargirl = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "speargirl");
         tmpMarkersList.add(speargirl);
 
         MyMarker darkwiz = new MyMarker(myLatitude - 0.0008, myLongitude, "darkwiz");

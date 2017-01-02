@@ -73,6 +73,7 @@ public class Assets {
     public static TextureRegion gent2;
     public static TextureRegion bull1;
     public static TextureRegion bull2;
+    public static TextureRegion spear;
     public static Animation coinAnim;
     public static Animation bobJump;
     public static Animation mollyJump;
@@ -186,6 +187,7 @@ public class Assets {
         gent2 = new TextureRegion(enemyatlas, 896, 832, 128, 128);
         bull1 = new TextureRegion(enemyatlas, 384, 0, 128, 128);
         bull2 = new TextureRegion(enemyatlas, 896, 576, 128, 128);
+        spear = new TextureRegion(enemyatlas, 768, 256, 128, 32);
 
 
 

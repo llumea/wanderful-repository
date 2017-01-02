@@ -54,6 +54,7 @@ public class World {
     public final List<Ghost> ghosts;
     public final List<Star> stars;
     public final List<Hit> hits;
+    public final List<Spear> spears;
     public Castle castle;    
     public final WorldListener listener;
     public final Random rand;
@@ -90,6 +91,7 @@ public class World {
         this.earths = new ArrayList<Earth>();
         this.fires = new ArrayList<Fire>();
         this.airs = new ArrayList<Air>();
+        this.spears = new ArrayList<Spear>();
         this.waters = new ArrayList<Water>();
         this.springs = new ArrayList<Spring>();
         this.squirrels = new ArrayList<Squirrel>();
@@ -342,6 +344,14 @@ public class World {
                 len14=stars.size();
             }
         }
+        int len15 = spears.size();
+        for (int i = 0; i < len15; i++) {
+            Spear spear = spears.get(i);
+            if (spear.position.x<-4){
+                spears.remove(i);
+                len15=spears.size();
+            }
+        }
 
     }
     public void updateStars(float deltaTime){
@@ -402,6 +412,11 @@ public class World {
         for (int i = 0; i < len9; i++) {
             Ghost ghost = ghosts.get(i);
             ghost.update(deltaTime);
+        }
+        int len10 = spears.size();
+        for (int i = 0; i < len10; i++) {
+            Spear spear = spears.get(i);
+            spear.update(deltaTime);
         }
 
     }
@@ -485,6 +500,13 @@ public class World {
         Ghost ghost = new Ghost(positionx,positiony);
         ghost.velocity.x=velocity;
         ghosts.add(ghost);
+
+    }
+    public void createSpear(float positionx, float positiony, float velocity){
+
+        Spear spear = new Spear(positionx,positiony);
+        spear.velocity.x=velocity;
+        spears.add(spear);
 
     }
     public void createAir(){
@@ -614,8 +636,27 @@ public class World {
                 createStone(194,18.2f,-7);
 
             } else if (mContext.enemy.equals("speargirl")) {
-                enemyMaxHp = 12;
-                enemyHp = 12;
+                enemyMaxHp = 8;
+                enemyHp = 8;
+                createSpear(24,19.2f,-9);
+                createSpear(42,18.2f,-9);
+                createSpear(54,17.2f,-9);
+                createSpear(74,19.2f,-9);
+                createSpear(82,17.2f,-9);
+                createSpear(94,18.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(122,18.2f,-9);
+                createSpear(74,19.2f,-9);
+                createSpear(82,17.2f,-9);
+                createSpear(102,19.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(134,19.2f,-9);
+                createSpear(158,17.2f,-9);
+                createSpear(184,17.2f,-9);
+                createSpear(198,18.2f,-9);
+                createSpear(224,17.2f,-9);
+                createSpear(250,17.2f,-9);
+                createSpear(262,18.2f,-9);
             } else if (mContext.enemy.equals("wizboy")) {
                 enemyMaxHp = 11;
                 enemyHp = 11;
@@ -661,8 +702,31 @@ public class World {
                 createStone(184,18.2f,-7);
                 createStone(194,18.2f,-7);
             } else if (mContext.enemy.equals("speargirl")) {
-                enemyMaxHp = 14;
-                enemyHp = 14;
+                enemyMaxHp = 10;
+                enemyHp = 10;
+                createSpear(24,19.2f,-9);
+                createSpear(34,19.2f,-9);
+                createSpear(42,18.2f,-9);
+                createSpear(54,17.2f,-9);
+                createSpear(62,18.2f,-9);
+                createSpear(82,17.2f,-9);
+                createSpear(94,18.2f,-9);
+                createSpear(102,17.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(122,18.2f,-9);
+                createSpear(74,19.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(122,18.2f,-9);
+                createSpear(146,17.2f,-9);
+                createSpear(158,17.2f,-9);
+                createSpear(172,19.2f,-9);
+                createSpear(184,17.2f,-9);
+                createSpear(198,18.2f,-9);
+                createSpear(212,17.2f,-9);
+                createSpear(224,17.2f,-9);
+                createSpear(236,19.2f,-9);
+                createSpear(250,17.2f,-9);
+                createSpear(262,18.2f,-9);
             } else if (mContext.enemy.equals("wizboy")) {
                 enemyMaxHp = 13;
                 enemyHp = 13;
@@ -711,8 +775,38 @@ public class World {
                 createStone(184,18.2f,-7);
                 createStone(194,18.2f,-7);
             } else if (mContext.enemy.equals("speargirl")) {
-                enemyMaxHp = 16;
-                enemyHp = 16;
+                enemyMaxHp = 12;
+                enemyHp = 12;
+                ///17,2, 18,2, 19,2)
+                createSpear(24,19.2f,-9);
+                createSpear(34,19.2f,-9);
+                createSpear(42,18.2f,-9);
+                createSpear(54,17.2f,-9);
+                createSpear(62,18.2f,-9);
+                createSpear(74,19.2f,-9);
+                createSpear(82,17.2f,-9);
+                createSpear(94,18.2f,-9);
+                createSpear(102,17.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(122,18.2f,-9);
+                createSpear(74,19.2f,-9);
+                createSpear(82,17.2f,-9);
+                createSpear(94,17.2f,-9);
+                createSpear(102,19.2f,-9);
+                createSpear(114,17.2f,-9);
+                createSpear(122,18.2f,-9);
+                createSpear(134,19.2f,-9);
+                createSpear(146,17.2f,-9);
+                createSpear(158,17.2f,-9);
+                createSpear(172,19.2f,-9);
+                createSpear(184,17.2f,-9);
+                createSpear(198,18.2f,-9);
+                createSpear(212,17.2f,-9);
+                createSpear(224,17.2f,-9);
+                createSpear(236,19.2f,-9);
+                createSpear(250,17.2f,-9);
+                createSpear(262,18.2f,-9);
+
             } else if (mContext.enemy.equals("wizboy")) {
                 enemyMaxHp = 15;
                 enemyHp = 15;
@@ -761,6 +855,7 @@ public class World {
             }
         }
     }
+
     private void updateWaters(float deltaTime) {
         int len = waters.size();
         for (int i = 0; i < len; i++) {
@@ -870,6 +965,7 @@ public class World {
         int len7 = snakes.size();
         int len8 = stones.size();
         int len9 = ghosts.size();
+        int len10 = spears.size();
 
         for (int i = 0; i < len; i++) {
 
@@ -979,6 +1075,18 @@ public class World {
                 len9 = ghosts.size();
             }
         }
+        for (int i = 0; i < len10; i++) {
+
+            Spear spear = spears.get(i);
+            if (OverlapTester.overlapRectangles(spear.bounds, molly.bounds)) {
+                molly.hp = molly.hp-2;
+                listener.hit();
+                createHit();
+                ///ToDo Smash up Molly
+                spears.remove(spear);
+                len10 = spears.size();
+            }
+        }
 
     }
 
@@ -987,6 +1095,7 @@ public class World {
         int len2 = captains.size();
         int len3 = wolves.size();
         int len4 = birds.size();
+        int len5 = spears.size();
         for (int i = 0; i < len; i++) {
             Fire fire = fires.get(i);
 
@@ -1028,6 +1137,18 @@ public class World {
                     len =fires.size();
                 }
             }
+            for (int j = 0; j<len5;j++){
+                Spear spear = spears.get(j);
+                if (OverlapTester.overlapRectangles(fire.bounds, spear.bounds)) {
+                    createStars(fire.position.x, fire.position.y, "red");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    fires.remove(fire);
+                    spears.remove(spear);
+                    len5 = spears.size();
+                    len =fires.size();
+                }
+            }
         }
     }
     private void checkEarthEnemyCollisions() {
@@ -1036,6 +1157,8 @@ public class World {
         int len3 = hedgehogs.size();
         int len4 = birds.size();
         int len5 = stones.size();
+        int len6 = spears.size();
+
         for (int i = 0; i < len; i++) {
             Earth earth = earths.get(i);
 
@@ -1090,12 +1213,25 @@ public class World {
                     len =earths.size();
                 }
             }
+            for (int j = 0; j<len6;j++){
+                Spear spear = spears.get(j);
+                if (OverlapTester.overlapRectangles(earth.bounds, spear.bounds)) {
+                    createStars(earth.position.x, earth.position.y, "green");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    earths.remove(earth);
+                    spears.remove(spear);
+                    len6 = spears.size();
+                    len =earths.size();
+                }
+            }
         }
     }
     private void checkWaterEnemyCollisions() {
         int len = waters.size();
         int len2 = bulldogs.size();
         int len3 = ghosts.size();
+
         for (int i = 0; i < len; i++) {
             Water water = waters.get(i);
 
@@ -1131,6 +1267,7 @@ public class World {
         int len = airs.size();
         int len2 = birds.size();
         int len3 = dragons.size();
+        int len4 = spears.size();
         for (int i = 0; i < len; i++) {
             Air air = airs.get(i);
 
@@ -1157,6 +1294,18 @@ public class World {
                     airs.remove(air);
                     dragons.remove(dragon);
                     len3 = dragons.size();
+                    len =airs.size();
+                }
+            }
+            for (int j = 0; j<len3;j++){
+                Spear spear = spears.get(j);
+                if (OverlapTester.overlapRectangles(air.bounds, spear.bounds)) {
+                    createStars(air.position.x, air.position.y, "yellow");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    airs.remove(air);
+                    spears.remove(spear);
+                    len3 = spears.size();
                     len =airs.size();
                 }
             }
