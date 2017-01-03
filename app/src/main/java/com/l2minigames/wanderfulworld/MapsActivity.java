@@ -1584,10 +1584,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerWater);
 
         ///I London
-        MyMarker gent = new MyMarker(myLatitude, myLongitude - 0.0001, "gent");
+        MyMarker gent = new MyMarker(myLatitude- 0.0002, myLongitude - 0.0002, "gent");
         tmpMarkersList.add(gent);
         ///I Paris
-        MyMarker hunchback = new MyMarker(myLatitude, myLongitude + 0.0001, "hunchback");
+        MyMarker hunchback = new MyMarker(myLatitude+ 0.0002, myLongitude + 0.0002, "hunchback");
         tmpMarkersList.add(hunchback);
         ///I Indien
         MyMarker bull = new MyMarker(myLatitude - 0.00001, myLongitude- 0.00001, "bull");
@@ -1596,19 +1596,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker birdman = new MyMarker(myLatitude + 0.00012, myLongitude+ 0.00012, "birdman");
         tmpMarkersList.add(birdman);
 
-        MyMarker captain = new MyMarker(myLatitude - 0.00011, myLongitude- 0.00011, "captain");
+        MyMarker captain = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "captain");
         tmpMarkersList.add(captain);
 
-        MyMarker wizgirl = new MyMarker(myLatitude + 0.00006, myLongitude, "wizgirl");
+        MyMarker wizgirl = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "wizgirl");
         tmpMarkersList.add(wizgirl);
 
-        MyMarker wizboy = new MyMarker(myLatitude - 0.00007, myLongitude, "wizboy");
+        MyMarker wizboy = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "wizboy");
         tmpMarkersList.add(wizboy);
 
-        MyMarker speargirl = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "speargirl");
+        MyMarker speargirl = new MyMarker(myLatitude + 0.0001, myLongitude+ 0.0001, "speargirl");
         tmpMarkersList.add(speargirl);
 
-        MyMarker darkwiz = new MyMarker(myLatitude - 0.0008, myLongitude, "darkwiz");
+        MyMarker darkwiz = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "darkwiz");
         tmpMarkersList.add(darkwiz);
 
             myRef.child("markerList").setValue(tmpMarkersList);

@@ -101,7 +101,7 @@ public class World {
         setupEnemies();
         generateLevel();
         ///Skapa en "dummy" utanför skärmen så att något alltid ritas ut från enemyatlas
-        createHedgehog(14,50,0);
+        createHedgehog(14,50,0,0);
         //Rita ut enemies
 
         ///createHedgehog(14,17,-4);
@@ -256,7 +256,7 @@ public class World {
         int len5 = hedgehogs.size();
         for (int i = 0; i < len5; i++) {
             Hedgehog hedgehog = hedgehogs.get(i);
-            if (hedgehog.position.x<-4){
+            if (hedgehog.position.x<-4 || hedgehog.position.y<-4){
                 hedgehogs.remove(i);
                 len5=hedgehogs.size();
             }
@@ -370,17 +370,47 @@ public class World {
         int len = hedgehogs.size();
         for (int i = 0; i < len; i++) {
             Hedgehog hedgehog = hedgehogs.get(i);
+            if (hedgehog.position.x<14 && hedgehog.state==0 && hedgehog.jumperType == 1){
+                hedgehog.state = Hedgehog.HEDGEHOG_STATE_JUMP;
+                hedgehog.velocity.y = 20;
+                hedgehog.velocity.x = -8;
+            }
+            if (hedgehog.position.x<16 && hedgehog.state==0 && hedgehog.jumperType == 2){
+                hedgehog.state = Hedgehog.HEDGEHOG_STATE_JUMP_HIGH;
+                hedgehog.velocity.y = 25;
+                hedgehog.velocity.x = -8;
+            }
             hedgehog.update(deltaTime);
         }
 
         int len2 = wolves.size();
         for (int i = 0; i < len2; i++) {
             Wolf wolf = wolves.get(i);
+            if (wolf.position.x<14 && wolf.state==0 && wolf.jumperType == 1){
+                wolf.state = Hedgehog.HEDGEHOG_STATE_JUMP;
+                wolf.velocity.y = 20;
+                wolf.velocity.x = -8;
+            }
+            if (wolf.position.x<16 && wolf.state==0 && wolf.jumperType == 2){
+                wolf.state = Hedgehog.HEDGEHOG_STATE_JUMP_HIGH;
+                wolf.velocity.y = 25;
+                wolf.velocity.x = -8;
+            }
             wolf.update(deltaTime);
         }
         int len3 = bulldogs.size();
         for (int i = 0; i < len3; i++) {
             Bulldog bulldog = bulldogs.get(i);
+            if (bulldog.position.x<14 && bulldog.state==0 && bulldog.jumperType == 1){
+                bulldog.state = Hedgehog.HEDGEHOG_STATE_JUMP;
+                bulldog.velocity.y = 20;
+                bulldog.velocity.x = -8;
+            }
+            if (bulldog.position.x<16 && bulldog.state==0 && bulldog.jumperType == 2){
+                bulldog.state = Hedgehog.HEDGEHOG_STATE_JUMP_HIGH;
+                bulldog.velocity.y = 25;
+                bulldog.velocity.x = -8;
+            }
             bulldog.update(deltaTime);
         }
         int len4 = captains.size();
@@ -411,6 +441,9 @@ public class World {
         int len9 = ghosts.size();
         for (int i = 0; i < len9; i++) {
             Ghost ghost = ghosts.get(i);
+            if (ghost.position.y==16 && ghost.position.x<16){
+                ghost.velocity.x=-12;
+            }
             ghost.update(deltaTime);
         }
         int len10 = spears.size();
@@ -437,23 +470,24 @@ public class World {
         fires.add(fire);
 
     }
-    public void createHedgehog(float positionx, float positiony, float velocity){
+    public void createHedgehog(float positionx, float positiony, float velocity, int jumperType){
 
-        Hedgehog hedgehog = new Hedgehog(positionx,positiony);
+        Hedgehog hedgehog = new Hedgehog(positionx,positiony,jumperType);
         hedgehog.velocity.x=velocity;
+        hedgehog.jumperType = jumperType;
         hedgehogs.add(hedgehog);
 
     }
-    public void createWolf(float positionx, float positiony, float velocity){
+    public void createWolf(float positionx, float positiony, float velocity, int jumperType){
 
-        Wolf wolf = new Wolf(positionx,positiony);
+        Wolf wolf = new Wolf(positionx,positiony,jumperType);
         wolf.velocity.x=velocity;
         wolves.add(wolf);
 
     }
-    public void createBulldog(float positionx, float positiony, float velocity){
-
-        Bulldog bulldog = new Bulldog(positionx,positiony);
+    public void createBulldog(float positionx, float positiony, float velocity, int jumperType){
+        Log.i("TAGGY", "SKAPAR BULLDOG");
+        Bulldog bulldog = new Bulldog(positionx,positiony,jumperType);
         bulldog.velocity.x=velocity;
         bulldogs.add(bulldog);
 
@@ -658,20 +692,112 @@ public class World {
                 createSpear(250,17.2f,-9);
                 createSpear(262,18.2f,-9);
             } else if (mContext.enemy.equals("wizboy")) {
-                enemyMaxHp = 11;
-                enemyHp = 11;
+                enemyMaxHp = 9;
+                enemyHp = 9;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+
+                createHedgehog(24,17,-4,0);
+                createHedgehog(34,17,-4,slump);
+                createHedgehog(39,17,-4,slump4);
+                createHedgehog(54,17,-4,slump3);
+                createHedgehog(64,17,-4,slump4);
+                createHedgehog(74,17,-4,slump2);
+                createHedgehog(84,17,-4,slump);
+                createHedgehog(94,17,-4,slump4);
+                createHedgehog(99,17,-4,0);
+                createHedgehog(104,17,-4,slump3);
+                createHedgehog(109,17,-4,0);
+                createHedgehog(114,17,-4,slump4);
+                createHedgehog(119,17,-4,0);
+                createHedgehog(124,17,-4,0);
             } else if (mContext.enemy.equals("wizgirl")) {
-                enemyMaxHp = 11;
-                enemyHp = 11;
+                enemyMaxHp = 9;
+                enemyHp = 9;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createWolf(24,17.8f,-8,slump);
+                createWolf(36,17.8f,-8,slump2);
+                createWolf(48,17.8f,-8,slump3);
+                createWolf(60,17.8f,-8,slump4);
+                createWolf(84,17.8f,-8,slump2);
+                createWolf(110,17.8f,-8,slump3);
+                createWolf(122,17.8f,-8,slump);
+                createWolf(134,17.8f,-8,slump4);
+                createWolf(146,17.8f,-8,slump2);
+                createWolf(170,17.8f,-8,slump);
+                createWolf(190,17.8f,-8,slump3);
+                createWolf(200,17.8f,-8,slump);
+                createWolf(210,17.8f,-8,slump4);
             } else if (mContext.enemy.equals("captain")) {
-                enemyMaxHp = 14;
-                enemyHp = 14;
+                enemyMaxHp = 10;
+                enemyHp = 10;
+                createCaptain(25,18.5f,-5);
+                createCaptain(35,18.5f,-5);
+                createCaptain(45,18.5f,-5);
+                createCaptain(55,18.5f,-5);
+                createCaptain(65,18.5f,-5);
+                createCaptain(75,18.5f,-5);
+                createCaptain(85,18.5f,-5);
+                createCaptain(95,18.5f,-5);
+                createCaptain(105,18.5f,-5);
+                createCaptain(115,18.5f,-5);
+                createCaptain(125,18.5f,-5);
+                createCaptain(135,18.5f,-5);
+                createCaptain(145,18.5f,-5);
+                createCaptain(155,18.5f,-5);
+                createCaptain(165,18.5f,-5);
+
             } else if (mContext.enemy.equals("darkwiz")) {
-                enemyMaxHp = 16;
-                enemyHp = 16;
+                enemyMaxHp = 12;
+                enemyHp = 12;
+
+                createDragon(25, 25f, -4, -0.7f);
+                createDragon(35, 27.5f, -4, -0.7f);
+                createDragon(38, 32.5f, -4, -0.7f);
+                createDragon(45, 29f, -4, -0.7f);
+                createDragon(55, 30.5f, -4, -0.7f);
+                createDragon(65, 32f, -4, -0.7f);
+                createDragon(75, 33.5f, -4, -0.7f);
+                createDragon(85, 35f, -4, -0.7f);
+                createDragon(95, 45.5f, -4, -0.7f);
+                createDragon(95, 36.5f, -4, -0.7f);
+                createDragon(105, 38f, -4, -0.7f);
+                createDragon(115, 39.5f, -4, -0.7f);
+
+
+                createDragon(30, 12.5f, -4, +0.7f);
+                createDragon(40, 11f, -4, +0.7f);
+                createDragon(50, 10f, -4, +0.7f);
+                createDragon(60, 9f, -4, +0.7f);
+                createDragon(70, 8f, -4, +0.7f);
+                createDragon(80, 7f, -4, +0.7f);
+                createDragon(90, 6f, -4, +0.7f);
+                createDragon(100, 4f, -4, +0.7f);
+                createDragon(110, 3f, -4, +0.7f);
             } else if (mContext.enemy.equals("hunchback")) {
                 enemyMaxHp = 20;
                 enemyHp = 20;
+                createGhost(30,22f,-4);
+                createGhost(50,22f,-6);
+                createGhost(70,22f,-4);
+                createGhost(90,22f,-6);
+                createGhost(110,22f,-4);
+
+                createGhost(24,16f,-4);
+                createGhost(34,16f,-4);
+                createGhost(44,16f,-4);
+                createGhost(54,16f,-4);
+                createGhost(64,16f,-4);
+                createGhost(74,16f,-4);
+                createGhost(84,16f,-4);
+                createGhost(94,16f,-4);
+                createGhost(104,16f,-4);
+                createGhost(114,16f,-4);
             } else if (mContext.enemy.equals("gent")) {
                 enemyMaxHp = 22;
                 enemyHp = 22;
@@ -728,20 +854,118 @@ public class World {
                 createSpear(250,17.2f,-9);
                 createSpear(262,18.2f,-9);
             } else if (mContext.enemy.equals("wizboy")) {
-                enemyMaxHp = 13;
-                enemyHp = 13;
+                enemyMaxHp = 11;
+                enemyHp = 11;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+
+                createHedgehog(24,17,-4,0);
+                createHedgehog(39,17,-4,slump4);
+                createHedgehog(44,17,-4,slump2);
+                createHedgehog(49,17,-4,0);
+                createHedgehog(54,17,-4,slump3);
+                createHedgehog(64,17,-4,slump4);
+                createHedgehog(69,17,-4,0);
+                createHedgehog(74,17,-4,slump2);
+                createHedgehog(84,17,-4,slump);
+                createHedgehog(94,17,-4,slump4);
+                createHedgehog(99,17,-4,0);
+                createHedgehog(104,17,-4,slump3);
+                createHedgehog(109,17,-4,0);
+                createHedgehog(114,17,-4,slump4);
+                createHedgehog(119,17,-4,0);
+                createHedgehog(124,17,-4,0);
             } else if (mContext.enemy.equals("wizgirl")) {
-                enemyMaxHp = 13;
-                enemyHp = 13;
+                enemyMaxHp = 11;
+                enemyHp = 11;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createWolf(24,17.8f,-8,slump);
+                createWolf(36,17.8f,-8,slump2);
+                createWolf(48,17.8f,-8,slump3);
+                createWolf(60,17.8f,-8,slump4);
+                createWolf(72,17.8f,-8,0);
+                createWolf(84,17.8f,-8,slump2);
+                createWolf(86,17.8f,-8,slump4);
+                createWolf(110,17.8f,-8,slump3);
+                createWolf(134,17.8f,-8,slump4);
+                createWolf(146,17.8f,-8,slump2);
+                createWolf(158,17.8f,-8,0);
+                createWolf(170,17.8f,-8,slump);
+                createWolf(182,17.8f,-8,0);
+                createWolf(200,17.8f,-8,slump);
+                createWolf(210,17.8f,-8,slump4);
             } else if (mContext.enemy.equals("captain")) {
-                enemyMaxHp = 16;
-                enemyHp = 16;
+                enemyMaxHp = 12;
+                enemyHp = 12;
+                createCaptain(25,18.5f,-5);
+                createCaptain(35,18.5f,-5);
+                createCaptain(45,18.5f,-5);
+                createCaptain(55,18.5f,-5);
+                createCaptain(65,18.5f,-5);
+                createCaptain(75,18.5f,-5);
+                createCaptain(85,18.5f,-5);
+                createCaptain(95,18.5f,-5);
+                createCaptain(105,18.5f,-5);
+                createCaptain(115,18.5f,-5);
+                createCaptain(125,18.5f,-5);
+                createCaptain(135,18.5f,-5);
+                createCaptain(145,18.5f,-5);
+                createCaptain(155,18.5f,-5);
+                createCaptain(165,18.5f,-5);
+                createCaptain(80,18.5f,-5);
+                createCaptain(110,18.5f,-5);
+                createCaptain(150,18.5f,-5);
             } else if (mContext.enemy.equals("darkwiz")) {
-                enemyMaxHp = 18;
-                enemyHp = 18;
+                enemyMaxHp = 14;
+                enemyHp = 14;
+
+                createDragon(25, 25f, -4, -0.7f);
+                createDragon(35, 27.5f, -4, -0.7f);
+                createDragon(38, 32.5f, -4, -0.7f);
+                createDragon(45, 29f, -4, -0.7f);
+                createDragon(55, 30.5f, -4, -0.7f);
+                createDragon(65, 32f, -4, -0.7f);
+                createDragon(75, 33.5f, -4, -0.7f);
+                createDragon(85, 35f, -4, -0.7f);
+                createDragon(95, 45.5f, -4, -0.7f);
+                createDragon(95, 36.5f, -4, -0.7f);
+                createDragon(105, 38f, -4, -0.7f);
+                createDragon(115, 39.5f, -4, -0.7f);
+
+
+                createDragon(30, 12.5f, -4, +0.7f);
+                createDragon(40, 11f, -4, +0.7f);
+                createDragon(50, 10f, -4, +0.7f);
+                createDragon(60, 9f, -4, +0.7f);
+                createDragon(70, 8f, -4, +0.7f);
+                createDragon(80, 7f, -4, +0.7f);
+                createDragon(90, 6f, -4, +0.7f);
+                createDragon(100, 4f, -4, +0.7f);
+                createDragon(110, 3f, -4, +0.7f);
             } else if (mContext.enemy.equals("hunchback")) {
                 enemyMaxHp = 20;
                 enemyHp = 20;
+                createGhost(30,22f,-4);
+                createGhost(50,22f,-6);
+                createGhost(70,22f,-4);
+                createGhost(90,22f,-6);
+                createGhost(110,22f,-4);
+
+                createGhost(24,16f,-4);
+                createGhost(34,16f,-4);
+                createGhost(44,16f,-4);
+                createGhost(54,16f,-4);
+                createGhost(64,16f,-4);
+                createGhost(74,16f,-4);
+                createGhost(84,16f,-4);
+                createGhost(94,16f,-4);
+                createGhost(104,16f,-4);
+                createGhost(114,16f,-4);
             } else if (mContext.enemy.equals("gent")) {
                 enemyMaxHp = 22;
                 enemyHp = 22;
@@ -808,23 +1032,175 @@ public class World {
                 createSpear(262,18.2f,-9);
 
             } else if (mContext.enemy.equals("wizboy")) {
-                enemyMaxHp = 15;
-                enemyHp = 15;
+                enemyMaxHp = 13;
+                enemyHp = 13;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+
+                createHedgehog(24,17,-4,0);
+                createHedgehog(34,17,-4,slump);
+                createHedgehog(39,17,-4,slump4);
+                createHedgehog(44,17,-4,slump2);
+                createHedgehog(49,17,-4,0);
+                createHedgehog(54,17,-4,slump3);
+                createHedgehog(59,17,-4,0);
+                createHedgehog(64,17,-4,slump4);
+                createHedgehog(69,17,-4,0);
+                createHedgehog(74,17,-4,slump2);
+                createHedgehog(79,17,-4,0);
+                createHedgehog(84,17,-4,slump);
+                createHedgehog(89,17,-4,0);
+                createHedgehog(94,17,-4,slump4);
+                createHedgehog(99,17,-4,0);
+                createHedgehog(104,17,-4,slump3);
+                createHedgehog(109,17,-4,0);
+                createHedgehog(114,17,-4,slump4);
+                createHedgehog(119,17,-4,0);
+                createHedgehog(124,17,-4,0);
+
             } else if (mContext.enemy.equals("wizgirl")) {
-                enemyMaxHp = 15;
-                enemyHp = 15;
+                enemyMaxHp = 13;
+                enemyHp = 13;
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createWolf(24,17.8f,-8,slump);
+                createWolf(36,17.8f,-8,slump2);
+                createWolf(48,17.8f,-8,slump3);
+                createWolf(60,17.8f,-8,slump4);
+                createWolf(72,17.8f,-8,0);
+                createWolf(84,17.8f,-8,slump2);
+                createWolf(86,17.8f,-8,slump4);
+                createWolf(98,17.8f,-8,0);
+                createWolf(110,17.8f,-8,slump3);
+                createWolf(122,17.8f,-8,slump);
+                createWolf(128,17.8f,-8,slump3);
+                createWolf(134,17.8f,-8,slump4);
+                createWolf(146,17.8f,-8,slump2);
+                createWolf(158,17.8f,-8,0);
+                createWolf(170,17.8f,-8,slump);
+                createWolf(182,17.8f,-8,0);
+                createWolf(190,17.8f,-8,slump3);
+                createWolf(200,17.8f,-8,slump);
+                createWolf(210,17.8f,-8,slump4);
+
             } else if (mContext.enemy.equals("captain")) {
-                enemyMaxHp = 18;
-                enemyHp = 18;
+                enemyMaxHp = 14;
+                enemyHp = 14;
+                createCaptain(25,18.5f,-5);
+                createCaptain(35,18.5f,-5);
+                createCaptain(45,18.5f,-5);
+                createCaptain(55,18.5f,-5);
+                createCaptain(65,18.5f,-5);
+                createCaptain(75,18.5f,-5);
+                createCaptain(85,18.5f,-5);
+                createCaptain(95,18.5f,-5);
+                createCaptain(105,18.5f,-5);
+                createCaptain(115,18.5f,-5);
+                createCaptain(125,18.5f,-5);
+                createCaptain(135,18.5f,-5);
+                createCaptain(145,18.5f,-5);
+                createCaptain(155,18.5f,-5);
+                createCaptain(165,18.5f,-5);
+
+                createCaptain(30,18.5f,-5);
+                createCaptain(60,18.5f,-5);
+                createCaptain(80,18.5f,-5);
+                createCaptain(90,18.5f,-5);
+                createCaptain(110,18.5f,-5);
+                createCaptain(130,18.5f,-5);
+                createCaptain(150,18.5f,-5);
+
+
             } else if (mContext.enemy.equals("darkwiz")) {
-                enemyMaxHp = 20;
-                enemyHp = 20;
+                enemyMaxHp = 16;
+                enemyHp = 16;
+
+                    createDragon(25, 25f, -4, -0.7f);
+                    createDragon(35, 27.5f, -4, -0.7f);
+                    createDragon(38, 32.5f, -4, -0.7f);
+                    createDragon(45, 29f, -4, -0.7f);
+                    createDragon(55, 30.5f, -4, -0.7f);
+                    createDragon(65, 32f, -4, -0.7f);
+                    createDragon(75, 33.5f, -4, -0.7f);
+                    createDragon(85, 35f, -4, -0.7f);
+                    createDragon(95, 45.5f, -4, -0.7f);
+                    createDragon(95, 36.5f, -4, -0.7f);
+                    createDragon(105, 38f, -4, -0.7f);
+                    createDragon(115, 39.5f, -4, -0.7f);
+
+
+                    createDragon(30, 12.5f, -4, +0.7f);
+                    createDragon(40, 11f, -4, +0.7f);
+                    createDragon(50, 10f, -4, +0.7f);
+                    createDragon(60, 9f, -4, +0.7f);
+                    createDragon(70, 8f, -4, +0.7f);
+                    createDragon(80, 7f, -4, +0.7f);
+                    createDragon(90, 6f, -4, +0.7f);
+                    createDragon(100, 4f, -4, +0.7f);
+                    createDragon(110, 3f, -4, +0.7f);
+
+
+
             } else if (mContext.enemy.equals("hunchback")) {
                 enemyMaxHp = 20;
                 enemyHp = 20;
+                createGhost(30,22f,-4);
+                createGhost(50,22f,-6);
+                createGhost(70,22f,-4);
+                createGhost(90,22f,-6);
+                createGhost(110,22f,-4);
+
+                createGhost(24,16f,-4);
+                createGhost(34,16f,-4);
+                createGhost(44,16f,-4);
+                createGhost(54,16f,-4);
+                createGhost(64,16f,-4);
+                createGhost(74,16f,-4);
+                createGhost(84,16f,-4);
+                createGhost(94,16f,-4);
+                createGhost(104,16f,-4);
+                createGhost(114,16f,-4);
+
+
             } else if (mContext.enemy.equals("gent")) {
                 enemyMaxHp = 22;
                 enemyHp = 22;
+
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createBulldog(25,17.5f,-6, slump);
+                createBulldog(30,17.5f,-6, slump2);
+                createBulldog(35,17.5f,-6, slump3);
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(45,17.5f,-6, slump3);
+                createBulldog(50,17.5f,-6, slump2);
+                createBulldog(55,17.5f,-6, slump);
+                createBulldog(60,17.5f,-6, slump4);
+                createBulldog(65,17.5f,-6, 2);
+                createBulldog(70,17.5f,-6, slump3);
+                createBulldog(75,17.5f,-6, slump);
+                createBulldog(80,17.5f,-6, slump4);
+                createBulldog(85,17.5f,-6, slump);
+                createBulldog(90,17.5f,-6, slump3);
+                createBulldog(95,17.5f,-6, slump2);
+                createBulldog(100,17.5f,-6, slump3);
+                createBulldog(105,17.5f,-6, slump);
+                createBulldog(110,17.5f,-6, slump3);
+                createBulldog(115,17.5f,-6, slump);
+                createBulldog(120,17.5f,-6, slump4);
+                createBulldog(125,17.5f,-6, 2);
+                createBulldog(130,17.5f,-6, slump);
+                createBulldog(135,17.5f,-6, slump3);
+                createBulldog(140,17.5f,-6, slump2);
+                createBulldog(145,17.5f,-6, 0);
+                createBulldog(150,17.5f,-6, 0);
+
             } else if (mContext.enemy.equals("bull")) {
                 enemyMaxHp = 24;
                 enemyHp = 24;
@@ -946,16 +1322,7 @@ public class World {
 
     private void checkEnemyMollyCollisions(){
 
-        /* public final List<Hedgehog> hedgehogs;
-        public final List<Wolf> wolves;
-        public final List<Bulldog> bulldogs;
-        public final List<Captain> captains;
-        public final List<Bird> birds;
-        public final List<Dragon> dragons;
-        public final List<Snake> snakes;
-        public final List<Stone> stones;
-        public final List<Ghost> ghosts;
-        */
+
         int len = hedgehogs.size();
         int len2 = wolves.size();
         int len3 = bulldogs.size();
@@ -1231,6 +1598,8 @@ public class World {
         int len = waters.size();
         int len2 = bulldogs.size();
         int len3 = ghosts.size();
+        int len4 = wolves.size();
+        int len5 = dragons.size();
 
         for (int i = 0; i < len; i++) {
             Water water = waters.get(i);
@@ -1258,6 +1627,30 @@ public class World {
                     waters.remove(water);
                     ghosts.remove(ghost);
                     len3 = ghosts.size();
+                    len =waters.size();
+                }
+            }
+            for (int j = 0; j<len4;j++){
+                Wolf wolf = wolves.get(j);
+                if (OverlapTester.overlapRectangles(water.bounds, wolf.bounds)) {
+                    createStars(water.position.x, water.position.y, "blue");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    waters.remove(water);
+                    wolves.remove(wolf);
+                    len4 = wolves.size();
+                    len =waters.size();
+                }
+            }
+            for (int j = 0; j<len5;j++){
+                Dragon dragon = dragons.get(j);
+                if (OverlapTester.overlapRectangles(water.bounds, dragon.bounds)) {
+                    createStars(water.position.x, water.position.y, "blue");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    waters.remove(water);
+                    dragons.remove(dragon);
+                    len5 = dragons.size();
                     len =waters.size();
                 }
             }
@@ -1297,7 +1690,7 @@ public class World {
                     len =airs.size();
                 }
             }
-            for (int j = 0; j<len3;j++){
+            for (int j = 0; j<len4;j++){
                 Spear spear = spears.get(j);
                 if (OverlapTester.overlapRectangles(air.bounds, spear.bounds)) {
                     createStars(air.position.x, air.position.y, "yellow");
@@ -1305,7 +1698,7 @@ public class World {
                     enemyHp = enemyHp-1;
                     airs.remove(air);
                     spears.remove(spear);
-                    len3 = spears.size();
+                    len4 = spears.size();
                     len =airs.size();
                 }
             }

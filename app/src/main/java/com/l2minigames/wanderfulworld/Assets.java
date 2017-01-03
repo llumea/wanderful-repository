@@ -221,8 +221,7 @@ public class Assets {
                 new TextureRegion(enemyatlas, 384, 448, 128, 128),
                 new TextureRegion(enemyatlas, 512, 448, 128, 128),
                 new TextureRegion(enemyatlas, 640, 448, 128, 128),
-                new TextureRegion(enemyatlas, 512, 448, 128, 128),
-                new TextureRegion(enemyatlas, 640, 448, 128, 128));
+                new TextureRegion(enemyatlas, 512, 448, 128, 128));
         wolfAnimation = new Animation(0.1f,
                 new TextureRegion(enemyatlas, 512, 0, 256, 128),
                 new TextureRegion(enemyatlas, 768, 0, 256, 128),
