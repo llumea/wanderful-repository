@@ -1584,13 +1584,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerWater);
 
         ///I London
-        MyMarker gent = new MyMarker(myLatitude- 0.0002, myLongitude - 0.0002, "gent");
+        MyMarker gent = new MyMarker(myLatitude+ 0.0002, myLongitude + 0.0002, "gent");
         tmpMarkersList.add(gent);
         ///I Paris
         MyMarker hunchback = new MyMarker(myLatitude+ 0.0002, myLongitude + 0.0002, "hunchback");
         tmpMarkersList.add(hunchback);
         ///I Indien
-        MyMarker bull = new MyMarker(myLatitude - 0.00001, myLongitude- 0.00001, "bull");
+        MyMarker bull = new MyMarker(myLatitude - 0.0002, myLongitude- 0.0002, "bull");
         tmpMarkersList.add(bull);
 
         MyMarker birdman = new MyMarker(myLatitude + 0.00012, myLongitude+ 0.00012, "birdman");

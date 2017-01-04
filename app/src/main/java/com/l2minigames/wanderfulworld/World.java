@@ -1204,6 +1204,40 @@ public class World {
             } else if (mContext.enemy.equals("bull")) {
                 enemyMaxHp = 24;
                 enemyHp = 24;
+
+                createSnake(24,17.5f,-4);
+                createSnake(34,17.5f,-4);
+                createSnake(44,17.5f,-4);
+                createSnake(64,17.5f,-4);
+                createSnake(74,17.5f,-4);
+                createSnake(84,17.5f,-4);
+                createSnake(94,17.5f,-4);
+
+                createSnake(29,17.5f,-4);
+                createSnake(39,17.5f,-4);
+                createSnake(49,17.5f,-4);
+                createSnake(59,17.5f,-4);
+                createSnake(69,17.5f,-4);
+                createSnake(79,17.5f,-4);
+                createSnake(89,17.5f,-4);
+
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(50,17.5f,-6, 2);
+                createBulldog(60,17.5f,-6, 1);
+                createBulldog(70,17.5f,-6, 2);
+
+                createGhost(34,16f,-4);
+                createGhost(60,16f,-4);
+                createDragon(55, 30.5f, -4, -0.7f);
+                createDragon(45, 35f, -4, -0.7f);
+                createDragon(70, 7f, -4, +0.7f);
+
+                createSpear(38,17.2f,-9);
+                createSpear(58,17.2f,-9);
+                createSpear(78,17.2f,-9);
+                createSpear(78,18.2f,-9);
+                createSpear(78,19.2f,-9);
+
             }
         }
     }
