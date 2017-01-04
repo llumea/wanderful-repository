@@ -801,10 +801,74 @@ public class World {
             } else if (mContext.enemy.equals("gent")) {
                 enemyMaxHp = 22;
                 enemyHp = 22;
+
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createBulldog(25,17.5f,-6, slump);
+                createBulldog(30,17.5f,-6, slump2);
+                createBulldog(35,17.5f,-6, slump3);
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(45,17.5f,-6, slump3);
+                createBulldog(50,17.5f,-6, slump2);
+                createBulldog(55,17.5f,-6, slump);
+                createBulldog(60,17.5f,-6, slump4);
+                createBulldog(65,17.5f,-6, 2);
+                createBulldog(70,17.5f,-6, slump3);
+                createBulldog(75,17.5f,-6, slump);
+                createBulldog(80,17.5f,-6, slump4);
+                createBulldog(85,17.5f,-6, slump);
+                createBulldog(90,17.5f,-6, slump3);
+                createBulldog(95,17.5f,-6, slump2);
+                createBulldog(100,17.5f,-6, slump3);
+                createBulldog(105,17.5f,-6, slump);
+                createBulldog(110,17.5f,-6, slump3);
+                createBulldog(115,17.5f,-6, slump);
+                createBulldog(120,17.5f,-6, slump4);
+                createBulldog(125,17.5f,-6, 2);
+                createBulldog(130,17.5f,-6, slump);
+                createBulldog(135,17.5f,-6, slump3);
+                createBulldog(140,17.5f,-6, slump2);
+                createBulldog(145,17.5f,-6, 0);
+                createBulldog(150,17.5f,-6, 0);
             } else if (mContext.enemy.equals("bull")) {
+
                 enemyMaxHp = 24;
                 enemyHp = 24;
-            }
+
+                createSnake(24,17.5f,-4);
+                createSnake(34,17.5f,-4);
+                createSnake(44,17.5f,-4);
+                createSnake(64,17.5f,-4);
+                createSnake(74,17.5f,-4);
+                createSnake(84,17.5f,-4);
+                createSnake(94,17.5f,-4);
+
+                createSnake(29,17.5f,-4);
+                createSnake(39,17.5f,-4);
+                createSnake(49,17.5f,-4);
+                createSnake(59,17.5f,-4);
+                createSnake(69,17.5f,-4);
+                createSnake(79,17.5f,-4);
+                createSnake(89,17.5f,-4);
+
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(50,17.5f,-6, 2);
+                createBulldog(60,17.5f,-6, 1);
+                createBulldog(70,17.5f,-6, 2);
+
+                createGhost(34,16f,-4);
+                createGhost(60,16f,-4);
+                createDragon(55, 30.5f, -4, -0.7f);
+                createDragon(45, 35f, -4, -0.7f);
+                createDragon(70, 7f, -4, +0.7f);
+
+                createSpear(38,17.2f,-9);
+                createSpear(58,17.2f,-9);
+                createSpear(78,17.2f,-9);
+                createSpear(78,18.2f,-9);
+                createSpear(78,19.2f,-9);            }
 
         } else if (molly.maxhp>12 && molly.maxhp<18){
             if (mContext.enemy.equals("birdman")) {
@@ -969,9 +1033,74 @@ public class World {
             } else if (mContext.enemy.equals("gent")) {
                 enemyMaxHp = 22;
                 enemyHp = 22;
+
+                int slump = rand.nextInt(3);
+                int slump2 = rand.nextInt(3);
+                int slump3 = rand.nextInt(3);
+                int slump4 = rand.nextInt(3);
+                createBulldog(25,17.5f,-6, slump);
+                createBulldog(30,17.5f,-6, slump2);
+                createBulldog(35,17.5f,-6, slump3);
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(45,17.5f,-6, slump3);
+                createBulldog(50,17.5f,-6, slump2);
+                createBulldog(55,17.5f,-6, slump);
+                createBulldog(60,17.5f,-6, slump4);
+                createBulldog(65,17.5f,-6, 2);
+                createBulldog(70,17.5f,-6, slump3);
+                createBulldog(75,17.5f,-6, slump);
+                createBulldog(80,17.5f,-6, slump4);
+                createBulldog(85,17.5f,-6, slump);
+                createBulldog(90,17.5f,-6, slump3);
+                createBulldog(95,17.5f,-6, slump2);
+                createBulldog(100,17.5f,-6, slump3);
+                createBulldog(105,17.5f,-6, slump);
+                createBulldog(110,17.5f,-6, slump3);
+                createBulldog(115,17.5f,-6, slump);
+                createBulldog(120,17.5f,-6, slump4);
+                createBulldog(125,17.5f,-6, 2);
+                createBulldog(130,17.5f,-6, slump);
+                createBulldog(135,17.5f,-6, slump3);
+                createBulldog(140,17.5f,-6, slump2);
+                createBulldog(145,17.5f,-6, 0);
+                createBulldog(150,17.5f,-6, 0);
             } else if (mContext.enemy.equals("bull")) {
+
                 enemyMaxHp = 24;
                 enemyHp = 24;
+
+                createSnake(24,17.5f,-4);
+                createSnake(34,17.5f,-4);
+                createSnake(44,17.5f,-4);
+                createSnake(64,17.5f,-4);
+                createSnake(74,17.5f,-4);
+                createSnake(84,17.5f,-4);
+                createSnake(94,17.5f,-4);
+
+                createSnake(29,17.5f,-4);
+                createSnake(39,17.5f,-4);
+                createSnake(49,17.5f,-4);
+                createSnake(59,17.5f,-4);
+                createSnake(69,17.5f,-4);
+                createSnake(79,17.5f,-4);
+                createSnake(89,17.5f,-4);
+
+                createBulldog(40,17.5f,-6, 1);
+                createBulldog(50,17.5f,-6, 2);
+                createBulldog(60,17.5f,-6, 1);
+                createBulldog(70,17.5f,-6, 2);
+
+                createGhost(34,16f,-4);
+                createGhost(60,16f,-4);
+                createDragon(55, 30.5f, -4, -0.7f);
+                createDragon(45, 35f, -4, -0.7f);
+                createDragon(70, 7f, -4, +0.7f);
+
+                createSpear(38,17.2f,-9);
+                createSpear(58,17.2f,-9);
+                createSpear(78,17.2f,-9);
+                createSpear(78,18.2f,-9);
+                createSpear(78,19.2f,-9);
             }
         } else if (molly.maxhp>17){
             if (mContext.enemy.equals("birdman")) {
