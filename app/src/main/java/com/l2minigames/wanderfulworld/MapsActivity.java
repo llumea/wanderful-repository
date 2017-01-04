@@ -364,46 +364,93 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (mMap!=null) {
                     String magic="";
                     if (currentTravelwindSelected.equals("Paris")){
-                        myRef.child("travelMode").setValue(1);
-                        myPositionLatitude = 48.853320;
-                        myPositionLongitude = 2.348600;
-                        magic ="Paris";
+
+                        Log.i("TAGGY", "TRAVEL TO PARIS. object.level är lika med "+object.level);
+                        if (object.level>1) {
+                            myRef.child("travelMode").setValue(1);
+                            myPositionLatitude = 48.853320;
+                            myPositionLongitude = 2.348600;
+                            magic = "Paris";
+                            closePicked();
+                            closeBackpack();
+                            vibrate();
+                            doMagicAnimation(magic);
+                            LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                            CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                                    new CameraPosition.Builder()
+                                            .bearing(currentCameraPosition.bearing)
+                                            .target(cameraPosition)
+                                            .tilt(90)
+                                            .zoom(19)
+                                            .build()));
+                        } else {
+                            Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.travelwind_paris_limit),
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                     else if (currentTravelwindSelected.equals("London")){
-                        myRef.child("travelMode").setValue(2);
-                        myPositionLatitude = 51.508530;
-                        myPositionLongitude = -0.076132;
-                        magic ="London";
+                        if (object.level>3) {
+                            myRef.child("travelMode").setValue(2);
+                            myPositionLatitude = 51.508530;
+                            myPositionLongitude = -0.076132;
+                            magic = "London";
+                            closePicked();
+                            closeBackpack();
+                            vibrate();
+                            doMagicAnimation(magic);
+                            LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                            CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                                    new CameraPosition.Builder()
+                                            .bearing(currentCameraPosition.bearing)
+                                            .target(cameraPosition)
+                                            .tilt(90)
+                                            .zoom(19)
+                                            .build()));
+                        } else {
+                            Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.travelwind_london_limit),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
                     }
                     else if (currentTravelwindSelected.equals("India")){
-                        myRef.child("travelMode").setValue(3);
+                        if (object.level>5) {
+                            myRef.child("travelMode").setValue(3);
+                            myPositionLatitude = 27.173891;
+                            myPositionLongitude = 78.042068;
+                            magic ="India";
+                            closePicked();
+                            closeBackpack();
+                            vibrate();
+                            doMagicAnimation(magic);
+                            LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                            CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
 
-                        myPositionLatitude = 27.173891;
-                        myPositionLongitude = 78.042068;
+                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
 
-                        ///myPositionLatitude = 29.976480;
-                       /// myPositionLongitude = 31.131302;
-                        magic ="India";
+                            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                                    new CameraPosition.Builder()
+                                            .bearing(currentCameraPosition.bearing)
+                                            .target(cameraPosition)
+                                            .tilt(90)
+                                            .zoom(19)
+                                            .build()));
+                        } else {
+                            Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.travelwind_india_limit),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
                     }
-
-                    LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
-                    CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                    Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                    ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
-                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                            new CameraPosition.Builder()
-                                    .bearing(currentCameraPosition.bearing)
-                                    .target(cameraPosition)
-                                    .tilt(90)
-                                    .zoom(19)
-                                    .build()));
-
-                    closePicked();
-                    closeBackpack();
-                    vibrate();
-                    doMagicAnimation(magic);
                 }
 
             }
@@ -1021,9 +1068,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             myPositionLatitude = location.getLatitude();
             myPositionLongitude = location.getLongitude();
         }
+
+        ///ToDo Positionen uppdateras på servern vid varje onLocationChanged. Ändra detta?
         myRef.child("latitude").setValue(myPositionLatitude);
         myRef.child("longitude").setValue(myPositionLongitude);
-        ///Tidigare var myPositionLatitude+0.0005, men rotationen blev sned
+        ///ToDo Tidigare var myPositionLatitude+0.0005, men rotationen blev sned. Den blir fortfarande sned beroende på hur man roterar med fingrarna.
         LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
         CameraPosition currentCameraPosition = mMap.getCameraPosition();
         Log.i("TAG", "CURRENT CAMERA POSITION" +currentCameraPosition);

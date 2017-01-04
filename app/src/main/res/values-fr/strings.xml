@@ -130,4 +130,7 @@
     <string name="artefact_120_hp_added">plus 120 xp</string>
     <string name="artefact_130_hp_added">plus 130 xp</string>
     <string name="artefact_140_hp_added">plus 140 xp</string>
+    <string name="travelwind_india_limit">Vous devez avoir au moins level 6 pour voyager en Inde</string>
+    <string name="travelwind_london_limit">Vous devez avoir au moins level 4 pour voyager à Londre</string>
+    <string name="travelwind_paris_limit">Vous devez avoir au moins level 2 pour voyager à Paris</string>
 </resources>

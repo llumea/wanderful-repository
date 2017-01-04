@@ -74,8 +74,11 @@
     <string name="combat_potion">Combat Potion</string>
     <string name="travelwind">Travelwind</string>
     <string name="travelwind_paris">Travelwind to Paris</string>
+    <string name="travelwind_paris_limit">Level 2 is required to travel to Paris</string>
     <string name="travelwind_london">Travelwind to London</string>
+    <string name="travelwind_london_limit">Level 4 is required to travel to London</string>
     <string name="travelwind_india">Travelwind to India</string>
+    <string name="travelwind_india_limit">Level 6 is required to travel to India</string>
     <string name="flame">Flame</string>
     <string name="trombulus">Trombulus</string>
     <string name="waterdrop">Waterdrop</string>
