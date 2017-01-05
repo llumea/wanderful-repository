@@ -123,6 +123,7 @@
     <string name="wizardacademy_description">Greetings young apprentice. If you manage to bring back 3 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use 2 fingers to rotate/zoom on the map.</string>
     <string name="wizardacademy_accepted">Contratulations! You managed to complete your task. I never thought anyone would do that. Ehum, well this means you are now accepted in the Magic Academy!</string>
     <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
+    <string name="hold_to_logout">Hold down this button to log out</string>
     <string name="you_need_more_flames">You need more flames. You collect them in Wanderful World.</string>
     <string name="you_need_more_plants">You need more plants. You collect them in Wanderful World.</string>
     <string name="you_need_more_tromuluses">You need more trombuluses. You collect them in Wanderful World.</string>

@@ -139,4 +139,5 @@
     <string name="added_120_xp">plus 120 xp</string>
     <string name="added_130_xp">plus 130 xp</string>
     <string name="added_140_xp">plus 140 xp</string>
+    <string name="hold_to_logout">Appuyer plus de temps si vous voulez déconnecter</string>
 </resources>

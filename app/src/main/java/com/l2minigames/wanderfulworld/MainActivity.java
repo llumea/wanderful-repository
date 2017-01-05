@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                         startActivity(intent);
                         finish();
                         // If sign in fails, display a message to the user. If sign in succeeds

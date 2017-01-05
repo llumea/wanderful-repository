@@ -151,6 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton gameButton;
     ImageButton useScrollButton;
     ImageButton closePickedButton;
+    ImageButton rotateButton;
     Button travelAway;
     Button travelHome;
     Button increaseElementPowers;
@@ -215,6 +216,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton = (ImageButton) findViewById(R.id.gameButton);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
+        rotateButton = (ImageButton) findViewById(R.id.rotateButton);
         travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
         increaseThisElement ="nothing";
@@ -300,30 +302,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
-                try{
-                    ///ToDo fungerar bara om det finns koppling till servern OBS! Den här knappen ska tas bort!
-                    Bundle bundle = new Bundle();
-                    bundle.putString("ENEMY", "wizgirl");
-                    bundle.putString("WORLD", "wanderful world");
-                    bundle.putInt("HP", object.hp);
-                    bundle.putInt("MAX_HP", object.maxhp);
-                    bundle.putInt("CP", object.cp);
-                    bundle.putInt("MAX_CP", object.maxcp);
-                    bundle.putInt("EARTH_POWER", object.earthpower);
-                    bundle.putInt("FIRE_POWER", object.firepower);
-                    bundle.putInt("AIR_POWER", object.airpower);
-                    bundle.putInt("WATER_POWER", object.waterpower);
-                    bundle.putInt("XP", object.XP);
-                    Intent intent = new Intent(MapsActivity.this, SuperJumper.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
-                catch(Exception e){
-                    Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.no_connection),
-                            Toast.LENGTH_LONG).show();
-                }
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.hold_to_logout),
+                        Toast.LENGTH_LONG).show();
 
 
+            }
+        });
+        rotateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                        new CameraPosition.Builder()
+                                .bearing(currentCameraPosition.bearing-25)
+                                .target(cameraPosition)
+                                .tilt(90)
+                                .zoom(19)
+                                .build()), 500,null);
+
+
+            }
+        });
+        gameButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                return false;
             }
         });
         travelHome.setOnClickListener(new View.OnClickListener() {
@@ -620,6 +634,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
+                    gameButton.setVisibility(View.INVISIBLE);
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
                    /// personFab.setVisibility(View.INVISIBLE);
                     personFab.setBackgroundResource(R.drawable.girlfaceblue);
@@ -627,6 +642,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } else {
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                     personFab.setVisibility(View.VISIBLE);
+                    gameButton.setVisibility(View.INVISIBLE);
 
                     fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                 }
@@ -640,12 +656,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 if (relativeLayoutPerson.getVisibility()==View.INVISIBLE) {
                     relativeLayoutPerson.setVisibility(View.VISIBLE);
+                    gameButton.setVisibility(View.VISIBLE);
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                    /// fab.setVisibility(View.INVISIBLE);
                     fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                     personFab.setBackgroundResource(R.drawable.close);
                 } else {
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
+                    gameButton.setVisibility(View.INVISIBLE);
                     fab.setVisibility(View.VISIBLE);
                     personFab.setBackgroundResource(R.drawable.girlfaceblue);
                 }
@@ -674,6 +692,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutPicked.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        gameButton.setVisibility(View.INVISIBLE);
         closeLoadingScreen.setVisibility(View.INVISIBLE);
 
 
@@ -1120,8 +1139,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .build()));
 
 
-        ///mMap.getUiSettings(). setZoomGesturesEnabled(false);
+        mMap.getUiSettings(). setZoomGesturesEnabled(false);
+        mMap.getUiSettings().setRotateGesturesEnabled(false);
 
+        mMap.getUiSettings().setTiltGesturesEnabled(false);
         mMap.getUiSettings(). setScrollGesturesEnabled(false);
         mMap.getUiSettings(). setCompassEnabled(false);
 
@@ -2125,6 +2146,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///ToDo Inte snyggt om detta körs innan koppling mot servern, dvs. vid start
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
+        gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
         int changeToLevel = oldLevel+1;
         Random rnd1 = new Random();
@@ -2154,6 +2176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         itemDescription.setText(getResources().getString(R.string.item_added_in_backpack));
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
+        gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
 
         if (name.equals("earth")){
@@ -2320,6 +2343,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
+        gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
 
 
