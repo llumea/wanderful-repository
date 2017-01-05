@@ -151,7 +151,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton gameButton;
     ImageButton useScrollButton;
     ImageButton closePickedButton;
-    ImageButton rotateButton;
+    ImageButton plusButton;
+    ImageButton rotateLeftButton;
+    ImageButton rotateLeftShortButton;
+    ImageButton rotateRightButton;
+    ImageButton rotateRightShortButton;
     Button travelAway;
     Button travelHome;
     Button increaseElementPowers;
@@ -216,7 +220,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gameButton = (ImageButton) findViewById(R.id.gameButton);
         closeLoadingScreen = (ImageButton)findViewById(R.id.closeLoadingScreen);
         useScrollButton = (ImageButton) findViewById(R.id.useScrollButton);
-        rotateButton = (ImageButton) findViewById(R.id.rotateButton);
+        rotateLeftButton = (ImageButton) findViewById(R.id.rotateLeftButton);
+        rotateLeftShortButton = (ImageButton) findViewById(R.id.rotateLeftShortButton);
+        rotateRightButton = (ImageButton) findViewById(R.id.rotateRightButton);
+        rotateRightShortButton = (ImageButton) findViewById(R.id.rotateRightShortButton);
+        plusButton = (ImageButton) findViewById(R.id.plusButton);
         travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
         increaseThisElement ="nothing";
@@ -308,7 +316,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-        rotateButton.setOnClickListener(new View.OnClickListener() {
+        rotateLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -320,10 +328,94 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
-                                .bearing(currentCameraPosition.bearing-25)
+                                .bearing(currentCameraPosition.bearing-45)
                                 .target(cameraPosition)
                                 .tilt(90)
                                 .zoom(19)
+                                .build()), 500,null);
+
+
+            }
+        });
+        rotateLeftShortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                        new CameraPosition.Builder()
+                                .bearing(currentCameraPosition.bearing-20)
+                                .target(cameraPosition)
+                                .tilt(90)
+                                .zoom(19)
+                                .build()), 500,null);
+
+
+            }
+        });
+        rotateRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                        new CameraPosition.Builder()
+                                .bearing(currentCameraPosition.bearing+45)
+                                .target(cameraPosition)
+                                .tilt(90)
+                                .zoom(19)
+                                .build()), 500,null);
+
+
+            }
+        });
+        rotateRightShortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                        new CameraPosition.Builder()
+                                .bearing(currentCameraPosition.bearing+20)
+                                .target(cameraPosition)
+                                .tilt(90)
+                                .zoom(19)
+                                .build()), 500,null);
+
+
+            }
+        });
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
+
+                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                        new CameraPosition.Builder()
+                                .bearing(currentCameraPosition.bearing)
+                                .target(cameraPosition)
+                                .tilt(45)
+                                .zoom(17)
                                 .build()), 500,null);
 
 
@@ -635,6 +727,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (relativeLayoutRecycle.getVisibility()==View.INVISIBLE) {
                     relativeLayoutRecycle.setVisibility(View.VISIBLE);
                     gameButton.setVisibility(View.INVISIBLE);
+                    plusButton.setVisibility(View.INVISIBLE);
+                    rotateLeftButton.setVisibility(View.INVISIBLE);
+                    rotateLeftShortButton.setVisibility(View.INVISIBLE);
+                    rotateRightButton.setVisibility(View.INVISIBLE);
+                    rotateRightShortButton.setVisibility(View.INVISIBLE);
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
                    /// personFab.setVisibility(View.INVISIBLE);
                     personFab.setBackgroundResource(R.drawable.girlfaceblue);
@@ -642,7 +739,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } else {
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                     personFab.setVisibility(View.VISIBLE);
+                    plusButton.setVisibility(View.VISIBLE);
+                    rotateLeftButton.setVisibility(View.VISIBLE);
+                    rotateLeftShortButton.setVisibility(View.VISIBLE);
+                    rotateRightButton.setVisibility(View.VISIBLE);
+                    rotateRightShortButton.setVisibility(View.VISIBLE);
                     gameButton.setVisibility(View.INVISIBLE);
+
 
                     fab.setBackgroundResource(R.drawable.backpackbuttonblue);
                 }
@@ -657,6 +760,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (relativeLayoutPerson.getVisibility()==View.INVISIBLE) {
                     relativeLayoutPerson.setVisibility(View.VISIBLE);
                     gameButton.setVisibility(View.VISIBLE);
+                    plusButton.setVisibility(View.INVISIBLE);
+                    rotateLeftButton.setVisibility(View.INVISIBLE);
+                    rotateLeftShortButton.setVisibility(View.INVISIBLE);
+                    rotateRightButton.setVisibility(View.INVISIBLE);
+                    rotateRightShortButton.setVisibility(View.INVISIBLE);
                     relativeLayoutRecycle.setVisibility(View.INVISIBLE);
                    /// fab.setVisibility(View.INVISIBLE);
                     fab.setBackgroundResource(R.drawable.backpackbuttonblue);
@@ -665,6 +773,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     relativeLayoutPerson.setVisibility(View.INVISIBLE);
                     gameButton.setVisibility(View.INVISIBLE);
                     fab.setVisibility(View.VISIBLE);
+                    plusButton.setVisibility(View.VISIBLE);
+                    rotateLeftButton.setVisibility(View.VISIBLE);
+                    rotateLeftShortButton.setVisibility(View.VISIBLE);
+                    rotateRightButton.setVisibility(View.VISIBLE);
+                    rotateRightShortButton.setVisibility(View.VISIBLE);
                     personFab.setBackgroundResource(R.drawable.girlfaceblue);
                 }
                 /// Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -692,6 +805,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutPicked.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
         gameButton.setVisibility(View.INVISIBLE);
         closeLoadingScreen.setVisibility(View.INVISIBLE);
 
@@ -948,7 +1066,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ///personImage = (ImageView)findViewById(R.id.personImage);
                 personUserName.setText(object.username);
 
-                personCP.setText("CP: "+object.cp+"/"+object.maxcp);
+                ///personCP.setText("CP: "+object.cp+"/"+object.maxcp);
                 personHP.setText("HP: "+object.hp+"/"+object.maxhp);
                 elementEarthValue.setText(" "+object.earthpower);
                 elementFireValue.setText(" "+object.firepower);
@@ -2148,6 +2266,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.INVISIBLE);
         gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
         int changeToLevel = oldLevel+1;
         Random rnd1 = new Random();
         int slumphp = rnd1.nextInt(3)+1;
@@ -2178,6 +2301,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.INVISIBLE);
         gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
+
 
         if (name.equals("earth")){
             itemType.setText(getResources().getString(R.string.a_plant));
@@ -2345,6 +2474,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setVisibility(View.INVISIBLE);
         gameButton.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
 
 
     }
@@ -2353,6 +2487,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mImageViewBackground.setVisibility(ImageView.INVISIBLE);
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
+        plusButton.setVisibility(View.VISIBLE);
+        rotateLeftButton.setVisibility(View.VISIBLE);
+        rotateLeftShortButton.setVisibility(View.VISIBLE);
+        rotateRightButton.setVisibility(View.VISIBLE);
+        rotateRightShortButton.setVisibility(View.VISIBLE);
         closeLoadingScreen.setVisibility(View.INVISIBLE);
     }
     public void showWizardAcademy(){
@@ -2371,6 +2510,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
 
     }
     public static MapsActivity getInstance() {
@@ -2383,6 +2527,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         useScrollButton.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.VISIBLE);
         personFab.setVisibility(View.VISIBLE);
+        if (relativeLayoutRecycle.getVisibility()!=View.VISIBLE) {
+            plusButton.setVisibility(View.VISIBLE);
+            rotateLeftButton.setVisibility(View.VISIBLE);
+            rotateLeftShortButton.setVisibility(View.VISIBLE);
+            rotateRightButton.setVisibility(View.VISIBLE);
+            rotateRightShortButton.setVisibility(View.VISIBLE);
+        }
         travelAway.setVisibility(View.INVISIBLE);
         travelHome.setVisibility(View.INVISIBLE);
         increaseElementPowers.setVisibility(View.INVISIBLE);
@@ -2462,6 +2613,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         relativeLayoutPicked.setVisibility(View.VISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
+        plusButton.setVisibility(View.INVISIBLE);
+        rotateLeftButton.setVisibility(View.INVISIBLE);
+        rotateLeftShortButton.setVisibility(View.INVISIBLE);
+        rotateRightButton.setVisibility(View.INVISIBLE);
+        rotateRightShortButton.setVisibility(View.INVISIBLE);
 
 
     }

@@ -473,12 +473,49 @@
         android:layout_margin="16dp"
         android:background="@drawable/logout"/>
     <ImageButton
-        android:id="@+id/rotateButton"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:id="@+id/plusButton"
+        android:alpha="0.8"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_gravity="bottom|center"
-        android:layout_margin="16dp"
-        android:background="@drawable/button"/>
+        android:layout_margin="64dp"
+        android:background="@drawable/buttonplus"/>
+    <ImageButton
+        android:id="@+id/rotateLeftShortButton"
+        android:alpha="0.8"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="96dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonleftshort"/>
+    <ImageButton
+        android:id="@+id/rotateLeftButton"
+        android:alpha="0.8"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonleft"/>
+    <ImageButton
+        android:id="@+id/rotateRightShortButton"
+        android:alpha="0.8"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="96dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonrightshort"/>
+    <ImageButton
+        android:id="@+id/rotateRightButton"
+        android:alpha="0.8"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonright"/>
 
 
     </fragment>
