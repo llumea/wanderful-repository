@@ -296,44 +296,46 @@ public class GameScreen extends GLScreen {
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
             try {
-                ///ToDo Ändra xp efter motstånd
-                int xpToGain = 0;
-                if (mContext.enemy.equals("birdman")){
-                    xpToGain = 100;
-                } else if(mContext.enemy.equals("speargirl")){
-                    xpToGain = 100;
-                }else if(mContext.enemy.equals("wizboy")){
-                    xpToGain = 110;
-                }else if(mContext.enemy.equals("wizgirl")){
-                    xpToGain = 110;
-                }else if(mContext.enemy.equals("captain")){
-                    xpToGain = 120;
-                }else if(mContext.enemy.equals("darkwiz")){
-                    xpToGain = 130;
-                }else if(mContext.enemy.equals("hunchback")){
-                    xpToGain = 140;
-                }else if(mContext.enemy.equals("gent")){
-                    xpToGain = 140;
-                }else if(mContext.enemy.equals("bull")){
-                    xpToGain = 140;
-                }
+               if (world.molly.hp>1) {
+                   ///ToDo Ändra xp efter motstånd
+                   int xpToGain = 0;
+                   if (mContext.enemy.equals("birdman")) {
+                       xpToGain = 100;
+                   } else if (mContext.enemy.equals("speargirl")) {
+                       xpToGain = 100;
+                   } else if (mContext.enemy.equals("wizboy")) {
+                       xpToGain = 110;
+                   } else if (mContext.enemy.equals("wizgirl")) {
+                       xpToGain = 110;
+                   } else if (mContext.enemy.equals("captain")) {
+                       xpToGain = 120;
+                   } else if (mContext.enemy.equals("darkwiz")) {
+                       xpToGain = 130;
+                   } else if (mContext.enemy.equals("hunchback")) {
+                       xpToGain = 140;
+                   } else if (mContext.enemy.equals("gent")) {
+                       xpToGain = 140;
+                   } else if (mContext.enemy.equals("bull")) {
+                       xpToGain = 140;
+                   }
 
-                mContext.xp = mContext.xp+xpToGain;
-                mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, mContext.xp);
-                if (mContext.world.equals("paris")){
-                    mContext.sendArtefactBeforeExit("Artefact Paris");
-                }
-                if (mContext.world.equals("london")){
-                    mContext.sendArtefactBeforeExit("Artefact London");
-                }
-                if (mContext.world.equals("india")){
-                    mContext.sendArtefactBeforeExit("Artefact India");
-                }
+                   mContext.xp = mContext.xp + xpToGain;
+                   mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, mContext.xp);
+                   if (mContext.world.equals("paris")) {
+                       mContext.sendArtefactBeforeExit("Artefact Paris");
+                   }
+                   if (mContext.world.equals("london")) {
+                       mContext.sendArtefactBeforeExit("Artefact London");
+                   }
+                   if (mContext.world.equals("india")) {
+                       mContext.sendArtefactBeforeExit("Artefact India");
+                   }
+               }
             }catch(Exception e){
 
             }
             ///ToDo Skapa artefact om enemy är en boss!
-            mContext.finish();
+            mContext.goMapsActivity();
 
 
            ///SuperJumper tmpJumper = new SuperJumper();

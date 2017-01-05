@@ -93,15 +93,15 @@
     <string name="you_traveled_to_india">Le Voyage Précieux vous faites voler jusqu\'en Inde, juste devant Taj Mahal.</string>
     <string name="travelwind_india">Voyage Précieux en Inde</string>
     <string name="india_button">Inde (Level 6+)</string>
-    <string name="earthpower_increased">Votre force de terre a augmenté par 1</string>
-    <string name="firepower_increased">Votre force de feu a augmenté par 1</string>
+    <string name="earthpower_increased">Votre force de terre a augmenté</string>
+    <string name="firepower_increased">Votre force de feu a augmenté</string>
     <string name="airpower_increased">Votre force d\'air a augmenté par 1</string>
     <string name="waterpower_increased">Votre force d\'eau a augmenté par 1</string>
     <string name="not_in_range">Vous n\'êtes pas assez près. Approchez-vous.</string>
-    <string name="increase_airpower">Augmenter force d\'air +1</string>
-    <string name="increase_earthpower">Augmenter force de terre +1</string>
-    <string name="increase_firepower">Augmenter force de feu +1</string>
-    <string name="increase_waterpower">Augmenter force d\'eau +1</string>
+    <string name="increase_airpower">Augmenter force d\'air</string>
+    <string name="increase_earthpower">Augmenter force de terre</string>
+    <string name="increase_firepower">Augmenter force de feu</string>
+    <string name="increase_waterpower">Augmenter force d\'eau</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">Vous ne pouvez pas avoir plus de 7 force d\'éléments du même catégorie.</string>
     <string name="hp_increased">Votre hp a augmenté par</string>
     <string name="tap_and_swipe">taper et swiper</string>
@@ -133,4 +133,10 @@
     <string name="travelwind_india_limit">Vous devez avoir au moins level 6 pour voyager en Inde</string>
     <string name="travelwind_london_limit">Vous devez avoir au moins level 4 pour voyager à Londre</string>
     <string name="travelwind_paris_limit">Vous devez avoir au moins level 2 pour voyager à Paris</string>
+    <string name="already_home">Vous êtes déjà chez vous</string>
+    <string name="added_100_xp">plus 100 xp</string>
+    <string name="added_110_xp">plus 110 xp</string>
+    <string name="added_120_xp">plus 120 xp</string>
+    <string name="added_130_xp">plus 130 xp</string>
+    <string name="added_140_xp">plus 140 xp</string>
 </resources>

@@ -93,8 +93,7 @@ public class SuperJumper extends GLGame {
         finish();
     }
     public void goMapsActivity(){
-        Intent intent = new Intent(SuperJumper.this, MapsActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public void sendResultBeforeExit(int earthpower, int firepower, int airpower, int waterpower, int hp, int xp){

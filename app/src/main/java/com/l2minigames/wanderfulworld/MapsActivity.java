@@ -165,6 +165,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int artefactParis;
     int artefactLondon;
     int artefactIndia;
+    int mResource;
 
     private static MapsActivity mMapsActivity;
 
@@ -180,6 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         artefactParis = 0;
         artefactLondon = 0;
         artefactIndia = 0;
+        mResource = R.raw.style_json;
         mHandler = new Handler();
         Firebase.setAndroidContext(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_map);
@@ -226,7 +228,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        int tmpEarthPower = mMapsActivity.getInstance().object.earthpower+1;
+                        int tmpEarthPower = 7;
                         myRef.child("earthpower").setValue(tmpEarthPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.earthpower_increased),
@@ -239,7 +241,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
                                 Toast.LENGTH_LONG).show();
                     }else {
-                        int tmpFirePower = mMapsActivity.getInstance().object.firepower+1;
+                        int tmpFirePower = 7;
                         myRef.child("firepower").setValue(tmpFirePower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.firepower_increased),
@@ -252,7 +254,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
                                 Toast.LENGTH_LONG).show();
                     }else {
-                        int tmpAirPower = mMapsActivity.getInstance().object.airpower+1;
+                        int tmpAirPower = 7;
                         myRef.child("airpower").setValue(tmpAirPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.airpower_increased),
@@ -266,7 +268,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_can_only_have_7_elements_of_the_same_type),
                                 Toast.LENGTH_LONG).show();
                     }else {
-                        int tmpWaterPower = mMapsActivity.getInstance().object.waterpower+1;
+                        int tmpWaterPower = 7;
                         myRef.child("waterpower").setValue(tmpWaterPower);
                         myFirebaseRef.child(currentItemKeySelected).removeValue();
                         Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.waterpower_increased),
@@ -328,31 +330,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (mMap!=null) {
-                    ///Sätter lat/long så att inte markers uppdateras i fel värld!
-                    myRef.child("latitude").setValue(lastNormalLatitude);
-                    myRef.child("longitude").setValue(lastNormalLongitude);
-                    myRef.child("travelMode").setValue(0);
-                    myPositionLatitude = lastNormalLatitude;
-                    myPositionLongitude = lastNormalLongitude;
-                    String magic = "Travel Home";
-                    LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
-                    CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                    Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
 
-                    ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
+                    if (object.travelMode!=0) {
+                        ///Sätter lat/long så att inte markers uppdateras i fel värld!
+                        myRef.child("latitude").setValue(lastNormalLatitude);
+                        myRef.child("longitude").setValue(lastNormalLongitude);
+                        myRef.child("travelMode").setValue(0);
+                        myPositionLatitude = lastNormalLatitude;
+                        myPositionLongitude = lastNormalLongitude;
+                        String magic = "Travel Home";
+                        LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
+                        CameraPosition currentCameraPosition = mMap.getCameraPosition();
+                        Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
 
-                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
-                            new CameraPosition.Builder()
-                                    .bearing(currentCameraPosition.bearing)
-                                    .target(cameraPosition)
-                                    .tilt(90)
-                                    .zoom(19)
-                                    .build()));
+                        ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
 
-                    closePicked();
-                    closeBackpack();
-                    vibrate();
-                    doMagicAnimation(magic);
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                                new CameraPosition.Builder()
+                                        .bearing(currentCameraPosition.bearing)
+                                        .target(cameraPosition)
+                                        .tilt(90)
+                                        .zoom(19)
+                                        .build()));
+
+                        closePicked();
+                        closeBackpack();
+                        vibrate();
+                        doMagicAnimation(magic);
+                    } else {
+                        Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.already_home),
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -370,6 +378,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             myRef.child("travelMode").setValue(1);
                             myPositionLatitude = 48.853320;
                             myPositionLongitude = 2.348600;
+                            lastTravelLatitude = 48.853320;
+                            lastTravelLongitude = 2.348600;
                             magic = "Paris";
                             closePicked();
                             closeBackpack();
@@ -396,8 +406,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     else if (currentTravelwindSelected.equals("London")){
                         if (object.level>3) {
                             myRef.child("travelMode").setValue(2);
-                            myPositionLatitude = 51.508530;
-                            myPositionLongitude = -0.076132;
+                            myPositionLatitude = 51.508530+0.001;
+                            myPositionLongitude = -0.076132+0.001;
+                            lastTravelLatitude = 51.508530+0.001;
+                            lastTravelLongitude = -0.076132+0.001;
                             magic = "London";
                             closePicked();
                             closeBackpack();
@@ -427,6 +439,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             myRef.child("travelMode").setValue(3);
                             myPositionLatitude = 27.173891;
                             myPositionLongitude = 78.042068;
+                            lastTravelLatitude = 27.173891;
+                            lastTravelLongitude = 78.042068;
                             magic ="India";
                             closePicked();
                             closeBackpack();
@@ -704,10 +718,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMaxZoomPreference(19.0f);
 
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        int mResource = R.raw.style_json;
-        if (currentHour<18 && currentHour>7){mResource = R.raw.style_json;
-        } else {mResource = R.raw.night;}
 
+        ///if (currentHour<18 && currentHour>7){mResource = R.raw.style_json;
+       /// } else {mResource = R.raw.night;}
+       /// mResource = R.raw.style_json_paris;
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -733,6 +747,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.clear();
                 ///Ta en snapshot av databasen och lägg in den i UserObject object
                 object = dataSnapshot.getValue(UserObject.class);
+                if (object.travelMode==0){mResource=R.raw.style_json;
+                    } else if (object.travelMode==1){mResource=R.raw.style_json_paris;
+                } else if (object.travelMode==2){mResource=R.raw.style_json_london;
+                } else if (object.travelMode==3){mResource=R.raw.style_json_india;
+                }
+                try {
+                    // Customise the styling of the base map using a JSON object defined
+                    // in a raw resource file.
+                    boolean success = mMap.setMapStyle(
+                            MapStyleOptions.loadRawResourceStyle(
+                                    mMapsActivity.getInstance(), mResource));
+
+                    if (!success) {
+                        Log.e("MapsActivityRaw", "Style parsing failed.");
+                    }
+                } catch (Resources.NotFoundException e) {
+                    Log.e("MapsActivityRaw", "Can't find style.", e);
+                }
 
                 ///Hämta reseläget från servern och sätt det lokalt. Är detta ok???
                 localTravelMode=object.travelMode;
@@ -746,6 +778,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
                 }
+
+
                 /// textHome.setText(object.username+" "+object.email);
 
                 ///Ringar eller "cirklar" som märker ut 250 meter respektive 500 meter
@@ -1030,10 +1064,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     lastTravelLatitude = 48.853320;
                     lastTravelLongitude = 2.348600;
                 }else if (localTravelMode==2) {
-                    myPositionLatitude = 51.508530;
-                    myPositionLongitude = -0.076132;
-                    lastTravelLatitude = 51.508530;
-                    lastTravelLongitude = -0.076132;
+                    myPositionLatitude = 51.508530+0.001;
+                    myPositionLongitude = -0.076132+0.001;
+                    lastTravelLatitude = 51.508530+0.001;
+                    lastTravelLongitude = -0.076132+0.001;
                 }else if (localTravelMode==3) {
                     myPositionLatitude = 27.173891;
                     myPositionLongitude = 78.042068;
@@ -1633,31 +1667,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         tmpMarkersList.add(towerWater);
 
         ///I London
-        MyMarker gent = new MyMarker(myLatitude+ 0.0002, myLongitude + 0.0002, "gent");
+        ///OBS! Om man lägger till flera "gent" (markers med samma namn) eller andra markers fungerar inte finish() i Speldelen
+        MyMarker gent = new MyMarker(51.508530+0.001, -0.076132+0.001, "gent");
         tmpMarkersList.add(gent);
+
         ///I Paris
-        MyMarker hunchback = new MyMarker(myLatitude+ 0.0002, myLongitude + 0.0002, "hunchback");
+
+        MyMarker hunchback = new MyMarker(48.853320- 0.0002, 2.348600 - 0.0002, "hunchback");
         tmpMarkersList.add(hunchback);
+
+
         ///I Indien
-        MyMarker bull = new MyMarker(myLatitude - 0.0002, myLongitude- 0.0002, "bull");
+
+        MyMarker bull = new MyMarker(27.173, 78.042068, "bull");
         tmpMarkersList.add(bull);
 
-        MyMarker birdman = new MyMarker(myLatitude + 0.00012, myLongitude+ 0.00012, "birdman");
+        ///I Wanderful World
+
+        MyMarker birdman = new MyMarker(randomList.get(12), randomList2.get(12), "birdman");
         tmpMarkersList.add(birdman);
 
-        MyMarker captain = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "captain");
+        MyMarker captain = new MyMarker(randomList.get(18), randomList2.get(18), "captain");
         tmpMarkersList.add(captain);
 
-        MyMarker wizgirl = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "wizgirl");
+        MyMarker wizgirl = new MyMarker(randomList.get(0), randomList2.get(0), "wizgirl");
         tmpMarkersList.add(wizgirl);
 
-        MyMarker wizboy = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "wizboy");
+        MyMarker wizboy = new MyMarker(randomList.get(9), randomList2.get(9), "wizboy");
         tmpMarkersList.add(wizboy);
 
-        MyMarker speargirl = new MyMarker(myLatitude + 0.0001, myLongitude+ 0.0001, "speargirl");
+        MyMarker speargirl = new MyMarker(randomList.get(1), randomList2.get(1), "speargirl");
         tmpMarkersList.add(speargirl);
 
-        MyMarker darkwiz = new MyMarker(myLatitude + 0.0002, myLongitude+ 0.0002, "darkwiz");
+        MyMarker darkwiz = new MyMarker(randomList.get(11), randomList2.get(11), "darkwiz");
         tmpMarkersList.add(darkwiz);
 
             myRef.child("markerList").setValue(tmpMarkersList);

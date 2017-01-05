@@ -95,13 +95,13 @@
     <string name="india_button">Indien (Level 6+)</string>
     <string name="waterpower_increased">Din vattenkraft har ökat med 1</string>
     <string name="airpower_increased">Din luftkraft har ökat med 1</string>
-    <string name="earthpower_increased">Din jordkraft har ökat med 1</string>
-    <string name="firepower_increased">Din eldkraft har ökat med 1</string>
+    <string name="earthpower_increased">Din jordkraft har ökat</string>
+    <string name="firepower_increased">Din eldkraft har ökat</string>
     <string name="not_in_range">Du är inte tillräckligt nära. Gå närmare.</string>
-    <string name="increase_airpower">Öka luftkraft +1</string>
-    <string name="increase_earthpower">Öka jordkraft +1</string>
-    <string name="increase_firepower">Öka eldkraft +1</string>
-    <string name="increase_waterpower">Öka vattenkraft +1</string>
+    <string name="increase_airpower">Öka luftkraft</string>
+    <string name="increase_earthpower">Öka jordkraft</string>
+    <string name="increase_firepower">Öka eldkraft</string>
+    <string name="increase_waterpower">Öka vattenkraft</string>
     <string name="you_can_only_have_7_elements_of_the_same_type">Du kan inte ha fler än 7 elementkrafter av en och samma typ.</string>
     <string name="hp_increased">Din hp ökade med</string>
     <string name="tap_and_swipe">tryck och swipa</string>
@@ -132,4 +132,10 @@
     <string name="travelwind_india_limit">Du måste ha minst level 6 för att kunna resa till Indien</string>
     <string name="travelwind_london_limit">Du måste ha minst level 4 för att kunna resa till London</string>
     <string name="travelwind_paris_limit">Du måste ha minst level 2 för att kunna resa till Paris</string>
+    <string name="already_home">Du är redan hemma</string>
+    <string name="added_100_xp">plus 100 xp</string>
+    <string name="added_110_xp">plus 110 xp</string>
+    <string name="added_120_xp">plus 120 xp</string>
+    <string name="added_130_xp">plus 130 xp</string>
+    <string name="added_140_xp">plus 140 xp</string>
 </resources>

@@ -79,6 +79,7 @@
     <string name="travelwind_london_limit">Level 4 is required to travel to London</string>
     <string name="travelwind_india">Travelwind to India</string>
     <string name="travelwind_india_limit">Level 6 is required to travel to India</string>
+    <string name="already_home">You are already home</string>
     <string name="flame">Flame</string>
     <string name="trombulus">Trombulus</string>
     <string name="waterdrop">Waterdrop</string>
@@ -92,12 +93,12 @@
     <string name="world_has_changed">Master Arnroth has updated the objects in Wanderful World</string>
     <string name="not_in_range">You are not in range. Move closer.</string>
     <string name="travel_home">Travel home again</string>
-    <string name="increase_earthpower">Increase Earth Powers +1</string>
-    <string name="increase_firepower">Increase Fire Powers +1</string>
-    <string name="increase_airpower">Increase Air Powers +1</string>
-    <string name="increase_waterpower">Increase Water Powers +1</string>
-    <string name="earthpower_increased">Your Earth Powers incresed by 1</string>
-    <string name="firepower_increased">Your Fire Powers incresed by 1</string>
+    <string name="increase_earthpower">Increase Earth Powers</string>
+    <string name="increase_firepower">Increase Fire Powers</string>
+    <string name="increase_airpower">Increase Air Powers</string>
+    <string name="increase_waterpower">Increase Water Powers</string>
+    <string name="earthpower_increased">Your Earth Powers increased</string>
+    <string name="firepower_increased">Your Fire Powers increased</string>
     <string name="airpower_increased">Your Air Powers incresed by 1</string>
     <string name="waterpower_increased">Your Water Powers incresed by 1</string>
     <string name="hp_increased_max">Your hp is now set to max level</string>
@@ -136,5 +137,10 @@
     <string name="you_traveled_home">Everything starts spinning. You are lifted in the air by the powerful wind. Suddenly your home again.</string>
     <string name="you_landed">You landed safe and sound. You can move around as usual and your location is shown on the map, but be careful. Keep in mind that this is not your real life location.</string>
     <string name="hp_increased">Your hp has increased by</string>
+    <string name="artefact_100_hp_added">plus 100 xp</string>
+    <string name="artefact_110_hp_added">plus 110 xp</string>
+    <string name="artefact_120_hp_added">plus 120 xp</string>
+    <string name="artefact_130_hp_added">plus 130 xp</string>
+    <string name="artefact_140_hp_added">plus 140 xp</string>
 
 </resources>
