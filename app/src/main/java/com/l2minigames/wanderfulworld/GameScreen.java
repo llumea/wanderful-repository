@@ -330,7 +330,7 @@ public class GameScreen extends GLScreen {
                    if (mContext.world.equals("india")) {
                        mContext.sendArtefactBeforeExit("Artefact India");
                    }
-               }
+               } else { mContext.sendResultBeforeExit(world.molly.earthCount, world.molly.fireCount, world.molly.airCount, world.molly.waterCount, world.molly.hp, mContext.xp);}
             }catch(Exception e){
 
             }
