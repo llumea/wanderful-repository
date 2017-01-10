@@ -117,28 +117,13 @@ public class CreateAccount extends AppCompatActivity {
                         double latitude = 0;
                         double longitude = 0;
 
-                        ///CollectedItem tmpCollectedItem = new CollectedItem();
-                       /// CollectedItem tmpCollectedItem = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        ///tmpCollectedItems.put("collectedItems", tmpCollectedItem);
+
                         UserObject mUser = new UserObject(default_name, email, earthpower,firepower, airpower,waterpower, hp, maxhp, cp, maxcp, timer, XP, level, travelMode, latitude, longitude, tmpMarkerList, tmpCollectedItems);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                         DatabaseReference myRef = database.getReference(uid);
                         myRef.setValue(mUser);
 
-                       /// CollectedItem tmpCollectedItem2 = new CollectedItem("hallon", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                        ///myRef.child("collectedItems").push().setValue(tmpCollectedItem2);
-
-                        ///CollectedItem tmpCollectedItem3 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10, "uid");
-                       /// myRef.child("collectedItems").push().setValue(tmpCollectedItem3);
-
-
-
-                        ///DatabaseReference collectedRef = myRef.child("collectedItems");
-                        ///CollectedItem tmpCollectedItem2 = new CollectedItem("jordgubbe", "berry","earth", "imageRef", 0, 1, 10, 10);
-                        ///myRef.child(collectedpush().
-                       /// collectedUpdates.put("new items", tmpCollectedItem2);
-                       /// collectedRef.push().setValue(collectedUpdates);
 
                         ///Ändrar från GameActivity till MapsActivity nedan
                         Intent intent = new Intent(CreateAccount.this, MapsActivity.class);

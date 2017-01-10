@@ -219,8 +219,8 @@ public class GameActivity extends AppCompatActivity
             @Override
             protected void populateViewHolder(ObjectViewHolder objectViewHolder, CollectedItem collectedItem, int i) {
 
-               ///String key = this.getRef(i).getKey();
-                ///Fill objects
+
+                ///Fyller objekt
                 CollectedItem tmpCollectedItem = new CollectedItem();
                 tmpCollectedItem.imageRef = collectedItem.imageRef;
                 tmpCollectedItem.itemName = collectedItem.itemName;
@@ -259,11 +259,8 @@ public class GameActivity extends AppCompatActivity
 
                     int position = getAdapterPosition();
 
-                    Log.i ("TAG", "Remove item clicked; "+position);
-                    Log.i ("TAG", "Remove key clicked; "+""+tmpCollectedItems.get(position).uid);
                     myFirebaseRef.child(tmpCollectedItems.get(position).uid).removeValue();
                     tmpCollectedItems.remove(position);
-                    Log.i ("TAG", "Storlek på tmpListan: "+tmpCollectedItems.size());
 
 
                     return false;
@@ -273,12 +270,7 @@ public class GameActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Log.i ("TAG", "Item clicked; "+position);
                     String thisItemName = itemName.getText().toString();
-
-                    Log.i ("TAG", "Key clicked; "+""+tmpCollectedItems.get(position).uid);
-
-
 
                 }
             });

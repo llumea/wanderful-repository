@@ -322,10 +322,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                 CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
                                 .bearing(currentCameraPosition.bearing-45)
@@ -343,10 +339,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                 CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
                                 .bearing(currentCameraPosition.bearing-20)
@@ -364,10 +356,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                 CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
                                 .bearing(currentCameraPosition.bearing+45)
@@ -385,10 +373,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                 CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
                                 .bearing(currentCameraPosition.bearing+20)
@@ -406,10 +390,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                 CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                         new CameraPosition.Builder()
                                 .bearing(currentCameraPosition.bearing)
@@ -447,10 +427,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String magic = "Travel Home";
                         LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                         CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                        Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                        ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                                 new CameraPosition.Builder()
                                         .bearing(currentCameraPosition.bearing)
@@ -479,7 +455,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String magic="";
                     if (currentTravelwindSelected.equals("Paris")){
 
-                        Log.i("TAGGY", "TRAVEL TO PARIS. object.level är lika med "+object.level);
                         if (object.level>1) {
                             myRef.child("travelMode").setValue(1);
                             myPositionLatitude = 48.853320;
@@ -493,10 +468,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             doMagicAnimation(magic);
                             LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                             CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                                     new CameraPosition.Builder()
                                             .bearing(currentCameraPosition.bearing)
@@ -523,10 +494,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             doMagicAnimation(magic);
                             LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                             CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                                     new CameraPosition.Builder()
                                             .bearing(currentCameraPosition.bearing)
@@ -554,10 +521,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             doMagicAnimation(magic);
                             LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
                             CameraPosition currentCameraPosition = mMap.getCameraPosition();
-                            Log.i("TAG", "CURRENT CAMERA POSITION" + currentCameraPosition);
-
-                            ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
-
                             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                                     new CameraPosition.Builder()
                                             .bearing(currentCameraPosition.bearing)
@@ -580,10 +543,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
 
                 ///Kontrollerar om det finns tillräckligt med elements och genomför eventuellt en "förvandling"
-                Log.i("TAGGY", "Key selected: "+currentItemKeySelected);
-                Log.i("TAGGY", "Name selected: "+currentItemNameSelected);
+
                 if (currentItemNameSelected.equals("Ancient Scrollidge")){
-                    Log.i("TAGGY", "PersonTotalXP: "+mMapsActivity.getInstance().personTotalXP.getText().toString());
 
                     if (plantsList.size()<4){Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.you_need_more_plants),
                             Toast.LENGTH_LONG).show();}
@@ -789,19 +750,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Name, email address, and profile photo Url
             uid = user.getUid();
             myFirebaseRef = new Firebase("https://wanderful-world.firebaseio.com/"+uid+"/collectedItems");
-            Log.d("TAG","UserID: "+uid);
 
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(uid);
         relativeLayoutRecycle = (RelativeLayout)findViewById(R.id.relativeLayoutRecycle);
-        ///relativeLayoutRecycle.setEnabled(false);
         relativeLayoutRecycle.setVisibility(View.INVISIBLE);
         relativeLayoutPerson = (RelativeLayout)findViewById(R.id.relativeLayoutPerson);
-        ///relativeLayoutPerson.setEnabled(false);
         relativeLayoutPerson.setVisibility(View.INVISIBLE);
         relativeLayoutPicked = (RelativeLayout)findViewById(R.id.relativeLayoutPicked);
-        ///relativeLayoutPerson.setEnabled(false);
         relativeLayoutPicked.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
         personFab.setVisibility(View.INVISIBLE);
@@ -855,10 +812,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMaxZoomPreference(19.0f);
 
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-
-        ///if (currentHour<18 && currentHour>7){mResource = R.raw.style_json;
-       /// } else {mResource = R.raw.night;}
-       /// mResource = R.raw.style_json_paris;
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -917,12 +870,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
 
-                /// textHome.setText(object.username+" "+object.email);
-
-                ///Ringar eller "cirklar" som märker ut 250 meter respektive 500 meter
-
-               /// mPositionLatitude.setText(""+object.latitude);
-               /// mPositionLongitude.setText(""+object.longitude);
                 mCircleTotal.center(new LatLng(myPositionLatitude, myPositionLongitude));
                 mCircleTotal.radius(250);
                 mCircleTotal.strokeColor(Color.parseColor("#dedede"));
@@ -944,12 +891,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
                 for (int i=0;i<object.markerList.size();i++){
-                    Log.d("TAG", "markerSize before LatLng: "+object.markerList.size());
+
                     LatLng tmpPosition = new LatLng(object.markerList.get(i).markerLatitude, object.markerList.get(i).markerLongitude);
 
-
-
-                    Log.i("Object", "Object_markerlist_type: "+object.markerList.get(i).markerType);
                     Marker tmpMarker = null;
                     if (object.markerList.get(i).markerType.equals("earth")){
                         tmpMarker = mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.earth_item)));
@@ -1059,11 +1003,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         tmpMarker =mMap.addMarker(new MarkerOptions().position(tmpPosition).title(object.markerList.get(i).markerType).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_speargirl)));
                     }
                     if (tmpMarker!=null){tmpMarker.setAnchor(0.5f,1.0f);}
-                    Log.d("TAG", "markerSize: "+object.markerList.size());
+
                 }
 
                 ///Fyller Personobjekt här
-                ///personImage = (ImageView)findViewById(R.id.personImage);
                 personUserName.setText(object.username);
 
                 ///personCP.setText("CP: "+object.cp+"/"+object.maxcp);
@@ -1076,12 +1019,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (isLeveledUp==false){checkNewLevel(object.level, object.XP);}
                 setLevelBar(object.level, object.XP);
 
-
-
-                ///Omvandla long till formaterat String-datum
-                ///SimpleDateFormat sdf = new SimpleDateFormat("d MMMM yyyy HH:mm:ss");
-                /// String formatedDate = sdf.format(tmpToDoNote.date);
-                /// date.setText(formatedDate);
 
             }
 
@@ -1104,9 +1041,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-        ///LatLng sydney = new LatLng(-34, 151);
-       /// mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-       /// mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
@@ -1141,13 +1075,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try{
 
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,locationRequest, this);
-            /// mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
         }catch (SecurityException e){
 
         }
         if (mLastLocation != null) {
-            ///mPositionLatitude.setText(String.valueOf(mLastLocation.getLatitude()));
-           /// mPositionLongitude.setText(String.valueOf(mLastLocation.getLongitude()));
+
         }
     }
     @Override
@@ -1192,8 +1125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mCircle.fillColor(0x00000000);
 
         if (localTravelMode>0){
-            Log.i("TAGGY", "TravelStarted: "+travelStarted);
-           /// myPositionLatitude = 48.852966;
+
+
             if (travelStarted==false){
                 if (localTravelMode==1) {
                     myPositionLatitude = 48.853320;
@@ -1246,8 +1179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ///ToDo Tidigare var myPositionLatitude+0.0005, men rotationen blev sned. Den blir fortfarande sned beroende på hur man roterar med fingrarna.
         LatLng cameraPosition = new LatLng(myPositionLatitude, myPositionLongitude);
         CameraPosition currentCameraPosition = mMap.getCameraPosition();
-        Log.i("TAG", "CURRENT CAMERA POSITION" +currentCameraPosition);
-        ///mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPosition));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                         .bearing(currentCameraPosition.bearing)
@@ -1282,7 +1213,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             protected void populateViewHolder(ObjectViewHolder objectViewHolder, CollectedItem collectedItem, int i) {
 
-                ///String key = this.getRef(i).getKey();
                 ///Fill objects
                 CollectedItem tmpCollectedItem = new CollectedItem();
 
@@ -1299,9 +1229,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String formatedDate = sdf.format(collectedItem.timestamp);
                 objectViewHolder.itemDateList.setText(formatedDate);
 
-                ///objectViewHolder.itemName.setText(collectedItem.itemName);
-               /// objectViewHolder.itemType.setText(collectedItem.itemType);
-                Log.i("TAGGY", "POPULATE ITEMNAME: "+collectedItem.itemName);
 
                 if (collectedItem.itemName.equals("Plant")) {
                     objectViewHolder.itemNoLocale.setText("Plant");
@@ -1423,17 +1350,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         ///Startar bounceAnimationkod
+        ///duration används i BounceAnimation nedan
         final long start = SystemClock.uptimeMillis();
         final long duration = 1500L;
-
-        // Cancels the previous animation
-
-
-        // Starts the bounce animation
-        ///mHandler.removeCallbacks(mAnimation);
-       /// BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
-       /// mHandler.post(mAnimation);
-       //Slut på bounceAnimationkod
 
         String name= marker.getTitle();
 
@@ -1450,8 +1369,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 marker.getPosition().longitude, mCircle.getCenter().latitude,
                 mCircle.getCenter().longitude, distance);
 
-        Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[0]);
-        Log.d("TAG", "DISTANCE BETWEEN MARKER AND MY POSITION: "+distance[1]);
         if (distance[0] > mCircle.getRadius()) {
             mHandler.removeCallbacks(mAnimation);
             BounceAnimation mAnimation = new BounceAnimation(start, duration, marker, mHandler);
@@ -1464,8 +1381,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Calendar calendar = Calendar.getInstance();
             Date date = calendar.getTime();
             long itemTimestamp = date.getTime();
-            Log.d("TAG", "Timestamp when pick up item: "+itemTimestamp);
-            Log.d("TAG", "DISTANCE IS SMALLER THAN RADIUS");
 
             ///Här skapas objekten som tidigare bara var markers med en typ
 
@@ -1657,9 +1572,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (name.equalsIgnoreCase("MyMarker"))
         {
             ///animateCircle();
-
-            Log.d("TAG", "STROKE COLOR"+mCircle.getStrokeColor());
-            Log.d("TAG", "STROKE COLOR"+mCircle.getFillColor());
             if (mCircle.getStrokeColor()==0x00000000 && mCircle.getFillColor()==0x00000000){
                mCircle.strokeColor(Color.parseColor("#dedede"));
                 mCircle.strokeWidth(50f);
@@ -1674,8 +1586,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
 
-            Log.d("TAG", "MyMarker is so tapped!");
-
         }
 
 
@@ -1684,7 +1594,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void createMarkers(){
 
-        Log.d("TAG", "INNE I CREATE MARKERS");
         mMarkers.clear();
         MyMarker tmpMarker = new MyMarker(myPositionLatitude+0.0005, myPositionLongitude, "Marker 1");
         mMarkers.add(tmpMarker);
@@ -1693,8 +1602,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void createMarkersFirstTime(){
 
-        ///Ändra här så att det finns rätt markers i början
-        Log.d("TAG", "INNE I CREATE MARKERS FOR FIRST TIME");
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
         long markersTimestamp = date.getTime();
@@ -1709,9 +1616,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void updateMarkers(double myLatitude, double myLongitude, long timestamp){
-        Log.d("TAG", "INNE I UPDATE MARKERS");
-
-            ///Byter ut listan mer markers på servern
 
             myRef.child("timer").setValue(timestamp);
 
@@ -1891,11 +1795,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Waterdrop")){
                                 mMapsActivity.getInstance().waterdropsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
-                                Log.i("TAGGY", "UI för Waterdrop: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
 
                             }
                         }
-                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET WATERDROPS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+
 
                     }
                     else if (name.equals("Mighty Scrollipow")){
@@ -1904,11 +1808,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Flames")){
                                 mMapsActivity.getInstance().flamesList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
-                                Log.i("TAGGY", "UI för Flames: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
 
                             }
                         }
-                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET FLAMES ÄR: "+mMapsActivity.getInstance().flamesList.size());
+
 
                     }
                     else if (name.equals("Swift Scrollifly")){
@@ -1917,11 +1821,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Trombulus")){
                                 mMapsActivity.getInstance().trombulusList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
-                                Log.i("TAGGY", "UI för Trombulus: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
 
                             }
                         }
-                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET TROMBULUS ÄR: "+mMapsActivity.getInstance().trombulusList.size());
+
 
                     }
                     else if (name.equals("Ancient Scrollidge")){
@@ -1930,11 +1834,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         for (int i = 0;i<listSize;i++){
                             if (mMapsActivity.getInstance().adapter.getItem(i).itemName.equals("Plant")){
                                 mMapsActivity.getInstance().plantsList.add(mMapsActivity.getInstance().adapter.getItem(i).uid);
-                                Log.i("TAGGY", "UI för Plant: "+mMapsActivity.getInstance().adapter.getItem(i).uid);
+
 
                             }
                         }
-                        Log.i("TAGGY", "NAME ÄR LIKA MED HEALING SCROLLIFIX OCH ANTALET PLANTS ÄR: "+mMapsActivity.getInstance().plantsList.size());
+
 
                     }
                     else if (name.equals("Travelwind Paris")||name.equals("Travelwind London")||name.equals("Travelwind India")){
@@ -1958,11 +1862,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     } else {mMapsActivity.getInstance().useScrollButton.setVisibility(View.INVISIBLE);}
 
 
-
-
-
-                    Log.i("TAG", "Item clicked JUST ON VIEW: "+position+" Name: " +name+" Type: "+type);
-                    Log.i("TAG", "I WILL REMOVE THIS ONE: "+itemKeyList.getText().toString());
                 }
             });
             removeButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -1984,12 +1883,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Log.i ("TAG", "Item clicked; "+position);
                     String thisItemName = itemNameList.getText().toString();
-
-                    Log.i ("TAG", "Key clicked; "+""+tmpCollectedItems.get(position).uid);
-
-
 
                 }
             });
@@ -2094,8 +1988,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void setLevelBar(int level, int xp){
 
-        ///personProgress = (ImageView)findViewById(R.id.personProgress);
-        ///personXP = (TextView)findViewById(R.id.personXP);
 
         personLevel.setText("Level "+level);
         personTotalXP.setText(""+xp+" XP");
@@ -2183,8 +2075,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpLevelDifference=diff/10000;
         }
 
-        ///tmpXMMinusLevel är värdet minus xp som krävs för aktuell level
-        ///tmpLevelDifferens används för att beräkna xp i förhållande till antal xp som krävs för nästa level
 
         tmpLevelDifference=tmpLevelDifference*100;
 
@@ -2283,11 +2173,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         itemDescription.setText(getResources().getString(R.string.hp_increased)+" + "+slumphp);
         pickImage.setBackgroundResource(R.drawable.girlfaceblue);
 
-
-
-        ///change different values
-        ///show message about new level
-        ///setlevelbar i slutet
     }
     public void showPickedUpItem (String name, String tmpId){
 
@@ -2342,15 +2227,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pickImage.setBackgroundResource(R.drawable.scroll_item);
         }
 
-        ///itemType = (TextView)findViewById(R.id.itemType);
-
-
 
     }
     public void showItem(String name, String type){
 
 
-        Log.i("TAGGY", "showITEMNAAME: "+name);
         increaseElementPowers.setVisibility(View.INVISIBLE);
 
         if (name.equals("Plant")){

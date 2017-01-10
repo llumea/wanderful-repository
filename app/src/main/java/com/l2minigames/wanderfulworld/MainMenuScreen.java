@@ -61,8 +61,7 @@ public class MainMenuScreen extends GLScreen {
                     return;
                 }
                 if(OverlapTester.pointInRectangle(soundBounds, touchPoint)) {
-                   /// Intent intent = new Intent(context, MapsActivity.class);
-                  ///  context.startActivity(intent);
+
                     Assets.playSound(Assets.clickSound);
                     Settings.soundEnabled = !Settings.soundEnabled;
                     if(Settings.soundEnabled) 

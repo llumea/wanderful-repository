@@ -24,7 +24,6 @@ public class GameScreen extends GLScreen {
     static final int GAME_READY = 0;    
     static final int GAME_RUNNING = 1;
     static final int GAME_PAUSED = 2;
-    ///static final int GAME_LEVEL_END = 3;
     static final int GAME_OVER = 4;
   
     int state;
@@ -33,9 +32,7 @@ public class GameScreen extends GLScreen {
     SpriteBatcher batcher;    
     World world;
     WorldListener worldListener;
-    WorldRenderer renderer;    
-   /// Rectangle pauseBounds;
-   /// Rectangle resumeBounds;
+    WorldRenderer renderer;
     Rectangle quitBounds;
     Rectangle jumpBounds;
     int lastScore;
@@ -92,8 +89,6 @@ public class GameScreen extends GLScreen {
         };
         world = new World(worldListener, mContext);
         renderer = new WorldRenderer(glGraphics, batcher, world, mContext);
-       /// pauseBounds = new Rectangle(320- 64, 480- 64, 64, 64);
-       /// resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
         jumpBounds = new Rectangle(0, 0, 640, 960);
         lastScore = 0;
@@ -216,8 +211,8 @@ public class GameScreen extends GLScreen {
                     Assets.playSound(Assets.jumpSound);
                 }
 
-                ///world.createBall();
-                world.update(deltaTime, game.getInput().getAccelX()); ///uppdaterar med accelerator!!!
+                ///uppdaterar med accelerator!!!
+                world.update(deltaTime, game.getInput().getAccelX());
                 startTouch=1;
                 return;
             }
@@ -258,13 +253,7 @@ public class GameScreen extends GLScreen {
             
             touchPoint.set(event.x, event.y);
             guiCam.touchToWorld(touchPoint);
-            /*
-            if(OverlapTester.pointInRectangle(resumeBounds, touchPoint)) {
-                Assets.playSound(Assets.clickSound);
-                state = GAME_RUNNING;
-                return;
-            }
-            */
+           
             if(OverlapTester.pointInRectangle(quitBounds, touchPoint)) {
                 Assets.playSound(Assets.clickSound);
                game.setScreen(new MainMenuScreen(game,mContext));
@@ -337,17 +326,6 @@ public class GameScreen extends GLScreen {
             ///ToDo Skapa artefact om enemy är en boss!
             mContext.goMapsActivity();
 
-
-           ///SuperJumper tmpJumper = new SuperJumper();
-            ///tmpJumper.onBackPressed();
-           /// Context context= tmpJumper.getContext();
-
-           /// Intent intent = new Intent(context, MapsActivity.class);
-           /// context.startActivity(intent);
-
-            ///Detta ger runtimeexception: Can't create handler inside thread that has not called Looper.prepare()
-
-           /// game.setScreen(new MainMenuScreen(game));
         }
     }
 
@@ -393,12 +371,12 @@ public class GameScreen extends GLScreen {
         String tap = mContext.getResources().getString(R.string.tap_and_swipe);
         Assets.font.drawText(batcher, tap, 96, 400);
         Assets.font.drawText(batcher, "20", 304, 850);
-        ///batcher.drawSprite(160, 240, 192, 32, Assets.ready);
+
     }
 
     private void presentRunning() {
 
-       /// batcher.drawSprite(320 - 32, 480 - 32, 64, 64, Assets.pause);
+
         if (world.timer.position.x>=0 && world.timer.position.x<2){Assets.font.drawText(batcher, "20", 304, 850);}
         if (world.timer.position.x>=2 && world.timer.position.x<4){Assets.font.drawText(batcher, "19", 304, 850);}
         if (world.timer.position.x>=4 && world.timer.position.x<6){Assets.font.drawText(batcher, "18", 304, 850);}
@@ -420,23 +398,14 @@ public class GameScreen extends GLScreen {
         if (world.timer.position.x>=36 && world.timer.position.x<38){Assets.font.drawText(batcher, "02", 304, 850);}
         if (world.timer.position.x>=38 && world.timer.position.x<40){Assets.font.drawText(batcher, "01", 304, 850);}
         if (world.timer.position.x>=40 && world.timer.position.x<42){Assets.font.drawText(batcher, "00", 304, 850);}
-        ///Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
-        ///Assets.font.drawText(batcher, "HELLO", 500, 800);
-        ///Assets.font.drawText(batcher, "HELLO", 500, 800);
+
     }
 
-    private void presentPaused() {        
-       /// batcher.drawSprite(160, 240, 192, 96, Assets.pauseMenu);
-       /// Assets.font.drawText(batcher, scoreString, 32, 960-40); ///16, 480-20)
+    private void presentPaused() {
     }
 
     private void presentLevelEnd() {
-        String topText = "the princess is ...";
-        String bottomText = "in another castle!";
-        float topWidth = Assets.font.glyphWidth * topText.length();
-        float bottomWidth = Assets.font.glyphWidth * bottomText.length();
-        Assets.font.drawText(batcher, topText, 160 - topWidth / 2, 480 - 40);
-        Assets.font.drawText(batcher, bottomText, 160 - bottomWidth / 2, 40);
+
     }
 
     private void presentGameOver() {
@@ -476,7 +445,7 @@ public class GameScreen extends GLScreen {
                 }
             }
         }
-        ///batcher.drawSprite(160, 240, 160, 96, Assets.gameOver);
+
         float scoreWidth = Assets.font.glyphWidth * scoreString.length();
         Assets.font.drawText(batcher, scoreString, 160 - scoreWidth / 2, 480-20);
     }
