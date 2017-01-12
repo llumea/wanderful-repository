@@ -253,7 +253,7 @@ public class GameScreen extends GLScreen {
             
             touchPoint.set(event.x, event.y);
             guiCam.touchToWorld(touchPoint);
-           
+
             if(OverlapTester.pointInRectangle(quitBounds, touchPoint)) {
                 Assets.playSound(Assets.clickSound);
                game.setScreen(new MainMenuScreen(game,mContext));

@@ -811,7 +811,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMinZoomPreference(17.0f);
         mMap.setMaxZoomPreference(19.0f);
 
-        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -836,12 +836,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.clear();
                 ///Ta en snapshot av databasen och lägg in den i UserObject object
+                int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
                 object = dataSnapshot.getValue(UserObject.class);
-                if (object.travelMode==0){mResource=R.raw.style_json;
-                    } else if (object.travelMode==1){mResource=R.raw.style_json_paris;
-                } else if (object.travelMode==2){mResource=R.raw.style_json_london;
-                } else if (object.travelMode==3){mResource=R.raw.style_json_india;
-                }
+                if (currentHour<18 && currentHour>8) {
+                    if (object.travelMode == 0) {
+                        mResource = R.raw.style_json;
+                    } else if (object.travelMode == 1) {
+                        mResource = R.raw.style_json_paris;
+                    } else if (object.travelMode == 2) {
+                        mResource = R.raw.style_json_london;
+                    } else if (object.travelMode == 3) {
+                        mResource = R.raw.style_json_india;
+                    }
+                } else {mResource = R.raw.night;}
                 try {
                     // Customise the styling of the base map using a JSON object defined
                     // in a raw resource file.
