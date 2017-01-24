@@ -75,12 +75,12 @@ public class CreateAccount extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                  ///  Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 uid=user.getUid();
 
                 } else {
                     // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                  ///  Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
                 // ...
             }
@@ -95,7 +95,7 @@ public class CreateAccount extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                       /// Log.d(TAG, "creatUserWitmail:onComplete:" + task.isSuccessful());
                         ArrayList<MyMarker> tmpMarkerList = new ArrayList<>();
                         HashMap<String, CollectedItem> tmpCollectedItems = new HashMap<>();
                         MyMarker myMarker = new MyMarker(0,0,"hallon");
