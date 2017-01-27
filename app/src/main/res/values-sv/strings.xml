@@ -45,7 +45,7 @@
     <string name="trombulus_description">Du kan använda 1 Trombulus till att öka din luftkraft eller använda 4 Trombulusar tillsammans med en Scrollifly och trolla fram en Vindresa.</string>
     <string name="waterdrop_description">Du kan använda Vattendroppar till att öka din vattenkraft, eller använda dem tillsammans med en Uråldrig Scrollifix för att återställa din hälsa (hp).</string>
     <string name="flame_description">Du kan använda Eldflammor till att öka din eldkraft, eller använda dem tillsammans med en Scrollipow för att öka din kraft i strid (cp)</string>
-    <string name="wizardacademy_description">Var hälsad unga lärjunge. Om du lyckas hämta 3 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World. Plocka upp saker på kartan, använd skriftrullar i ryggsäcken och använd 2 fingrar samtidigt för att rotera/zooma på kartan.</string>
+    <string name="wizardacademy_description">Var hälsad unga lärjunge. Jasså, du vill komma in på academin? Om du lyckas hämta 3 artefakter blir du antagen. Tips! Artefakterna finns på olika platser i Wanderful World. Plocka upp saker på kartan, använd skriftrullar i ryggsäcken och använd navigeringsknapparna för att rotera/zooma på kartan.</string>
     <string name="wizardacademy_type">Arnroth, Magimästare</string>
     <string name="wizardacademy_title">Magiakademin</string>
     <string name="a_mighty_scrollipow">en Mäktig Scrollipow</string>
@@ -139,4 +139,5 @@
     <string name="added_130_xp">plus 130 xp</string>
     <string name="added_140_xp">plus 140 xp</string>
     <string name="hold_to_logout">Håll ned knappen om du vill logga ut</string>
+    <string name="won">Fett magiskt</string>
 </resources>

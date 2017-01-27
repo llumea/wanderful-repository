@@ -45,7 +45,7 @@
     <string name="trombulus_description">Vous pouver utiliser 1 Trombulus pour augmenter votre force d\'air, ou utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau pour augmenter votre force d\'eau, ou en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes pour augmenter votre force de feu, ou en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
-    <string name="wizardacademy_description">Bien venu jeune disciple. Revenez avec 3 artéfacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des "scrolls" dans le sac à dos et utilisez 2 doigts pour tourner/zoomer sur la carte.</string>
+    <string name="wizardacademy_description">Bien venu jeune disciple. Ah bon, vous voulez entrer dans l\'Académie. Revenez avec 3 artéfacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des \"scrolls\" dans le sac à dos et utilisez les boutons sur la carte pour tourner/zoomer.</string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académie de Magi</string>
     <string name="a_mighty_scrollipow">un Scrollipow Puissant</string>
@@ -116,7 +116,7 @@
     <string name="artefact_london_description">Cet artéfact represent les fameux cabines téléphoniques rouges á Londre. Ceci est 1 des 3 artéfactes que vous devez montrer à maître Arnroth à l\'Académie.</string>
     <string name="artefact_paris_description">Cet artéfact represent un artiste et les nombreux tableaux dans les musées de Paris. Ceci est 1 des 3 artéfactes que vous devez montrer à maître Arnroth à l\'Académie.</string>
     <string name="lost">Game over</string>
-    <string name="won"></string>
+    <string name="won">Vraiment magique</string>
     <string name="wizardacademy_accepted">Félicitations ! Vous avez réussi votre mission. Je ne croyais pas que c\'était possible. Ehum, vous êtes alors accepté dans L\'Académie de Magi.</string>
     <string name="increase_elements">Augmenter tous les éléments</string>
     <string name="increase_hp">Augmenter hp au maximum</string>

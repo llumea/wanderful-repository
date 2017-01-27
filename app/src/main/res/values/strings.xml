@@ -86,7 +86,6 @@
     <string name="plant">Plant</string>
     <string name="potion">Potion</string>
     <string name="travel">Travel</string>
-    <string name="won">Best magic ever</string>
     <string name="lost">Game over</string>
     <string name="not_saved">Your fight was not registered due to a black magic Internet error</string>
     <string name="no_connection">There is a problem with the magic connection to Internet</string>
@@ -120,7 +119,7 @@
     <string name="travelwind_description">The Travelwind lets you travel to a distant place in Wanderful World. And it takes you back home again.</string>
     <string name="wizardacademy_title">Magic Academy</string>
     <string name="wizardacademy_type">Arnroth, Master of Magi</string>
-    <string name="wizardacademy_description">Greetings young apprentice. If you manage to bring back 3 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use 2 fingers to rotate/zoom on the map.</string>
+    <string name="wizardacademy_description">Greetings young apprentice. So you want to enter the academy. If you manage to bring back 3 artefacts you are accepted. A hint: You can find the artefacts in different areas of the Wanderful World. Pick up things on the map, use scrolls in your backpack and use the buttons on the map to rotate/zoom.</string>
     <string name="wizardacademy_accepted">Contratulations! You managed to complete your task. I never thought anyone would do that. Ehum, well this means you are now accepted in the Magic Academy!</string>
     <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
     <string name="hold_to_logout">Hold down this button to log out</string>
@@ -143,5 +142,6 @@
     <string name="artefact_120_hp_added">plus 120 xp</string>
     <string name="artefact_130_hp_added">plus 130 xp</string>
     <string name="artefact_140_hp_added">plus 140 xp</string>
+    <string name="won">Best magic ever</string>
 
 </resources>
