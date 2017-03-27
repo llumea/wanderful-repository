@@ -102,10 +102,10 @@ public class CreateAccount extends AppCompatActivity {
                         tmpMarkerList.add(myMarker);
 
                         String default_name = getResources().getString(R.string.default_name);
-                        int earthpower = 10;
-                        int firepower = 10;
-                        int airpower = 10;
-                        int waterpower = 10;
+                        int earthpower = 7;
+                        int firepower = 7;
+                        int airpower = 7;
+                        int waterpower = 7;
                         int hp = 10;
                         int maxhp = 10;
                         int cp = 10;

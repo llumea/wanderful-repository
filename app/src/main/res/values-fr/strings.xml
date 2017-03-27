@@ -45,7 +45,7 @@
     <string name="trombulus_description">Vous pouver utiliser 1 Trombulus pour augmenter votre force d\'air, ou utiliser 4 Tromubulus en combinaison d\'un Scrollifly pour faire apparaître un Travelwind.</string>
     <string name="waterdrop_description">Vous pouvez utiliser des Gouttes d\'eau pour augmenter votre force d\'eau, ou en combinaison d\'un Ancien Scrollifix pour restaurer votre santé (hp)</string>
     <string name="flame_description">Vous pouvez utiliser des Flammes pour augmenter votre force de feu, ou en combinaison d\'un Scrollipow pour améliorer votre force de combat (cp)</string>
-    <string name="wizardacademy_description">Bien venu jeune disciple. Ah bon, vous voulez entrer dans l\'Académie. Revenez avec 3 artéfacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des \"scrolls\" dans le sac à dos et utilisez les boutons sur la carte pour tourner/zoomer.</string>
+    <string name="wizardacademy_description">Bien venu jeune disciple. Revenez avec 3 artéfacts et vous serez acceptée dans l\'académie. Ramassez des objet sur la carte, utilisez des \"scrolls\" dans le sac à dos et utilisez les boutons sur la carte pour tourner/zoomer.</string>
     <string name="wizardacademy_type">Arnroth, Maître de Magi</string>
     <string name="wizardacademy_title">Académie de Magi</string>
     <string name="a_mighty_scrollipow">un Scrollipow Puissant</string>
@@ -140,4 +140,5 @@
     <string name="added_130_xp">plus 130 xp</string>
     <string name="added_140_xp">plus 140 xp</string>
     <string name="hold_to_logout">Appuyer plus de temps si vous voulez déconnecter</string>
+    <string name="added_50_xp">plus 50 xp</string>
 </resources>

@@ -1705,8 +1705,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             tmpMarkersList.add(tmpMarker20);
 
         ///ToDo fixa till lat/long för de här också
-        MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0004, myLongitude - 0.0004, "wizardacademy");
+        MyMarker tmpMarkerHouse = new MyMarker(myLatitude + 0.0002, myLongitude - 0.0002, "wizardacademy");
         tmpMarkersList.add(tmpMarkerHouse);
+
+        MyMarker wizboy = new MyMarker(myLatitude - 0.0002, myLongitude - 0.0002, "wizboy");
+        tmpMarkersList.add(wizboy);
 
         MyMarker towerAir = new MyMarker(myLatitude + 0.00215, myLongitude, "towerair");
         tmpMarkersList.add(towerAir);
@@ -1744,8 +1747,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MyMarker wizgirl = new MyMarker(randomList.get(0), randomList2.get(0), "wizgirl");
         tmpMarkersList.add(wizgirl);
 
-        MyMarker wizboy = new MyMarker(randomList.get(9), randomList2.get(9), "wizboy");
-        tmpMarkersList.add(wizboy);
+       /// MyMarker wizboy = new MyMarker(randomList.get(9), randomList2.get(9), "wizboy");
+       /// tmpMarkersList.add(wizboy);
 
         MyMarker speargirl = new MyMarker(randomList.get(1), randomList2.get(1), "speargirl");
         tmpMarkersList.add(speargirl);

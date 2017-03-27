@@ -293,7 +293,7 @@ public class GameScreen extends GLScreen {
                    } else if (mContext.enemy.equals("speargirl")) {
                        xpToGain = 100;
                    } else if (mContext.enemy.equals("wizboy")) {
-                       xpToGain = 110;
+                       xpToGain = 50;
                    } else if (mContext.enemy.equals("wizgirl")) {
                        xpToGain = 110;
                    } else if (mContext.enemy.equals("captain")) {
@@ -429,7 +429,7 @@ public class GameScreen extends GLScreen {
                 }else if (mContext.enemy.equals("speargirl")) {
                     Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_100_xp), 170, 400);
                 }else if (mContext.enemy.equals("wizboy")) {
-                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_110_xp), 170, 400);
+                    Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_50_xp), 170, 400);
                 }else if (mContext.enemy.equals("wizgirl")) {
                     Assets.font.drawText(batcher, mContext.getResources().getString(R.string.added_110_xp), 170, 400);
                 }else if (mContext.enemy.equals("captain")) {

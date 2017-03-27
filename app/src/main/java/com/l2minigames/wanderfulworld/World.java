@@ -699,19 +699,15 @@ public class World {
                 int slump3 = rand.nextInt(3);
                 int slump4 = rand.nextInt(3);
 
-                createHedgehog(24,17,-4,0);
-                createHedgehog(34,17,-4,slump);
+                createHedgehog(24,17,-4,slump);
                 createHedgehog(39,17,-4,slump4);
                 createHedgehog(54,17,-4,slump3);
                 createHedgehog(64,17,-4,slump4);
                 createHedgehog(74,17,-4,slump2);
                 createHedgehog(84,17,-4,slump);
                 createHedgehog(94,17,-4,slump4);
-                createHedgehog(99,17,-4,0);
                 createHedgehog(104,17,-4,slump3);
-                createHedgehog(109,17,-4,0);
                 createHedgehog(114,17,-4,slump4);
-                createHedgehog(119,17,-4,0);
                 createHedgehog(124,17,-4,0);
             } else if (mContext.enemy.equals("wizgirl")) {
                 enemyMaxHp = 9;
@@ -1172,17 +1168,11 @@ public class World {
                 createHedgehog(34,17,-4,slump);
                 createHedgehog(39,17,-4,slump4);
                 createHedgehog(44,17,-4,slump2);
-                createHedgehog(49,17,-4,0);
                 createHedgehog(54,17,-4,slump3);
-                createHedgehog(59,17,-4,0);
                 createHedgehog(64,17,-4,slump4);
-                createHedgehog(69,17,-4,0);
                 createHedgehog(74,17,-4,slump2);
-                createHedgehog(79,17,-4,0);
                 createHedgehog(84,17,-4,slump);
-                createHedgehog(89,17,-4,0);
                 createHedgehog(94,17,-4,slump4);
-                createHedgehog(99,17,-4,0);
                 createHedgehog(104,17,-4,slump3);
                 createHedgehog(109,17,-4,0);
                 createHedgehog(114,17,-4,slump4);
@@ -1626,6 +1616,8 @@ public class World {
         int len3 = wolves.size();
         int len4 = birds.size();
         int len5 = spears.size();
+        int len6 = hedgehogs.size();
+
         for (int i = 0; i < len; i++) {
             Fire fire = fires.get(i);
 
@@ -1676,6 +1668,18 @@ public class World {
                     fires.remove(fire);
                     spears.remove(spear);
                     len5 = spears.size();
+                    len =fires.size();
+                }
+            }
+            for (int j = 0; j<len6;j++){
+                Hedgehog hedgehog = hedgehogs.get(j);
+                if (OverlapTester.overlapRectangles(fire.bounds, hedgehog.bounds)) {
+                    createStars(fire.position.x, fire.position.y, "red");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    fires.remove(fire);
+                    hedgehogs.remove(hedgehog);
+                    len6 = hedgehogs.size();
                     len =fires.size();
                 }
             }
@@ -1763,6 +1767,7 @@ public class World {
         int len3 = ghosts.size();
         int len4 = wolves.size();
         int len5 = dragons.size();
+        int len6 = hedgehogs.size();
 
         for (int i = 0; i < len; i++) {
             Water water = waters.get(i);
@@ -1817,6 +1822,18 @@ public class World {
                     len =waters.size();
                 }
             }
+            for (int j = 0; j<len6;j++){
+                Hedgehog hedgehog = hedgehogs.get(j);
+                if (OverlapTester.overlapRectangles(water.bounds, hedgehog.bounds)) {
+                    createStars(water.position.x, water.position.y, "blue");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    waters.remove(water);
+                    hedgehogs.remove(hedgehog);
+                    len6 = hedgehogs.size();
+                    len =waters.size();
+                }
+            }
         }
     }
     private void checkAirEnemyCollisions() {
@@ -1824,6 +1841,7 @@ public class World {
         int len2 = birds.size();
         int len3 = dragons.size();
         int len4 = spears.size();
+        int len5 = hedgehogs.size();
         for (int i = 0; i < len; i++) {
             Air air = airs.get(i);
 
@@ -1862,6 +1880,18 @@ public class World {
                     airs.remove(air);
                     spears.remove(spear);
                     len4 = spears.size();
+                    len =airs.size();
+                }
+            }
+            for (int j = 0; j<len5;j++){
+                Hedgehog hedgehog = hedgehogs.get(j);
+                if (OverlapTester.overlapRectangles(air.bounds, hedgehog.bounds)) {
+                    createStars(air.position.x, air.position.y, "yellow");
+                    ///ToDo Olika skada beroende på level?
+                    enemyHp = enemyHp-1;
+                    airs.remove(air);
+                    hedgehogs.remove(hedgehog);
+                    len5 = hedgehogs.size();
                     len =airs.size();
                 }
             }
