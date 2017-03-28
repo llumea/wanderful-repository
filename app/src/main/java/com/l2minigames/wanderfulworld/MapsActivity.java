@@ -30,6 +30,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.firebase.client.Firebase;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -98,6 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker tmpMarker;
     int onlyOneTime;
     int showWizard;
+    InterstitialAd mInterstitialAd;
     ArrayList<Double> randomList = new ArrayList<>();
     ArrayList<Double> randomList2 = new ArrayList<>();
     ArrayList<MyMarker> tmpMarkersList = new ArrayList<>();
@@ -227,6 +231,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         plusButton = (ImageButton) findViewById(R.id.plusButton);
         travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-6579496465139346/4909854914");
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+               /// beginPlayingGame();
+            }
+        });
+
+        requestNewInterstitial();
+
         increaseThisElement ="nothing";
         increaseElementPowers = (Button) findViewById(R.id.increaseElementPowers);
         isLeveledUp =false;
@@ -675,6 +692,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
+                Random randomAd = new Random();
+                int slumpAd = randomAd.nextInt(5)+1;
+
+                if (mInterstitialAd.isLoaded()&&slumpAd==1) {
+                    mInterstitialAd.show();
+                }
                 closePicked();
                 ///isLeveledUp
                 isLeveledUp=false;
@@ -2774,6 +2797,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.putExtras(bundle);
         startActivity(intent);
 
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("9342A9F4378B5AB55FE9296007BDD64D")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
     }
 
 }
