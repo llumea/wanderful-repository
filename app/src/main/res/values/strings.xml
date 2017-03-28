@@ -124,6 +124,10 @@
     <string name="wizardacademy_accepted">Contratulations! You managed to complete your task. I never thought anyone would do that. Ehum, well this means you are now accepted in the Magic Academy!</string>
     <string name="hold_to_remove">Hold down Trashcan if you want to remove the item</string>
     <string name="hold_to_logout">Hold down this button to log out</string>
+    <string name="earth_elements">Earth power can be used in battle (swipe down). Collect Plants to increase this power.</string>
+    <string name="fire_elements">Fire power can be used in battle (swipe right). Collect Flames to increase this power.</string>
+    <string name="water_elements">Water power can be used in battle (swipe left). Collect Water drops to increase this power.</string>
+    <string name="air_elements">Air power can be used in battle (swipe up). Collect Trombuluses to increase this power.</string>
     <string name="you_need_more_flames">You need more flames. You collect them in Wanderful World.</string>
     <string name="you_need_more_plants">You need more plants. You collect them in Wanderful World.</string>
     <string name="you_need_more_tromuluses">You need more trombuluses. You collect them in Wanderful World.</string>

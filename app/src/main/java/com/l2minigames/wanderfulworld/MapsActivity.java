@@ -33,6 +33,7 @@ import com.firebase.client.Firebase;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -102,6 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int onlyOneTime;
     int showWizard;
     InterstitialAd mInterstitialAd;
+
     ArrayList<Double> randomList = new ArrayList<>();
     ArrayList<Double> randomList2 = new ArrayList<>();
     ArrayList<MyMarker> tmpMarkersList = new ArrayList<>();
@@ -122,6 +124,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView personLevel;
     ImageView personProgress;
     ImageView personProgressTotal;
+
+    ImageView elementEarth;
+    ImageView elementFire;
+    ImageView elementAir;
+    ImageView elementWater;
+
     TextView personXP;
     TextView personTotalXP;
     TextView personHP;
@@ -207,6 +215,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         personLevel = (TextView)findViewById(R.id.personLevel);
         personProgress = (ImageView)findViewById(R.id.personProgress);
         personProgressTotal = (ImageView)findViewById(R.id.personProgressTotal);
+
+        elementEarth = (ImageView)findViewById(R.id.elementEarth);
+        elementFire = (ImageView)findViewById(R.id.elementFire);
+        elementWater = (ImageView)findViewById(R.id.elementWater);
+        elementAir = (ImageView)findViewById(R.id.elementAir);
         personXP = (TextView)findViewById(R.id.personXP);
         personTotalXP = (TextView)findViewById(R.id.personTotalXP);
         personHP = (TextView)findViewById(R.id.personHP);
@@ -231,6 +244,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         plusButton = (ImageButton) findViewById(R.id.plusButton);
         travelAway = (Button) findViewById(R.id.travelAway);
         travelHome = (Button) findViewById(R.id.travelHome);
+
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-6579496465139346/4909854914");
 
@@ -321,6 +335,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     closePicked();
 
                 }
+            }
+        });
+        elementEarth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.earth_elements),
+                        Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        elementFire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.fire_elements),
+                      Toast.LENGTH_LONG).show();
+
+
+
+            }
+        });
+        elementWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.water_elements),
+                        Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        elementAir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mMapsActivity.getInstance(), getResources().getString(R.string.air_elements),
+                        Toast.LENGTH_LONG).show();
+
+
             }
         });
         gameButton.setOnClickListener(new View.OnClickListener() {
@@ -893,8 +948,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Calendar calendar = Calendar.getInstance();
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
-                ///ToDo Ändra värdet för timer till 30 minuter före test
-                if (checkMarkersTimestamp>object.timer+60000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
+                ///ToDo Ändra värdet för timer till 30 minuter före test? 300000 är 5 minuter.
+                if (checkMarkersTimestamp>object.timer+300000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
                     ///ToDo object.latitude och object.longitude kan vara från andra delar av världen
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;
@@ -1818,7 +1873,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             else if (i>15&&i<21){
                 randomBearing = (float) ((90 * Math.random())+270);
             }
-            randomDistance = (int) ((500 * Math.random()) + 80);
+            randomDistance = (int) ((200 * Math.random()) + 60);
             LatLng tmpLatLng = getLatLng(randomDistance, randomBearing, myLatitude, myLongitude);
             double theLatitude = tmpLatLng.latitude;
             double theLongitude = tmpLatLng.longitude;
@@ -1962,6 +2017,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+
+
 
 
     public static class ObjectViewHolder extends RecyclerView.ViewHolder {
@@ -2806,5 +2863,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mInterstitialAd.loadAd(adRequest);
     }
+
 
 }

@@ -141,4 +141,8 @@
     <string name="added_140_xp">plus 140 xp</string>
     <string name="hold_to_logout">Appuyer plus de temps si vous voulez déconnecter</string>
     <string name="added_50_xp">plus 50 xp</string>
+    <string name="fire_elements">Les forces de feu peut être utilisés en combat (swiper à droit). Ramasse des Flammes pour augmenter cette force.</string>
+    <string name="earth_elements">Les forces de terre peut être utilisés en combat (swiper vers le bas). Ramasse des plantes pour augmenter cette force.</string>
+    <string name="air_elements">Les forces d\'air peut être utilisés en combat (swiper vers le haut). Ramasse des Trombuluses pour augmenter cette force.</string>
+    <string name="water_elements">Les forces d\'eau peut être utilisés en combat (swiper gauche). Ramasse de Goutte d\'eau pour augmenter cette force.</string>
 </resources>

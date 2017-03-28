@@ -141,4 +141,8 @@
     <string name="hold_to_logout">Håll ned knappen om du vill logga ut</string>
     <string name="won">Fett magiskt</string>
     <string name="added_50_xp">plus 50 xp</string>
+    <string name="fire_elements">Eldkraft kan användas i strid (svep åt höger). Samla Eldflammor för att öka den här kraften.</string>
+    <string name="earth_elements">Jordkraft kan användas i strid (svep nedåt). Samla Plantor för att öka den här kraften.</string>
+    <string name="air_elements">Luftkraft kan användas i strid (svep uppåt). Samla Trombulusar för att öka den här kraften.</string>
+    <string name="water_elements">Vattenkraft kan användas i strid (svep åt vänster). Samla Vattendroppar för att öka den här kraften.</string>
 </resources>
