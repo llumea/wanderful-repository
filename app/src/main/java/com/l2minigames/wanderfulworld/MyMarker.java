@@ -4,9 +4,9 @@ package com.l2minigames.wanderfulworld;
  * Created by umyhlarsle on 2016-11-03.
  */
 public class MyMarker {
-    double markerLatitude;
-    double markerLongitude;
-    String markerType;
+    public double markerLatitude;
+    public double markerLongitude;
+    public String markerType;
 
     public MyMarker(){
 

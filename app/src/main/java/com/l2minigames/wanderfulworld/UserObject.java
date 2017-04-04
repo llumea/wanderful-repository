@@ -23,10 +23,10 @@ public class UserObject {
     public int XP;
     public int level;
     public int travelMode;
-    double latitude;
-    double longitude;
-    ArrayList<MyMarker> markerList = new ArrayList<>();
-    Map<String, CollectedItem> collectedItems = new HashMap<>();
+    public double latitude;
+    public double longitude;
+    public ArrayList<MyMarker> markerList = new ArrayList<>();
+    public Map<String, CollectedItem> collectedItems = new HashMap<>();
 
 
     public UserObject() {
