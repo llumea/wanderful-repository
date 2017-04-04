@@ -8,6 +8,7 @@ public class MyMarker {
     public double markerLongitude;
     public String markerType;
 
+    @Keep
     public MyMarker(){
 
     }
