@@ -949,7 +949,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Date date = calendar.getTime();
                 long checkMarkersTimestamp = date.getTime();
                 ///ToDo Ändra värdet för timer till 30 minuter före test? 300000 är 5 minuter.
-                if (checkMarkersTimestamp>object.timer+300000 &&myPositionLatitude != 0 && myPositionLongitude!=0 &&onlyOneTime==0 &&object.travelMode==0) {
+
+                ///Kolla eftersom myPositionLatitude och object.latitude inte är samma - provar ändra myPositionLatitude till object.latitude
+                if (checkMarkersTimestamp>object.timer+300000 && object.latitude != 0 && object.longitude !=0 &&onlyOneTime==0 &&object.travelMode==0) {
                     ///ToDo object.latitude och object.longitude kan vara från andra delar av världen
                     updateMarkers(object.latitude, object.longitude, checkMarkersTimestamp);
                     onlyOneTime=1;

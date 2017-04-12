@@ -5,9 +5,9 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.l2minigames.wanderfulworld"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 24
-        versionCode 5
+        versionCode 6
         versionName "1.0"
         multiDexEnabled = true
     }
