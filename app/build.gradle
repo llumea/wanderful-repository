@@ -7,7 +7,7 @@ android {
         applicationId "com.l2minigames.wanderfulworld"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 6
+        versionCode 8
         versionName "1.0"
         multiDexEnabled = true
     }
